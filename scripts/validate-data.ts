@@ -1,23 +1,40 @@
-// Phase 0 skeleton. Phase 1 adds the full rules of docs/methodology.md section 3.5
-// (duplicates, unknown clubs, future dates, missing sources, control totals...).
+// Thin CLI around the pure validator in src/data-model (plan 0003). Only I/O lives here.
+// Usage: tsx scripts/validate-data.ts [dir]   (default: data, relative to cwd)
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { validate } from "../src/data-model/validate";
+import type { ValidationIssue } from "../src/data-model/types";
 
-const dataDir = join(process.cwd(), "data");
+const dataDir = join(process.cwd(), process.argv[2] ?? "data");
 const files = readdirSync(dataDir).filter((f) => f.endsWith(".json"));
-const errors: string[] = [];
+
+const raw: Record<string, unknown> = {};
+const parseIssues: ValidationIssue[] = [];
 
 for (const file of files) {
+  // JSON.parse rejects a leading BOM, which some editors on Windows add.
+  const text = readFileSync(join(dataDir, file), "utf8").replace(/^﻿/, "");
   try {
-    const parsed: unknown = JSON.parse(readFileSync(join(dataDir, file), "utf8"));
-    if (!Array.isArray(parsed)) errors.push(`${file}: root must be an array`);
+    raw[file] = JSON.parse(text);
   } catch (e) {
-    errors.push(`${file}: invalid JSON (${(e as Error).message})`);
+    parseIssues.push({
+      rule: "invalid-json",
+      file,
+      recordId: null,
+      message: (e as Error).message,
+    });
   }
 }
 
-if (errors.length > 0) {
-  console.error(errors.join("\n"));
+const issues = [...parseIssues, ...validate(raw, { now: new Date() })];
+
+if (issues.length > 0) {
+  for (const i of issues) {
+    console.error(
+      `[${i.rule}] ${i.file}${i.recordId === null ? "" : `#${i.recordId}`}: ${i.message}`,
+    );
+  }
+  console.error(`data:validate failed: ${issues.length} issue(s)`);
   process.exit(1);
 }
 console.log(`data:validate ok (${files.length} file(s) checked)`);

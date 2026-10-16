@@ -1,0 +1,8 @@
+[
+  {
+    "club_a": "club-a",
+    "club_b": "club-b",
+    "is_classic": true,
+    "source": "fixture:synthetic"
+  }
+]

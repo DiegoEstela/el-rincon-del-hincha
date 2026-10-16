@@ -1,0 +1,22 @@
+[
+  {
+    "id": "t1",
+    "club_id": "club-a",
+    "competition_id": "league-x",
+    "season_id": "league-x-2020",
+    "awarded_on": "2020-12-01",
+    "shared": false,
+    "source": "fixture:synthetic",
+    "verified": false
+  },
+  {
+    "id": "t2",
+    "club_id": "club-a",
+    "competition_id": "cup-y",
+    "season_id": "cup-y-2020",
+    "awarded_on": "2020-06-01",
+    "shared": false,
+    "source": "fixture:synthetic",
+    "verified": false
+  }
+]

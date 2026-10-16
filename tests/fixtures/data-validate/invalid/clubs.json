@@ -1,0 +1,57 @@
+[
+  {
+    "id": "club-a",
+    "name": "Club Ficticio A",
+    "short_name": "Ficticio A",
+    "aliases": ["CFA"],
+    "colors": {
+      "primary": "#112233",
+      "secondary": "#FFFFFF"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1900,
+    "city": "Ciudad Ficticia"
+  },
+  {
+    "id": "club-b",
+    "name": "Club Ficticio B",
+    "short_name": "Ficticio B",
+    "aliases": ["CFB"],
+    "colors": {
+      "primary": "#aa0000",
+      "secondary": "#FFFFFF"
+    },
+    "jersey_pattern": "hoops",
+    "founded": 1900,
+    "city": "Ciudad Ficticia",
+    "source": "fixture:synthetic"
+  },
+  {
+    "id": "club-c",
+    "name": "Club Ficticio C",
+    "short_name": "Ficticio C",
+    "aliases": ["CFC"],
+    "colors": {
+      "primary": "#00aa00",
+      "secondary": "#FFFFFF"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1900,
+    "city": "Ciudad Ficticia",
+    "source": "fixture:synthetic"
+  },
+  {
+    "id": "club-d",
+    "name": "Club Ficticio D",
+    "short_name": "Ficticio D",
+    "aliases": ["CFD"],
+    "colors": {
+      "primary": "#0000aa",
+      "secondary": "#FFFFFF"
+    },
+    "jersey_pattern": "halves",
+    "founded": 1900,
+    "city": "Ciudad Ficticia",
+    "source": "fixture:synthetic"
+  }
+]

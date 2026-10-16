@@ -1,0 +1,46 @@
+import { spawnSync } from "node:child_process";
+import { describe, expect, it } from "vitest";
+
+const root = process.cwd();
+
+function runCli(dir: string) {
+  const result = spawnSync(
+    process.execPath,
+    ["--import", "tsx", "scripts/validate-data.ts", `tests/fixtures/data-validate/${dir}`],
+    { cwd: root, encoding: "utf8" },
+  );
+  return { code: result.status, stdout: result.stdout, stderr: result.stderr };
+}
+
+describe("pnpm data:validate (CLI)", () => {
+  it("passes on an empty directory with 0 files", () => {
+    const r = runCli("empty");
+    expect(r.code).toBe(0);
+    expect(r.stdout).toContain("0 file(s)");
+  });
+
+  it("passes on the valid synthetic dataset", () => {
+    const r = runCli("valid");
+    expect(r.code).toBe(0);
+    expect(r.stdout).toContain("data:validate ok (9 file(s) checked)");
+  });
+
+  it("strips a UTF-8 BOM before parsing", () => {
+    const r = runCli("bom");
+    expect(r.code).toBe(0);
+    expect(r.stdout).toContain("1 file(s)");
+  });
+
+  it("fails on invalid data and lists each issue", () => {
+    const r = runCli("invalid");
+    expect(r.code).toBe(1);
+    expect(r.stderr).toContain("[duplicate-match] matches.json#m1-copy:");
+    expect(r.stderr).toContain("[missing-source] clubs.json#club-a:");
+  });
+
+  it("fails on broken JSON with invalid-json", () => {
+    const r = runCli("broken-json");
+    expect(r.code).toBe(1);
+    expect(r.stderr).toContain("[invalid-json] clubs.json");
+  });
+});

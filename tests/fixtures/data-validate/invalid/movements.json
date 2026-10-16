@@ -1,0 +1,10 @@
+[
+  {
+    "id": "mv1",
+    "club_id": "club-d",
+    "type": "relegation",
+    "date": "2020-12-31",
+    "season_id": "league-x-2020",
+    "source": "fixture:synthetic"
+  }
+]
