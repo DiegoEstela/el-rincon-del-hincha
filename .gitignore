@@ -47,3 +47,6 @@ next-env.d.ts
 
 # local agent state
 .claude/settings.local.json
+
+# local-only third-party files used for analysis (never commit)
+/tools/
