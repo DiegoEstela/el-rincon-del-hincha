@@ -26,6 +26,16 @@ describe("fan period: start inclusive, end is today in Buenos Aires", () => {
     expect(() => fanPeriod("16/10/2026", NOW)).toThrow(RangeError);
     expect(() => fanPeriod("2026-02-30", NOW)).toThrow(RangeError);
   });
+  it("does not echo the supplied date in the error message", () => {
+    for (const bad of ["2026-13-01", "16/10/2026", "2026-02-30"]) {
+      expect(() => fanPeriod(bad, NOW)).toThrow(RangeError);
+      try {
+        fanPeriod(bad, NOW);
+      } catch (error) {
+        expect((error as Error).message).not.toContain(bad);
+      }
+    }
+  });
 });
 
 describe("inPeriod", () => {
