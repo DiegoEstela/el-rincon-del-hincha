@@ -264,5 +264,146 @@
     "founded": 1905,
     "city": "Florida",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Platense&oldid=175806371"
+  },
+  {
+    "id": "racing-club",
+    "name": "Racing Club",
+    "short_name": "Racing",
+    "aliases": ["Racing Club"],
+    "colors": {
+      "primary": "#3b94e0",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1903,
+    "city": "Avellaneda",
+    "source": "https://es.wikipedia.org/w/index.php?title=Racing_Club&oldid=175777928"
+  },
+  {
+    "id": "river-plate",
+    "name": "River Plate",
+    "short_name": "River",
+    "aliases": ["River Plate"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#d62828",
+      "tertiary": "#111111"
+    },
+    "jersey_pattern": "sash",
+    "founded": 1901,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_River_Plate&oldid=175776032"
+  },
+  {
+    "id": "rosario-central",
+    "name": "Rosario Central",
+    "short_name": "Central",
+    "aliases": ["Rosario Central"],
+    "colors": {
+      "primary": "#1d4ed8",
+      "secondary": "#ffd60a"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1889,
+    "city": "Rosario",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Rosario_Central&oldid=175807783"
+  },
+  {
+    "id": "san-lorenzo",
+    "name": "San Lorenzo",
+    "short_name": "San Lorenzo",
+    "aliases": ["San Lorenzo"],
+    "colors": {
+      "primary": "#0b1f4d",
+      "secondary": "#d62828"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1908,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro&oldid=175724689"
+  },
+  {
+    "id": "san-martin-san-juan",
+    "name": "San Martín de San Juan",
+    "short_name": "San Martín SJ",
+    "aliases": ["San Martín de San Juan", "San Martin (SJ)"],
+    "colors": {
+      "primary": "#111111",
+      "secondary": "#1a9850"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1907,
+    "city": "San Juan",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Mart%C3%ADn_(San_Juan)&oldid=175406099"
+  },
+  {
+    "id": "sarmiento-junin",
+    "name": "Sarmiento",
+    "short_name": "Sarmiento",
+    "aliases": ["Sarmiento", "Sarmiento de Junín", "Sarmiento (J)"],
+    "colors": {
+      "primary": "#1a9850",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1911,
+    "city": "Junín",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Sarmiento_(Jun%C3%ADn)&oldid=175323958"
+  },
+  {
+    "id": "talleres-cordoba",
+    "name": "Talleres",
+    "short_name": "Talleres",
+    "aliases": ["Talleres", "Talleres de Córdoba", "Talleres (C)"],
+    "colors": {
+      "primary": "#0b1f4d",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1913,
+    "city": "Córdoba",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Talleres_(C%C3%B3rdoba)&oldid=175835627"
+  },
+  {
+    "id": "tigre",
+    "name": "Tigre",
+    "short_name": "Tigre",
+    "aliases": ["Tigre"],
+    "colors": {
+      "primary": "#0b1f4d",
+      "secondary": "#d62828"
+    },
+    "jersey_pattern": "other",
+    "founded": 1902,
+    "city": "Victoria",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Tigre&oldid=175827341"
+  },
+  {
+    "id": "union",
+    "name": "Unión",
+    "short_name": "Unión",
+    "aliases": ["Unión", "Unión de Santa Fe", "Union"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1907,
+    "city": "Santa Fe",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Uni%C3%B3n_(Santa_Fe)&oldid=175562652"
+  },
+  {
+    "id": "velez-sarsfield",
+    "name": "Vélez Sarsfield",
+    "short_name": "Vélez",
+    "aliases": ["Vélez Sarsfield", "Velez"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#1d4ed8"
+    },
+    "jersey_pattern": "other",
+    "founded": 1910,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_V%C3%A9lez_Sarsfield&oldid=175716647"
   }
 ]
