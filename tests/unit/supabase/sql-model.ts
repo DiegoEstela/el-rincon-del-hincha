@@ -95,6 +95,9 @@ function scan(sql: string, bodies: string[]): string[] {
       current += " ";
     } else if (sql[i] === "'" || sql[i] === '"') {
       const quote = sql[i];
+      if (quote === "'" && /^[eE]$/.test(sql[i - 1] ?? "") && !/[\w$]/.test(sql[i - 2] ?? " ")) {
+        throw new Error("Escape string literals (E'...') are not supported by the SQL model");
+      }
       let j = i + 1;
       while (j < sql.length && !(sql[j] === quote && sql[j + 1] !== quote)) {
         j += sql[j] === quote ? 2 : 1;
@@ -119,6 +122,17 @@ function scan(sql: string, bodies: string[]): string[] {
   }
   statements.push(current);
   return statements.map((s) => s.replace(/\s+/g, " ").trim()).filter((s) => s !== "");
+}
+
+/** True only for exactly one `select cron.schedule(...)` or `select cron.unschedule(...)` call. */
+function isCronCall(stmt: string): boolean {
+  const skeleton = stmt.replace(/'(?:[^']|'')*'/g, "'S'");
+  return (
+    /^select cron\.schedule\('S', 'S', (?:'S'|__BODY\d+__)\)$/i.test(skeleton) ||
+    /^select cron\.unschedule\('S'\)(?: where exists \(select 1 from cron\.job where jobname = 'S'\))?$/i.test(
+      skeleton,
+    )
+  );
 }
 
 /** Splits on commas that are outside parentheses, brackets and quotes. */
@@ -291,8 +305,8 @@ export function parseMigrations(files: string[]): Model {
         });
       } else if ((m = /^create extension (?:if not exists )?("?[\w-]+"?)/i.exec(stmt))) {
         model.extensions.push(unquote(m[1]!));
-      } else if (/^select cron\./i.test(stmt)) {
-        // pg_cron scheduling calls are the only select statements migrations may contain.
+      } else if (isCronCall(stmt)) {
+        // A single pg_cron schedule or unschedule call is the only select migrations may contain.
       } else if (/^(grant|revoke)\b/i.test(stmt)) {
         const action = stmt.slice(0, 5).toLowerCase() === "grant" ? "grant" : "revoke";
         const fn =

@@ -74,7 +74,10 @@ export function compileCheck(expression: string): (row: Row) => boolean | null {
         const a = l(row);
         const b = r(row);
         if (a === null || b === null) return null;
-        return op === "+" ? (a as number) + (b as number) : (a as number) - (b as number);
+        if (typeof a !== "number" || typeof b !== "number") {
+          throw new Error(`Operator ${op} needs numbers, got ${typeof a} and ${typeof b}`);
+        }
+        return op === "+" ? a + b : a - b;
       };
     }
     return left;

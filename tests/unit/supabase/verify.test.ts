@@ -49,6 +49,14 @@ describe("supabase/checks/verify.sql", () => {
     expect(code).toMatch(/'FAIL'/);
     expect(code).toMatch(/not like 'OK %'/);
   });
+  it("fails when fewer checks ran than the pinned names, so zero checks never reports OK", () => {
+    const min = /v_min_checks constant integer := (\d+);/.exec(code);
+    expect(min).not.toBeNull();
+    expect(Number(min![1])).toBe(CHECK_NAMES.length);
+    expect(code).toMatch(/array_length\(v_lines, 1\), 0\) < v_min_checks/);
+    expect(code).toMatch(/too few checks ran/);
+    expect(code).toMatch(/v_failed := v_failed \+ 1/);
+  });
   it("covers every check by name", () => {
     for (const name of CHECK_NAMES) expect(code, name).toContain(name);
   });

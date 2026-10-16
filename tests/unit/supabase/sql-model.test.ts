@@ -202,12 +202,14 @@ describe("statement allowlist", () => {
       "a lowercase e string",
       "select cron.unschedule(e'\\''); grant insert on public.clubs to anon;",
     ],
-    [
-      "a backslash inside a quoted string",
-      "select cron.unschedule('a\\'); grant insert on public.clubs to anon; --')",
-    ],
   ])("refuses %s, whose escapes it cannot model", (_label, sql) => {
-    expect(() => parseMigrations([sql])).toThrow(/escape|backslash/i);
+    expect(() => parseMigrations([sql])).toThrow(/escape/i);
+  });
+  it("treats a backslash in a standard string as a literal, so a grant after it is still seen", () => {
+    const m = parseMigrations([
+      "select cron.unschedule('a\\'); grant insert on public.clubs to anon; select cron.unschedule('b')",
+    ]);
+    expect(m.tableGrants.map((g) => g.table)).toEqual(["clubs"]);
   });
   it("records disable and force row level security explicitly", () => {
     const m = parseMigrations([

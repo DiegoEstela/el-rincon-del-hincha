@@ -56,6 +56,8 @@ describe("matches score and penalty checks", () => {
 
   it("accepts exactly what the validator accepts, over the whole truth table", () => {
     let cases = 0;
+    let accepted = 0;
+    let rejected = 0;
     for (const decision of [null, "penalties", "extra_time"] as const) {
       for (const status of ["played", "suspended", "administrative_result"] as const) {
         for (const home_goals of [null, 0, 2, -1]) {
@@ -72,6 +74,8 @@ describe("matches score and penalty checks", () => {
                   away_penalties,
                 };
                 cases += 1;
+                if (validatorAccepts(m)) accepted += 1;
+                else rejected += 1;
                 expect(dbAccepts("matches", m), JSON.stringify(m)).toBe(validatorAccepts(m));
               }
             }
@@ -80,6 +84,10 @@ describe("matches score and penalty checks", () => {
       }
     }
     expect(cases).toBe(972);
+    // Both outcomes must occur, otherwise the comparison above could pass vacuously.
+    expect(accepted).toBeGreaterThan(0);
+    expect(rejected).toBeGreaterThan(0);
+    expect(accepted + rejected).toBe(cases);
   });
 
   it("rejects penalty counts without a shoot-out when decision is null (the NULL hole)", () => {

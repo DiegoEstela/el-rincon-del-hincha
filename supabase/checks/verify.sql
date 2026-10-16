@@ -26,6 +26,8 @@ declare
   v_slug text;
   v_rows integer;
   v_failed integer;
+  -- At least this many lines must be produced; fewer means checks were skipped, which is a failure.
+  v_min_checks constant integer := 16;
 begin
   begin
     -- Catalog checks. Each row is one report line: name, expected, actual, ok.
@@ -184,6 +186,12 @@ begin
   end;
 
   select count(*) into v_failed from unnest(v_lines) as l where l not like 'OK %';
+
+  if coalesce(array_length(v_lines, 1), 0) < v_min_checks then
+    v_lines := v_lines || format('FAIL too few checks ran (expected at least %s, got %s)',
+      v_min_checks, coalesce(array_length(v_lines, 1), 0));
+    v_failed := v_failed + 1;
+  end if;
 
   -- Always raise: the exception aborts this statement (nothing it did is kept) and the SQL Editor
   -- shows the message. Every line below the first must start with OK.
