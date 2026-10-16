@@ -1,6 +1,6 @@
 ---
 issue: 14
-status: pending
+status: done
 date: 2026-10-16
 ---
 
@@ -269,9 +269,9 @@ Each task: write the failing test first, then the minimum code, then refactor. T
 
 ### Group G: wrap-up
 
-- [ ] **T22 Integration.** `tests/integration/stats-engine.test.ts`: from `statsWorld()` through `statsDataFrom` and `buildStatsIndex` to `calculateHistory`, `groupRivals`, `headToHead` and `compareFans` for two fans with `FIXED_NOW`; checks the cross-function invariants: `won + drawn + lost === played`; the sum of every rival row equals the club's history; dominance of each rival row equals `headToHead(...).dominance`; input arrays are not mutated (deep-frozen input).
-- [ ] **T23 Methodology.** Add a "Statistics engine" section to `docs/methodology.md` documenting the rules decided here (goals and administrative scores, coverage notice per competition with both clubs merged for a head-to-head, streak tie rule, biggest win tie-break, final series winner, recognized titles, shared titles, pending titles, comparison categories, milestone step) and the name mapping table. Update ADR 0010 status if Diego accepts it.
-- [ ] **T24 Final check.** `pnpm lint`, `pnpm typecheck`, `pnpm test:coverage` (100% branches in `src/domain/**` and `src/data-model/**`), `pnpm build`. Set this plan's status to `done`. Ask the orchestrator to open the follow-up issue for real verified golden fixtures (approval item 1).
+- [x] **T22 Integration.** `tests/integration/stats-engine.test.ts`: from `statsWorld()` through `statsDataFrom` and `buildStatsIndex` to `calculateHistory`, `groupRivals`, `headToHead` and `compareFans` for two fans with `FIXED_NOW`; checks the cross-function invariants: `won + drawn + lost === played`; the sum of every rival row equals the club's history; dominance of each rival row equals `headToHead(...).dominance`; input arrays are not mutated (deep-frozen input).
+- [x] **T23 Methodology.** Add a "Statistics engine" section to `docs/methodology.md` documenting the rules decided here (goals and administrative scores, coverage notice per competition with both clubs merged for a head-to-head, streak tie rule, biggest win tie-break, final series winner, recognized titles, shared titles, pending titles, comparison categories, milestone step) and the name mapping table. Update ADR 0010 status if Diego accepts it.
+- [x] **T24 Final check.** `pnpm lint`, `pnpm typecheck`, `pnpm test:coverage` (100% branches in `src/domain/**` and `src/data-model/**`), `pnpm build`. Set this plan's status to `done`. Ask the orchestrator to open the follow-up issue for real verified golden fixtures (approval item 1).
 
 ## Tests to write
 
