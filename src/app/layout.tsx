@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main
           id="contenido"
           tabIndex={-1}
-          className="w-full flex-1 px-4 pb-8 focus:outline-none lg:pt-10 lg:pr-10 lg:pl-72"
+          className="w-full flex-1 px-4 pb-8 focus:outline-none lg:pt-12 lg:pr-10 lg:pl-[19rem]"
         >
           <div className="mx-auto max-w-3xl lg:max-w-6xl">{children}</div>
         </main>

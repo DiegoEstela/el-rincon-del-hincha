@@ -27,9 +27,9 @@ export function NavLinks({ variant }: { variant: "sidebar" | "bottom" }) {
                     ? `relative flex min-h-14 flex-col items-center justify-center gap-0.5 text-xs motion-safe:transition-colors ${
                         active ? "text-accent" : "text-muted"
                       }`
-                    : `flex min-h-11 items-center gap-3 rounded-lg px-3 text-base motion-safe:transition-colors ${
+                    : `relative flex min-h-10 items-center gap-3 rounded-xl px-3 text-sm font-medium tracking-tight motion-safe:transition-colors ${
                         active
-                          ? "bg-accent/12 text-accent"
+                          ? "bg-accent/12 text-accent before:bg-accent before:absolute before:inset-y-2 before:left-0 before:w-[3px] before:rounded-full"
                           : "text-muted hover:bg-glass hover:text-foreground"
                       }`
                 }

@@ -84,3 +84,16 @@ describe("WCAG AA contrast", () => {
     expect(contrastRatio(t("line-strong"), raised)).toBeGreaterThanOrEqual(3);
   });
 });
+
+describe("opaque bottom bar and info menu", () => {
+  it("keeps nav text readable on the solid raised surface", () => {
+    expect(contrastRatio(t("muted"), raised)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(t("accent"), raised)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(t("accent"), activeTint)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(t("foreground"), raised)).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("keeps the bar, sheet and button borders visible", () => {
+    expect(contrastRatio(t("line-strong"), background)).toBeGreaterThanOrEqual(3);
+  });
+});
