@@ -9,7 +9,7 @@ export function Sidebar() {
   return (
     <div
       data-testid="sidebar"
-      className="border-line-strong bg-raised fixed inset-y-0 left-0 z-30 hidden w-64 flex-col overflow-y-auto border-r px-4 pt-6 pb-44 lg:flex"
+      className="border-line-strong bg-raised fixed inset-y-0 left-0 z-30 hidden w-64 flex-col overflow-y-auto border-r px-4 pt-6 pb-56 lg:flex"
     >
       <Link href="/" className="font-display text-foreground mb-8 block px-3 text-3xl leading-none">
         Rincón <span className="text-accent">del Hincha</span>
