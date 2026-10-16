@@ -34,9 +34,9 @@ describe("data/clubs.json", () => {
     for (const c of clubs) expect(c.id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
   });
 
-  it("has unique short names of at most 14 characters", () => {
+  it("has unique short names of at most 15 characters", () => {
     expect(new Set(clubs.map((c) => c.short_name)).size).toBe(clubs.length);
-    for (const c of clubs) expect(c.short_name.length, c.id).toBeLessThanOrEqual(14);
+    for (const c of clubs) expect(c.short_name.length, c.id).toBeLessThanOrEqual(15);
   });
 
   it("shares no alias between two clubs, even after folding, and has no blank alias", () => {

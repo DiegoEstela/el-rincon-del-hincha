@@ -1,6 +1,7 @@
 // The project's own named palette for club colors (ADR 0012). Hex values are a project choice,
 // not official club colors, and are never taken from brand manuals, crests or kit templates.
-// A variant (for example "rojo claro") exists only when contrast forces a shade within a family.
+// A variant (for example "celeste intenso" or "verde oscuro") exists only when contrast forces a
+// shade within a family; the log of plan 0007 says which club uses it and why.
 export type PaletteColor = { readonly name: string; readonly hex: string };
 
 export const CLUB_PALETTE: readonly PaletteColor[] = [
@@ -11,6 +12,7 @@ export const CLUB_PALETTE: readonly PaletteColor[] = [
   { name: "azul", hex: "#1d4ed8" },
   { name: "azul marino", hex: "#0b1f4d" },
   { name: "celeste", hex: "#6cb4ee" },
+  { name: "celeste intenso", hex: "#3b94e0" },
   { name: "amarillo", hex: "#ffd60a" },
   { name: "oro", hex: "#d4a017" },
   { name: "verde", hex: "#1a9850" },

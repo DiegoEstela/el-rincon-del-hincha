@@ -1,0 +1,142 @@
+[
+  {
+    "id": "aldosivi",
+    "name": "Aldosivi",
+    "short_name": "Aldosivi",
+    "aliases": ["Aldosivi"],
+    "colors": {
+      "primary": "#ffd60a",
+      "secondary": "#0b5d2a"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1913,
+    "city": "Mar del Plata",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Aldosivi&oldid=175419124"
+  },
+  {
+    "id": "argentinos-juniors",
+    "name": "Argentinos Juniors",
+    "short_name": "Argentinos",
+    "aliases": ["Argentinos Juniors", "Argentinos"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "sash",
+    "founded": 1904,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Asociaci%C3%B3n_Atl%C3%A9tica_Argentinos_Juniors&oldid=175811618"
+  },
+  {
+    "id": "atletico-tucuman",
+    "name": "Atlético Tucumán",
+    "short_name": "Atl. Tucumán",
+    "aliases": ["Atlético Tucumán", "Atl Tucuman"],
+    "colors": {
+      "primary": "#3b94e0",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1902,
+    "city": "San Miguel de Tucumán",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Tucum%C3%A1n&oldid=175765994"
+  },
+  {
+    "id": "banfield",
+    "name": "Banfield",
+    "short_name": "Banfield",
+    "aliases": ["Banfield"],
+    "colors": {
+      "primary": "#1a9850",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1896,
+    "city": "Banfield",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Banfield&oldid=175527602"
+  },
+  {
+    "id": "barracas-central",
+    "name": "Barracas Central",
+    "short_name": "Barracas",
+    "aliases": ["Barracas Central"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#d62828"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1904,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Barracas_Central&oldid=175770146"
+  },
+  {
+    "id": "belgrano",
+    "name": "Belgrano",
+    "short_name": "Belgrano",
+    "aliases": ["Belgrano", "Belgrano de Córdoba"],
+    "colors": {
+      "primary": "#3b94e0",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1905,
+    "city": "Córdoba",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Belgrano&oldid=175833020"
+  },
+  {
+    "id": "boca-juniors",
+    "name": "Boca Juniors",
+    "short_name": "Boca",
+    "aliases": ["Boca Juniors"],
+    "colors": {
+      "primary": "#0b1f4d",
+      "secondary": "#d4a017"
+    },
+    "jersey_pattern": "other",
+    "founded": 1905,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Boca_Juniors&oldid=175803979"
+  },
+  {
+    "id": "central-cordoba-sde",
+    "name": "Central Córdoba",
+    "short_name": "Central Córdoba",
+    "aliases": ["Central Córdoba", "Central Córdoba SdE", "Central Cba (SdE)"],
+    "colors": {
+      "primary": "#111111",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1919,
+    "city": "Santiago del Estero",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Central_C%C3%B3rdoba_(Santiago_del_Estero)&oldid=175837636"
+  },
+  {
+    "id": "defensa-y-justicia",
+    "name": "Defensa y Justicia",
+    "short_name": "Defensa",
+    "aliases": ["Defensa y Justicia", "Def y Justicia"],
+    "colors": {
+      "primary": "#ffd60a",
+      "secondary": "#0b5d2a"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1935,
+    "city": "Florencio Varela",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Social_y_Deportivo_Defensa_y_Justicia&oldid=175716573"
+  },
+  {
+    "id": "deportivo-riestra",
+    "name": "Deportivo Riestra",
+    "short_name": "Riestra",
+    "aliases": ["Deportivo Riestra"],
+    "colors": {
+      "primary": "#111111",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1931,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Deportivo_Riestra&oldid=175825198"
+  }
+]
