@@ -1,4 +1,4 @@
-import { netPrivileges, type Model } from "./sql-model";
+import { netExecute, netPrivileges, type Model } from "./sql-model";
 
 const CLIENT_ROLES = ["anon", "authenticated", "public"];
 
@@ -31,6 +31,12 @@ export function securityViolations(model: Model): string[] {
   for (const fn of model.functions.values()) {
     if (fn.securityDefiner && fn.searchPath !== "") {
       out.push(`${fn.name}: security definer without set search_path = ''`);
+    }
+    if (fn.securityDefiner) {
+      const exposed = [...netExecute(model, fn.name)].filter((r) => CLIENT_ROLES.includes(r));
+      if (exposed.length > 0) {
+        out.push(`${fn.name}: security definer function executable by ${exposed.join(", ")}`);
+      }
     }
   }
   return out;

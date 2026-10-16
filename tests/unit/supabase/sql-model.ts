@@ -341,3 +341,18 @@ export function enumValues(table: Table, column: string): string[] | null {
   }
   return null;
 }
+
+/** Roles that can execute a function: Postgres grants execute to public until it is revoked. */
+export function netExecute(model: Model, fn: string): Set<string> {
+  const roles = new Set<string>(["public"]);
+  for (const ev of model.functionGrants) {
+    if (ev.fn !== fn) continue;
+    const affectsExecute = ev.privileges.some((p) => p === "all" || p === "execute");
+    if (!affectsExecute) continue;
+    for (const r of ev.roles) {
+      if (ev.action === "grant") roles.add(r);
+      else roles.delete(r);
+    }
+  }
+  return roles;
+}

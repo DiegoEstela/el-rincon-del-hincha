@@ -106,7 +106,14 @@ describe("the gate itself catches mistakes", () => {
       `create function public.f() returns int language sql security definer ${opt} as $$ select 1 $$;`;
     expect(bad(f("")).join()).toMatch(/search_path/);
     expect(bad(f("set search_path = public")).join()).toMatch(/search_path/);
-    expect(bad(f("set search_path = ''"))).toEqual([]);
+    const locked = `${f("set search_path = ''")} revoke all on function public.f() from public;`;
+    expect(bad(locked)).toEqual([]);
+  });
+  it("fails a security definer function that clients can execute", () => {
+    const f = `create function public.f() returns int language sql security definer set search_path = '' as $$ select 1 $$;`;
+    expect(bad(f).join()).toMatch(/executable by public/);
+    const anon = `${f} revoke all on function public.f() from public; grant execute on function public.f() to anon;`;
+    expect(bad(anon).join()).toMatch(/executable by anon/);
   });
   it("ignores keywords inside comments", () => {
     const text = `-- grant all on table public.t to anon;\n/* create table public.t (id text); */ select 1;`;
