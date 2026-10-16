@@ -55,15 +55,15 @@ export type ValidationIssue = {
   message: string;
 };
 
-/** The validated dataset: one array per file, shape-valid records only. */
+/** A dataset: one array of records per file. */
 export type Dataset = {
-  clubs: Club[];
-  competitions: Competition[];
-  seasons: Season[];
-  matches: Match[];
-  titles: Title[];
-  movements: Movement[];
-  rivalries: Rivalry[];
-  coverage: Coverage[];
-  standings: Standing[];
+  "clubs.json": Club[];
+  "competitions.json": Competition[];
+  "seasons.json": Season[];
+  "matches.json": Match[];
+  "titles.json": Title[];
+  "movements.json": Movement[];
+  "rivalries.json": Rivalry[];
+  "coverage.json": Coverage[];
+  "standings.json": Standing[];
 };
