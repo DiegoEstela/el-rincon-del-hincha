@@ -1,21 +1,22 @@
 // Spike for ADR 0003: measures what the API-Football free plan really allows.
 // Reads API_FOOTBALL_KEY from the environment (loaded by the pnpm script) and NEVER prints it.
 // Writes a secret-free summary to docs/spike/api-football-probe.json.
-// Makes 16 calls, spaced to respect 10 requests/minute. Observed: only 4 count against the daily
-// quota (calls rejected by the plan and /status cost 0).
+// Makes 16 calls, spaced to respect 10 requests/minute. Worst case 7 count against the daily quota
+// (only 7 returned data; the quota headers were inconsistent, so the exact cost was not measured).
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
 
 const BASE = "https://v3.football.api-sports.io";
 const TIMEOUT_MS = 15_000;
-const apiKey = process.env.API_FOOTBALL_KEY;
-if (!apiKey) {
+const apiKeyFromEnv = process.env.API_FOOTBALL_KEY;
+if (!apiKeyFromEnv) {
   console.error(
     "API_FOOTBALL_KEY is not set. Put it in .env.local and run `pnpm spike:api-football`.",
   );
   process.exit(1);
 }
+const apiKey: string = apiKeyFromEnv;
 
 const Errors = z.union([z.array(z.unknown()), z.record(z.string(), z.unknown())]);
 const Envelope = z.object({
@@ -52,7 +53,7 @@ async function call(
   extract?: (response: unknown) => unknown,
 ): Promise<Probe> {
   const res = await fetch(`${BASE}${path}`, {
-    headers: { "x-apisports-key": apiKey as string },
+    headers: { "x-apisports-key": apiKey },
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
   // Do not waste quota: stop on rate limiting or server errors.
@@ -134,6 +135,6 @@ async function main() {
 }
 
 main().catch((e) => {
-  console.error("Probe failed:", (e as Error).message);
+  console.error("Probe failed:", e instanceof Error ? e.message : String(e));
   process.exit(1);
 });

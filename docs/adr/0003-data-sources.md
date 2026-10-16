@@ -10,8 +10,8 @@ No free API covers decades of Argentine football. The product promises each fan 
 
 ### API-Football, free plan (measured with Diego's key, `docs/spike/api-football-probe.json`)
 
-- **Quota:** 100 requests per day (`limit_day: 100`), 10 per minute. The probe made 16 calls and only 4 counted against the quota (calls rejected by the plan and `/status` cost 0), so it used 4 percent of the day.
-- **Seasons readable on the free plan: 2022, 2023 and 2024 only.** Any other season returns `Free plans do not have access to this season, try from 2022 to 2024.` That includes 2018 to 2021 and **2025 and 2026**.
+- **Quota:** 100 requests per day (`limit_day: 100`), 10 per minute. The probe made 16 calls, of which 7 returned data. The quota headers were inconsistent (remaining values 98, 98, 97, 96, 98, 97, 96 in call order, and none on plan-rejected calls), so the exact quota cost was not established. The worst case is 7 of the 100 daily requests.
+- **Seasons readable on the free plan: 2022, 2023 and 2024 only.** Every other season probed (2010, 2014, 2016, 2018 to 2021 and 2025) returned `Free plans do not have access to this season, try from 2022 to 2024.` **2026** was not probed; it is inferred to be denied from that message.
 - The API lists the Liga Profesional (id 128) for 2015 to 2026 with events and statistics coverage, so the data exists but is behind a paid plan.
 - **Cost of an ingestion:** one request returns a whole competition season (`/fixtures?league=128&season=2024` gave 378 matches in one call). A season of a competition costs 1 request.
 - **A league id is not a single clean competition.** `league=128&season=2022` returned **581** fixtures, while openfootball's 2022 file has 378 matches (2023 and 2024 match exactly at 378). The extra 203 fixtures most likely belong to another stage or tournament filed under the same league id in 2022; this was not investigated. The adapter must therefore filter by round or stage, and "1 request per competition season" holds for the request count but not for a 1:1 match with openfootball.
@@ -49,7 +49,7 @@ No free API covers decades of Argentine football. The product promises each fan 
 3. **Titles (honours) go back further**, sourced from Wikipedia lists with CC BY-SA attribution on `/acerca` and a per-record `source` URL, counting only officially recognized titles by default.
 4. **Cups and international competitions** come from API-Football (2022 to 2024 on the free plan); other years need a source or a paid plan.
 5. **Permission requests** for RSSSF and for the Kaggle dataset author are drafted in `docs/spike/permission-requests.md`. Diego sends them. No data from these sources enters `data/` before a written answer is stored in `docs/spike/replies/`.
-6. The API-Football key lives only in server code and in the GitHub secret for the scheduled workflow. The free plan's 100 requests/day is enough for the planned ingestion (one request per competition season).
+6. The API-Football key lives only in server code and in the GitHub secret for the scheduled workflow. The free plan's 100 requests/day is enough for the planned ingestion of the seasons the free plan can read (one request per competition season).
 
 ## Open decision (Diego)
 
