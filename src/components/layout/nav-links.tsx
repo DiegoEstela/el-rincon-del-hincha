@@ -38,7 +38,7 @@ export function NavLinks({ variant }: { variant: "sidebar" | "bottom" }) {
                   <span
                     aria-hidden
                     data-testid="active-indicator"
-                    className="bg-accent/12 absolute inset-x-3 inset-y-1.5 rounded-xl shadow-[0_0_24px_rgb(198_255_61/0.18)]"
+                    className="bg-accent/12 absolute inset-x-3 inset-y-1.5 rounded-xl shadow-[0_0_24px_rgb(198_255_61/0.08)]"
                   />
                 )}
                 <Icon aria-hidden size={bottom ? 20 : 22} className="relative" />

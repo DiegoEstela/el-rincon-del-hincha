@@ -17,13 +17,13 @@ export default function Home() {
           tenés de hijo y qué te falta ganar.
         </p>
       </section>
-      <aside className="glass rise mt-8 rounded-3xl p-6 lg:mt-2 lg:rounded-xl">
+      <div className="glass rise mt-8 rounded-3xl p-6 lg:mt-2 lg:rounded-xl">
         <p className="font-display text-2xl">Muy pronto</p>
         <p className="text-muted mt-1">
           Estamos cargando la historia de todos los clubes de Primera. Cuando esté lista, vas a
           poder armar tu vitrina y compararte con tus amigos.
         </p>
-      </aside>
+      </div>
     </div>
   );
 }

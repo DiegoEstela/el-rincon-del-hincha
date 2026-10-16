@@ -78,3 +78,18 @@ test.describe("breakpoint edges", () => {
     await expect(page.getByTestId("active-indicator")).toBeHidden();
   });
 });
+
+test("on a very short desktop screen the footer has its own background over the sidebar", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 400 });
+  await page.goto("/");
+  const footer = page.getByRole("contentinfo");
+  const bg = await footer.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(bg).not.toBe("rgba(0, 0, 0, 0)");
+  const sidebar = page.getByTestId("sidebar");
+  await sidebar.evaluate((el) => el.scrollTo(0, el.scrollHeight));
+  const nav = await page.getByRole("navigation", { name: "Principal" }).boundingBox();
+  const box = await footer.boundingBox();
+  expect(nav!.y + nav!.height).toBeLessThanOrEqual(box!.y);
+});

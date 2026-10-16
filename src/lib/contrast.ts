@@ -1,3 +1,4 @@
+// Test tooling: used by the palette AA tests, not by the running app.
 export type Rgba = { r: number; g: number; b: number; a: number };
 export type AALevel = "text" | "large" | "ui";
 
@@ -36,7 +37,7 @@ export function parseColor(input: string): Rgba {
 
 function channel(value: number): number {
   const s = value / 255;
-  return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
 }
 
 export function relativeLuminance(color: string): number {

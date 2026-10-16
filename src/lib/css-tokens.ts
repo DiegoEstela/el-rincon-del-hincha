@@ -1,3 +1,4 @@
+// Test tooling: used by the palette AA tests, not by the running app.
 /** Extracts `--name: value;` custom properties from the first `:root` block of a stylesheet. */
 export function parseRootTokens(css: string): Record<string, string> {
   const withoutComments = css.replace(/\/\*[\s\S]*?\*\//g, "");
