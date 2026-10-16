@@ -83,13 +83,19 @@ describe("head-to-head: record, dominance, last match, rivalry", () => {
   });
   it("merges the coverage of both clubs: complete coverage of club A covers the pair", () => {
     // Club B alone is only complete from 2022 in league-x; club A is complete from 2020.
-    expect(h2h.coverage.isComplete).toBe(true);
-    expect(h2h.coverage.competitions.map((c) => c.competitionId)).toEqual(["cup-y", "league-x"]);
+    // intl-z has a season in the period and club A played it, but no coverage row exists for it:
+    // it is reported as missing, so the notice as a whole is not complete.
+    expect(h2h.coverage.competitions.map((c) => [c.competitionId, c.status])).toEqual([
+      ["cup-y", "complete"],
+      ["intl-z", "missing"],
+      ["league-x", "complete"],
+    ]);
+    expect(h2h.coverage.isComplete).toBe(false);
   });
   it("reports partial coverage when the period starts before both clubs are covered", () => {
     const early = headToHead(world, "club-a", "club-b", fanPeriod("2019-01-01", FIXED_NOW));
     expect(early.coverage.isComplete).toBe(false);
-    expect(early.coverage.competitions[1]).toMatchObject({
+    expect(early.coverage.competitions.find((c) => c.competitionId === "league-x")).toMatchObject({
       competitionId: "league-x",
       status: "partial",
       completeFrom: "2020-01-01",

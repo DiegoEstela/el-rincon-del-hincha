@@ -94,9 +94,16 @@ export function tallyMatches(
 }
 
 /**
- * Competitions the coverage notice talks about: those with counted matches, plus those with at
- * least one coverage row of any of the clubs whose interval overlaps the period. Restricted by
- * the filter. An empty period overlaps nothing.
+ * Competitions the coverage notice talks about, the union of:
+ * 1. competitions with counted matches in the period;
+ * 2. competitions with a coverage row of any club involved that overlaps the period;
+ * 3. competitions with a season overlapping the period in which a club involved has any
+ *    coverage row (any dates) or any match (any season).
+ * A row that ended before the period means the ingestion stopped, not that the competition is
+ * irrelevant, so set 3 reports it (as missing unless a complete row covers the period). A club
+ * that left a competition (relegation) gets a safe false warning for it. Competitions where no
+ * club involved has any row or match stay unlisted. Restricted by the filter afterwards. An
+ * empty period overlaps nothing.
  */
 export function relevantCompetitionIds(
   index: StatsIndex,
@@ -109,6 +116,21 @@ export function relevantCompetitionIds(
   for (const row of index.data.coverage) {
     if (clubIds.includes(row.club_id) && overlapsPeriod(row, period)) {
       ids.add(row.competition_id);
+    }
+  }
+  const known = new Set<string>();
+  for (const row of index.data.coverage) {
+    if (clubIds.includes(row.club_id)) known.add(row.competition_id);
+  }
+  for (const clubId of clubIds) {
+    for (const match of matchesOf(index, clubId)) known.add(competitionOf(index, match).id);
+  }
+  for (const season of index.data.seasons) {
+    if (
+      known.has(season.competition_id) &&
+      overlapsPeriod({ from: season.start, to: season.end }, period)
+    ) {
+      ids.add(season.competition_id);
     }
   }
   return [...ids].filter((id) => passesFilter(competitionById(index, id), filter));
