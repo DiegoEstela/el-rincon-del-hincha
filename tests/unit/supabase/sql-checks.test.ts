@@ -151,3 +151,45 @@ describe("other row checks never evaluate to NULL for a bad row", () => {
     }
   });
 });
+
+describe("matches basic row checks", () => {
+  const row: Row = {
+    id: "m",
+    season_id: "s",
+    home_id: "a",
+    away_id: "b",
+    home_goals: 1,
+    away_goals: 0,
+    decision: null,
+    home_penalties: null,
+    away_penalties: null,
+    status: "played",
+    source: "x",
+  };
+  it("accepts a normal match", () => {
+    expect(dbAccepts("matches", row)).toBe(true);
+  });
+  it("rejects negative goals and negative penalty counts", () => {
+    expect(dbAccepts("matches", { ...row, home_goals: -1 })).toBe(false);
+    expect(dbAccepts("matches", { ...row, away_goals: -1 })).toBe(false);
+    const shoot = { ...row, decision: "penalties", home_goals: 1, away_goals: 1 };
+    expect(dbAccepts("matches", { ...shoot, home_penalties: -1, away_penalties: 3 })).toBe(false);
+    expect(dbAccepts("matches", { ...shoot, home_penalties: 4, away_penalties: -3 })).toBe(false);
+  });
+  it("requires a score unless the match is suspended", () => {
+    expect(dbAccepts("matches", { ...row, home_goals: null })).toBe(false);
+    expect(dbAccepts("matches", { ...row, away_goals: null })).toBe(false);
+    expect(
+      dbAccepts("matches", { ...row, status: "administrative_result", away_goals: null }),
+    ).toBe(false);
+    expect(dbAccepts("matches", { ...row, status: "suspended", home_goals: null })).toBe(true);
+  });
+  it("rejects a club playing itself and empty ids", () => {
+    expect(dbAccepts("matches", { ...row, away_id: "a" })).toBe(false);
+    expect(dbAccepts("matches", { ...row, id: "" })).toBe(false);
+  });
+  it("rejects unknown status and decision values", () => {
+    expect(dbAccepts("matches", { ...row, status: "postponed" })).toBe(false);
+    expect(dbAccepts("matches", { ...row, decision: "golden_goal" })).toBe(false);
+  });
+});

@@ -2,7 +2,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseMigrations, type Model } from "./sql-model";
 
-export const MIGRATIONS_DIR = join(process.cwd(), "supabase", "migrations");
+// SUPABASE_MIGRATIONS_DIR lets a mutation run point the tests at a modified copy of the migrations.
+export const MIGRATIONS_DIR =
+  process.env["SUPABASE_MIGRATIONS_DIR"] ?? join(process.cwd(), "supabase", "migrations");
 
 export function migrationFiles(): string[] {
   return readdirSync(MIGRATIONS_DIR)
