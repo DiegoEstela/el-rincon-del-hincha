@@ -51,4 +51,12 @@ describe("pnpm data:validate (CLI)", () => {
     expect(r.code).toBe(1);
     expect(r.stderr).toContain("[invalid-json] clubs.json");
   });
+
+  it("names the club and the field for a missing source and an invalid jersey pattern", () => {
+    const r = runCli("clubs-invalid");
+    expect(r.code).toBe(1);
+    expect(r.stderr).toContain("[missing-source] clubs.json#club-sin-fuente:");
+    expect(r.stderr).toContain("[schema] clubs.json#club-patron-invalido: jersey_pattern:");
+    expect(r.stderr).toContain("data:validate failed: 2 issue(s)");
+  });
 });
