@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { validDataset, makeMatch } from "../../fixtures/data-model/dataset";
-import { buildStatsIndex, competitionOf, statsDataFrom } from "@/domain/data";
+import {
+  buildStatsIndex,
+  competitionOf,
+  matchesOf,
+  seasonById,
+  statsDataFrom,
+} from "@/domain/data";
 
 describe("statsDataFrom", () => {
   it("maps each dataset file to its field and leaves the file names out", () => {
@@ -80,5 +86,17 @@ describe("competitionOf", () => {
         makeMatch("x", "league-x-2020", "2020-06-01", "club-a", "club-b", 1, 0),
       ),
     ).toThrow(/competition/);
+  });
+});
+
+describe("seasonById and matchesOf", () => {
+  const index = buildStatsIndex(statsDataFrom(validDataset()));
+  it("finds a season and throws on an unknown one", () => {
+    expect(seasonById(index, "league-x-2020").competition_id).toBe("league-x");
+    expect(() => seasonById(index, "nope")).toThrow(/season/);
+  });
+  it("lists the matches of a club, or nothing for a club without matches", () => {
+    expect(matchesOf(index, "club-a").length).toBeGreaterThan(0);
+    expect(matchesOf(index, "club-nobody")).toEqual([]);
   });
 });

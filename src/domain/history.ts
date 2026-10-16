@@ -1,7 +1,7 @@
 // Methodology: "Match result", "Balance", "Suspended matches", "Administrative results".
 import type { Competition } from "@/data-model/types";
 import { coverageNotice } from "./coverage-notice";
-import { competitionById, competitionOf } from "./data";
+import { competitionById, competitionOf, matchesOf } from "./data";
 import { clubView } from "./match-outcome";
 import { inPeriod } from "./period";
 import type {
@@ -33,7 +33,7 @@ export function selectViews(
 ): Readonly<{ views: readonly MatchView[]; suspendedExcluded: number }> {
   const views: MatchView[] = [];
   let suspendedExcluded = 0;
-  for (const match of index.matchesByClub.get(clubId) ?? []) {
+  for (const match of matchesOf(index, clubId)) {
     if (!inPeriod(match.date, period)) continue;
     const competition = competitionOf(index, match);
     if (!passesFilter(competition, filter)) continue;

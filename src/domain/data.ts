@@ -1,5 +1,5 @@
 // Adapter and index over the data model. The engine never sees file names (ADR 0010).
-import type { Competition, Dataset, Match } from "@/data-model/types";
+import type { Competition, Dataset, Match, Season } from "@/data-model/types";
 import type { StatsData, StatsIndex } from "./types";
 
 export function statsDataFrom(dataset: Dataset): StatsData {
@@ -50,9 +50,19 @@ export function competitionById(index: StatsIndex, id: string): Competition {
   return competition;
 }
 
+/** A season by id. Data is validated upstream, so a miss throws. */
+export function seasonById(index: StatsIndex, id: string): Season {
+  const season = index.seasonById.get(id);
+  if (season === undefined) throw new Error(`Unknown season "${id}".`);
+  return season;
+}
+
 /** The competition of a match, through its season. */
 export function competitionOf(index: StatsIndex, match: Match): Competition {
-  const season = index.seasonById.get(match.season_id);
-  if (season === undefined) throw new Error(`Unknown season "${match.season_id}".`);
-  return competitionById(index, season.competition_id);
+  return competitionById(index, seasonById(index, match.season_id).competition_id);
+}
+
+/** Every match of a club (home or away, suspended included), sorted by date then id. */
+export function matchesOf(index: StatsIndex, clubId: string): readonly Match[] {
+  return index.matchesByClub.get(clubId) ?? [];
 }

@@ -139,3 +139,22 @@ describe("final series: which finals belong to the period and the filters", () =
     expect(dates).toEqual([...dates].sort());
   });
 });
+
+describe("final series ordering", () => {
+  it("breaks a tie on the last leg date by season id", () => {
+    const ds = statsWorld();
+    ds["competitions.json"].push(makeCompetition("cup-z", { type: "national_cup" }));
+    ds["seasons.json"].push(
+      makeSeason("cup-z-2023", "cup-z", "2023-01-01", "2023-12-31"),
+      makeSeason("cup-y-2023", "cup-y", "2023-01-01", "2023-12-31"),
+    );
+    ds["matches.json"].push(
+      leg("z1", "cup-z-2023", "2023-11-01", "club-a", "club-c", 1, 0),
+      leg("y1", "cup-y-2023", "2023-11-01", "club-a", "club-b", 1, 0),
+    );
+    const ids = finalSeries(indexOf(ds), "club-a", fanPeriod("2023-01-01", FIXED_NOW)).map(
+      (s) => s.seasonId,
+    );
+    expect(ids).toEqual(["cup-y-2023", "cup-z-2023"]);
+  });
+});

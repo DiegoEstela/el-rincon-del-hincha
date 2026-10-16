@@ -202,3 +202,17 @@ describe("pending titles (recognized tournaments played in the period that the c
     expect(ids).toEqual(["cup-y", "league-x", "intl-z", "other-q"]);
   });
 });
+
+describe("title ordering", () => {
+  it("breaks a tie on awarded_on by title id", () => {
+    const ds = statsWorld();
+    ds["titles.json"].push(
+      makeTitle("t-b", "club-c", "cup-y", "cup-y-2021", "2021-11-08"),
+      makeTitle("t-a", "club-c", "league-x", "league-x-2022", "2021-11-08"),
+    );
+    const ids = titlesInPeriod(indexOf(ds), "club-c", from2020, { includeUnrecognized: true }).map(
+      (t) => t.id,
+    );
+    expect(ids).toEqual(["t-a", "t-b"]);
+  });
+});
