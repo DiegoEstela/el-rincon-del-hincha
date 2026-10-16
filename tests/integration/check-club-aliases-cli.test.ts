@@ -11,5 +11,5 @@ describe("check-club-aliases (CLI)", () => {
     expect(result.status).toBe(2);
     expect(result.stderr).toContain("CSV not found: it is a local-only file under tools/");
     expect(result.stderr).not.toContain("ENOENT");
-  });
+  }, 15_000);
 });

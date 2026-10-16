@@ -3,8 +3,8 @@ import { foldName, resolveClubId } from "@/data-model/club-aliases";
 
 // The accented strings use explicit unicode escapes on purpose: a formatter or an editor could
 // silently normalize literal characters and turn these tests into a comparison of equal strings.
-const COMPOSED = "Vélez Sarsfield"; // e with acute accent as one code point (NFC)
-const DECOMPOSED = "Vélez Sarsfield"; // e followed by U+0301 combining acute accent (NFD)
+const COMPOSED = "V\u00e9lez Sarsfield"; // U+00E9: e with acute accent as one code point (NFC)
+const DECOMPOSED = "Ve\u0301lez Sarsfield"; // e followed by U+0301 combining acute accent (NFD)
 
 const clubs = [
   { id: "velez-sarsfield", aliases: ["Vélez Sarsfield", "Velez"] },
