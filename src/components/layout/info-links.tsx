@@ -18,7 +18,7 @@ export function InfoLinks() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-8 items-center rounded-lg px-3 text-xs motion-safe:transition-colors ${
+                className={`flex min-h-8 items-center rounded-lg px-3 text-sm motion-safe:transition-colors ${
                   active ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >

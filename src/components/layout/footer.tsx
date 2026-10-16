@@ -12,11 +12,11 @@ export function Footer() {
     <footer className="text-muted lg:border-glass-border lg:bg-raised mx-auto w-full max-w-3xl px-4 pt-6 pb-28 text-center text-xs lg:fixed lg:bottom-3 lg:left-3 lg:z-40 lg:m-0 lg:w-64 lg:max-w-none lg:rounded-b-2xl lg:border-t lg:px-7 lg:pt-4 lg:pb-5 lg:text-left">
       <p>
         Creada por {CREDITS.author}
-        <span aria-hidden className="hidden sm:inline">
+        <span aria-hidden className="hidden sm:inline lg:hidden">
           {" "}
           ·{" "}
         </span>
-        <span className="block sm:inline">Idea original de {CREDITS.originalIdea}</span>
+        <span className="block sm:inline lg:block">Idea original de {CREDITS.originalIdea}</span>
       </p>
       <p>
         <Link

@@ -99,7 +99,7 @@ export function InfoMenu() {
                   href={href}
                   onClick={closeSheet}
                   aria-current={isActiveRoute(pathname, href) ? "page" : undefined}
-                  className="flex min-h-11 items-center text-lg"
+                  className="hover:text-accent flex min-h-11 items-center text-lg motion-safe:transition-colors"
                 >
                   {label}
                 </Link>
