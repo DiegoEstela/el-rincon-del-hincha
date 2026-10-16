@@ -19,6 +19,7 @@ const clubs = clubSchema.array().parse(raw);
 const now = new Date();
 // Clubs of the 2025 list that cannot be delivered yet (open product question, see the plan).
 // Empty this list when the club is added; the contract below then covers all 30.
+// Issue #48: Independiente Rivadavia stays out for now (no verifiable second color).
 const PENDING_CLUB_IDS: readonly string[] = ["independiente-rivadavia"];
 const DELIVERED_ROWS = CLUB_SOURCE_ROWS.filter((r) => !PENDING_CLUB_IDS.includes(r.id));
 const paletteHexes = new Set(CLUB_PALETTE.map((c) => c.hex));
@@ -32,6 +33,16 @@ describe("data/clubs.json", () => {
     expect(CLUB_SOURCE_ROWS).toHaveLength(30);
     expect(clubs).toHaveLength(30 - PENDING_CLUB_IDS.length);
     expect(clubs.map((c) => c.id).sort()).toEqual(DELIVERED_ROWS.map((r) => r.id).sort());
+  });
+
+  it("records the verified shirt pattern of the audited clubs (2026-10-16)", () => {
+    const byId = new Map(clubs.map((c) => [c.id, c]));
+    // Riestra: current home shirt is black with white details; stripes are the traditional kit.
+    expect(byId.get("deportivo-riestra")?.jersey_pattern).toBe("solid");
+    // Defensa y Justicia: stripe direction is unverified, so the safest reading is solid.
+    expect(byId.get("defensa-y-justicia")?.jersey_pattern).toBe("solid");
+    // Independiente: founded is the OFFICIAL year (1 Jan 1905, ADR 0012), not the 4 Aug 1904 birth.
+    expect(byId.get("independiente")?.founded).toBe(1905);
   });
 
   it("has unique ids that are slugs", () => {

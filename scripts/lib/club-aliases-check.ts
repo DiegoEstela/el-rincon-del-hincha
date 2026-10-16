@@ -16,11 +16,16 @@ export type CheckReport = {
   unresolvedOld: string[];
   lookalikeHits: string[];
   expectedProblems: string[];
+  /** Rows with too few cells to hold the three columns we read; skipped, never parsed. */
+  skippedRows: number;
   exitCode: 0 | 1;
 };
 
 const RECENT_FROM_YEAR = 2022;
 
+// Minimal CSV line splitter. Quoted-field handling: a double quote toggles "inside quotes" and is
+// dropped, so commas inside quotes stay in the cell. Escaped quotes ("") and quoted line breaks
+// are NOT supported; that is enough for the team-name columns of the Kaggle file, which has neither.
 function splitLine(line: string): string[] {
   const cells: string[] = [];
   let current = "";
@@ -66,8 +71,14 @@ export function analyzeClubNames(
 
   const names = new Set<string>();
   const recentNames = new Set<string>();
+  const needed = Math.max(tournamentCol, localCol, visitorCol) + 1;
+  let skippedRows = 0;
   for (const line of lines.slice(1)) {
     const cells = splitLine(line);
+    if (cells.length < needed) {
+      skippedRows += 1;
+      continue;
+    }
     const recent = isRecent(cells[tournamentCol]);
     for (const name of [cells[localCol], cells[visitorCol]]) {
       names.add(name);
@@ -103,6 +114,7 @@ export function analyzeClubNames(
     unresolvedOld: unresolved.filter((n) => !recentNames.has(n)),
     lookalikeHits,
     expectedProblems,
+    skippedRows,
     exitCode: failed ? 1 : 0,
   };
 }
@@ -119,6 +131,7 @@ export function formatReport(report: CheckReport): string {
     ...report.lookalikeHits.map((n) => `  - ${n}`),
     `Expected-name problems (must be 0): ${report.expectedProblems.length}`,
     ...report.expectedProblems.map((p) => `  - ${p}`),
+    `Skipped malformed rows: ${report.skippedRows}`,
   ];
   return lines.join("\n");
 }

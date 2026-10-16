@@ -20,7 +20,19 @@ const expected = Object.fromEntries(
   Object.entries(KAGGLE_CLUB_NAMES).filter(([, id]) => present.has(id)),
 );
 
-const report = analyzeClubNames(readFileSync(csvPath, "utf8"), clubs, KAGGLE_LOOKALIKE_NAMES, {
+let csvText: string;
+try {
+  csvText = readFileSync(csvPath, "utf8");
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  console.error(
+    "CSV not found: it is a local-only file under tools/ (gitignored, not in the repo).",
+  );
+  console.error(`Looked for: ${csvPath}`);
+  process.exit(2);
+}
+
+const report = analyzeClubNames(csvText, clubs, KAGGLE_LOOKALIKE_NAMES, {
   strict,
   expected,
 });

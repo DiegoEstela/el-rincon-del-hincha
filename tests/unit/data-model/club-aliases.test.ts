@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { foldName, resolveClubId } from "@/data-model/club-aliases";
 
+// The accented strings use explicit unicode escapes on purpose: a formatter or an editor could
+// silently normalize literal characters and turn these tests into a comparison of equal strings.
+const COMPOSED = "Vélez Sarsfield"; // e with acute accent as one code point (NFC)
+const DECOMPOSED = "Vélez Sarsfield"; // e followed by U+0301 combining acute accent (NFD)
+
 const clubs = [
   { id: "velez-sarsfield", aliases: ["Vélez Sarsfield", "Velez"] },
   { id: "huracan", aliases: ["Huracán", "Huracan"] },
@@ -15,7 +20,8 @@ describe("foldName", () => {
   });
 
   it("folds composed and decomposed accents to the same value", () => {
-    expect(foldName("Vélez")).toBe(foldName("Vélez"));
+    expect(COMPOSED).not.toBe(DECOMPOSED);
+    expect(foldName(COMPOSED)).toBe(foldName(DECOMPOSED));
   });
 });
 
@@ -26,8 +32,9 @@ describe("resolveClubId", () => {
   });
 
   it("resolves composed and decomposed accents the same", () => {
-    expect(resolveClubId(clubs, "Vélez Sarsfield")).toBe("velez-sarsfield");
-    expect(resolveClubId(clubs, "Vélez Sarsfield")).toBe("velez-sarsfield");
+    expect(COMPOSED).not.toBe(DECOMPOSED);
+    expect(resolveClubId(clubs, COMPOSED)).toBe("velez-sarsfield");
+    expect(resolveClubId(clubs, DECOMPOSED)).toBe("velez-sarsfield");
   });
 
   it("trims surrounding spaces", () => {

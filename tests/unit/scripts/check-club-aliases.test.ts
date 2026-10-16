@@ -78,6 +78,17 @@ describe("analyzeClubNames", () => {
     expect(report.resolved["Alpha FC"]).toBe("alpha");
   });
 
+  it("skips rows with too few cells and counts them", () => {
+    const report = analyzeClubNames(
+      csv(["Liga 2023,1,Alpha", "Liga 2023,1,Alpha,0,0,Beta,2", "garbage"]),
+      clubs,
+      lookalikes,
+    );
+    expect(report.skippedRows).toBe(2);
+    expect(report.distinctNames).toEqual(["Alpha", "Beta"]);
+    expect(formatReport(report)).toContain("Skipped malformed rows: 2");
+  });
+
   it("formats a report with names and counts but no scores", () => {
     const report = analyzeClubNames(csv(["Liga 2023,1,Alpha,55,66,Ghost,2"]), clubs, lookalikes);
     const text = formatReport(report);

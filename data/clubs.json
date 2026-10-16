@@ -120,7 +120,7 @@
       "primary": "#ffd60a",
       "secondary": "#0b5d2a"
     },
-    "jersey_pattern": "vertical_stripes",
+    "jersey_pattern": "solid",
     "founded": 1935,
     "city": "Florencio Varela",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Social_y_Deportivo_Defensa_y_Justicia&oldid=175716573"
@@ -134,7 +134,7 @@
       "primary": "#111111",
       "secondary": "#ffffff"
     },
-    "jersey_pattern": "vertical_stripes",
+    "jersey_pattern": "solid",
     "founded": 1931,
     "city": "Buenos Aires",
     "source": "https://es.wikipedia.org/w/index.php?title=Deportivo_Riestra&oldid=175825198"
