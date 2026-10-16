@@ -13,6 +13,21 @@ describe("todayInBuenosAires", () => {
   });
 });
 
+describe("todayInBuenosAires at the UTC midnight edge", () => {
+  it("is still the previous day at exactly 00:00Z (21:00 in Buenos Aires)", () => {
+    expect(todayInBuenosAires(new Date("2026-10-16T00:00:00Z"))).toBe("2026-10-15");
+  });
+});
+
+describe("seasons that span two calendar years", () => {
+  it("compares plain dates correctly across the year boundary", () => {
+    expect(isWithin("2019-12-31", "2019-08-01", "2020-06-30")).toBe(true);
+    expect(isWithin("2020-01-01", "2019-08-01", "2020-06-30")).toBe(true);
+    expect(isWithin("2020-07-01", "2019-08-01", "2020-06-30")).toBe(false);
+    expect(isWithin("2019-07-31", "2019-08-01", "2020-06-30")).toBe(false);
+  });
+});
+
 describe("isAfter", () => {
   it("compares calendar dates", () => {
     expect(isAfter("2026-10-17", "2026-10-16")).toBe(true);

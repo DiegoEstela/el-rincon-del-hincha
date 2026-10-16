@@ -31,7 +31,7 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 - `future-played-match`: a played or administrative match is dated after today in Buenos Aires.
 - `date-outside-season`: a match date falls outside its season range (bounds inclusive).
 - `invalid-season-range`: a season starts after it ends, or a coverage row starts after it ends.
-- `title-without-support`: with complete coverage of the season, the champion has no supporting match. Cups need a final; for leagues the club must have played at least one counted match that season.
+- `title-without-support`: with complete coverage of the season, the champion has no supporting match. Non-league competitions (national cups, international, other) need a counted final involving the club; for leagues the club must have played at least one counted match that season.
 - `unshared-co-champions`: a season has two or more titles and one is not marked `shared`.
 - `control-totals`: in `standings.json` (optional, source-backed), won + drawn + lost differs from played.
 - `standings-mismatch`: with complete coverage, the P/W/D/L tallied from matches differs from the `standings.json` row.

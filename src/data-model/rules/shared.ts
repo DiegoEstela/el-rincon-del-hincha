@@ -17,7 +17,9 @@ export function groupBy<T>(records: T[], key: (record: T) => string): Map<string
   const groups = new Map<string, T[]>();
   for (const record of records) {
     const k = key(record);
-    groups.set(k, [...(groups.get(k) ?? []), record]);
+    const group = groups.get(k);
+    if (group === undefined) groups.set(k, [record]);
+    else group.push(record);
   }
   return groups;
 }

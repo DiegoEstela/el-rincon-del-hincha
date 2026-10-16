@@ -38,6 +38,14 @@ describe("pnpm data:validate (CLI)", () => {
     expect(r.stderr).toContain("[missing-source] clubs.json#club-a:");
   });
 
+  it("fails with a friendly message when the directory does not exist", () => {
+    const r = runCli("does-not-exist");
+    expect(r.code).toBe(1);
+    expect(r.stderr).toContain("directory not found");
+    expect(r.stderr).not.toContain("ENOENT");
+    expect(r.stderr).not.toMatch(/at .*\.ts:\d+/);
+  });
+
   it("fails on broken JSON with invalid-json", () => {
     const r = runCli("broken-json");
     expect(r.code).toBe(1);
