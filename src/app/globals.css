@@ -90,7 +90,6 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 6px;
 }
 
 @keyframes rise {
@@ -116,5 +115,46 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Floating desktop panel: outer ring + soft drop shadow, no new tokens. */
+.panel {
+  box-shadow:
+    0 0 0 1px var(--glass-border),
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 24px 48px -16px rgb(0 0 0 / 0.6);
+}
+
+/* Mobile info sheet (native dialog). */
+.info-sheet::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .info-sheet {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity 0.2s ease,
+      transform 0.25s ease,
+      overlay 0.25s allow-discrete,
+      display 0.25s allow-discrete;
+  }
+
+  .info-sheet[open] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .info-sheet[open] {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
   }
 }

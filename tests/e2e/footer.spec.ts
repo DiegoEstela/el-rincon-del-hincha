@@ -20,8 +20,15 @@ for (const route of PUBLIC_ROUTES) {
 
     await expect(footer).toContainText("Creada por Diego Estela Lopez");
     await expect(footer).toContainText("Idea original de Juan Farre");
-    await expect(page.getByTestId("app-version")).toHaveText(/^v\d+\.\d+\.\d+ · \S+$/);
+    await expect(page.getByTestId("app-version")).toHaveText(/^v\d+\.\d+\.\d+$/);
     await expect(page.getByTestId("app-version")).toHaveAttribute("href", "/changelog");
+
+    // Credits and version only: one link, no commit hash, no Acerca/Privacidad.
+    await expect(footer.getByRole("link")).toHaveCount(1);
+    await expect(footer).not.toContainText("Acerca");
+    await expect(footer).not.toContainText("Privacidad");
+    expect(await footer.innerText()).not.toMatch(/\b[0-9a-f]{7}\b/);
+    expect(await footer.evaluate((el) => getComputedStyle(el).fontSize)).toBe("12px");
 
     const name = route === "/" ? "home" : route.slice(1);
     const base = `test-results/screens/${testInfo.project.name}-${name}`;
