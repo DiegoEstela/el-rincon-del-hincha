@@ -97,6 +97,9 @@ const standing = {
   source: SRC,
 };
 
+const without = (o: Record<string, unknown>, k: string) =>
+  Object.fromEntries(Object.entries(o).filter(([key]) => key !== k));
+
 const ok = (schema: { safeParse: (v: unknown) => { success: boolean } }, v: unknown) =>
   schema.safeParse(v).success;
 
@@ -177,8 +180,7 @@ describe("matchSchema", () => {
     }
   });
   it("requires verified", () => {
-    const { verified: _verified, ...rest } = match;
-    expect(ok(matchSchema, rest)).toBe(false);
+    expect(ok(matchSchema, without(match, "verified"))).toBe(false);
   });
   it("rejects non-integer goals but allows negatives at shape level", () => {
     expect(ok(matchSchema, { ...match, home_goals: 1.5 })).toBe(false);
@@ -191,8 +193,7 @@ describe("titleSchema", () => {
     expect(ok(titleSchema, title)).toBe(true);
   });
   it("requires shared", () => {
-    const { shared: _shared, ...rest } = title;
-    expect(ok(titleSchema, rest)).toBe(false);
+    expect(ok(titleSchema, without(title, "shared"))).toBe(false);
   });
 });
 
@@ -217,8 +218,7 @@ describe("coverageSchema", () => {
     expect(ok(coverageSchema, { ...coverage, to: "2020-12-31" })).toBe(true);
   });
   it("rejects a missing to", () => {
-    const { to: _to, ...rest } = coverage;
-    expect(ok(coverageSchema, rest)).toBe(false);
+    expect(ok(coverageSchema, without(coverage, "to"))).toBe(false);
   });
 });
 
