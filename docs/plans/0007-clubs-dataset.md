@@ -153,9 +153,9 @@ Each task starts with its test (red), then the change (green). All tests under `
 - [x] **T6. Verify and write clubs 1 to 10 (1 h).** For each: source A permalink, source B, fill the verification log row, then the record. Stop on any disagreement (human checkpoint). Run T4 and T5 for those records.
 - [x] **T7. Verify and write clubs 11 to 20 (1 h).** Same as T6.
 - [x] **T8. Verify and write clubs 21 to 30 (1 h).** Same as T6; T4 and T5 green; `pnpm data:validate` prints `data:validate ok (1 file(s) checked)`.
-- [ ] **T9. Kaggle alias check script (45 min).** Test first: `tests/unit/scripts/check-club-aliases.test.ts` on a synthetic CSV string (invented names and scores, header identical to the real one) checks that only the two name columns are read, recent unresolved names and lookalike hits are reported, and the exit code. Then `scripts/check-club-aliases.ts`. Run it locally on `tools/liga_2023.csv` and paste only its summary (counts and unresolved names) in the PR.
-- [ ] **T10. Validation failure messages (20 min).** Integration test in `tests/integration/validate-data-cli.test.ts` (or a new fixture dir `tests/fixtures/data-validate/clubs-invalid/`): a club without `source` prints `[missing-source] clubs.json#<id>: ...`, a club with `jersey_pattern: "stripes"` prints `[schema] clubs.json#<id>: jersey_pattern: ...`, exit 1. Already true; the test pins it for real-looking records.
-- [ ] **T11. Docs (20 min).** `docs/methodology.md`, "Data validation": one paragraph on club ids, aliases and the contrast rules (pointing to ADR 0012). Check `/acerca` already credits Wikipedia (CC BY-SA) and openfootball; if not, open a follow-up issue rather than touching UI here.
+- [x] **T9. Kaggle alias check script (45 min).** Test first: `tests/unit/scripts/check-club-aliases.test.ts` on a synthetic CSV string (invented names and scores, header identical to the real one) checks that only the two name columns are read, recent unresolved names and lookalike hits are reported, and the exit code. Then `scripts/check-club-aliases.ts`. Run it locally on `tools/liga_2023.csv` and paste only its summary (counts and unresolved names) in the PR.
+- [x] **T10. Validation failure messages (20 min).** Integration test in `tests/integration/validate-data-cli.test.ts` (or a new fixture dir `tests/fixtures/data-validate/clubs-invalid/`): a club without `source` prints `[missing-source] clubs.json#<id>: ...`, a club with `jersey_pattern: "stripes"` prints `[schema] clubs.json#<id>: jersey_pattern: ...`, exit 1. Already true; the test pins it for real-looking records.
+- [x] **T11. Docs (20 min).** `docs/methodology.md`, "Data validation": one paragraph on club ids, aliases and the contrast rules (pointing to ADR 0012). Check `/acerca` already credits Wikipedia (CC BY-SA) and openfootball; if not, open a follow-up issue rather than touching UI here.
 - [ ] **T12. Gates (15 min).** `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm data:validate`; coverage of `src/data-model/**` stays at 100% branches.
 
 ## Tests to write
@@ -188,6 +188,11 @@ Edge cases: decomposed versus composed accents (`Vélez`), apostrophe in `Newell
 - The verification log below is complete (two sources per club, no open conflict), and every approval item has Diego's answer recorded here.
 - The data-integrity-auditor review spot checks at least 5 clubs with both source URLs and approves.
 - The alias check script reports 0 unresolved recent Kaggle names and 0 lookalike hits on the local CSV.
+
+## Build notes
+
+- T9: the script also reads the tournament column (`date_name`) to know which names are recent (2022 or later); it still never reads scores or team ids. Unresolved recent names are listed but fail the run only with `--strict`, because clubs outside the 2025 list (Arsenal, Colón, Patronato, ...) are added by #8; the default run fails on a lookalike that resolves or on a delivered club whose Kaggle name does not resolve. Result on the local CSV: 96 distinct names, 28 resolved, 0 lookalike hits, 0 expected-name problems, 3 recent names pending for #8 (Arsenal, Colon, Patronato).
+- T11: `/acerca` does not yet credit Wikipedia (CC BY-SA) or openfootball; a follow-up issue is needed (UI is not touched here).
 
 ## Left out of the batches
 
