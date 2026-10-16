@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FIXED_NOW, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
+import { FIXED_NOW, makeCoverage, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 import { buildStatsIndex, statsDataFrom } from "@/domain/data";
 import { calculateHistory, tallyMatches } from "@/domain/history";
@@ -255,5 +255,39 @@ describe("calculateHistory: edge cases", () => {
     const before = JSON.stringify([...index.matchesByClub.entries()]);
     calculateHistory(index, "club-a", fanPeriod("2020-01-01", FIXED_NOW));
     expect(JSON.stringify([...index.matchesByClub.entries()])).toBe(before);
+  });
+});
+
+describe("calculateHistory: which competitions the coverage notice lists", () => {
+  it("ignores a competition whose coverage ended before the fan period and has no matches", () => {
+    const ds = validDataset();
+    ds["coverage.json"] = [
+      makeCoverage("club-a", "league-x", "2020-01-01", null),
+      makeCoverage("club-a", "cup-y", "2015-01-01", "2019-12-31"),
+    ];
+    ds["matches.json"] = [
+      makeMatch("only", "league-x-2020", "2024-10-01", "club-a", "club-b", 1, 0),
+    ];
+    const index = buildStatsIndex(statsDataFrom(ds));
+    const { coverage } = calculateHistory(index, "club-a", fanPeriod("2024-09-01", FIXED_NOW));
+    expect(coverage.competitions.map((c) => c.competitionId)).toEqual(["league-x"]);
+    expect(coverage.isComplete).toBe(true);
+  });
+  it("lists a competition covered by a row that overlaps the period even without matches", () => {
+    const ds = validDataset();
+    ds["coverage.json"] = [
+      makeCoverage("club-a", "league-x", "2020-01-01", null),
+      makeCoverage("club-a", "cup-y", "2015-01-01", "2024-09-30", false),
+    ];
+    ds["matches.json"] = [];
+    const index = buildStatsIndex(statsDataFrom(ds));
+    const { coverage } = calculateHistory(index, "club-a", fanPeriod("2024-09-01", FIXED_NOW));
+    expect(coverage.competitions.map((c) => c.competitionId)).toEqual(["cup-y", "league-x"]);
+    expect(coverage.isComplete).toBe(false);
+  });
+  it("lists nothing for an empty period", () => {
+    const index = buildStatsIndex(statsDataFrom(validDataset()));
+    const { coverage } = calculateHistory(index, "club-a", fanPeriod("2030-01-01", FIXED_NOW));
+    expect(coverage).toEqual({ isComplete: true, competitions: [] });
   });
 });

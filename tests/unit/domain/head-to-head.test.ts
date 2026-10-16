@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FIXED_NOW, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
+import { FIXED_NOW, makeCoverage, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 import { whatIsAtStake } from "@/domain/at-stake";
 import { buildStatsIndex, statsDataFrom } from "@/domain/data";
@@ -108,10 +108,16 @@ describe("head-to-head: record, dominance, last match, rivalry", () => {
     expect(empty.biggestWin).toBeNull();
     expect(empty.biggestLoss).toBeNull();
     expect(empty.finals).toEqual([]);
-    // League X has coverage rows for both clubs, so the notice still talks about it.
+    // Both competitions have coverage rows overlapping the period, so the notice lists them.
     expect(empty.coverage).toEqual({
       isComplete: true,
       competitions: [
+        {
+          competitionId: "cup-y",
+          status: "complete",
+          completeFrom: "2020-01-01",
+          completeTo: null,
+        },
         {
           competitionId: "league-x",
           status: "complete",
@@ -222,5 +228,44 @@ describe("head-to-head: streaks, biggest win and loss, finals, what is at stake"
     expect(h2h.atStake).toEqual(whatIsAtStake(h2h.record));
     expect(h2h.atStake).toMatchObject({ winsToImprove: null, lossesToWorsen: 3 });
     expect(h2h.atStake.nextWinMilestone).toEqual({ milestone: 10, winsNeeded: 4 });
+  });
+});
+
+describe("head-to-head: which competitions the coverage notice lists", () => {
+  const period = fanPeriod("2024-09-01", FIXED_NOW);
+  function withCoverage(rows: ReturnType<typeof makeCoverage>[]) {
+    const ds = validDataset();
+    ds["coverage.json"] = rows;
+    ds["matches.json"] = [];
+    return buildStatsIndex(statsDataFrom(ds));
+  }
+  it("is not complete when a cup covered for one club only ended before the period", () => {
+    const index = withCoverage([makeCoverage("club-a", "cup-y", "2020-01-01", "2024-08-31")]);
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(result.coverage.competitions).toEqual([]);
+    expect(result.coverage.isComplete).toBe(false);
+  });
+  it("lists a competition covered for one club only when it overlaps the period", () => {
+    const index = withCoverage([
+      makeCoverage("club-a", "league-x", "2020-01-01", null),
+      makeCoverage("club-a", "cup-y", "2020-01-01", "2024-12-31", false),
+    ]);
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(result.coverage.competitions.map((c) => [c.competitionId, c.status])).toEqual([
+      ["cup-y", "missing"],
+      ["league-x", "complete"],
+    ]);
+    expect(result.coverage.isComplete).toBe(false);
+  });
+  it("lists the competitions of the rival's rows too", () => {
+    const index = withCoverage([makeCoverage("club-b", "cup-y", "2020-01-01", null)]);
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(result.coverage.competitions.map((c) => c.competitionId)).toEqual(["cup-y"]);
+    expect(result.coverage.isComplete).toBe(true);
+  });
+  it("lists nothing for an empty period", () => {
+    const index = withCoverage([makeCoverage("club-a", "cup-y", "2020-01-01", null)]);
+    const result = headToHead(index, "club-a", "club-b", fanPeriod("2030-01-01", FIXED_NOW));
+    expect(result.coverage).toEqual({ isComplete: true, competitions: [] });
   });
 });
