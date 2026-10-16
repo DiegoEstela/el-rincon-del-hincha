@@ -29,9 +29,11 @@ The Postgres schema lives in `supabase/migrations/` (see `docs/adr/0006-supabase
 3. `npx supabase@2.121.0 link --project-ref <project-ref>`. The ref is the `xxxx` in `https://supabase.com/dashboard/project/xxxx`. It asks for the database password (Project Settings, Database). If it asks for `supabase/config.toml`, run `npx supabase@2.121.0 init` first, answer "no" to the editor prompts and commit `config.toml`.
 4. `npx supabase@2.121.0 db push --dry-run` and check that it lists exactly the three migration files.
 5. `npx supabase@2.121.0 db push`.
-6. Dashboard, SQL Editor: paste and run `supabase/checks/verify.sql`. Every row of the final table must have `ok = true`.
+6. Dashboard, SQL Editor: paste and run `supabase/checks/verify.sql`. The script always ends with an error on purpose: the error message is the report (the editor shows only the last result, and the error also rolls back everything the script did). Read it as one line per check: the first line says `RESULT: ALL N CHECKS OK`, and every following line must start with `OK`. Any line starting with `FAIL` is a problem, and it is reported through the same message. If you see `No rows returned` or no `verify.sql report`, the script did not run as expected: tell the builder.
 7. Dashboard, Advisors, Security Advisor: expect no "RLS disabled" or "function search_path mutable" findings.
 8. Dashboard, Integrations, Cron: the job `purge-expired-comparisons` is listed.
+
+The migrations are not idempotent (for example `create table` has no `if not exists`), so the no-CLI paste fallback fails if you run a file a second time; paste each file exactly once. `db push` tracks what was applied and never repeats a migration.
 
 Without the CLI, paste each migration in order into the SQL Editor, run steps 6 to 8, and before the first future `db push` run `npx supabase@2.121.0 migration repair --status applied 20261016120000 20261016120100 20261016120200`.
 

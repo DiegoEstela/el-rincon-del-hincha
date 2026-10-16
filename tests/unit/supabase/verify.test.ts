@@ -41,7 +41,7 @@ describe("supabase/checks/verify.sql", () => {
   });
   it("always finishes by raising an exception with the full report", () => {
     expect(code.match(/raise exception/gi)).toHaveLength(1);
-    expect(code).toMatch(/raise exception[^;]*;\s*end\s+\$verify\$;$/i);
+    expect(code).toMatch(/raise exception[^;]*;\s*end;\s*\$verify\$;$/i);
     expect(code).toMatch(/array_to_string\(v_lines/);
   });
   it("reports one OK or FAIL line per check", () => {
@@ -75,7 +75,7 @@ describe("supabase/checks/verify.sql", () => {
     expect(code).toMatch(/roles::text\[\] @> array\['anon', 'authenticated'\]/);
   });
   it("documents the expected result of every check and how to read the output", () => {
-    expect(sql.match(/^-- .*Expected:/gm)?.length).toBeGreaterThanOrEqual(6);
+    expect(sql.match(/^\s*-- .*Expected:/gm)?.length).toBeGreaterThanOrEqual(6);
     expect(sql).toMatch(/the error message IS the report/i);
     expect(sql).toMatch(/pgcrypto/);
     expect(sql).toMatch(/extensions schema/);
