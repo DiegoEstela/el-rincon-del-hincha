@@ -77,7 +77,9 @@ const ALL_PRIVILEGES = [
   "trigger",
 ];
 
-const DOLLAR_TAG = /^\$[A-Za-z_]*\$/;
+// PostgreSQL tag grammar: optional; starts with a letter, underscore or non-ASCII character,
+// then letters, digits, underscores or non-ASCII characters.
+const DOLLAR_TAG = /^\$(?:[A-Za-z_\u0080-￿][A-Za-z_0-9\u0080-￿]*)?\$/;
 
 /** Removes comments, splits on top-level semicolons and hides dollar-quoted bodies. */
 function scan(sql: string, bodies: string[]): string[] {
@@ -111,6 +113,10 @@ function scan(sql: string, bodies: string[]): string[] {
       bodies.push(scan(sql.slice(i + tag.length, end), []).join("; "));
       current += `__BODY${bodies.length - 1}__`;
       i = end + tag.length;
+    } else if (sql[i] === "$" && !/[\w$]/.test(sql[i - 1] ?? " ") && !/^\$\d+/.test(rest)) {
+      throw new Error(
+        `Unsupported dollar sign (not a parameter or dollar quote): ${rest.slice(0, 40)}`,
+      );
     } else if (sql[i] === ";") {
       statements.push(current);
       current = "";

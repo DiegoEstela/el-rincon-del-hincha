@@ -26,7 +26,8 @@ declare
   v_slug text;
   v_rows integer;
   v_failed integer;
-  -- At least this many lines must be produced; fewer means checks were skipped, which is a failure.
+  -- A floor, not an exact count: the script emits about 31 lines, and 16 only catches a near-total failure
+  -- (most checks skipped). Fewer lines than this is a failure.
   v_min_checks constant integer := 16;
 begin
   begin
