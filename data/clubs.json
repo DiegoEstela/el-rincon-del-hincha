@@ -138,5 +138,131 @@
     "founded": 1931,
     "city": "Buenos Aires",
     "source": "https://es.wikipedia.org/w/index.php?title=Deportivo_Riestra&oldid=175825198"
+  },
+  {
+    "id": "estudiantes-la-plata",
+    "name": "Estudiantes de La Plata",
+    "short_name": "Estudiantes",
+    "aliases": ["Estudiantes de La Plata", "Estudiantes", "Estudiantes (LP)"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1905,
+    "city": "La Plata",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Estudiantes_de_La_Plata&oldid=175818293"
+  },
+  {
+    "id": "gimnasia-la-plata",
+    "name": "Gimnasia y Esgrima La Plata",
+    "short_name": "Gimnasia",
+    "aliases": ["Gimnasia y Esgrima La Plata", "Gimnasia de La Plata", "Gimnasia (LP)"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#0b1f4d"
+    },
+    "jersey_pattern": "other",
+    "founded": 1887,
+    "city": "La Plata",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_de_Gimnasia_y_Esgrima_La_Plata&oldid=175679492"
+  },
+  {
+    "id": "godoy-cruz",
+    "name": "Godoy Cruz",
+    "short_name": "Godoy Cruz",
+    "aliases": ["Godoy Cruz"],
+    "colors": {
+      "primary": "#1d4ed8",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1921,
+    "city": "Godoy Cruz",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Deportivo_Godoy_Cruz_Antonio_Tomba&oldid=175679679"
+  },
+  {
+    "id": "huracan",
+    "name": "Huracán",
+    "short_name": "Huracán",
+    "aliases": ["Huracán", "Huracan"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#d62828"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1908,
+    "city": "Buenos Aires",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Hurac%C3%A1n&oldid=175848097"
+  },
+  {
+    "id": "independiente",
+    "name": "Independiente",
+    "short_name": "Independiente",
+    "aliases": ["Independiente"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#0b1f4d"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1905,
+    "city": "Avellaneda",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Independiente&oldid=175833649"
+  },
+  {
+    "id": "instituto",
+    "name": "Instituto",
+    "short_name": "Instituto",
+    "aliases": ["Instituto", "Instituto de Córdoba"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1918,
+    "city": "Córdoba",
+    "source": "https://es.wikipedia.org/w/index.php?title=Instituto_Atl%C3%A9tico_Central_C%C3%B3rdoba&oldid=175848159"
+  },
+  {
+    "id": "lanus",
+    "name": "Lanús",
+    "short_name": "Lanús",
+    "aliases": ["Lanús", "Lanus"],
+    "colors": {
+      "primary": "#7b1e3a",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1915,
+    "city": "Lanús",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Lan%C3%BAs&oldid=175808645"
+  },
+  {
+    "id": "newells-old-boys",
+    "name": "Newell's Old Boys",
+    "short_name": "Newell's",
+    "aliases": ["Newell's Old Boys", "Newells"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#111111"
+    },
+    "jersey_pattern": "halves",
+    "founded": 1903,
+    "city": "Rosario",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Newell's_Old_Boys&oldid=175853332"
+  },
+  {
+    "id": "platense",
+    "name": "Platense",
+    "short_name": "Platense",
+    "aliases": ["Platense"],
+    "colors": {
+      "primary": "#ffffff",
+      "secondary": "#6b4226"
+    },
+    "jersey_pattern": "other",
+    "founded": 1905,
+    "city": "Florida",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Platense&oldid=175806371"
   }
 ]

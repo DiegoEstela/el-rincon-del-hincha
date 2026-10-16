@@ -4,12 +4,7 @@ export type ClubAliases = { readonly id: string; readonly aliases: readonly stri
 
 /** Lowercase, no diacritics, collapsed whitespace. Used for the alias-uniqueness check only. */
 export function foldName(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/\p{M}/gu, "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
+  return name.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 /**
