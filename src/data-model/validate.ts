@@ -96,7 +96,7 @@ function sortIssues(issues: ValidationIssue[]): ValidationIssue[] {
   return [...issues].sort(
     (x, y) =>
       compare(x.file, y.file) ||
-      compare(x.recordId ?? "", y.recordId ?? "") ||
+      compare(String(x.recordId), String(y.recordId)) ||
       compare(x.rule, y.rule) ||
       compare(x.message, y.message),
   );

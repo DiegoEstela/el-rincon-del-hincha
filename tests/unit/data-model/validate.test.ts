@@ -103,3 +103,34 @@ describe("validate: shape stage", () => {
     ]);
   });
 });
+
+describe("validate: deterministic ordering", () => {
+  it("orders issues without a record id by file", () => {
+    const ds = validDataset() as unknown as Record<string, unknown>;
+    ds["zzz.json"] = [];
+    ds["aaa.json"] = [];
+    ds["clubs.json"] = { not: "an array" };
+    const issues = run(ds)
+      .filter((i) => i.recordId === null)
+      .map((i) => `${i.file}:${i.rule}`);
+    expect(issues).toEqual(["aaa.json:unknown-file", "clubs.json:schema", "zzz.json:unknown-file"]);
+  });
+
+  it("orders several issues of one record by rule, then by message", () => {
+    const ds = validDataset();
+    const record = ds["clubs.json"][0] as unknown as Record<string, unknown>;
+    record.founded = "old";
+    record.city = 7;
+    delete record.source;
+    const issues = run(ds);
+    expect(issues.map((i) => i.rule)).toEqual(["missing-source", "schema", "schema"]);
+    expect(issues[1].message < issues[2].message).toBe(true);
+  });
+
+  it("is stable when run twice", () => {
+    const ds = validDataset();
+    ds["matches.json"][0].home_goals = -1;
+    ds["matches.json"][1].away_id = "nope";
+    expect(run(ds)).toEqual(run(ds));
+  });
+});
