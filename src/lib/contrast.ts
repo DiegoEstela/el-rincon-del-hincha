@@ -1,4 +1,5 @@
-// Test tooling: used by the palette AA tests, not by the running app.
+// WCAG contrast math. Used by the palette AA tests and, at build time on the server only, by the
+// club theme derivation (club-theme.ts, club-options.ts). It must stay out of the client bundle.
 export type Rgba = { r: number; g: number; b: number; a: number };
 export type AALevel = "text" | "large" | "ui";
 
