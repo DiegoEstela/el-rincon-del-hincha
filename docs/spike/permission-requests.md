@@ -1,6 +1,6 @@
 # Permission requests for historical data
 
-Drafts for Diego to send. Nobody has been contacted yet. Do not ingest RSSSF data until a written answer is stored in this folder (`docs/spike/replies/`). The Kaggle dataset is exempt: it is under the PDDL, so the provenance question is not blocking.
+Drafts for Diego to send. **RSSSF answered on 2026-10-16 and approved the request** (see `docs/spike/replies/2026-10-16-rsssf.md`); the Kaggle author has not been contacted yet, and that question is not blocking because the dataset is under the PDDL.
 
 What we need in every request: written permission to store the match results and champion lists in our public repository (`data/`), to show derived statistics in a free, non-commercial web app, with attribution, and the exact credit line they want.
 
