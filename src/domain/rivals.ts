@@ -86,7 +86,7 @@ export function groupRivals(
       index,
       [clubId],
       period,
-      relevantCompetitionIds(index, [clubId], views, filter),
+      relevantCompetitionIds(index, [clubId], period, views, filter),
     ),
   };
 }

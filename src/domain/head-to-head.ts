@@ -4,8 +4,8 @@ import { whatIsAtStake, type AtStake } from "./at-stake";
 import { coverageNotice } from "./coverage-notice";
 import { classifyDominance, type Dominance } from "./dominance";
 import { finalSeries, type FinalSeries } from "./finals";
-import { passesFilter, selectViews, tallyMatches } from "./history";
-import { competitionById, compareText } from "./data";
+import { relevantCompetitionIds, selectViews, tallyMatches } from "./history";
+import { compareText } from "./data";
 import { computeStreaks, type Streak } from "./streaks";
 import type {
   CoverageNotice,
@@ -64,22 +64,6 @@ function findRivalry(index: StatsIndex, clubId: string, rivalId: string): Rivalr
   );
 }
 
-/** Competitions where both clubs have coverage rows, plus those with counted meetings. */
-function relevantCompetitions(
-  index: StatsIndex,
-  clubId: string,
-  rivalId: string,
-  views: readonly MatchView[],
-  filter: MatchFilter,
-): string[] {
-  const rowsOf = (id: string) =>
-    new Set(index.data.coverage.filter((c) => c.club_id === id).map((c) => c.competition_id));
-  const rival = rowsOf(rivalId);
-  const ids = new Set([...rowsOf(clubId)].filter((id) => rival.has(id)));
-  for (const view of views) ids.add(view.competitionId);
-  return [...ids].filter((id) => passesFilter(competitionById(index, id), filter));
-}
-
 export function headToHead(
   index: StatsIndex,
   clubId: string,
@@ -121,7 +105,7 @@ export function headToHead(
       index,
       [clubId, rivalId],
       period,
-      relevantCompetitions(index, clubId, rivalId, views, filter),
+      relevantCompetitionIds(index, [clubId, rivalId], period, views, filter),
     ),
   };
 }

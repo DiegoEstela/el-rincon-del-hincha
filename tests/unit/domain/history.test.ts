@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { FIXED_NOW, makeCoverage, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
+import {
+  FIXED_NOW,
+  makeCoverage,
+  makeMatch,
+  validDataset,
+} from "../../fixtures/data-model/dataset";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 import { buildStatsIndex, statsDataFrom } from "@/domain/data";
 import { calculateHistory, tallyMatches } from "@/domain/history";

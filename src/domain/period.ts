@@ -17,7 +17,7 @@ function isRealIsoDate(value: string): boolean {
  */
 export function fanPeriod(start: IsoDate, now: Date): FanPeriod {
   if (!isRealIsoDate(start)) {
-    throw new RangeError(`"${start}" is not a valid YYYY-MM-DD date.`);
+    throw new RangeError("The fan start date is not a valid YYYY-MM-DD date.");
   }
   const end = todayInBuenosAires(now);
   return { start, end, isEmpty: start > end };

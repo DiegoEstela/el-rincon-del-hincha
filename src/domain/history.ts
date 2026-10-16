@@ -1,6 +1,6 @@
 // Methodology: "Match result", "Balance", "Suspended matches", "Administrative results".
 import type { Competition, Match } from "@/data-model/types";
-import { coverageNotice } from "./coverage-notice";
+import { coverageNotice, overlapsPeriod } from "./coverage-notice";
 import { competitionById, competitionOf, matchesOf } from "./data";
 import { clubView, opponentOf } from "./match-outcome";
 import { inPeriod } from "./period";
@@ -94,18 +94,22 @@ export function tallyMatches(
 }
 
 /**
- * Competitions the coverage notice talks about: those with coverage rows for the clubs or with
- * counted matches, restricted by the filter.
+ * Competitions the coverage notice talks about: those with counted matches, plus those with at
+ * least one coverage row of any of the clubs whose interval overlaps the period. Restricted by
+ * the filter. An empty period overlaps nothing.
  */
 export function relevantCompetitionIds(
   index: StatsIndex,
   clubIds: readonly string[],
+  period: FanPeriod,
   views: readonly MatchView[],
   filter: MatchFilter,
 ): string[] {
   const ids = new Set<string>(views.map((view) => view.competitionId));
   for (const row of index.data.coverage) {
-    if (clubIds.includes(row.club_id)) ids.add(row.competition_id);
+    if (clubIds.includes(row.club_id) && overlapsPeriod(row, period)) {
+      ids.add(row.competition_id);
+    }
   }
   return [...ids].filter((id) => passesFilter(competitionById(index, id), filter));
 }
@@ -130,7 +134,7 @@ export function calculateHistory(
       index,
       [clubId],
       period,
-      relevantCompetitionIds(index, [clubId], views, filter),
+      relevantCompetitionIds(index, [clubId], period, views, filter),
     ),
   };
 }

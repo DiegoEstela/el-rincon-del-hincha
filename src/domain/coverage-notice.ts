@@ -37,7 +37,8 @@ function containsPeriod(interval: Interval, period: FanPeriod): boolean {
   return interval.from <= period.start && (interval.to === null || interval.to >= period.end);
 }
 
-function overlapsPeriod(interval: Interval, period: FanPeriod): boolean {
+/** True when the interval shares at least one day with the period. */
+export function overlapsPeriod(interval: Interval, period: FanPeriod): boolean {
   return interval.from <= period.end && (interval.to === null || interval.to >= period.start);
 }
 

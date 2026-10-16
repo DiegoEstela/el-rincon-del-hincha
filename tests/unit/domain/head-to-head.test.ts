@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { FIXED_NOW, makeCoverage, makeMatch, validDataset } from "../../fixtures/data-model/dataset";
+import {
+  FIXED_NOW,
+  makeCoverage,
+  makeMatch,
+  validDataset,
+} from "../../fixtures/data-model/dataset";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 import { whatIsAtStake } from "@/domain/at-stake";
 import { buildStatsIndex, statsDataFrom } from "@/domain/data";
@@ -89,7 +94,10 @@ describe("head-to-head: record, dominance, last match, rivalry", () => {
     });
   });
   it("is not complete when nothing is known about the pair", () => {
-    const index = indexWith([]);
+    const ds = validDataset();
+    ds["matches.json"] = [];
+    ds["coverage.json"] = [];
+    const index = buildStatsIndex(statsDataFrom(ds));
     const result = headToHead(index, "club-a", "club-b", from2020);
     expect(result.competitionIds).toEqual([]);
     expect(result.coverage.competitions).toEqual([]);
