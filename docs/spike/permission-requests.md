@@ -1,6 +1,6 @@
 # Permission requests for historical data
 
-Drafts for Diego to send. Nobody has been contacted yet. Do not ingest any of these sources until a written answer is stored in this folder (`docs/spike/replies/`).
+Drafts for Diego to send. Nobody has been contacted yet. Do not ingest RSSSF data until a written answer is stored in this folder (`docs/spike/replies/`). The Kaggle dataset is exempt: it is under the PDDL, so the provenance question is not blocking.
 
 What we need in every request: written permission to store the match results and champion lists in our public repository (`data/`), to show derived statistics in a free, non-commercial web app, with attribution, and the exact credit line they want.
 
@@ -31,18 +31,15 @@ Where: the contact details are on rsssf.org (site contact page). Mention the Arg
 
 Where: the dataset page on Kaggle (discussion tab or the author's profile). Dataset: `ivanramosctes/liga-argentina-1931-2023`.
 
-> Subject: Question about the license and source of "Liga Argentina 1931 - 2023"
+Update (2026-10-16): the dataset page shows the license: ODC Public Domain Dedication and Licence (PDDL). The license question is answered, so the message is now a single question about provenance. Sending it is recommended but not blocking.
+
+> Subject: Where does the data of "Liga Argentina 1931 - 2023" come from?
 >
 > Hello,
 >
-> I am building Rincón del Hincha, a free app for Argentine football fans. Your dataset covers exactly the historical period I need. Two questions before I use it:
+> I am building Rincón del Hincha, a free app for Argentine football fans, and your dataset (public domain dedication) covers exactly the historical period I need. Before I use it, could you tell me where the data comes from (original source or collection method)? I would like to credit the original authors correctly and to check the results against that source.
 >
-> 1. Under which license can it be reused? The page does not state one.
-> 2. Where does the data come from (original source, collection method)? I want to credit the original authors correctly.
->
-> If you agree, I would like written permission to store a copy in the public repository of the project, with attribution to you and to the original sources. The app is free, has no ads and no betting content.
->
-> Thank you,
+> Thank you very much,
 > Diego Estela Lopez
 
 ## Spanish version (same content)
@@ -52,5 +49,5 @@ Si preferís escribirles en español, decime y las traduzco con el mismo conteni
 ## When an answer arrives
 
 1. Save it (text or screenshot) in `docs/spike/replies/`.
-2. Tell me which sources are approved and the credit line required.
-3. I update ADR 0003, add the adapter and the attribution to `/acerca`, and extend the coverage table.
+2. Tell me which sources are approved and the credit line required. The rule "no ingestion before a written answer" applies to RSSSF only. For Kaggle (PDDL) a reply only affects the credit line and the provenance notes, not whether the data can be used.
+3. For RSSSF, I update ADR 0003, add the adapter and the attribution to `/acerca`, and extend the coverage table.
