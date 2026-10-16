@@ -1,7 +1,7 @@
 // Spike for ADR 0003: measures what the API-Football free plan really allows.
 // Reads API_FOOTBALL_KEY from the environment (loaded by the pnpm script) and NEVER prints it.
 // Writes a secret-free summary to docs/spike/api-football-probe.json.
-// Makes 16 calls, spaced to respect 10 requests/minute. Worst case 7 count against the daily quota
+// Makes 16 calls, spaced to respect 10 requests/minute. Between 7 and 16 count against the daily quota
 // (only 7 returned data; the quota headers were inconsistent, so the exact cost was not measured).
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";

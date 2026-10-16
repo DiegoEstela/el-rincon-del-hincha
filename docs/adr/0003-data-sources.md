@@ -10,7 +10,7 @@ No free API covers decades of Argentine football. The product promises each fan 
 
 ### API-Football, free plan (measured with Diego's key, `docs/spike/api-football-probe.json`)
 
-- **Quota:** 100 requests per day (`limit_day: 100`), 10 per minute. The probe made 16 calls, of which 7 returned data. The quota headers were inconsistent (remaining values 98, 98, 97, 96, 98, 97, 96 in call order, and none on plan-rejected calls), so the exact quota cost was not established. The worst case is 7 of the 100 daily requests.
+- **Quota:** 100 requests per day (`limit_day: 100`), 10 per minute. The probe made 16 calls, of which 7 returned data. The quota headers were inconsistent (remaining values 98, 98, 97, 96, 98, 97, 96 in call order, and none on plan-rejected calls), so the exact quota cost was not established. It cost at least 7 (the calls that returned data) and at most 16 of the 100 daily requests; the exact figure was not established.
 - **Seasons readable on the free plan: 2022, 2023 and 2024 only.** Every other season probed (2010, 2014, 2016, 2018 to 2021 and 2025) returned `Free plans do not have access to this season, try from 2022 to 2024.` **2026** was not probed; it is inferred to be denied from that message.
 - The API lists the Liga Profesional (id 128) for 2015 to 2026 with events and statistics coverage, so the data exists but is behind a paid plan.
 - **Cost of an ingestion:** one request returns a whole competition season (`/fixtures?league=128&season=2024` gave 378 matches in one call). A season of a competition costs 1 request.

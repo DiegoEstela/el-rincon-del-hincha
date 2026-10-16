@@ -12,7 +12,7 @@
 - **Last data update of openfootball** corrected to 2025-05-05; a later commit (2026-05-28) only reformatted.
 - **Call count** corrected from 22 to 16.
 - **581 vs 378 fixtures** for 2022 is recorded, with the likely explanation (another tournament under the same league id) marked as not verified.
-- **Quota cost claim.** Round 2 found that the "4 requests counted" figure was an inference from non-monotonic headers. The ADR and the script header now say 16 calls, 7 returned data, exact cost not established, worst case 7 of 100. Not re-audited after this one-line fix.
+- **Quota cost claim.** Round 2 found that the "4 requests counted" figure was an inference from non-monotonic headers. The ADR and the script header now say 16 calls, 7 returned data, exact cost not established, between 7 and 16 of 100 (third round of data-integrity-auditor asked for the bounded range instead of "worst case 7"). Not re-audited after this one-line fix.
 - **2026** is marked as inferred, not probed.
 - **Probe script:** Zod validation for `/status` and `/leagues`, a 15 s timeout, abort on 429 or 5xx, no `as` casts left.
 - **TheSportsDB** stays unassessed (docs returned HTTP 522 twice); follow-up issue #29.
