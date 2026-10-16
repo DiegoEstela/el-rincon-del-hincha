@@ -22,3 +22,10 @@ export function isAfter(a: string, b: string): boolean {
 export function isWithin(date: string, start: string, end: string): boolean {
   return date >= start && date <= end;
 }
+
+/** The calendar day after `date` (`YYYY-MM-DD`), computed in UTC so no time zone is involved. */
+export function nextDay(date: string): string {
+  const next = new Date(`${date}T00:00:00Z`);
+  next.setUTCDate(next.getUTCDate() + 1);
+  return next.toISOString().slice(0, 10);
+}
