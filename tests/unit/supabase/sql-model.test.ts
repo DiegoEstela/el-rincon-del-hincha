@@ -211,6 +211,37 @@ describe("statement allowlist", () => {
     ]);
     expect(m.tableGrants.map((g) => g.table)).toEqual(["clubs"]);
   });
+  describe("dollar-quote tags follow the PostgreSQL grammar", () => {
+    const bypass = (tag: string) =>
+      [
+        `create policy zz on comparisons for select to service_role using (slug = ${tag} ' ${tag});`,
+        "grant insert, update, delete on comparisons to anon;",
+        "create policy zy on comparisons for select to service_role using (slug = 'x');",
+      ].join("\n");
+    it.each([["$a1$"], ["$é$"], ["$t2x$"], ["$_9$"]])(
+      "hides a body delimited by %s, so the grant after a lone quote is still seen",
+      (tag) => {
+        const m = parseMigrations([bypass(tag)]);
+        expect(m.tableGrants.map((g) => g.table)).toEqual(["comparisons"]);
+        expect(m.unrecognized).toEqual([]);
+      },
+    );
+    it.each([
+      ["select $x from t;"],
+      ["select $ from t;"],
+      ["select $a1 ' ; grant all on t to anon;"],
+    ])("refuses a stray dollar it cannot read: %s", (sql) => {
+      expect(() => parseMigrations([sql])).toThrow(/dollar/i);
+    });
+    it("still parses positional parameters, $$ and named bodies", () => {
+      const sql = [
+        "create function public.f(a int) returns int language sql as $$ select $1 + $2 $$;",
+        "create function public.g() returns int language sql as $body$ select 1 $body$;",
+      ].join("\n");
+      const m = parseMigrations([sql]);
+      expect(m.unrecognized).toEqual([]);
+    });
+  });
   it("records disable and force row level security explicitly", () => {
     const m = parseMigrations([
       `${TABLE} alter table public.x disable row level security; alter table public.x force row level security;`,
