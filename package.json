@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "data:validate": "tsx scripts/validate-data.ts",
     "data:seed": "tsx scripts/seed-supabase.ts",
-    "data:ingest": "tsx scripts/ingest/index.ts"
+    "data:ingest": "tsx scripts/ingest/index.ts",
+    "spike:api-football": "tsx --env-file=.env.local scripts/spike/api-football-probe.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
