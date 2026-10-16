@@ -5,6 +5,7 @@ import { checkScores } from "./rules/scores";
 import { checkDates } from "./rules/dates";
 import { checkDuplicateMatches } from "./rules/duplicate-match";
 import { checkTitles } from "./rules/titles";
+import { checkStandings } from "./rules/standings";
 import type { Dataset, ValidationIssue } from "./types";
 
 export type ValidateOptions = { now: Date };
@@ -109,5 +110,6 @@ export function validate(
   issues.push(...checkReferences(dataset, knownKeys));
   issues.push(...checkScores(dataset), ...checkDates(dataset, options.now));
   issues.push(...checkDuplicateMatches(dataset), ...checkTitles(dataset));
+  issues.push(...checkStandings(dataset));
   return sortIssues(issues);
 }
