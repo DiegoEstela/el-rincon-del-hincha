@@ -1,6 +1,6 @@
 ---
 issue: 6
-status: review
+status: done
 date: 2026-10-16
 ---
 
@@ -129,7 +129,7 @@ Each task: write the test first, see it fail, implement, see it pass, `pnpm lint
 - [x] **T10. Purge job.** Test: a migration enables `pg_cron` and schedules `purge-expired-comparisons` with `unschedule` guarded before `schedule`, and the job deletes only `expires_at <= now()`. Implement `<ts3>_comparisons_purge_cron.sql`. Skip this task (and drop the test) if Diego rejects decision 4.
 - [x] **T11. `supabase/checks/verify.sql`.** Test: the file is a single `do` block (no `begin`, `commit` or `rollback`) that always ends with `raise exception` carrying one `OK <name>` / `FAIL <name>` line per check, because the SQL Editor shows only the last result and the exception rolls back everything. Content: (a) list `public` tables with `relrowsecurity = false` (expect zero rows); (b) list policies on `public` tables (expect only the nine `_read` policies); (c) `has_table_privilege('anon', ..., 'INSERT,UPDATE,DELETE,TRUNCATE')` for every table (expect all false) and `has_table_privilege('service_role', 'public.comparisons', 'SELECT')` (expect false); (d) `set local role anon;` then an `insert into public.clubs` inside a `do` block that catches and reports `insufficient_privilege`, and `select count(*) from public.clubs` succeeds; (e) as `service_role`, `create_comparison` returns a 22-character slug and `get_comparison` returns that one row, all rolled back.
 - [x] **T12. README section "Database migrations"** with Diego's steps below (no test; docs only), and ADR 0006 status left as Proposed until Diego approves the list above.
-- [ ] **T13. Human checkpoint.** Diego applies the migrations and runs `verify.sql`; the builder records the outcome (date, CLI version, any issue) in the PR description and flips ADR 0006 to Accepted.
+- [x] **T13. Human checkpoint.** Diego applies the migrations and runs `verify.sql`; the builder records the outcome (date, CLI version, any issue) in the PR description and flips ADR 0006 to Accepted. Applied on 2026-10-16 by pasting the three migrations in order into the Supabase SQL Editor (no CLI). `supabase/checks/verify.sql` ran once on the live project and reported `RESULT: ALL 32 CHECKS OK`: no table without RLS, no write privilege for anon or authenticated on any table, the comparisons table untouched by every client role, `create_comparison` and `get_comparison` executable only by `service_role`, a 22-character slug, a malformed slug rejected, nickname trimmed. The cron migration ran without error and the Security Advisor shows no findings. Because the SQL Editor was used, `supabase migration repair --status applied` for the three versions must be run before the first future `db push` (see the README).
 
 ## Tests to write
 
