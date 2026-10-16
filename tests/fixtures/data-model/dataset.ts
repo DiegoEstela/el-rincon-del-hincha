@@ -1,17 +1,6 @@
 // FICTIONAL test data. Clubs, competitions, scores and dates below are invented for
 // tests only (sources are "fixture:synthetic"); none of it is real football history.
-import type {
-  Club,
-  Competition,
-  Coverage,
-  Dataset,
-  Match,
-  Movement,
-  Rivalry,
-  Season,
-  Standing,
-  Title,
-} from "@/data-model/types";
+import type { Club, Dataset, Match } from "@/data-model/types";
 
 export const FIXED_NOW = new Date("2026-10-16T15:00:00Z");
 

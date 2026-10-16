@@ -3,6 +3,7 @@ import { DATASET_FILES, FILE_SCHEMAS, recordKey, type DatasetFile } from "./sche
 import { checkReferences } from "./rules/references";
 import { checkScores } from "./rules/scores";
 import { checkDates } from "./rules/dates";
+import { checkDuplicateMatches } from "./rules/duplicate-match";
 import type { Dataset, ValidationIssue } from "./types";
 
 export type ValidateOptions = { now: Date };
@@ -106,5 +107,6 @@ export function validate(
   const { dataset, knownKeys, issues } = shapeStage(raw);
   issues.push(...checkReferences(dataset, knownKeys));
   issues.push(...checkScores(dataset), ...checkDates(dataset, options.now));
+  issues.push(...checkDuplicateMatches(dataset));
   return sortIssues(issues);
 }
