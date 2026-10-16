@@ -1,6 +1,6 @@
 ---
 issue: 6
-status: done
+status: review
 date: 2026-10-16
 ---
 
@@ -34,7 +34,7 @@ Details and reasoning in ADR 0006, "Decisions needing approval".
 4. **Infra:** enable `pg_cron` for a daily purge of expired comparisons (fallback: Vercel cron or GitHub Actions, which touches a guardrailed workflow and adds a secret).
 5. **Infra:** a keep-alive against the free plan's pause after 1 week of inactivity (follow-up issue, not built here).
 6. **Security:** move to the new `sb_publishable_` / `sb_secret_` keys before the end of 2026 (legacy `anon` / `service_role` keys are deprecated). Follow-up when `src/data/` is built.
-7. **Security:** the first migration revokes Supabase's default grants on schema `public` for future objects.
+7. **Security:** the first migration revokes Supabase's default grants on schema `public` for future objects (tables, sequences and functions for `anon`, `authenticated`, `service_role`, plus `execute` on functions from `public`). The static gate asserts tables, functions and the three roles.
 
 If 1 is rejected, the alternative is "table with no policies, service role reads it directly with `.eq('slug', ...)`": simpler, but any server bug or a leaked secret key could list every comparison.
 
@@ -47,7 +47,7 @@ supabase/migrations/
   <ts1>_reference_tables.sql        default-privilege revoke, 9 tables, constraints, indexes, grants, RLS, read policies
   <ts2>_comparisons.sql             comparisons table, RLS (no policies), revokes, create_comparison, get_comparison
   <ts3>_comparisons_purge_cron.sql  pg_cron extension + daily purge job (separate so it can be dropped if item 4 is rejected)
-supabase/checks/verify.sql          read-only catalog checks + RLS smoke test inside begin ... rollback (Diego runs it once)
+supabase/checks/verify.sql          one do block: catalog checks + RLS smoke test, always ends by raising its report (Diego runs it once)
 tests/unit/supabase/sql-model.ts            dependency-free extractor of tables, columns, checks, policies, grants, functions
 tests/unit/supabase/sql-model.test.ts       tests of the extractor on inline SQL fixtures (positive and negative)
 tests/unit/supabase/migrations.test.ts      security gate over supabase/migrations/*.sql
@@ -127,7 +127,7 @@ Each task: write the test first, see it fail, implement, see it pass, `pnpm lint
 - [x] **T8. Comparisons tests, red.** Gate tests: `comparisons` has no policy; no grant of any table privilege to `anon`, `authenticated` or `service_role` remains after revokes; columns are exactly `slug, club_id, start_date, nickname, created_at, expires_at`; no column name matches `/name|email|birth|ip|user_agent/` except `nickname`; `expires_at` default contains `interval '90 days'`; checks exist for slug format, nickname length 24, expiry window; `create_comparison` and `get_comparison` are `security definer`, `search_path = ''`, `execute` revoked from `public, anon, authenticated` and granted only to `service_role`; `get_comparison` body filters `expires_at > now()` and `slug = p_slug`.
 - [x] **T9. Migration `<ts2>_comparisons.sql`.** Implement until T8 is green.
 - [x] **T10. Purge job.** Test: a migration enables `pg_cron` and schedules `purge-expired-comparisons` with `unschedule` guarded before `schedule`, and the job deletes only `expires_at <= now()`. Implement `<ts3>_comparisons_purge_cron.sql`. Skip this task (and drop the test) if Diego rejects decision 4.
-- [x] **T11. `supabase/checks/verify.sql`.** Test: the file starts with `begin;` and ends with `rollback;` and contains no `commit`. Content: (a) list `public` tables with `relrowsecurity = false` (expect zero rows); (b) list policies on `public` tables (expect only the nine `_read` policies); (c) `has_table_privilege('anon', ..., 'INSERT,UPDATE,DELETE,TRUNCATE')` for every table (expect all false) and `has_table_privilege('service_role', 'public.comparisons', 'SELECT')` (expect false); (d) `set local role anon;` then an `insert into public.clubs` inside a `do` block that catches and reports `insufficient_privilege`, and `select count(*) from public.clubs` succeeds; (e) as `service_role`, `create_comparison` returns a 22-character slug and `get_comparison` returns that one row, all rolled back.
+- [x] **T11. `supabase/checks/verify.sql`.** Test: the file is a single `do` block (no `begin`, `commit` or `rollback`) that always ends with `raise exception` carrying one `OK <name>` / `FAIL <name>` line per check, because the SQL Editor shows only the last result and the exception rolls back everything. Content: (a) list `public` tables with `relrowsecurity = false` (expect zero rows); (b) list policies on `public` tables (expect only the nine `_read` policies); (c) `has_table_privilege('anon', ..., 'INSERT,UPDATE,DELETE,TRUNCATE')` for every table (expect all false) and `has_table_privilege('service_role', 'public.comparisons', 'SELECT')` (expect false); (d) `set local role anon;` then an `insert into public.clubs` inside a `do` block that catches and reports `insufficient_privilege`, and `select count(*) from public.clubs` succeeds; (e) as `service_role`, `create_comparison` returns a 22-character slug and `get_comparison` returns that one row, all rolled back.
 - [x] **T12. README section "Database migrations"** with Diego's steps below (no test; docs only), and ADR 0006 status left as Proposed until Diego approves the list above.
 - [ ] **T13. Human checkpoint.** Diego applies the migrations and runs `verify.sql`; the builder records the outcome (date, CLI version, any issue) in the PR description and flips ADR 0006 to Accepted.
 
