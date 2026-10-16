@@ -16,7 +16,9 @@ function tokenize(text: string): string[] {
     if (/^\s*$/.test(text.slice(TOKEN.lastIndex))) break;
     const m = TOKEN.exec(text);
     if (m === null) {
-      throw new Error(`Unsupported SQL near "${text.slice(TOKEN.lastIndex, TOKEN.lastIndex + 20)}"`);
+      throw new Error(
+        `Unsupported SQL near "${text.slice(TOKEN.lastIndex, TOKEN.lastIndex + 20)}"`,
+      );
     }
     tokens.push(m[1] ?? m[2] ?? m[3] ?? m[4]!);
   }

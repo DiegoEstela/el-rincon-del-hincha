@@ -120,9 +120,66 @@ describe("grants and revokes", () => {
       { action: "grant", privileges: ["execute"], fn: "f", roles: ["service_role"] },
     ]);
   });
-  it("detects the default-privilege revoke", () => {
-    expect(model.defaultPrivilegeRevokes).toBe(true);
-    expect(parseMigrations([TABLE]).defaultPrivilegeRevokes).toBe(false);
+  it("records default privileges by object kind, privileges and roles", () => {
+    expect(model.defaultPrivileges).toEqual([
+      {
+        action: "revoke",
+        privileges: ["all"],
+        objects: "tables",
+        roles: ["anon", "authenticated"],
+      },
+    ]);
+    expect(parseMigrations([TABLE]).defaultPrivileges).toEqual([]);
+    const m = parseMigrations([
+      "alter default privileges for role postgres in schema public revoke execute on functions from public;",
+    ]);
+    expect(m.defaultPrivileges).toEqual([
+      { action: "revoke", privileges: ["execute"], objects: "functions", roles: ["public"] },
+    ]);
+  });
+});
+
+describe("statement allowlist", () => {
+  const unknown = (sql: string) => parseMigrations([sql]).unrecognized.map((s) => s.text);
+  it("recognizes every statement shape the migrations use", () => {
+    const ok = `${TABLE}
+      create index i on public.x (id);
+      create unique index u on public.x (id);
+      create policy p on public.x for select to anon using (true);
+      create function public.f() returns int language sql as $ select 1 $;
+      create extension if not exists pgcrypto with schema extensions;
+      alter table public.x enable row level security;
+      grant select on table public.x to anon;
+      revoke all on table public.x from anon;
+      alter default privileges for role postgres in schema public revoke all on tables from anon;
+      select cron.schedule('j', '* * * * *', $select 1$);`;
+    expect(unknown(ok)).toEqual([]);
+    expect(parseMigrations([ok]).extensions).toEqual(["pgcrypto"]);
+  });
+  it.each([
+    ["a view", "create view public.v as select 1"],
+    ["an insert", "insert into public.x values (1)"],
+    ["a drop", "drop table public.x"],
+    ["a plain select", "select 1"],
+    ["a non-cron select", "select pg_sleep(1)"],
+    ["an alter table other than RLS", "alter table public.x add column y text"],
+    [
+      "a default privilege grant",
+      "alter default privileges in schema public grant all on tables to anon",
+    ],
+    ["a trigger", "create trigger t before insert on public.x execute function public.f()"],
+    ["a do block", "do $ begin null; end $"],
+  ])("reports %s as unrecognized", (_label, sql) => {
+    expect(unknown(sql)).toEqual([sql]);
+  });
+  it("records disable and force row level security explicitly", () => {
+    const m = parseMigrations([
+      `${TABLE} alter table public.x disable row level security; alter table public.x force row level security;`,
+    ]);
+    expect(m.rlsDisabled.get("x")).toBe(0);
+    expect(m.rlsForced.get("x")).toBe(0);
+    expect(m.unrecognized).toEqual([]);
+    expect(m.rls.has("x")).toBe(false);
   });
 });
 

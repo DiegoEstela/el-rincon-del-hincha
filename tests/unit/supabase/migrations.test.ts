@@ -17,8 +17,31 @@ describe("migration files", () => {
   it("create exactly the nine data tables plus comparisons", () => {
     expect([...model.tables.keys()].sort()).toEqual([...REFERENCE_TABLES, "comparisons"].sort());
   });
-  it("revoke the default privileges in the first migration", () => {
-    expect(parseMigrations([sql[0]!]).defaultPrivilegeRevokes).toBe(true);
+  it("revoke the default privileges in the first migration: tables, functions, three roles", () => {
+    const { defaultPrivileges } = parseMigrations([sql[0]!]);
+    const revoked = (objects: string) =>
+      defaultPrivileges
+        .filter(
+          (d) => d.action === "revoke" && d.objects === objects && d.privileges.includes("all"),
+        )
+        .flatMap((d) => d.roles)
+        .sort();
+    const roles = ["anon", "authenticated", "service_role"];
+    expect(revoked("tables")).toEqual(roles);
+    expect(revoked("functions")).toEqual(roles);
+    // New functions are executable by public until revoked: close that door too.
+    expect(
+      defaultPrivileges.some(
+        (d) =>
+          d.action === "revoke" &&
+          d.objects === "functions" &&
+          d.privileges.includes("execute") &&
+          d.roles.includes("public"),
+      ),
+    ).toBe(true);
+  });
+  it("only uses statement shapes the extractor understands", () => {
+    expect(model.unrecognized).toEqual([]);
   });
 });
 
@@ -116,7 +139,38 @@ describe("the gate itself catches mistakes", () => {
     expect(bad(anon).join()).toMatch(/executable by anon/);
   });
   it("ignores keywords inside comments", () => {
-    const text = `-- grant all on table public.t to anon;\n/* create table public.t (id text); */ select 1;`;
+    const text = `-- grant all on table public.t to anon;\n/* create table public.t (id text); */ ${T} ${RLS}`;
     expect(bad(text)).toEqual([]);
+  });
+  it("fails on any statement outside the allowlist", () => {
+    for (const stmt of [
+      "create view public.v as select 1;",
+      "insert into public.t values ('x');",
+      "drop table public.t;",
+      "select 1;",
+      "alter default privileges in schema public grant all on tables to anon;",
+    ]) {
+      expect(bad(`${T} ${RLS} ${stmt}`).join(), stmt).toMatch(/unrecognized statement/);
+    }
+  });
+  it("fails on disable and force row level security", () => {
+    expect(bad(`${T} ${RLS} alter table public.t disable row level security;`).join()).toMatch(
+      /t: row level security is disabled/,
+    );
+    expect(bad(`${T} ${RLS} alter table public.t force row level security;`).join()).toMatch(
+      /t: row level security is forced/,
+    );
+    // Enabling then disabling must not pass either.
+    expect(bad(`${T} alter table public.t disable row level security;`).join()).toMatch(/disabled/);
+  });
+  it("fails a grant whose target is not a known table or function", () => {
+    const view = `${T} ${RLS} grant select on table public.v to anon;`;
+    expect(bad(view).join()).toMatch(/grant on v: not a known table/);
+    const bare = `${T} ${RLS} grant select on public.v to anon;`;
+    expect(bad(bare).join()).toMatch(/grant on v: not a known table/);
+    const fn = `${T} ${RLS} grant execute on function public.nope() to service_role;`;
+    expect(bad(fn).join()).toMatch(/grant on nope: not a known function/);
+    const known = `${T} ${RLS} grant select on table public.t to anon;`;
+    expect(bad(known)).toEqual([]);
   });
 });
