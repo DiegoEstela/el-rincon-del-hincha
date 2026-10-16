@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
   FIXED_NOW,
+  makeCompetition,
   makeCoverage,
   makeMatch,
+  makeSeason,
   validDataset,
 } from "../../fixtures/data-model/dataset";
 import { statsWorld } from "../../fixtures/domain/stats-world";
@@ -241,16 +243,73 @@ describe("head-to-head: streaks, biggest win and loss, finals, what is at stake"
 
 describe("head-to-head: which competitions the coverage notice lists", () => {
   const period = fanPeriod("2024-09-01", FIXED_NOW);
-  function withCoverage(rows: ReturnType<typeof makeCoverage>[]) {
+  function withCoverage(rows: ReturnType<typeof makeCoverage>[], matches: Match[] = []) {
     const ds = validDataset();
+    ds["seasons.json"].push(makeSeason("cup-y-2024", "cup-y", "2024-07-01", "2025-06-30"));
     ds["coverage.json"] = rows;
-    ds["matches.json"] = [];
+    ds["matches.json"] = matches;
     return buildStatsIndex(statsDataFrom(ds));
   }
-  it("is not complete when a cup covered for one club only ended before the period", () => {
-    const index = withCoverage([makeCoverage("club-a", "cup-y", "2020-01-01", "2024-08-31")]);
+  const statuses = (cov: { competitions: readonly { competitionId: string; status: string }[] }) =>
+    cov.competitions.map((c) => [c.competitionId, c.status]);
+  it("lists as missing a cup covered for one club only that ended before the period", () => {
+    const index = withCoverage([
+      makeCoverage("club-a", "league-x", "2020-01-01", null),
+      makeCoverage("club-a", "cup-y", "2020-01-01", "2024-08-31"),
+    ]);
     const result = headToHead(index, "club-a", "club-b", period);
-    expect(result.coverage.competitions).toEqual([]);
+    expect(statuses(result.coverage)).toEqual([
+      ["cup-y", "missing"],
+      ["league-x", "complete"],
+    ]);
+    expect(result.coverage.isComplete).toBe(false);
+  });
+  it("ignores a competition where neither club has a row or a match, even with a season in the period", () => {
+    const ds = validDataset();
+    ds["competitions.json"].push(makeCompetition("intl-q", { type: "international" }));
+    ds["seasons.json"].push(makeSeason("intl-q-2024", "intl-q", "2024-07-01", "2025-06-30"));
+    ds["coverage.json"] = [makeCoverage("club-a", "league-x", "2020-01-01", null)];
+    ds["matches.json"] = [];
+    const result = headToHead(buildStatsIndex(statsDataFrom(ds)), "club-a", "club-b", period);
+    expect(statuses(result.coverage)).toEqual([["league-x", "complete"]]);
+    expect(result.coverage.isComplete).toBe(true);
+  });
+  it("counts a competition where only the rival has rows (any dates)", () => {
+    const index = withCoverage([
+      makeCoverage("club-a", "league-x", "2020-01-01", null),
+      makeCoverage("club-b", "cup-y", "2020-01-01", "2020-12-31"),
+    ]);
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(statuses(result.coverage)).toEqual([
+      ["cup-y", "missing"],
+      ["league-x", "complete"],
+    ]);
+  });
+  it("counts a competition where only the rival has a match (any season)", () => {
+    const index = withCoverage(
+      [makeCoverage("club-a", "league-x", "2020-01-01", null)],
+      [makeMatch("old", "cup-y-2020", "2020-05-01", "club-b", "club-c", 1, 0)],
+    );
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(statuses(result.coverage)).toEqual([
+      ["cup-y", "missing"],
+      ["league-x", "complete"],
+    ]);
+    expect(result.coverage.isComplete).toBe(false);
+  });
+  it("lists as missing a competition the clubs left: rows and matches only before the period", () => {
+    const index = withCoverage(
+      [
+        makeCoverage("club-a", "league-x", "2020-01-01", null),
+        makeCoverage("club-a", "cup-y", "2020-01-01", "2020-12-31"),
+      ],
+      [makeMatch("old", "cup-y-2020", "2020-05-01", "club-a", "club-b", 1, 0)],
+    );
+    const result = headToHead(index, "club-a", "club-b", period);
+    expect(statuses(result.coverage)).toEqual([
+      ["cup-y", "missing"],
+      ["league-x", "complete"],
+    ]);
     expect(result.coverage.isComplete).toBe(false);
   });
   it("lists a competition covered for one club only when it overlaps the period", () => {
