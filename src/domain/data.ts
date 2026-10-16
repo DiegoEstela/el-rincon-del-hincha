@@ -15,14 +15,14 @@ export function statsDataFrom(dataset: Dataset): StatsData {
   };
 }
 
-function compare(a: string, b: string): number {
+export function compareText(a: string, b: string): number {
   if (a < b) return -1;
   return a > b ? 1 : 0;
 }
 
 /** Order used everywhere a list of matches is returned: by date, then id. */
 export function byDateThenId(a: Match, b: Match): number {
-  return compare(a.date, b.date) || compare(a.id, b.id);
+  return compareText(a.date, b.date) || compareText(a.id, b.id);
 }
 
 export function buildStatsIndex(data: StatsData): StatsIndex {
@@ -43,13 +43,16 @@ export function buildStatsIndex(data: StatsData): StatsIndex {
   };
 }
 
-/** The competition of a match, through its season. Data is validated upstream, so a miss throws. */
+/** A competition by id. Data is validated upstream, so a miss throws. */
+export function competitionById(index: StatsIndex, id: string): Competition {
+  const competition = index.competitionById.get(id);
+  if (competition === undefined) throw new Error(`Unknown competition "${id}".`);
+  return competition;
+}
+
+/** The competition of a match, through its season. */
 export function competitionOf(index: StatsIndex, match: Match): Competition {
   const season = index.seasonById.get(match.season_id);
   if (season === undefined) throw new Error(`Unknown season "${match.season_id}".`);
-  const competition = index.competitionById.get(season.competition_id);
-  if (competition === undefined) {
-    throw new Error(`Unknown competition "${season.competition_id}".`);
-  }
-  return competition;
+  return competitionById(index, season.competition_id);
 }

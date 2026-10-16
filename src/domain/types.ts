@@ -51,3 +51,39 @@ export type MatchView = Readonly<{
   /** `status === "administrative_result"`, so the UI can mark it. */
   isAdministrative: boolean;
 }>;
+
+export type MatchFilter = Readonly<{
+  competitionIds?: readonly string[];
+  competitionTypes?: readonly Competition["type"][];
+}>;
+
+export type HistoryRecord = Readonly<{
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  /** won - lost; draws do not change it. */
+  balance: number;
+  /** Shoot-outs are already counted as draws in `drawn`. */
+  shootouts: Readonly<{ played: number; won: number; lost: number }>;
+  administrative: Readonly<{ count: number; matchIds: readonly string[] }>;
+  /** Suspended matches inside the period (and filter): reported, never counted. */
+  suspendedExcluded: number;
+}>;
+
+export type CompetitionCoverage = Readonly<{
+  competitionId: string;
+  status: "complete" | "partial" | "missing";
+  /** Start of the complete stretch closest to the period end. */
+  completeFrom: IsoDate | null;
+  /** End of that stretch; null = ongoing (or no stretch). */
+  completeTo: IsoDate | null;
+}>;
+
+export type CoverageNotice = Readonly<{
+  /** True only if every listed competition is "complete". */
+  isComplete: boolean;
+  competitions: readonly CompetitionCoverage[];
+}>;
