@@ -1,0 +1,193 @@
+---
+issue: 39
+status: in-progress
+date: 2026-10-16
+---
+
+# Plan 0007: clubs.json for the Primera División 2025 clubs
+
+Related ADRs: [0003](../adr/0003-data-sources.md) (sources and licenses), [0005](../adr/0005-no-official-crests.md) (generic crests), [0007](../adr/0007-visual-identity-lawn-neon.md) (palette, future club theming), [0009](../adr/0009-data-model-naming.md) (field names), [0012](../adr/0012-club-identity-aliases-colors.md) (new, this plan: ids, aliases, color semantics, contrast).
+
+## Goal
+
+Create `data/clubs.json` with the 30 clubs of the Argentine Primera División 2025 season, as listed by openfootball (`argentina/2025_ar1.txt`, CC0), each with name, short name, aliases, colors, jersey pattern, founding year, city and a verifiable source. The file must pass `pnpm data:validate`, give the onboarding everything it needs to render a generic crest, and carry the aliases that the later ingestion (#8) needs to map openfootball and Kaggle team names to club ids. Nothing else is added to `data/`.
+
+## Acceptance criteria (copied from issue #39)
+
+- Given data/clubs.json, when pnpm data:validate runs, then it passes.
+- Given any club record, when validated, then it has name, short name, aliases, primary and secondary colors, jersey pattern from the allowed list, founded year, city and a source.
+- Given a club record with a missing source or an invalid pattern, when validated, then validation fails with a clear message.
+- Given the file, when the onboarding reads it, then every club can render a generic crest from its colors and pattern.
+
+Out of scope (from the issue): crests (generic SVG from colors per ADR 0005), matches and history (#8).
+
+Open question of the issue, answered by Diego: the club list is the **Primera División 2025** of openfootball.
+
+## The club list (source of truth)
+
+Fetched on 2026-10-16 with `gh api repos/openfootball/south-america/contents/argentina/2025_ar1.txt --jq .content` (base64 decoded). Header: `= Argentina Primera Division 2025`, `# Teams 30`, `# Matches 240` (1° Semestre only, 2025-01-23 to 2025-05-04). The match lines contain exactly 30 distinct names, each in 16 matches. The spellings below are **exact** (accents, apostrophe and `SdE` included) and become the fixture `OPENFOOTBALL_2025_NAMES`.
+
+The same 30 spellings are used unchanged in every openfootball file from 2018-19 to 2024 in which the club appears (checked on 2026-10-16), so no extra openfootball alias is needed for these clubs.
+
+Kaggle names were read **names only** from the local, gitignored `tools/liga_2023.csv` (distinct values of `local_team` / `visitor_team`; each name has a single team id and each id a single name). No row was copied.
+
+| #   | openfootball 2025 (exact) | Kaggle `liga_2023.csv` (exact)  | Proposed id               | Proposed short_name |
+| --- | ------------------------- | ------------------------------- | ------------------------- | ------------------- |
+| 1   | Aldosivi                  | Aldosivi                        | `aldosivi`                | Aldosivi            |
+| 2   | Argentinos Juniors        | Argentinos                      | `argentinos-juniors`      | Argentinos          |
+| 3   | Atlético Tucumán          | Atl Tucuman                     | `atletico-tucuman`        | Atl. Tucumán        |
+| 4   | Banfield                  | Banfield                        | `banfield`                | Banfield            |
+| 5   | Barracas Central          | Barracas Central                | `barracas-central`        | Barracas            |
+| 6   | Belgrano de Córdoba       | Belgrano                        | `belgrano`                | Belgrano            |
+| 7   | Boca Juniors              | Boca Juniors                    | `boca-juniors`            | Boca                |
+| 8   | Central Córdoba SdE       | Central Cba (SdE)               | `central-cordoba-sde`     | Central Córdoba     |
+| 9   | Defensa y Justicia        | Def y Justicia                  | `defensa-y-justicia`      | Defensa             |
+| 10  | Deportivo Riestra         | (absent: first top-flight 2024) | `deportivo-riestra`       | Riestra             |
+| 11  | Estudiantes               | Estudiantes (LP)                | `estudiantes-la-plata`    | Estudiantes         |
+| 12  | Gimnasia de La Plata      | Gimnasia (LP)                   | `gimnasia-la-plata`       | Gimnasia            |
+| 13  | Godoy Cruz                | Godoy Cruz                      | `godoy-cruz`              | Godoy Cruz          |
+| 14  | Huracán                   | Huracan                         | `huracan`                 | Huracán             |
+| 15  | Independiente             | Independiente                   | `independiente`           | Independiente       |
+| 16  | Independiente Rivadavia   | Ind Rivadavia                   | `independiente-rivadavia` | Ind. Rivadavia      |
+| 17  | Instituto de Córdoba      | Instituto                       | `instituto`               | Instituto           |
+| 18  | Lanús                     | Lanus                           | `lanus`                   | Lanús               |
+| 19  | Newell's Old Boys         | Newells                         | `newells-old-boys`        | Newell's            |
+| 20  | Platense                  | Platense                        | `platense`                | Platense            |
+| 21  | Racing Club               | Racing Club                     | `racing-club`             | Racing              |
+| 22  | River Plate               | River Plate                     | `river-plate`             | River               |
+| 23  | Rosario Central           | Rosario Central                 | `rosario-central`         | Central             |
+| 24  | San Lorenzo               | San Lorenzo                     | `san-lorenzo`             | San Lorenzo         |
+| 25  | San Martín de San Juan    | San Martin (SJ)                 | `san-martin-san-juan`     | San Martín SJ       |
+| 26  | Sarmiento de Junín        | Sarmiento (J)                   | `sarmiento-junin`         | Sarmiento           |
+| 27  | Talleres de Córdoba       | Talleres (C)                    | `talleres-cordoba`        | Talleres            |
+| 28  | Tigre                     | Tigre                           | `tigre`                   | Tigre               |
+| 29  | Unión de Santa Fe         | Union                           | `union`                   | Unión               |
+| 30  | Vélez Sarsfield           | Velez                           | `velez-sarsfield`         | Vélez               |
+
+Kaggle names that look close but belong to **other** clubs and must never resolve to the list above: `Huracan (C)`, `Huracan (CR)`, `Huracan (IW)`, `Huracan (LH)`, `Huracan (SR)`, `Huracan (TA)`, `Racing (C)`, `Central Cba (R)`, `Estudiantes (BA)`, `Estudiantes (RC)`, `Estudiantes (SdE)`, `Gimnasia (CdU)`, `Gimnasia (J)`, `Gimnasia (M)`, `Gimnasia (S)`, `San Lorenzo (MdP)`, `San Martin (M)`, `San Martin (T)`, `Sarmiento (R)`, `Talleres (RdE)`, `Def. de Belgrano`. They become the fixture `KAGGLE_LOOKALIKE_NAMES` (negative test).
+
+Not in the 2025 list but present in older openfootball files (Arsenal de Sarandí, Colón de Santa Fe, Patronato de Paraná, San Martín de Tucumán) and in the Kaggle file (66 more clubs): they are added by #8 when their matches are ingested, with the same rules. Not here.
+
+## Approach
+
+### Record rules (ADR 0012)
+
+- **id:** stable slug `^[a-z0-9]+(-[a-z0-9]+)*$`, from the common name, diacritics removed. A city qualifier is added only when the Kaggle file itself disambiguates this club with a city code in parentheses (`Estudiantes (LP)`, `Gimnasia (LP)`, `Central Cba (SdE)`, `San Martin (SJ)`, `Sarmiento (J)`, `Talleres (C)`), because those are the base names shared with other clubs in our sources; the qualifier is the city slug, except `sde`, kept short as in both sources. Clubs the sources name bare (Belgrano, Instituto, Unión, Huracán, Racing Club, San Lorenzo) keep the bare name even though the Kaggle file has lookalikes such as `Huracan (C)` or `San Lorenzo (MdP)`. Ids never change once merged.
+- **name:** the common Spanish name used in the Spanish Wikipedia article title and the press, not the full legal name (for example `Club Atlético Boca Juniors` is not used, `Boca Juniors` is). Proposed exact values: the openfootball spelling, except `Estudiantes de La Plata` (#11), `Gimnasia y Esgrima La Plata` (#12), `Belgrano` (#6), `Instituto` (#17), `Central Córdoba` (#8, city shown separately), `Talleres` (#27), `Unión` (#29), `San Martín de San Juan` (#25), `Sarmiento` (#26). Approval item 1.
+- **short_name:** for UI chips, at most 14 characters, unique across clubs (column above). Approval item 2.
+- **aliases:** the exact openfootball spelling, the exact Kaggle spelling (when present), the `name`, and common variants only when they come from a source we plan to ingest (API-Football names are added by the adapter's own PR, not guessed now). Duplicates within one club are removed after folding. Former names are aliases only if a data source uses them.
+- **colors:** see "Colors and pattern" below.
+- **jersey_pattern:** the current home shirt's main design as described in the cited article (`solid`, `vertical_stripes` = bastones, `hoops` = horizontal stripes, `sash` = banda, `halves`, `other`). Single horizontal band shirts: approval item 3.
+- **founded:** the founding year in the cited article, an integer between 1880 and the current year.
+- **city:** the locality of the club's seat as given in the cited article (for clubs of the City of Buenos Aires, `Buenos Aires`, not the barrio; for Greater Buenos Aires, the locality, for example `Avellaneda`, `Lanús`, `Florencio Varela`). Approval item 4.
+- **source:** a single `https://es.wikipedia.org/w/index.php?title=...&oldid=...` permanent revision URL of the club's Spanish Wikipedia article, so the fact can be rechecked against the exact text used. Wikipedia is CC BY-SA 4.0; we only take facts (year, city, color names, pattern), which ADR 0003 already allows, and `/acerca` already credits Wikipedia. No text, image or kit drawing is copied.
+
+### Verifying the facts (two independent sources per club)
+
+For each club the builder records, in the "Verification log" at the end of this plan, the value of `founded`, `city`, color names and `jersey_pattern` in:
+
+1. **Source A:** the Spanish Wikipedia article (the URL stored in `source`).
+2. **Source B:** an independent source: the club's official website "historia" page (facts only, nothing copied), or AFA / Liga Profesional club page; if none is available, the English Wikipedia article, marked as weaker because it is not fully independent.
+
+Agreement of A and B is required. A disagreement (typical case: a founding date disputed between two years, or a club that recently changed its shirt) is a **human checkpoint**: the builder stops for that club and asks Diego with both sources; nothing is averaged or guessed. The data-integrity-auditor then spot checks at least 5 clubs chosen at random (including at least one with a city qualifier and one flagged in the log), opens both sources and writes the result and URLs in its review (`docs/plans/0007-clubs-dataset.review.md`).
+
+### Colors and pattern
+
+- The **color names** (for example "azul y oro", "rojo y blanco", "granate") are facts from source A, cross-checked with source B.
+- **Mapping to the shirt (ADR 0012):** `primary` is the shirt body color; for equal-share patterns (vertical stripes, halves) it is the first color in the official description in source A. `secondary` is the pattern color (other stripe, sash, hoops or band, other half) or, for `solid`, the main trim color. `tertiary` only when the official colors name a third color.
+- **Hex values are the project's own choice.** A named palette in code, `src/data-model/club-palette.ts`, maps each color name used (blanco, negro, rojo, granate, azul, azul marino, celeste, amarillo, oro, verde, marrón, ...) to one base hex. A club uses the base hex unless contrast forces a shade within the same family (darker navy, brighter red); the shade is then listed in the palette as a named variant (for example `rojo claro`), never invented per club, and the log says why. Hex values are never taken from brand manuals, crests or Wikipedia kit templates.
+- **Contrast rules (tested, using `src/lib/contrast.ts`):**
+  - Crest: `contrastRatio(primary, secondary)` passes `meetsAA(ratio, "ui")` (3:1, WCAG 1.4.11), and so does `tertiary` against `primary` when present. Pairs at risk are blue with red (San Lorenzo, Tigre) and dark green with black; they are solved by shade first, then by asking Diego.
+  - Crest initials: the better of `#ffffff` and `--accent-contrast` (`#0a1a00`) reaches 4.5:1 on `primary` (always true in practice, asserted anyway).
+  - Theming readiness: at least one of the club's colors reaches 3:1 against both `--background` and `--background-raised` (read from `src/app/globals.css` with `parseRootTokens`, like `tests/unit/lib/palette-contrast.test.ts`). This only proves an accent can be picked later; the theming issue keeps its own full checks.
+
+### Validation and tests
+
+- `pnpm data:validate` already validates `data/clubs.json` with `clubSchema` (missing files default to empty arrays), so the first and third acceptance criteria are covered by the existing validator; this plan adds tests that run it on the real file.
+- A new pure module `src/data-model/club-aliases.ts` with `foldName(name)` and `resolveClubId(clubs, sourceName)` (exact NFC + trim match, returns the id or `null`), used by the tests now and by the adapters in #8.
+- A one-off local check `scripts/check-club-aliases.ts` (run as `tsx scripts/check-club-aliases.ts [csv]`, default `tools/liga_2023.csv`): reads only the two team name columns, prints the distinct names, which ones resolve to which id, and which do not, and exits 1 if any name of the tournaments `Liga Profesional 2022`, `Copa de la Liga 2023` or later is unresolved, or any lookalike resolves. It never writes files and never prints scores or rows. It is not run in CI (the CSV is gitignored); its pure parsing function is unit tested on a synthetic CSV string.
+
+## Discarded alternatives
+
+- **Club list from API-Football or from the 2024 season:** the free plan cannot read 2025 (ADR 0003) and Diego chose openfootball 2025.
+- **Per-source alias maps** (`aliases: { openfootball: [...], kaggle: [...] }`): safer against a bare name meaning different clubs in different sources, but it changes the schema, the Supabase `aliases text[]` column (plan 0006) and the validator. The flat list plus folded uniqueness and the adapter's per-season check covers the risk now.
+- **Fuzzy or case-insensitive matching at ingestion:** would map `Huracan (C)` to Huracán. Rejected.
+- **Hex values copied from Wikipedia kit templates or club brand manuals:** the first are editors' renderings under CC BY-SA, the second are brand material (ADR 0005). Rejected in favor of a project palette.
+- **Free-form hex per club without a palette:** not auditable; two "celeste" clubs could drift. Rejected.
+- **Ids from the full legal name** (`club-atletico-boca-juniors`): long and they would change with legal renames. Rejected.
+- **Storing two URLs in `source`:** the field is a single citation and the test checks it is one URL; the second source lives in the verification log and the auditor review.
+
+## Approval needed from Diego (product decisions, before /build)
+
+1. **Display names:** common names as proposed in "Record rules" (for example `Estudiantes de La Plata`, `Gimnasia y Esgrima La Plata`, `Central Córdoba`), or another style (legal names, openfootball spellings as is).
+2. **Short names for chips:** the column above, in particular `Central` for Rosario Central versus `Central Córdoba` for Central Córdoba (SdE), `Defensa`, `Ind. Rivadavia`, `Atl. Tucumán`, `San Martín SJ`.
+3. **Single horizontal band shirts** (one band across the chest, for example Boca and other clubs the builder will list): record as `hoops` (crest shows horizontal stripes), as `other`, or add a new enum value `band` (schema, validator, Supabase check and ADR 0009 change, a separate issue).
+4. **City granularity:** `Buenos Aires` for clubs of the City (not the barrio) and the locality for Greater Buenos Aires clubs.
+5. **Primary color** for clubs whose official description has more than two colors or whose order is ambiguous between sources; the builder lists them with both sources and a proposal.
+6. **Renamed clubs:** keep the current common name as `name`; former names only as aliases when a source uses them. Proposed ids never follow renames.
+7. Any club whose real colors cannot reach the contrast rules at a faithful shade.
+
+### Decisions recorded (2026-10-16, taken by the orchestrator on Diego's behalf)
+
+1. Display names: the common names proposed in "Record rules" (for example `Estudiantes de La Plata`, `Gimnasia y Esgrima La Plata`). The openfootball spelling and the Kaggle spelling are kept as aliases.
+2. Short names: the column of the table, with `Central` for Rosario Central and `Central Córdoba` for Central Córdoba SdE.
+3. A shirt with a single horizontal band (Boca and similar) is recorded as `other` for now. The schema does not change; a separate issue adds a `band` value.
+4. City: `Buenos Aires` for clubs of the City, the locality for Greater Buenos Aires clubs, as in "Record rules".
+5. Primary color: the dominant color of the home shirt body; secondary: the pattern or trim color. For ambiguous orders the most common home-shirt reading is chosen and stated in the verification log.
+6. Renamed clubs keep the current common name; ids never change. The id `union` stays for Unión de Santa Fe.
+7. If a club's faithful colors cannot meet the contrast rules, the colors are not falsified: that club is left out and reported with the numbers; the orchestrator decides.
+
+Data policy while building: a field that cannot be verified in a second source is never guessed; the club is left out and reported. If the two sources disagree, the club is left out and reported.
+
+## Tasks
+
+Each task starts with its test (red), then the change (green). All tests under `tests/unit/data-model/` unless noted.
+
+- [ ] **T1. Source-name fixtures (30 min).** Test: `tests/unit/data-model/club-name-fixtures.test.ts` asserts `OPENFOOTBALL_2025_NAMES` has 30 unique entries, `KAGGLE_CLUB_NAMES` has 29 unique entries, and `KAGGLE_LOOKALIKE_NAMES` is disjoint from both. Then add `tests/fixtures/clubs/source-names.ts` with the three lists exactly as in the table above (names only).
+- [ ] **T2. `foldName` and `resolveClubId` (45 min).** Tests first: NFC versus decomposed accents resolve the same; surrounding spaces are trimmed; case differences do **not** resolve (`velez` is `null`); `Huracan (C)` does not resolve to `huracan`; `Independiente Rivadavia` does not resolve to `independiente`; unknown name returns `null`; `foldName` lowercases, strips diacritics and collapses spaces. Then implement `src/data-model/club-aliases.ts` (pure, 100% branches as required for `src/data-model/**`).
+- [ ] **T3. Club palette (45 min).** Test: every palette entry is a valid 6-digit hex, names are unique, values are unique. Then add `src/data-model/club-palette.ts` with the named base colors (no club data in it).
+- [ ] **T4. clubs.json contract test, red (45 min).** `tests/unit/data-model/clubs-dataset.test.ts` reads `data/clubs.json` and asserts: `validate({ "clubs.json": clubs }, { now })` returns `[]`; exactly 30 records; ids unique and matching the slug regex; ids equal the "Proposed id" column (snapshot list, so an id change fails); `short_name` unique and at most 14 characters; no folded alias shared by two clubs and no empty alias; every `source` parses with `new URL`, uses `https:` and host `es.wikipedia.org` with an `oldid` parameter; every color in the palette; `founded` between 1880 and the current year; each name in `OPENFOOTBALL_2025_NAMES` and `KAGGLE_CLUB_NAMES` resolves to the id of its table row; no `KAGGLE_LOOKALIKE_NAMES` entry resolves. It stays red on the feature branch until T8; no commit to main is red.
+- [ ] **T5. Contrast test, red (30 min).** `tests/unit/data-model/clubs-contrast.test.ts`: per club, primary versus secondary and primary versus tertiary at least 3:1; best of `#ffffff` and `#0a1a00` at least 4.5:1 on primary; at least one color at least 3:1 against `--background` and `--background-raised` from `globals.css`. Failure messages name the club id and the ratio.
+- [ ] **T6. Verify and write clubs 1 to 10 (1 h).** For each: source A permalink, source B, fill the verification log row, then the record. Stop on any disagreement (human checkpoint). Run T4 and T5 for those records.
+- [ ] **T7. Verify and write clubs 11 to 20 (1 h).** Same as T6.
+- [ ] **T8. Verify and write clubs 21 to 30 (1 h).** Same as T6; T4 and T5 green; `pnpm data:validate` prints `data:validate ok (1 file(s) checked)`.
+- [ ] **T9. Kaggle alias check script (45 min).** Test first: `tests/unit/scripts/check-club-aliases.test.ts` on a synthetic CSV string (invented names and scores, header identical to the real one) checks that only the two name columns are read, recent unresolved names and lookalike hits are reported, and the exit code. Then `scripts/check-club-aliases.ts`. Run it locally on `tools/liga_2023.csv` and paste only its summary (counts and unresolved names) in the PR.
+- [ ] **T10. Validation failure messages (20 min).** Integration test in `tests/integration/validate-data-cli.test.ts` (or a new fixture dir `tests/fixtures/data-validate/clubs-invalid/`): a club without `source` prints `[missing-source] clubs.json#<id>: ...`, a club with `jersey_pattern: "stripes"` prints `[schema] clubs.json#<id>: jersey_pattern: ...`, exit 1. Already true; the test pins it for real-looking records.
+- [ ] **T11. Docs (20 min).** `docs/methodology.md`, "Data validation": one paragraph on club ids, aliases and the contrast rules (pointing to ADR 0012). Check `/acerca` already credits Wikipedia (CC BY-SA) and openfootball; if not, open a follow-up issue rather than touching UI here.
+- [ ] **T12. Gates (15 min).** `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm data:validate`; coverage of `src/data-model/**` stays at 100% branches.
+
+## Tests to write
+
+- **Unit:** T1 (fixtures), T2 (resolver and folding), T3 (palette), T4 (dataset contract), T5 (contrast), T9 (script parser on synthetic CSV).
+- **Integration:** T10 (CLI output for a missing source and an invalid pattern); `pnpm data:validate` on the real `data/` dir in CI (already part of the pipeline).
+- **E2E:** none; the onboarding and the `Crest` component do not exist yet. The fourth acceptance criterion is covered at data level by T4 and T5 (valid pattern, valid colors, visible contrast); the crest component's own tests come with its issue.
+
+Edge cases: decomposed versus composed accents (`Vélez`), apostrophe in `Newell's` (ASCII `'`, as in openfootball; a typographic `’` must not appear in aliases), `SdE` casing, double spaces in Kaggle names (none found for these clubs, but the resolver trims only the ends and the fold collapses inner spaces for the uniqueness check), a club with `tertiary`, a `solid` club whose trim is white, Kaggle lookalikes, Deportivo Riestra without a Kaggle name, the same short name for two clubs, an id that changes between commits (snapshot list).
+
+## Impact
+
+- **Data:** one new file, `data/clubs.json`, 30 records. No other file in `data/`. Later files will reference these ids, so they become permanent.
+- **Design:** colors feed the generic crest and later the club accent; the palette is a project choice and documented as such. No crest, logo or photo (ADR 0005).
+- **Security:** none at runtime. The script reads a local file passed as an argument and prints names only; the CSV stays gitignored and no row is committed. No env files are involved.
+- **Performance:** about 30 small records, read at build time or seeded to Supabase; negligible.
+- **Licensing:** facts only from Wikipedia (CC BY-SA) with a per-record permalink; openfootball (CC0) and Kaggle (PDDL) names are facts from public domain dedications.
+
+## Risks
+
+- **Disputed or wrong facts** (founding year, recent shirt change): two sources per club, human checkpoint on conflict, auditor spot check of at least 5 clubs.
+- **Wrong alias mapping** silently merging two clubs in #8: exact-match resolver, folded uniqueness, lookalike negative fixture, adapter per-season check (ADR 0012).
+- **Real colors failing contrast:** shade within the family, then Diego (approval item 7).
+- **Pattern enum gap** for single band shirts: approval item 3 before T6.
+- **Wikipedia permalinks** change nothing if the article is edited later; the stored revision stays checkable.
+
+## Definition of done
+
+- `data/clubs.json` has the 30 clubs of the table, `pnpm data:validate` passes, and T1 to T10 are green in CI.
+- The verification log below is complete (two sources per club, no open conflict), and every approval item has Diego's answer recorded here.
+- The data-integrity-auditor review spot checks at least 5 clubs with both source URLs and approves.
+- The alias check script reports 0 unresolved recent Kaggle names and 0 lookalike hits on the local CSV.
+
+## Verification log (filled by the builder)
+
+| id  | founded (A / B) | city (A / B) | colors (A / B) | pattern (A / B) | Source B URL | Notes |
+| --- | --------------- | ------------ | -------------- | --------------- | ------------ | ----- |
