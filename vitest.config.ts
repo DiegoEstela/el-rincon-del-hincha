@@ -13,13 +13,19 @@ export default defineConfig({
     setupFiles: ["./tests/setup.ts"],
     coverage: {
       provider: "v8",
-      include: ["src/lib/**/*.ts", "src/domain/**/*.ts", "src/data/**/*.ts"],
+      include: [
+        "src/lib/**/*.ts",
+        "src/domain/**/*.ts",
+        "src/data/**/*.ts",
+        "src/data-model/**/*.ts",
+      ],
       thresholds: {
         lines: 80,
         statements: 80,
         functions: 80,
         branches: 80,
         "src/domain/**": { branches: 100 },
+        "src/data-model/**": { branches: 100 },
       },
     },
   },

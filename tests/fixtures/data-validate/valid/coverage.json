@@ -1,0 +1,18 @@
+[
+  {
+    "club_id": "club-a",
+    "competition_id": "league-x",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": true,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-a",
+    "competition_id": "cup-y",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": true,
+    "source": "fixture:synthetic"
+  }
+]

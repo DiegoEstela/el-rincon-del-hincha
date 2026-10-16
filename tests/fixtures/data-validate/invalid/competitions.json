@@ -1,0 +1,20 @@
+[
+  {
+    "id": "league-x",
+    "name": "Liga Ficticia X",
+    "type": "league",
+    "scope": "domestic",
+    "organizer": "Organizador Ficticio",
+    "afa_recognized": true,
+    "source": "fixture:synthetic"
+  },
+  {
+    "id": "cup-y",
+    "name": "Copa Ficticia Y",
+    "type": "national_cup",
+    "scope": "domestic",
+    "organizer": "Organizador Ficticio",
+    "afa_recognized": true,
+    "source": "fixture:synthetic"
+  }
+]

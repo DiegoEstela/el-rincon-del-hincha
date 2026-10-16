@@ -1,0 +1,26 @@
+[
+  {
+    "id": "league-x-2020",
+    "competition_id": "league-x",
+    "name": "2020",
+    "start": "2020-01-01",
+    "end": "2020-12-31",
+    "source": "fixture:synthetic"
+  },
+  {
+    "id": "cup-y-2020",
+    "competition_id": "cup-y",
+    "name": "2020",
+    "start": "2020-01-01",
+    "end": "2020-12-31",
+    "source": "fixture:synthetic"
+  },
+  {
+    "id": "league-x-2021",
+    "competition_id": "league-x",
+    "name": "2021",
+    "start": "2021-01-01",
+    "end": "2021-12-31",
+    "source": "fixture:synthetic"
+  }
+]

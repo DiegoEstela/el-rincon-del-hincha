@@ -1,0 +1,11 @@
+[
+  {
+    "club_id": "club-a",
+    "season_id": "league-x-2020",
+    "played": 4,
+    "won": 2,
+    "drawn": 1,
+    "lost": 1,
+    "source": "fixture:synthetic"
+  }
+]
