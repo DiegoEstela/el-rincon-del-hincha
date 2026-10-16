@@ -125,10 +125,12 @@ create table public.matches (
   check (decision is null or decision in ('penalties', 'extra_time')),
   check (status in ('played', 'suspended', 'administrative_result')),
   check (status = 'suspended' or (home_goals is not null and away_goals is not null)),
+  -- decision is nullable, so compare with "is [not] distinct from": the check must never be NULL,
+  -- because a CHECK accepts NULL. Same rule as penalties-inconsistent in the validator.
   check (
     (decision is distinct from 'penalties' and home_penalties is null and away_penalties is null)
     or (
-      decision = 'penalties'
+      decision is not distinct from 'penalties'
       and home_penalties is not null
       and away_penalties is not null
       and home_penalties <> away_penalties
