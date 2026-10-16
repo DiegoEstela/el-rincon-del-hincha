@@ -27,5 +27,5 @@ The fan period is "from the start date (inclusive) until today". Matches from 20
 - `docs/methodology.md` is updated in the same PR as the code that implements this ADR: a new bullet for season-precision matches and a change to the partial coverage rule.
 - The current schemas require `matches.date` and `seasons.start` and `end`; both become conditional on `date_precision`.
 - The fan period rule (start date inclusive) is unchanged for `day` matches.
-- The season dates and the schema change are tracked as a follow-up issue in the Fase 1 milestone.
+- The season dates and the schema change are tracked in issue #38 (Fase 1 milestone).
 - Schemas, the validator (#9) and the stats engine (#14) get a follow-up change; the golden-fixtures issue (#36) should cover this rule with real data.
