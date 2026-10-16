@@ -32,6 +32,15 @@ export type RivalGroups = Readonly<{
   coverage: CoverageNotice;
 }>;
 
+/** Rivals of the club with `is_classic: true` in the rivalries table. */
+export function classicRivalIds(index: StatsIndex, clubId: string): ReadonlySet<string> {
+  return new Set(
+    index.data.rivalries
+      .filter((r) => r.is_classic && (r.club_a === clubId || r.club_b === clubId))
+      .map((r) => (r.club_a === clubId ? r.club_b : r.club_a)),
+  );
+}
+
 /** Balance desc, played desc, rival id asc. Name sorting needs Spanish collation (UI). */
 function byStanding(a: RivalRow, b: RivalRow): number {
   return (
@@ -54,11 +63,7 @@ export function groupRivals(
     if (list === undefined) viewsByRival.set(view.rivalId, [view]);
     else list.push(view);
   }
-  const classics = new Set(
-    index.data.rivalries
-      .filter((r) => r.is_classic && (r.club_a === clubId || r.club_b === clubId))
-      .map((r) => (r.club_a === clubId ? r.club_b : r.club_a)),
-  );
+  const classics = classicRivalIds(index, clubId);
   const all = [...viewsByRival.entries()]
     .map(([rivalId, rivalViews]): RivalRow => {
       const suspendedCount = suspended.filter((m) => opponentOf(m, clubId) === rivalId).length;
