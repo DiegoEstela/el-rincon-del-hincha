@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
-/* Design tokens: "night stadium". Club theming overrides --accent / --accent-contrast at runtime. */
+/*
+ * Design tokens: "Césped y neón" (ADR 0007). Every text/surface pair is verified for WCAG AA by
+ * tests/unit/lib/palette-contrast.test.ts. Decorative lime glows are capped at 8% alpha so that
+ * the AA test surfaces stay valid. Club theming overrides --accent / --accent-contrast at runtime.
+ */
 :root {
-  --background: #060d1f;
-  --background-raised: #0b1630;
-  --foreground: #eef2ff;
-  --muted: #9aa8c7;
+  --background: #07140d;
+  --background-raised: #0d2318;
+  --foreground: #ecfdf3;
+  --muted: #9db8a9;
   --glass: rgb(255 255 255 / 0.06);
   --glass-border: rgb(255 255 255 / 0.12);
-  --accent: #f5b942;
-  --accent-contrast: #1a1200;
-  --gold: #f5b942;
-  --win: #34d399;
-  --even: #94a3b8;
-  --loss: #f87171;
+  --line-strong: #5a7a68;
+  --accent: #c6ff3d;
+  --accent-contrast: #0a1a00;
+  --gold: #f5c542;
+  --win: #4ade80;
+  --even: #a8b5ad;
+  --loss: #ff8a8a;
   color-scheme: dark;
 }
 
@@ -24,6 +29,7 @@
   --color-muted: var(--muted);
   --color-glass: var(--glass);
   --color-glass-border: var(--glass-border);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-contrast: var(--accent-contrast);
   --color-gold: var(--gold);
@@ -37,19 +43,42 @@
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(60rem 30rem at 50% -10%, rgb(56 98 220 / 0.35), transparent 70%),
-    radial-gradient(28rem 20rem at 90% 20%, rgb(245 185 66 / 0.1), transparent 70%),
-    linear-gradient(180deg, var(--background-raised), var(--background) 40%);
+    radial-gradient(50rem 28rem at 50% -8%, rgb(198 255 61 / 0.08), transparent 70%),
+    radial-gradient(40rem 24rem at 0% 0%, rgb(20 83 45 / 0.22), transparent 70%),
+    linear-gradient(180deg, var(--background-raised), var(--background) 45%);
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Tribuna (mobile): translucent glass. Palco (desktop): solid, flatter surfaces. */
 .glass {
   background: var(--glass);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+/* Mowed-lawn stripes: mobile-only texture, 3% lime so it stays under the 8% glow cap. */
+.lawn {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgb(198 255 61 / 0.03) 0 2.5rem,
+    transparent 2.5rem 5rem
+  );
+}
+
+@media (min-width: 1024px) {
+  .glass {
+    background: var(--background-raised);
+    border-color: var(--line-strong);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .lawn {
+    background-image: none;
+  }
 }
 
 .font-display {
