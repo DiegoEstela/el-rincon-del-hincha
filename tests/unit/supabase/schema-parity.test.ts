@@ -66,11 +66,13 @@ describe.each(Object.entries(FILE_SCHEMAS) as [DatasetFile, ZodType][])("%s", (f
       const { inner } = unwrap(field);
       const def = defOf(inner);
       if (def.type !== "enum") continue;
-      expect(enumValues(table!, key), `${name}.${key}`).toEqual(def.options);
+      expect(enumValues(table!, key), `${name}.${key}`).toEqual(
+        (inner as unknown as { options: string[] }).options,
+      );
     }
   });
   it("requires a non-blank source", () => {
-    expect(column(table!, "source").checks.join(" ")).toMatch(/source ~ '\\S'/);
+    expect(table!.checks.join(" | ")).toMatch(/source ~ '\\S'/);
   });
   it("uses the same primary key as recordKey", () => {
     expect(table!.primaryKey).toEqual(KEY_FIELDS[file].fields);
