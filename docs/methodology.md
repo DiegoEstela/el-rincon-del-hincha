@@ -36,6 +36,10 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 - `control-totals`: in `standings.json` (optional, source-backed), won + drawn + lost differs from played.
 - `standings-mismatch`: with complete coverage, the P/W/D/L tallied from matches differs from the `standings.json` row.
 
+### Clubs, aliases and colors
+
+`data/clubs.json` holds the clubs of the Primera División 2025 (ADR 0012). A club `id` is a stable slug that never changes, even if the club is renamed. `aliases` lists every exact spelling used by an ingested source (openfootball, Kaggle, later API-Football and RSSSF); adapters resolve a source name with `resolveClubId` (exact match after NFC normalization and trimming, never fuzzy) and stop on an unresolved name. No alias may be shared by two clubs, even after folding case and accents. `colors.primary` is the dominant color of the home shirt and `colors.secondary` the pattern or trim color; the hex values are the project's own palette (`src/data-model/club-palette.ts`), not official club colors, and a darker or lighter variant of a family is used only to reach the contrast rules: primary against secondary (and tertiary against primary) at 3:1 or more so the generic crest is visible. Each club's `source` is a permanent `oldid` revision of its Spanish Wikipedia article (facts only: year, city, color names, pattern); the second source of each fact is recorded in the verification log of plan 0007. A single horizontal band shirt is recorded as `other` until a `band` pattern exists. `scripts/check-club-aliases.ts` is a local, read-only check of the aliases against the Kaggle team names; it is not part of CI.
+
 ## Statistics engine
 
 The engine in `src/domain` (ADR 0010, plan 0005) is the only implementation of these rules; Postgres and repositories only fetch rows. All functions are pure and take `now` as an argument. Output is language-neutral (English values); Spanish labels belong to the UI. Each rule has tests in `tests/unit/domain` (and `tests/integration/stats-engine.test.ts`).

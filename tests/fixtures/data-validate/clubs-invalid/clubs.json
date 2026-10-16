@@ -1,0 +1,23 @@
+[
+  {
+    "id": "club-sin-fuente",
+    "name": "Club Sin Fuente",
+    "short_name": "Sin Fuente",
+    "aliases": ["Club Sin Fuente"],
+    "colors": { "primary": "#d62828", "secondary": "#ffffff" },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1905,
+    "city": "La Plata"
+  },
+  {
+    "id": "club-patron-invalido",
+    "name": "Club Patron Invalido",
+    "short_name": "Patron",
+    "aliases": ["Club Patron Invalido"],
+    "colors": { "primary": "#1d4ed8", "secondary": "#ffffff" },
+    "jersey_pattern": "stripes",
+    "founded": 1910,
+    "city": "Rosario",
+    "source": "https://es.wikipedia.org/w/index.php?title=Ejemplo&oldid=1"
+  }
+]
