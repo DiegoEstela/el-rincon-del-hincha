@@ -19,7 +19,10 @@ describe("supabase/checks/verify.sql", () => {
     expect(code).not.toMatch(/\bcommit\b/i);
   });
   it("never changes schema objects", () => {
-    expect(code).not.toMatch(/\b(drop|alter|create|truncate)\s/i);
+    expect(code).not.toMatch(/\b(drop|alter)\s/i);
+    expect(code).not.toMatch(/\bcreate\s+(?!temp table verify_results)/i);
+    // The one truncate is attempted as anon and must be refused.
+    expect(code.match(/\btruncate\s+public/gi)).toHaveLength(1);
   });
   it("checks RLS, policies, privileges and the roles' behavior", () => {
     expect(code).toMatch(/relrowsecurity = false/);
@@ -33,6 +36,6 @@ describe("supabase/checks/verify.sql", () => {
     expect(code).toMatch(/public\.get_comparison\(/);
   });
   it("documents the expected result of every check", () => {
-    expect(sql.match(/-- Expected:/g)?.length).toBeGreaterThanOrEqual(6);
+    expect(sql.match(/^-- .*Expected:/gm)?.length).toBeGreaterThanOrEqual(6);
   });
 });
