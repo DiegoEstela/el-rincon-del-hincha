@@ -174,6 +174,41 @@ describe("statement allowlist", () => {
     expect(found).toHaveLength(1);
     expect(found[0]!.split(" ")[0]).toBe(sql.split(" ")[0]);
   });
+  it.each([
+    ["unschedule with a second function call", "select cron.unschedule('x'), public.evil()"],
+    ["schedule with a trailing select list item", "select cron.schedule('j', '* * * * *', 'x'), 1"],
+    ["a cron call followed by a trailing token", "select cron.unschedule('x') from public.clubs"],
+    ["a nested function call as argument", "select cron.unschedule(public.evil())"],
+    ["a cron call with a second call after it", "select cron.unschedule('x') union select 1"],
+    ["an unknown cron function", "select cron.alter_job(1)"],
+  ])("reports %s as unrecognized", (_label, sql) => {
+    expect(unknown(sql)).toHaveLength(1);
+  });
+  it("accepts the two exact cron call shapes", () => {
+    expect(unknown("select cron.unschedule('x')")).toEqual([]);
+    expect(
+      unknown(
+        "select cron.unschedule('x') where exists (select 1 from cron.job where jobname = 'x')",
+      ),
+    ).toEqual([]);
+    expect(unknown("select cron.schedule('j', '1 * * * *', $$select 1$$)")).toEqual([]);
+  });
+  it.each([
+    [
+      "an E string",
+      "select cron.unschedule(E'\\''); grant insert on public.clubs to anon; select cron.unschedule('')",
+    ],
+    [
+      "a lowercase e string",
+      "select cron.unschedule(e'\\''); grant insert on public.clubs to anon;",
+    ],
+    [
+      "a backslash inside a quoted string",
+      "select cron.unschedule('a\\'); grant insert on public.clubs to anon; --')",
+    ],
+  ])("refuses %s, whose escapes it cannot model", (_label, sql) => {
+    expect(() => parseMigrations([sql])).toThrow(/escape|backslash/i);
+  });
   it("records disable and force row level security explicitly", () => {
     const m = parseMigrations([
       `${TABLE} alter table public.x disable row level security; alter table public.x force row level security;`,
