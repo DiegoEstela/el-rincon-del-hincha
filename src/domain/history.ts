@@ -1,8 +1,8 @@
 // Methodology: "Match result", "Balance", "Suspended matches", "Administrative results".
-import type { Competition } from "@/data-model/types";
+import type { Competition, Match } from "@/data-model/types";
 import { coverageNotice } from "./coverage-notice";
 import { competitionById, competitionOf, matchesOf } from "./data";
-import { clubView } from "./match-outcome";
+import { clubView, opponentOf } from "./match-outcome";
 import { inPeriod } from "./period";
 import type {
   CoverageNotice,
@@ -21,30 +21,39 @@ export function passesFilter(competition: Competition, filter: MatchFilter): boo
   );
 }
 
+export type ViewSelection = MatchFilter &
+  Readonly<{
+    /** Only the matches against this club. */
+    rivalId?: string;
+  }>;
+
 /**
- * The counted matches of a club inside the period (and filter), sorted by date then id, plus
- * the number of suspended matches that were left out.
+ * The counted matches of a club inside the period (and selection), sorted by date then id,
+ * plus the suspended matches that were left out.
  */
 export function selectViews(
   index: StatsIndex,
   clubId: string,
   period: FanPeriod,
-  filter: MatchFilter = {},
-): Readonly<{ views: readonly MatchView[]; suspendedExcluded: number }> {
+  selection: ViewSelection = {},
+): Readonly<{ views: readonly MatchView[]; suspended: readonly Match[] }> {
   const views: MatchView[] = [];
-  let suspendedExcluded = 0;
+  const suspended: Match[] = [];
   for (const match of matchesOf(index, clubId)) {
     if (!inPeriod(match.date, period)) continue;
+    if (selection.rivalId !== undefined && opponentOf(match, clubId) !== selection.rivalId) {
+      continue;
+    }
     const competition = competitionOf(index, match);
-    if (!passesFilter(competition, filter)) continue;
+    if (!passesFilter(competition, selection)) continue;
     if (match.status === "suspended") {
-      suspendedExcluded += 1;
+      suspended.push(match);
       continue;
     }
     const view = clubView(match, clubId, competition.id);
     if (view !== null) views.push(view);
   }
-  return { views, suspendedExcluded };
+  return { views, suspended };
 }
 
 export function tallyMatches(
@@ -113,9 +122,9 @@ export function calculateHistory(
   period: FanPeriod,
   filter: MatchFilter = {},
 ): History {
-  const { views, suspendedExcluded } = selectViews(index, clubId, period, filter);
+  const { views, suspended } = selectViews(index, clubId, period, filter);
   return {
-    record: tallyMatches(views, suspendedExcluded),
+    record: tallyMatches(views, suspended.length),
     matches: views,
     coverage: coverageNotice(
       index,

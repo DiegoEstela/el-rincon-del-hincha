@@ -35,6 +35,11 @@ export function outcomeFor(match: Match, clubId: string): Outcome | null {
   return score === null ? null : resultOf(match, score);
 }
 
+/** The other club of a match, seen from `clubId`. */
+export function opponentOf(match: Match, clubId: string): string {
+  return match.home_id === clubId ? match.away_id : match.home_id;
+}
+
 function shootoutFor(match: Match, isHome: boolean): MatchView["shootout"] {
   if (match.decision !== "penalties") return null;
   const own = isHome ? match.home_penalties : match.away_penalties;
@@ -53,7 +58,7 @@ export function clubView(match: Match, clubId: string, competitionId: string): M
   return {
     match,
     competitionId,
-    rivalId: score.isHome ? match.away_id : match.home_id,
+    rivalId: opponentOf(match, clubId),
     outcome: resultOf(match, score),
     goalsFor: score.goalsFor,
     goalsAgainst: score.goalsAgainst,
