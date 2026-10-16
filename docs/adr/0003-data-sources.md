@@ -1,6 +1,6 @@
 # 0003 — Data sources
 
-Status: **Proposed.** Measured on 2026-10-16. One product decision about current-season data is open (see "Open decision").
+Status: **Proposed.** Measured on 2026-10-16. One product decision about current-season data (2026) is open (see "Open decision"). The Kaggle dataset is usable under the PDDL; its provenance question is still open and does not block use.
 
 ## Context
 
@@ -44,12 +44,13 @@ No free API covers decades of Argentine football. The product promises each fan 
 
 ## Decision
 
-1. **Match-level data for the main league tournament of each year from 2018-19 to 2024** comes from openfootball (CC0), cross-checked against API-Football for 2022 to 2024. This is **not** every official match of those years: other tournaments of the same year (for example the Copa de la Liga) are absent from openfootball. Coverage is therefore recorded **per competition** in the `coverage` table, and head-to-head records must say which competitions they include. The exact per-club date of complete coverage is **deferred to issue #12** (coverage table), because it needs the club list and the dataset (#8). The rule fixed here is a ceiling: for each club it is the later of 2018-19 and the club's first season in the dataset.
-2. **2025 is recorded as partial coverage** (until 2025-05-04) and **2026 as not covered**, until a source is approved (see "Open decision"). The UI shows the coverage notice defined in docs/methodology.md; the app never presents an incomplete period as complete.
-3. **Titles (honours) go back further**, sourced from Wikipedia lists with CC BY-SA attribution on `/acerca` and a per-record `source` URL, counting only officially recognized titles by default.
-4. **Cups and international competitions** come from API-Football (2022 to 2024 on the free plan); other years need a source or a paid plan.
-5. **Permission requests.** RSSSF still needs a written answer before any use (draft in `docs/spike/permission-requests.md`). For the Kaggle dataset the license question is answered (PDDL); the message to its author is reduced to one question: where the data comes from. No data from RSSSF enters `data/` before a written answer is stored in `docs/spike/replies/`.
-6. The API-Football key lives only in server code and in the GitHub secret for the scheduled workflow. The free plan's 100 requests/day is enough for the planned ingestion of the seasons the free plan can read (one request per competition season).
+1. **Match-level data for the main league tournament of each year from 2018-19 to 2024** comes from openfootball (CC0), cross-checked against API-Football for 2022 to 2024. This is **not** every official match of those years: other tournaments of the same year (for example the Copa de la Liga) are absent from openfootball. Coverage is therefore recorded **per competition** in the `coverage` table, and head-to-head records must say which competitions they include. The exact per-club coverage, now extendable back to 1931 with season precision (Decision 2), is **deferred to issue #12** (coverage table), because it needs the club list and the dataset (#8). Day-precision coverage from openfootball starts, for each club, at the later of 2018-19 and the club's first season in the dataset.
+2. **History before 2018 and the Copa de la Liga 2020 to 2023** come from the Kaggle dataset (PDDL) at season precision (tournament and year, no match date), as defined in ADR 0011.
+3. **2025 is recorded as partial coverage** (until 2025-05-04) and **2026 as not covered**, until a source is approved (see "Open decision"). The UI shows the coverage notice defined in docs/methodology.md; the app never presents an incomplete period as complete.
+4. **Titles (honours) go back further**, sourced from Wikipedia lists with CC BY-SA attribution on `/acerca` and a per-record `source` URL, counting only officially recognized titles by default.
+5. **Cups and international competitions** come from API-Football (2022 to 2024 on the free plan); other years need a source or a paid plan.
+6. **Permission requests.** RSSSF still needs a written answer before any use (draft in `docs/spike/permission-requests.md`). For the Kaggle dataset the license question is answered (PDDL); the message to its author is reduced to one question: where the data comes from. No data from RSSSF enters `data/` before a written answer is stored in `docs/spike/replies/`.
+7. The API-Football key lives only in server code and in the GitHub secret for the scheduled workflow. The free plan's 100 requests/day is enough for the planned ingestion of the seasons the free plan can read (one request per competition season).
 
 ## Kaggle dataset analysis (2026-10-16)
 
@@ -57,7 +58,7 @@ The file `liga_2023.csv` was downloaded by Diego and analyzed locally; it is not
 
 - 34,356 rows, 7 columns (`date_name`, `local_team_id`, `local_team`, `local_result`, `visitor_result`, `visitor_team`, `visitor_team_id`), no malformed row, 96 distinct team ids, 138 tournaments from Campeonato 1931 to Copa de la Liga 2023.
 - **It explains the 581 fixtures of API-Football for 2022:** Liga Profesional 2022 has 378 matches and Copa de la Liga Profesional 2022 has 203; 378 + 203 = 581. The counts are consistent with the earlier hypothesis; only the sum was checked, not that API-Football and the Kaggle file list the same 203 matches.
-- Cross-check against openfootball: 2019-20 (276), 2021 (325), 2022 (378) and 2023 (378) match exactly. 2018-19 has 324 matches against 325 in openfootball, and the 2020 Copa de la Liga has 134 against 135. The data audit identified them: in 2018-19 the match Huracan 0-0 Argentinos Juniors (matchday 8) is absent from the Kaggle file; the 2020 difference is the Copa Sudamericana final of 31 Mar 2021 (Velez 2-3 Banfield), which the openfootball 2020 file includes and the Kaggle file counts apart, so that comparison is not like for like. The same comparison found two matches of the 2020 Copa with home and away swapped between sources, among them the final Boca v Banfield (1-1, decided on penalties): home and away statistics and the penalties record must be taken from a single source per match.
+- Cross-check against openfootball: 2019-20 (276), 2021 (325), 2022 (378) and 2023 (378) match exactly. 2018-19 has 324 matches against 325 in openfootball, and the 2020 Copa de la Liga has 134 against 135. The data-integrity audit identified them in a local analysis of the CSV on 2026-10-16 (the CSV is not stored in the repository): in 2018-19 the match Huracan 0-0 Argentinos Juniors (matchday 8) is absent from the Kaggle file; the 2020 difference is the Copa Sudamericana final of 31 Mar 2021 (Velez 2-3 Banfield), which the openfootball 2020 file includes and the Kaggle file counts apart, so that comparison is not like for like. The same comparison found two matches of the 2020 Copa with home and away swapped between sources, among them the final Boca v Banfield (1-1, decided on penalties): home and away statistics and the penalties record must be taken from a single source per match.
 - Gaps: no match date, no round or stage, no penalties or suspended flags, no cups (Libertadores, Sudamericana, Copa Argentina), the dataset page says it was updated until September 2023 and the file ends with the Copa de la Liga 2023, irregular tournament names (`Liga Profesional  2015` with two spaces, `2016/2017`, `Campeonato 1985/86`) that need normalization.
 - Nothing from this dataset is loaded yet. Tournament start and end dates have to come from a sourced reference (for example Wikipedia season articles, CC BY-SA, with attribution).
 
@@ -75,6 +76,6 @@ The free plan cannot give the **current season (2026)** nor the second half of 2
 
 ## Consequences
 
-- The MVP can launch honestly with the main league tournament of 2018-19 to 2024 and a visible coverage notice that lists which competitions are included. Filling the missing tournaments of those years needs API-Football data for 2022 to 2024 (free) or a paid plan or another source for 2018 to 2021. Historical depth beyond that grows only with permission, and recency depends on the decision above.
+- The MVP can launch honestly with the main league tournament of 2018-19 to 2024 and a visible coverage notice that lists which competitions are included. Filling the missing tournaments of those years needs API-Football data for 2022 to 2024 (free) or a paid plan or another source for 2018 to 2021. Depth before 2018 comes from the Kaggle dataset (tournament and year only, per ADR 0011) and from permitted sources such as RSSSF, and recency depends on the decision above.
 - Adapters in `scripts/ingest/` are one per source, and each record carries its `source`.
-- If a permission is granted or a plan is upgraded, the extra history is added through a normal PR with data validation, without changing the app.
+- The Kaggle dataset needs no permission (PDDL); attribution is given as a courtesy. Only RSSSF needs a written answer. If that permission is granted or a plan is upgraded, the extra history is added through a normal PR with data validation, without changing the app.
