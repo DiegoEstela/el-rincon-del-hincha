@@ -2,6 +2,7 @@
 import { DATASET_FILES, FILE_SCHEMAS, recordKey, type DatasetFile } from "./schemas";
 import { checkReferences } from "./rules/references";
 import { checkScores } from "./rules/scores";
+import { checkDates } from "./rules/dates";
 import type { Dataset, ValidationIssue } from "./types";
 
 export type ValidateOptions = { now: Date };
@@ -100,10 +101,10 @@ function sortIssues(issues: ValidationIssue[]): ValidationIssue[] {
 
 export function validate(
   raw: Record<string, unknown>,
-  _options: ValidateOptions,
+  options: ValidateOptions,
 ): ValidationIssue[] {
   const { dataset, knownKeys, issues } = shapeStage(raw);
   issues.push(...checkReferences(dataset, knownKeys));
-  issues.push(...checkScores(dataset));
+  issues.push(...checkScores(dataset), ...checkDates(dataset, options.now));
   return sortIssues(issues);
 }
