@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { analyzeClubNames, formatReport } from "../../../scripts/lib/club-aliases-check";
 
-const HEADER = "date_name,local_team_id,local_team,local_result,visitor_result,visitor_team,visitor_team_id";
+const HEADER =
+  "date_name,local_team_id,local_team,local_result,visitor_result,visitor_team,visitor_team_id";
 const clubs = [
   { id: "alpha", aliases: ["Alpha FC", "Alpha"] },
   { id: "beta", aliases: ["Beta"] },
@@ -40,7 +41,11 @@ describe("analyzeClubNames", () => {
 
   it("fails when a lookalike name resolves", () => {
     const withBadAlias = [{ id: "alpha", aliases: ["Alpha", "Alpha (X)"] }];
-    const report = analyzeClubNames(csv(["Liga 2023,1,Alpha (X),0,0,Alpha,2"]), withBadAlias, lookalikes);
+    const report = analyzeClubNames(
+      csv(["Liga 2023,1,Alpha (X),0,0,Alpha,2"]),
+      withBadAlias,
+      lookalikes,
+    );
     expect(report.lookalikeHits).toEqual(["Alpha (X)"]);
     expect(report.exitCode).toBe(1);
   });
@@ -63,7 +68,7 @@ describe("analyzeClubNames", () => {
   });
 
   it("throws a clear error when a required column is missing", () => {
-    expect(() => analyzeClubNames("a,b\n1,2", clubs, lookalikes)).toThrow(/local_team/);
+    expect(() => analyzeClubNames("a,b\n1,2", clubs, lookalikes)).toThrow(/Missing column/);
   });
 
   it("handles CRLF line endings, blank lines and quoted names", () => {
