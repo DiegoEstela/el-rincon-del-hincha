@@ -49,5 +49,5 @@ Si preferís escribirles en español, decime y las traduzco con el mismo conteni
 ## When an answer arrives
 
 1. Save it (text or screenshot) in `docs/spike/replies/`.
-2. Tell me which sources are approved and the credit line required. The rule "no ingestion before a written answer" applies to RSSSF only. For Kaggle (PDDL) a reply only affects the credit line and the provenance notes, not whether the data can be used.
-3. For RSSSF, I update ADR 0003, add the adapter and the attribution to `/acerca`, and extend the coverage table.
+2. Tell me which sources are approved and the credit line required. The rule "no ingestion before a written answer" applied to RSSSF, which answered and approved on 2026-10-16. For Kaggle (PDDL) a reply only affects the credit line and the provenance notes, not whether the data can be used.
+3. RSSSF: ADR 0003 was updated on 2026-10-16. Still to do, in the dataset issues: the adapter, the attribution in `/acerca` and the coverage table.
