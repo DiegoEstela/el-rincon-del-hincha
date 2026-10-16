@@ -3,6 +3,7 @@
 These rules are the source of truth for every statistic in the app. Each rule has its own tests in `tests/unit/domain`.
 
 - **Fan period:** from the start date (inclusive) until today, in the `America/Argentina/Buenos_Aires` time zone.
+- **Start date rule (form input):** a real `YYYY-MM-DD` calendar date, not before `1880-01-01` and not after today in Buenos Aires (same bounds as the database). `validateStartDate` returns only an error code, never the input, because the date can be a birth date.
 - **A title counts** if its `awarded_on` falls inside the period.
 - **Match result:** the score at the end of regulation plus extra time, if any. A penalty shoot-out **counts as a draw** in P/W/D/L and is recorded separately. In finals and titles, the shoot-out winner wins the final.
 - **Balance** = W - L. Draws do not change it.
