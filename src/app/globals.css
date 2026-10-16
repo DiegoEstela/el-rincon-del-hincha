@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Design tokens: "night stadium". Club theming overrides --accent / --accent-contrast at runtime. */
+:root {
+  --background: #060d1f;
+  --background-raised: #0b1630;
+  --foreground: #eef2ff;
+  --muted: #9aa8c7;
+  --glass: rgb(255 255 255 / 0.06);
+  --glass-border: rgb(255 255 255 / 0.12);
+  --accent: #f5b942;
+  --accent-contrast: #1a1200;
+  --gold: #f5b942;
+  --win: #34d399;
+  --even: #94a3b8;
+  --loss: #f87171;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-raised: var(--background-raised);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-glass: var(--glass);
+  --color-glass-border: var(--glass-border);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-gold: var(--gold);
+  --color-win: var(--win);
+  --color-even: var(--even);
+  --color-loss: var(--loss);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-bebas);
+}
+
+body {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(60rem 30rem at 50% -10%, rgb(56 98 220 / 0.35), transparent 70%),
+    radial-gradient(28rem 20rem at 90% 20%, rgb(245 185 66 / 0.1), transparent 70%),
+    linear-gradient(180deg, var(--background-raised), var(--background) 40%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.font-display {
+  font-family: var(--font-display), Impact, sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

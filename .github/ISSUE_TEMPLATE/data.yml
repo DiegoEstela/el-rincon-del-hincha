@@ -1,0 +1,22 @@
+name: Data
+description: Wrong, missing or disputed football data
+labels: [data]
+body:
+  - type: input
+    id: club
+    attributes:
+      label: Club(s) involved
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Verifiable source (link)
+    validations:
+      required: true

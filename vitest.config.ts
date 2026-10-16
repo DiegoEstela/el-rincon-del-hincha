@@ -1,0 +1,26 @@
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import { fileURLToPath } from "node:url";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
+  },
+  test: {
+    environment: "node",
+    include: ["tests/unit/**/*.test.{ts,tsx,mjs}", "tests/integration/**/*.test.{ts,tsx}"],
+    setupFiles: ["./tests/setup.ts"],
+    coverage: {
+      provider: "v8",
+      include: ["src/lib/**/*.ts", "src/domain/**/*.ts", "src/data/**/*.ts"],
+      thresholds: {
+        lines: 80,
+        statements: 80,
+        functions: 80,
+        branches: 80,
+        "src/domain/**": { branches: 100 },
+      },
+    },
+  },
+});
