@@ -1,6 +1,6 @@
 # 0006 — Supabase: schema, RLS, shareable comparisons and free-plan limits
 
-Status: **Accepted** (plan 0006, issue #6). Diego explicitly confirmed on 2026-10-16 the seven security and infrastructure decisions listed in "Decisions needing approval", as recommended by this ADR: comparisons only through the two security definer functions, optional nickname up to 24 characters, 22-character slug, daily purge with pg_cron, removal of the default grants, keep-alive (#41) and key migration (#42) as follow-up issues. The product constraints stay: the birth date never travels in a URL and comparisons expire after 90 days. The migrations are not applied to the live project yet (plan task T13).
+Status: **Accepted** (plan 0006, issue #6). Diego explicitly confirmed on 2026-10-16 the seven security and infrastructure decisions listed in "Decisions needing approval", as recommended by this ADR: comparisons only through the two security definer functions, optional nickname up to 24 characters, 22-character slug, daily purge with pg_cron, removal of the default grants, keep-alive (#41) and key migration (#42) as follow-up issues. The product constraints stay: the birth date never travels in a URL and comparisons expire after 90 days. The migrations were applied to the live project on 2026-10-16 and verified: `verify.sql` reported `ALL 32 CHECKS OK` and the Security Advisor has no findings (plan task T13).
 
 ## Context
 
