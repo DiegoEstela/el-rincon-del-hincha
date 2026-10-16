@@ -14,6 +14,9 @@ for (const route of PUBLIC_ROUTES) {
   test(`footer shows credits and version on ${route}`, async ({ page }, testInfo) => {
     await page.goto(route);
     const footer = page.getByRole("contentinfo");
+    await expect(footer).toHaveCount(1);
+    await expect(footer).toBeVisible();
+    await expect(page.getByTestId("app-version")).toHaveCount(1);
 
     await expect(footer).toContainText("Creada por Diego Estela Lopez");
     await expect(footer).toContainText("Idea original de Juan Farre");

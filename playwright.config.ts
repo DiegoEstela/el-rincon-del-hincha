@@ -16,6 +16,10 @@ export default defineConfig({
       name: "android",
       use: { ...devices["Pixel 7"], viewport: { width: 412, height: 915 } },
     },
+    {
+      name: "desktop",
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } },
+    },
   ],
   webServer: {
     command: "pnpm start",
