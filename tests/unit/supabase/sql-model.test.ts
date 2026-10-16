@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { enumValues, netPrivileges, parseMigrations } from "./sql-model";
+import { enumValues, netExecute, netPrivileges, parseMigrations } from "./sql-model";
 
 const TABLE = `
 -- create table public.ghost (id text primary key);
@@ -159,5 +159,22 @@ describe("functions and indexes", () => {
       { name: "x_u", table: "x", unique: true, columns: ["id", "least(a, b)"] },
       { name: "x_i", table: "x", unique: false, columns: ["from", "to"] },
     ]);
+  });
+});
+
+describe("function execute privileges", () => {
+  const f = "create function public.f() returns int language sql as $$ select 1 $$;";
+  it("starts with execute for public, as Postgres does", () => {
+    expect([...netExecute(parseMigrations([f]), "f")]).toEqual(["public"]);
+  });
+  it("applies revokes and grants in order", () => {
+    const sql = `${f}
+      revoke all on function public.f() from public, anon, authenticated;
+      grant execute on function public.f() to service_role;`;
+    expect([...netExecute(parseMigrations([sql]), "f")]).toEqual(["service_role"]);
+  });
+  it("keeps a grant that comes after the revoke", () => {
+    const sql = `${f} revoke all on function public.f() from public; grant execute on function public.f() to anon;`;
+    expect([...netExecute(parseMigrations([sql]), "f")]).toEqual(["anon"]);
   });
 });
