@@ -1,6 +1,6 @@
 ---
 issue: 9
-status: pending
+status: done
 date: 2026-10-16
 ---
 
@@ -158,8 +158,8 @@ Each task: write the failing test first, make it pass, keep `pnpm lint` and `pnp
 - [x] **T15 Control totals.** `tests/unit/data-model/rules/standings.test.ts`: `control-totals` (10 = 3+3+3 fails, 9 = 3+3+3 passes), `standings-mismatch` (complete coverage and different W fails; equal passes; incomplete coverage with different numbers passes). Then `src/data-model/rules/standings.ts`. Turn the T6 "valid dataset has no issues" test green.
 - [x] **T16 Rule catalogue test.** `tests/unit/data-model/catalogue.test.ts`: for every `RuleId` except `invalid-json` there is at least one fixture mutation that produces exactly that rule and the baseline produces none (a table `[ruleId, mutate(dataset)]`). This guards the last acceptance criterion and fails when a new rule is added without fixtures.
 - [x] **T17 CLI.** Fixture dirs `tests/fixtures/data-validate/{empty,valid,invalid,broken-json}/` (synthetic, `"fixture:synthetic"` sources; `empty` contains only `.gitkeep`). Integration test `tests/integration/validate-data-cli.test.ts` runs `process.execPath` with `--import tsx scripts/validate-data.ts <dir>` from the repo root: empty -> exit 0, "0 file(s)"; valid -> exit 0; invalid -> exit 1 and stderr lists `[duplicate-match]` and `[missing-source]`; broken JSON -> exit 1 with `[invalid-json]`. Then rewrite `scripts/validate-data.ts`. Confirm `pnpm data:validate` on the real `data/` (only `.gitkeep`) prints ok.
-- [ ] **T18 Docs.** Add a "Data validation" section to `docs/methodology.md` listing every rule id with one line each; rename `consecration_date` to `awarded_on`. Update the comment in `scripts/seed-supabase.ts` only if it names fields. Set this plan's status to `done`.
-- [ ] **T19 Final check.** `pnpm lint`, `pnpm typecheck`, `pnpm test:coverage` (100% branches in `src/domain` and `src/data-model`), `pnpm data:validate`, `pnpm build`.
+- [x] **T18 Docs.** Add a "Data validation" section to `docs/methodology.md` listing every rule id with one line each; rename `consecration_date` to `awarded_on`. Update the comment in `scripts/seed-supabase.ts` only if it names fields. Set this plan's status to `done`.
+- [x] **T19 Final check.** `pnpm lint`, `pnpm typecheck`, `pnpm test:coverage` (100% branches in `src/domain` and `src/data-model`), `pnpm data:validate`, `pnpm build`.
 
 ## Tests to write
 
