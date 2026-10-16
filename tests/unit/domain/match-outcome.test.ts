@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { outcomeFor, tallyClubSeason } from "@/domain/match-outcome";
+import { clubView as clubViewIn, outcomeFor, tallyClubSeason } from "@/domain/match-outcome";
 import type { Match } from "@/data-model/types";
 
 const base: Match = {
@@ -88,5 +88,62 @@ describe("tallyClubSeason", () => {
       drawn: 0,
       lost: 0,
     });
+  });
+});
+
+const clubView = (match: Match, clubId: string) => clubViewIn(match, clubId, "league-x");
+
+describe("clubView", () => {
+  it("sees a home match from the home side", () => {
+    expect(clubView(base, "club-a")).toEqual({
+      match: base,
+      competitionId: "league-x",
+      rivalId: "club-b",
+      outcome: "W",
+      goalsFor: 2,
+      goalsAgainst: 1,
+      shootout: null,
+      isAdministrative: false,
+    });
+  });
+  it("swaps goals and rival for the away side", () => {
+    const view = clubView(base, "club-b");
+    expect(view).toMatchObject({ rivalId: "club-a", outcome: "L", goalsFor: 1, goalsAgainst: 2 });
+  });
+  it("records the shoot-out as won or lost from each side, still a draw", () => {
+    const pens = m({
+      home_goals: 1,
+      away_goals: 1,
+      decision: "penalties",
+      home_penalties: 4,
+      away_penalties: 3,
+    });
+    expect(clubView(pens, "club-a")).toMatchObject({ outcome: "D", shootout: "won" });
+    expect(clubView(pens, "club-b")).toMatchObject({ outcome: "D", shootout: "lost" });
+  });
+  it("keeps the shoot-out null when the penalty counts are missing", () => {
+    const pens = m({ home_goals: 1, away_goals: 1, decision: "penalties" });
+    expect(clubView(pens, "club-a")).toMatchObject({ outcome: "D", shootout: null });
+  });
+  it("never counts shoot-out goals in the score", () => {
+    const pens = m({
+      home_goals: 1,
+      away_goals: 1,
+      decision: "penalties",
+      home_penalties: 4,
+      away_penalties: 3,
+    });
+    expect(clubView(pens, "club-a")).toMatchObject({ goalsFor: 1, goalsAgainst: 1 });
+  });
+  it("flags administrative results", () => {
+    expect(clubView(m({ status: "administrative_result" }), "club-a")?.isAdministrative).toBe(true);
+    expect(clubView(base, "club-a")?.isAdministrative).toBe(false);
+  });
+  it("returns null for suspended matches, a club not in the match, or a missing score", () => {
+    expect(
+      clubView(m({ status: "suspended", home_goals: null, away_goals: null }), "club-a"),
+    ).toBeNull();
+    expect(clubView(base, "club-z")).toBeNull();
+    expect(clubView(m({ away_goals: null }), "club-a")).toBeNull();
   });
 });
