@@ -1,6 +1,14 @@
 // FICTIONAL test data. Clubs, competitions, scores and dates below are invented for
 // tests only (sources are "fixture:synthetic"); none of it is real football history.
-import type { Club, Dataset, Match } from "@/data-model/types";
+import type {
+  Club,
+  Competition,
+  Coverage,
+  Dataset,
+  Match,
+  Season,
+  Title,
+} from "@/data-model/types";
 
 export const FIXED_NOW = new Date("2026-10-16T15:00:00Z");
 
@@ -22,7 +30,7 @@ function club(id: string, letter: string, primary: string, pattern: Club["jersey
   };
 }
 
-function match(
+export function makeMatch(
   id: string,
   seasonId: string,
   date: string,
@@ -49,6 +57,75 @@ function match(
     source: SYNTHETIC,
     verified: false,
     ...extra,
+  };
+}
+
+export function makeCompetition(id: string, extra: Partial<Competition> = {}): Competition {
+  return {
+    id,
+    name: `Competencia Ficticia ${id}`,
+    type: "league",
+    scope: "domestic",
+    organizer: "Organizador Ficticio",
+    afa_recognized: true,
+    source: SYNTHETIC,
+    ...extra,
+  };
+}
+
+export function makeSeason(
+  id: string,
+  competitionId: string,
+  start: string,
+  end: string,
+  extra: Partial<Season> = {},
+): Season {
+  return {
+    id,
+    competition_id: competitionId,
+    name: id,
+    start,
+    end,
+    source: SYNTHETIC,
+    ...extra,
+  };
+}
+
+export function makeTitle(
+  id: string,
+  clubId: string,
+  competitionId: string,
+  seasonId: string,
+  awardedOn: string,
+  extra: Partial<Title> = {},
+): Title {
+  return {
+    id,
+    club_id: clubId,
+    competition_id: competitionId,
+    season_id: seasonId,
+    awarded_on: awardedOn,
+    shared: false,
+    source: SYNTHETIC,
+    verified: false,
+    ...extra,
+  };
+}
+
+export function makeCoverage(
+  clubId: string,
+  competitionId: string,
+  from: string,
+  to: string | null,
+  complete = true,
+): Coverage {
+  return {
+    club_id: clubId,
+    competition_id: competitionId,
+    from,
+    to,
+    complete,
+    source: SYNTHETIC,
   };
 }
 
@@ -108,27 +185,27 @@ export function validDataset(): FixtureDataset {
       },
     ],
     "matches.json": [
-      match("m1", "league-x-2020", "2020-03-01", "club-a", "club-b", 2, 0),
-      match("m2", "league-x-2020", "2020-03-08", "club-c", "club-a", 1, 1),
-      match("m3", "league-x-2020", "2020-03-15", "club-a", "club-d", 0, 1),
-      match("m4", "league-x-2020", "2020-03-22", "club-b", "club-c", null, null, {
+      makeMatch("m1", "league-x-2020", "2020-03-01", "club-a", "club-b", 2, 0),
+      makeMatch("m2", "league-x-2020", "2020-03-08", "club-c", "club-a", 1, 1),
+      makeMatch("m3", "league-x-2020", "2020-03-15", "club-a", "club-d", 0, 1),
+      makeMatch("m4", "league-x-2020", "2020-03-22", "club-b", "club-c", null, null, {
         status: "suspended",
       }),
-      match("m5", "league-x-2020", "2020-03-29", "club-d", "club-a", 0, 3, {
+      makeMatch("m5", "league-x-2020", "2020-03-29", "club-d", "club-a", 0, 3, {
         status: "administrative_result",
       }),
-      match("m6", "cup-y-2020", "2020-06-01", "club-a", "club-c", 1, 1, {
+      makeMatch("m6", "cup-y-2020", "2020-06-01", "club-a", "club-c", 1, 1, {
         decision: "penalties",
         home_penalties: 4,
         away_penalties: 3,
         stage: "Final",
         is_final: true,
       }),
-      match("m7", "cup-y-2020", "2020-05-01", "club-b", "club-d", 2, 1, {
+      makeMatch("m7", "cup-y-2020", "2020-05-01", "club-b", "club-d", 2, 1, {
         decision: "extra_time",
         stage: "Semifinal",
       }),
-      match("m8", "league-x-2021", "2021-03-01", "club-b", "club-a", 1, 2),
+      makeMatch("m8", "league-x-2021", "2021-03-01", "club-b", "club-a", 1, 2),
     ],
     "titles.json": [
       {

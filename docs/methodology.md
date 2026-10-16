@@ -35,3 +35,45 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 - `unshared-co-champions`: a season has two or more titles and one is not marked `shared`.
 - `control-totals`: in `standings.json` (optional, source-backed), won + drawn + lost differs from played.
 - `standings-mismatch`: with complete coverage, the P/W/D/L tallied from matches differs from the `standings.json` row.
+
+## Statistics engine
+
+The engine in `src/domain` (ADR 0010, plan 0005) is the only implementation of these rules; Postgres and repositories only fetch rows. All functions are pure and take `now` as an argument. Output is language-neutral (English values); Spanish labels belong to the UI. Each rule has tests in `tests/unit/domain` (and `tests/integration/stats-engine.test.ts`).
+
+| Rule                   | Function            | Module                          |
+| ---------------------- | ------------------- | ------------------------------- |
+| Fan history            | `calculateHistory`  | `src/domain/history.ts`         |
+| Titles in the period   | `titlesInPeriod`    | `src/domain/titles.ts`          |
+| Pending titles         | `pendingTitles`     | `src/domain/titles.ts`          |
+| Head-to-head           | `headToHead`        | `src/domain/head-to-head.ts`    |
+| Dominance              | `classifyDominance` | `src/domain/dominance.ts`       |
+| Streaks                | `computeStreaks`    | `src/domain/streaks.ts`         |
+| What is at stake       | `whatIsAtStake`     | `src/domain/at-stake.ts`        |
+| Fan comparison         | `compareFans`       | `src/domain/compare-fans.ts`    |
+| Rival grouping (cards) | `groupRivals`       | `src/domain/rivals.ts`          |
+| Coverage notice        | `coverageNotice`    | `src/domain/coverage-notice.ts` |
+| Final series           | `finalSeries`       | `src/domain/finals.ts`          |
+
+(Issue #14 used Spanish names: `calcularHistorial`, `titulosEnPeriodo`, `titulosPendientes`, `historialVsRival`, `clasificarDominio`, `rachas`, `loQueEstaEnJuego`, `compararHinchas`.)
+
+- **Period:** `[start, today]`, both inclusive, today in `America/Argentina/Buenos_Aires` (00:00 to 02:59 UTC is still the previous day). A start after today is valid: the period is empty (`isEmpty`) and every result is zero or empty. An invalid start throws `RangeError`.
+- **Counted match:** suspended matches never count (they are reported in `suspendedExcluded`); administrative results count and are flagged (`administrative.matchIds`); a shoot-out counts as a draw and is recorded apart (`shootouts`).
+- **Goals:** regulation plus extra time. Shoot-out goals never count. Administrative scores count in goals for and against, like in P/W/D/L.
+- **Ordering:** every list of matches is sorted by date, then match id, so ties are deterministic.
+- **Filter:** matches can be restricted by competition id or type (the rivals screen filter). A year range is a narrower period.
+- **Coverage notice (ADR 0003):** per competition. The competitions the notice talks about are the union of (1) competitions with counted matches in the period, (2) competitions with a coverage row of any club involved (the club, or either club of a head-to-head) whose interval overlaps the fan period, and (3) competitions that have a season overlapping the fan period and in which a club involved has any coverage row (any dates) or any match (any season). A coverage row that ended before the period is not evidence that the competition is irrelevant, it is evidence that the ingestion stopped, so set 3 lists it. A competition where no club involved has any row or match stays unlisted even with a season in the period (for example an international cup the club never entered). The list is then restricted by the filter. A single function, `relevantCompetitionIds`, implements this for history, rivals and head-to-head. Complete rows are merged (overlapping or adjacent rows join, `to: null` is ongoing). A competition is `complete` if one merged stretch contains the whole period, `partial` if one overlaps it (the notice carries the start and end of the stretch closest to the period end), `missing` otherwise (including a competition with matches and no rows, or whose rows all ended before the period). The notice is complete only if every listed competition is complete; a real period with no competitions at all is never complete; an empty period shows nothing. A head-to-head merges the rows of both clubs, because complete coverage of either one contains every match between them, and applies the same selection to the rows and matches of both clubs, so a competition known for only one club is listed (and shown as missing when that coverage is not complete).
+- **Streaks:** the current streak is the run of identical results (W, D or L) ending at the latest match. The best streak is the longest run of wins; on a tie in length the earliest run is kept. A shoot-out is a draw, so it breaks a win streak.
+- **What is at stake:** assuming no draws, wins needed to reach the next better class (dominated to even at -1, even to dominating at +2) and losses to fall to the next worse class, with the target classes; `null` when there is none. The next win milestone is the next multiple of 10 strictly above the current wins (`WIN_MILESTONE_STEP`).
+- **Biggest win and loss (head-to-head):** only played matches (administrative results are not real scores; shoot-outs are draws). Tie-break: larger margin, then more goals by the winning side, then the most recent.
+- **Finals:** the legs of a final are grouped by season and club pair. The winner is the shoot-out winner if the last leg went to penalties, otherwise the higher aggregate of regulation plus extra time goals, otherwise undetermined (`null`). Suspended legs are ignored. A series belongs to the period when its last leg is inside it. By default only recognized competitions count.
+- **Recognized titles:** "officially recognized" means `competition.afa_recognized`. By default only recognized titles are listed; `includeUnrecognized` lists the rest with `recognized: false`. A shared title counts fully for each co-champion and carries `shared: true`. Each title is placed on a shelf: `other` for competitions of type `other`, `international` for international scope, `domestic` otherwise. Title lists do not depend on match coverage; the deciding match is `null` when match data is missing.
+- **Pending titles:** the recognized competitions that were played during the period (a season overlaps it) and that the club did not win inside the period, with the number of seasons played; sorted by shelf, then competition id.
+- **Rival grouping:** one row per opponent with at least one counted match; groups by dominance (favorable, even, unfavorable); sorted by balance desc, played desc, rival id; `isClassic` from the rivalries table.
+- **Fan comparison:** each side is computed over its own period. Eight categories: total titles, international titles, domestic titles, finals won, finals played, classics balance, relegations suffered (fewer wins), best win streak. A tie gives no point; a category that does not apply (no classic rival defined) gives no point. The result is a count of categories won by each side and ties, never a single greatness score. The direct head-to-head uses the later start date, from fan A's side, and is not a category; with the same club on both sides it is not computed.
+
+- **Notes for the UI (not enforced by the engine):**
+  - An empty period (start in the future) returns `coverage.isComplete: true` with no competitions. The UI must check `period.isEmpty` and never show a complete-coverage badge for it.
+  - The relegations category has no coverage qualifier. The UI must not present it as verified when movement data may be partial.
+  - A competition with no coverage row and no match anywhere is unknown to the engine; `isComplete` means complete for the competitions listed, not that nothing is missing.
+  - A club that once played a competition and then left it (for example by relegation) shows that competition as `missing` for fans whose period overlaps a later season of it. This is a deliberate, safe false warning: the engine cannot tell a club that left from a club whose ingestion stopped.
+  - Head-to-head final series can include legs outside the period when those legs decide the winner of the final, while the record only counts matches inside the period.
