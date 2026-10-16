@@ -25,6 +25,20 @@ describe("release-please configuration", () => {
     expect(pkg.version).toBe(manifest["."]);
   });
 
+  it("lets the action read the config files: the workflow must not pass release-type", () => {
+    // With the release-type input, release-please-action v4 ignores the config and manifest.
+    const workflow = readFileSync(
+      join(process.cwd(), ".github", "workflows", "release-please.yml"),
+      "utf8",
+    );
+    const code = workflow
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("#"))
+      .join("\n");
+    expect(code).toContain("googleapis/release-please-action@v4");
+    expect(code).not.toMatch(/release-type/);
+  });
+
   it("does not force a 1.0.0 release", () => {
     expect(JSON.stringify(config)).not.toMatch(/"release-as"\s*:\s*"1\./);
   });
