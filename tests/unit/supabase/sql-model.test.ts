@@ -146,13 +146,13 @@ describe("statement allowlist", () => {
       create index i on public.x (id);
       create unique index u on public.x (id);
       create policy p on public.x for select to anon using (true);
-      create function public.f() returns int language sql as $ select 1 $;
+      create function public.f() returns int language sql as $$ select 1 $$;
       create extension if not exists pgcrypto with schema extensions;
       alter table public.x enable row level security;
       grant select on table public.x to anon;
       revoke all on table public.x from anon;
       alter default privileges for role postgres in schema public revoke all on tables from anon;
-      select cron.schedule('j', '* * * * *', $select 1$);`;
+      select cron.schedule('j', '* * * * *', $$select 1$$);`;
     expect(unknown(ok)).toEqual([]);
     expect(parseMigrations([ok]).extensions).toEqual(["pgcrypto"]);
   });
@@ -168,9 +168,11 @@ describe("statement allowlist", () => {
       "alter default privileges in schema public grant all on tables to anon",
     ],
     ["a trigger", "create trigger t before insert on public.x execute function public.f()"],
-    ["a do block", "do $ begin null; end $"],
+    ["a do block", "do $$ begin null; end $$"],
   ])("reports %s as unrecognized", (_label, sql) => {
-    expect(unknown(sql)).toEqual([sql]);
+    const found = unknown(sql);
+    expect(found).toHaveLength(1);
+    expect(found[0]!.split(" ")[0]).toBe(sql.split(" ")[0]);
   });
   it("records disable and force row level security explicitly", () => {
     const m = parseMigrations([

@@ -5,6 +5,21 @@ const CLIENT_ROLES = ["anon", "authenticated", "public"];
 /** Everything the plan 0006 security gate forbids, as human-readable lines. Empty means safe. */
 export function securityViolations(model: Model): string[] {
   const out: string[] = [];
+  for (const stmt of model.unrecognized) {
+    out.push(`unrecognized statement (not in the allowlist): ${stmt.text.slice(0, 80)}`);
+  }
+  for (const name of model.rlsDisabled.keys()) out.push(`${name}: row level security is disabled`);
+  for (const name of model.rlsForced.keys()) out.push(`${name}: row level security is forced`);
+  for (const ev of model.tableGrants) {
+    if (ev.action === "grant" && !model.tables.has(ev.table)) {
+      out.push(`grant on ${ev.table}: not a known table`);
+    }
+  }
+  for (const ev of model.functionGrants) {
+    if (ev.action === "grant" && !model.functions.has(ev.fn)) {
+      out.push(`grant on ${ev.fn}: not a known function`);
+    }
+  }
   for (const table of model.tables.values()) {
     const rlsFile = model.rls.get(table.name);
     if (rlsFile === undefined) out.push(`${table.name}: row level security is never enabled`);

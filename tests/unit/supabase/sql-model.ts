@@ -41,18 +41,30 @@ export type SqlFunction = {
 };
 export type Index = { name: string; table: string; unique: boolean; columns: string[] };
 export type Statement = { file: number; text: string };
+export type DefaultPrivilege = {
+  action: "revoke";
+  privileges: string[];
+  objects: string;
+  roles: string[];
+};
 
 export type Model = {
   tables: Map<string, Table>;
   /** Table name to the index of the file that enables row level security on it. */
   rls: Map<string, number>;
+  /** Tables on which a migration disables or forces row level security (both are rejected). */
+  rlsDisabled: Map<string, number>;
+  rlsForced: Map<string, number>;
   policies: Policy[];
   tableGrants: TableGrant[];
   functionGrants: FunctionGrant[];
   functions: Map<string, SqlFunction>;
   indexes: Index[];
-  defaultPrivilegeRevokes: boolean;
+  defaultPrivileges: DefaultPrivilege[];
+  extensions: string[];
   statements: Statement[];
+  /** Statements outside the allowlist of statement heads; the security gate rejects them. */
+  unrecognized: Statement[];
 };
 
 const ALL_PRIVILEGES = [
@@ -224,13 +236,17 @@ export function parseMigrations(files: string[]): Model {
   const model: Model = {
     tables: new Map(),
     rls: new Map(),
+    rlsDisabled: new Map(),
+    rlsForced: new Map(),
     policies: [],
     tableGrants: [],
     functionGrants: [],
     functions: new Map(),
     indexes: [],
-    defaultPrivilegeRevokes: false,
+    defaultPrivileges: [],
+    extensions: [],
     statements: [],
+    unrecognized: [],
   };
   files.forEach((sql, file) => {
     const bodies: string[] = [];
@@ -241,9 +257,15 @@ export function parseMigrations(files: string[]): Model {
         const table = parseCreateTable(stmt, file);
         model.tables.set(table.name, table);
       } else if (
-        (m = /^alter table (?:only )?(?:public\.)?("?\w+"?) enable row level security$/i.exec(stmt))
+        (m =
+          /^alter table (?:only )?(?:public\.)?("?\w+"?) (enable|disable|force) row level security$/i.exec(
+            stmt,
+          ))
       ) {
-        model.rls.set(unquote(m[1]!), file);
+        const mode = m[2]!.toLowerCase();
+        const target =
+          mode === "enable" ? model.rls : mode === "disable" ? model.rlsDisabled : model.rlsForced;
+        target.set(unquote(m[1]!), file);
       } else if ((m = /^create policy ("[^"]+"|\w+) on (?:public\.)?(\w+)(.*)$/i.exec(stmt))) {
         const rest = m[3]!;
         model.policies.push({
@@ -255,8 +277,22 @@ export function parseMigrations(files: string[]): Model {
             /\bto ([\w", ]+?)(?= using\b| with check\b|$)/i.exec(rest)?.[1] ?? "public",
           ),
         });
-      } else if (/^alter default privileges\b/i.test(stmt)) {
-        if (/\brevoke\b/i.test(stmt)) model.defaultPrivilegeRevokes = true;
+      } else if (
+        (m =
+          /^alter default privileges (?:for (?:role|user) \S+ )?(?:in schema \S+ )?revoke (.+?) on (tables|functions|sequences|types|schemas) from (.+)$/i.exec(
+            stmt,
+          ))
+      ) {
+        model.defaultPrivileges.push({
+          action: "revoke",
+          privileges: privilegeList(m[1]!),
+          objects: m[2]!.toLowerCase(),
+          roles: roleList(m[3]!),
+        });
+      } else if ((m = /^create extension (?:if not exists )?("?[\w-]+"?)/i.exec(stmt))) {
+        model.extensions.push(unquote(m[1]!));
+      } else if (/^select cron\./i.test(stmt)) {
+        // pg_cron scheduling calls are the only select statements migrations may contain.
       } else if (/^(grant|revoke)\b/i.test(stmt)) {
         const action = stmt.slice(0, 5).toLowerCase() === "grant" ? "grant" : "revoke";
         const fn =
@@ -306,6 +342,8 @@ export function parseMigrations(files: string[]): Model {
           unique: m[1] !== undefined,
           columns: splitTop(cols).map((c) => c.replace(/"/g, "").trim()),
         });
+      } else {
+        model.unrecognized.push({ file, text: stmt });
       }
     }
   });
