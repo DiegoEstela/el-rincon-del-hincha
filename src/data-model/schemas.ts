@@ -122,7 +122,9 @@ export type DatasetFile = keyof typeof FILE_SCHEMAS;
 export const DATASET_FILES = Object.keys(FILE_SCHEMAS) as DatasetFile[];
 
 /** Fields that identify a record, and the separator used to join them. */
-const KEY_FIELDS: Record<DatasetFile, { fields: string[]; separator: string }> = {
+export const KEY_FIELDS: Readonly<
+  Record<DatasetFile, { readonly fields: readonly string[]; readonly separator: string }>
+> = {
   "clubs.json": { fields: ["id"], separator: "" },
   "competitions.json": { fields: ["id"], separator: "" },
   "seasons.json": { fields: ["id"], separator: "" },

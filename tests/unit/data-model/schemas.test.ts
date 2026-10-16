@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   DATASET_FILES,
+  KEY_FIELDS,
   clubSchema,
   competitionSchema,
   coverageSchema,
@@ -261,5 +262,13 @@ describe("recordKey on unusable records", () => {
     expect(recordKey("clubs.json", {})).toBeNull();
     expect(recordKey("clubs.json", { id: "" })).toBeNull();
     expect(recordKey("rivalries.json", { club_a: "a" })).toBeNull();
+  });
+});
+
+describe("KEY_FIELDS", () => {
+  it("has an entry per dataset file and drives recordKey", () => {
+    expect(Object.keys(KEY_FIELDS).sort()).toEqual([...DATASET_FILES].sort());
+    expect(KEY_FIELDS["coverage.json"].fields).toEqual(["club_id", "competition_id", "from"]);
+    expect(KEY_FIELDS["clubs.json"].fields).toEqual(["id"]);
   });
 });
