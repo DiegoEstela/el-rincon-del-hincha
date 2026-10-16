@@ -1,0 +1,502 @@
+{
+  "measuredAt": "2026-10-16T12:10:22.881Z",
+  "probes": [
+    {
+      "label": "account status",
+      "path": "/status",
+      "status": 200,
+      "results": 0,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "100"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "9"
+      },
+      "extra": {
+        "subscription": {
+          "plan": "Free",
+          "end": "2027-10-16T00:00:00+00:00",
+          "active": true
+        },
+        "requests": {
+          "current": 0,
+          "limit_day": 100
+        }
+      }
+    },
+    {
+      "label": "league 128 coverage by season",
+      "path": "/leagues?id=128",
+      "status": 200,
+      "results": 1,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "98"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "8"
+      },
+      "extra": [
+        {
+          "year": 2015,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": false
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2016,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2017,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2018,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2019,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2020,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2021,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2022,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2023,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2024,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2025,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": true,
+            "predictions": true,
+            "odds": false
+          }
+        },
+        {
+          "year": 2026,
+          "coverage": {
+            "fixtures": {
+              "events": true,
+              "lineups": true,
+              "statistics_fixtures": true,
+              "statistics_players": true
+            },
+            "standings": true,
+            "players": true,
+            "top_scorers": true,
+            "top_assists": true,
+            "top_cards": true,
+            "injuries": false,
+            "predictions": true,
+            "odds": true
+          }
+        }
+      ]
+    },
+    {
+      "label": "fixtures 128 season 2010",
+      "path": "/fixtures?league=128&season=2010",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2014",
+      "path": "/fixtures?league=128&season=2014",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2016",
+      "path": "/fixtures?league=128&season=2016",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2018",
+      "path": "/fixtures?league=128&season=2018",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2019",
+      "path": "/fixtures?league=128&season=2019",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2020",
+      "path": "/fixtures?league=128&season=2020",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2021",
+      "path": "/fixtures?league=128&season=2021",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 128 season 2022",
+      "path": "/fixtures?league=128&season=2022",
+      "status": 200,
+      "results": 581,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "98"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "9"
+      }
+    },
+    {
+      "label": "fixtures 128 season 2023",
+      "path": "/fixtures?league=128&season=2023",
+      "status": 200,
+      "results": 378,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "97"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "8"
+      }
+    },
+    {
+      "label": "fixtures 128 season 2024",
+      "path": "/fixtures?league=128&season=2024",
+      "status": 200,
+      "results": 378,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "96"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "7"
+      }
+    },
+    {
+      "label": "fixtures 128 season 2025",
+      "path": "/fixtures?league=128&season=2025",
+      "status": 200,
+      "results": 0,
+      "errors": {
+        "plan": "Free plans do not have access to this season, try from 2022 to 2024."
+      },
+      "quota": {
+        "limit": null,
+        "remaining": null
+      },
+      "perMinute": {
+        "limit": null,
+        "remaining": null
+      }
+    },
+    {
+      "label": "fixtures 130 Copa Argentina 2024",
+      "path": "/fixtures?league=130&season=2024",
+      "status": 200,
+      "results": 63,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "98"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "9"
+      }
+    },
+    {
+      "label": "fixtures 13 Copa Libertadores 2024",
+      "path": "/fixtures?league=13&season=2024",
+      "status": 200,
+      "results": 155,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "97"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "8"
+      }
+    },
+    {
+      "label": "fixtures 11 Copa Sudamericana 2024",
+      "path": "/fixtures?league=11&season=2024",
+      "status": 200,
+      "results": 157,
+      "errors": null,
+      "quota": {
+        "limit": "100",
+        "remaining": "96"
+      },
+      "perMinute": {
+        "limit": "10",
+        "remaining": "7"
+      }
+    }
+  ]
+}
