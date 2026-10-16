@@ -1,5 +1,6 @@
 // Pure dataset validator (plan 0003). No I/O, no clock: `now` is injected.
 import { DATASET_FILES, FILE_SCHEMAS, recordKey, type DatasetFile } from "./schemas";
+import { checkReferences } from "./rules/references";
 import type { Dataset, ValidationIssue } from "./types";
 
 export type ValidateOptions = { now: Date };
@@ -100,6 +101,7 @@ export function validate(
   raw: Record<string, unknown>,
   _options: ValidateOptions,
 ): ValidationIssue[] {
-  const { issues } = shapeStage(raw);
+  const { dataset, knownKeys, issues } = shapeStage(raw);
+  issues.push(...checkReferences(dataset, knownKeys));
   return sortIssues(issues);
 }
