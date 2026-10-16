@@ -320,3 +320,11 @@ Each task: write the failing test first, then the minimum code, then refactor. T
 - `pnpm test:coverage` passes with 100% branches in `src/domain/**` and `src/data-model/**`; lint, typecheck and build are green.
 - `docs/methodology.md` documents every rule decided here, and ADR 0010 is accepted or adjusted by Diego.
 - No UI, Supabase or Spanish label code was added.
+
+## Review fixes
+
+Applied after the data-integrity and code audits.
+
+1. **Coverage notice competition selection (blocking):** one shared `relevantCompetitionIds(index, clubIds, period, views, filter)` in `history.ts`, used by history, rivals and head-to-head (the duplicate in `head-to-head.ts` is gone). A competition is listed if it has counted matches or a coverage row of any club involved that overlaps the fan period (`overlapsPeriod`, now exported from `coverage-notice.ts`). A cup covered for one club only is no longer dropped, and stale rows no longer keep the notice incomplete forever.
+2. **Privacy:** the `RangeError` of `fanPeriod` no longer contains the supplied start date; a test checks it.
+3. **Documentation:** `docs/methodology.md` now notes the empty-period badge rule, the unqualified relegations category and out-of-period final legs.
