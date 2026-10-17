@@ -25,8 +25,8 @@ describe("accent surfaces match the CSS tokens", () => {
 });
 
 describe("club themes over the whole dataset (AA, acceptance criterion of #40)", () => {
-  it("covers 29 clubs", () => {
-    expect(clubs).toHaveLength(29);
+  it("covers 34 clubs", () => {
+    expect(clubs).toHaveLength(34);
   });
 
   for (const club of clubs) {
@@ -70,6 +70,12 @@ describe("club themes over the whole dataset (AA, acceptance criterion of #40)",
     expect(Object.fromEntries(clubs.map((c) => [c.id, deriveClubTheme(c.colors).accent]))).toEqual({
       aldosivi: "#ffd60a",
       "argentinos-juniors": "#ff6f64",
+      // Added by plan 0012 (2026-10-17): derived by the same algorithm, reviewed for AA below.
+      arsenal: "#a9d6f5",
+      colon: "#ff6f64",
+      "independiente-rivadavia": "#83a0d8",
+      patronato: "#ff6f64",
+      "san-martin-tucuman": "#ff6f64",
       "atletico-tucuman": "#4da5f2",
       banfield: "#41b46a",
       "barracas-central": "#ff6f64",

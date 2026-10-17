@@ -13,8 +13,8 @@ import { parseOpenfootball } from "../../../../../scripts/ingest/openfootball/pa
 import { matchSchema, seasonSchema } from "../../../../../src/data-model/schemas";
 import {
   FIXTURE_CLUBS,
-  MISSING_NAMES,
-  REAL_CLUBS,
+  CLUBS_WITHOUT_COLON,
+  COLON_SPELLING,
 } from "../../../../fixtures/ingest/openfootball/clubs";
 
 const FIXTURES = join(process.cwd(), "tests/fixtures/ingest/openfootball");
@@ -166,17 +166,33 @@ describe("normalizeOpenfootball: report", () => {
   });
 });
 
+describe("normalizeOpenfootball: former clubs", () => {
+  it("maps the former Primera clubs and Independiente Rivadavia to their real ids", () => {
+    const of = (id: string) => out.matches.filter((m) => m.home_id === id || m.away_id === id);
+    expect(of("arsenal").length).toBeGreaterThan(0);
+    expect(of("colon").length).toBeGreaterThan(0);
+    expect(of("patronato").length).toBeGreaterThan(0);
+    expect(of("independiente-rivadavia").length).toBeGreaterThan(0);
+    // San Martín de Tucumán only plays the 2018-19 file.
+    const sanMartin = of("san-martin-tucuman");
+    expect(sanMartin.length).toBeGreaterThan(0);
+    expect(new Set(sanMartin.map((m) => m.season_id))).toEqual(
+      new Set(["primera-division-2018-19"]),
+    );
+  });
+});
+
 describe("normalizeOpenfootball: unknown clubs", () => {
-  it("stops with every unresolved name, sorted, when the real clubs are used", () => {
+  it("stops with every unresolved name when a club is missing from clubs.json", () => {
     expect.assertions(2);
     try {
-      normalizeOpenfootball(parsedAll, REAL_CLUBS);
+      normalizeOpenfootball(parsedAll, CLUBS_WITHOUT_COLON);
     } catch (e) {
       expect(e).toBeInstanceOf(IngestError);
       const names = (e as IngestError).problems
         .map((p) => /unknown club "(.+?)"/.exec(p)?.[1])
         .filter(Boolean);
-      expect(names).toEqual([...MISSING_NAMES]);
+      expect(names).toEqual([COLON_SPELLING]);
     }
   });
 });

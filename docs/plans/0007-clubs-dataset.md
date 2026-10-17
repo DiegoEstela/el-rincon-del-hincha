@@ -206,7 +206,7 @@ Edge cases: decomposed versus composed accents (`Vélez`), apostrophe in `Newell
 
 ## Left out of the batches
 
-- `independiente-rivadavia` (Club Sportivo Independiente Rivadavia, Mendoza): founded 1913 (24 Jan) and city Mendoza agree in both sources, and the home shirt is a plain dark blue (`solid`, azul noche in A, dark blue in B), but neither source names a second color (the infobox of A lists only "Azul"; the away shirt is white). `secondary` is required by the schema and cannot be verified, so the club is not recorded. The dataset test lists it in `PENDING_CLUB_IDS` (comment: Issue #48). Diego decided to leave it out for now; tracked in issue #48.
+- `independiente-rivadavia` (Club Sportivo Independiente Rivadavia, Mendoza): founded 1913 (24 Jan) and city Mendoza agree in both sources, and the home shirt is a plain dark blue (`solid`, azul noche in A, dark blue in B), but neither source names a second color (the infobox of A lists only "Azul"; the away shirt is white). `secondary` is required by the schema and cannot be verified, so the club is not recorded. The dataset test lists it in `PENDING_CLUB_IDS` (comment: Issue #48). Diego decided to leave it out for now; tracked in issue #48. **Added later by plan 0012 (issue #48), with the white trim of the home kit as `secondary` (ADR 0016).**
 
 ## Verification log (filled by the builder)
 

@@ -13,6 +13,9 @@ export const CLUB_PALETTE: readonly PaletteColor[] = [
   { name: "azul marino", hex: "#0b1f4d" },
   { name: "celeste", hex: "#6cb4ee" },
   { name: "celeste intenso", hex: "#3b94e0" },
+  // Arsenal de Sarandí only: the base celeste is 2.24:1 against rojo, so its sash would not show on
+  // the generic crest (ADR 0012, rule 5). This shade reaches 3.25:1 (ADR 0016).
+  { name: "celeste claro", hex: "#a9d6f5" },
   { name: "amarillo", hex: "#ffd60a" },
   { name: "oro", hex: "#d4a017" },
   { name: "verde", hex: "#1a9850" },

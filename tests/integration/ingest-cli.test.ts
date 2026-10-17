@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { cpSync, mkdtempSync, readdirSync, rmSync } from "node:fs";
+import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -48,7 +48,7 @@ describe("pnpm data:ingest (CLI arguments)", () => {
     expect(r.stderr).toContain("data directory not found");
   });
 
-  it("dry run against the fixtures lists the unknown clubs and writes nothing", () => {
+  it("dry run with the real clubs plans the writes and writes nothing", () => {
     const out = mkdtempSync(join(tmpdir(), "cli-out-"));
     temps.push(out);
     cpSync(join(root, "data/clubs.json"), join(out, "clubs.json"));
@@ -60,8 +60,30 @@ describe("pnpm data:ingest (CLI arguments)", () => {
       "--out",
       out,
     ]);
+    expect(r.code).toBe(0);
+    expect(r.stdout).toContain("matches.json: +2435 -0 =0");
+    expect(r.stdout).toContain("data:ingest dry run ok (nothing written)");
+    expect(readdirSync(out)).toEqual(["clubs.json"]);
+  }, 60_000);
+
+  it("dry run lists the unknown clubs and writes nothing", () => {
+    const out = mkdtempSync(join(tmpdir(), "cli-out-"));
+    temps.push(out);
+    const all = JSON.parse(readFileSync(join(root, "data/clubs.json"), "utf8")) as {
+      id: string;
+    }[];
+    writeFileSync(join(out, "clubs.json"), JSON.stringify(all.filter((c) => c.id !== "colon")));
+    const r = run([
+      "openfootball",
+      "--dry-run",
+      "--from",
+      join(root, "tests/fixtures/ingest/openfootball"),
+      "--out",
+      out,
+    ]);
     expect(r.code).toBe(1);
-    expect(r.stderr).toContain('unknown club "Arsenal de Sarandí"');
+    expect(r.stderr).toContain('unknown club "Colón de Santa Fe"');
+    expect(r.stderr).not.toContain("Arsenal de Sarandí");
     expect(r.stderr).toContain("data/ was not changed");
     expect(readdirSync(out)).toEqual(["clubs.json"]);
   });
