@@ -12,9 +12,10 @@ const t = (name: string) => {
 };
 
 const GLOW_CAP = 0.08;
+// The glow follows --accent (lime by default; club accents are pinned in club-theme-contrast).
 const lime = (alpha: number) => {
-  const { r, g, b } = { r: 198, g: 255, b: 61 };
-  return `rgb(${r} ${g} ${b} / ${alpha})`;
+  const n = parseInt(t("accent").slice(1), 16);
+  return `rgb(${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255} / ${alpha})`;
 };
 
 const background = t("background");
@@ -95,5 +96,21 @@ describe("opaque bottom bar and info menu", () => {
 
   it("keeps the bar, sheet and button borders visible", () => {
     expect(contrastRatio(t("line-strong"), background)).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe("accent-based glows", () => {
+  const css = readFileSync(join(process.cwd(), "src/app/globals.css"), "utf8");
+  const nav = readFileSync(join(process.cwd(), "src/components/layout/nav-links.tsx"), "utf8");
+  const outsideRoot = css.replace(/:root\s*\{[^}]*\}/, "");
+
+  it("no longer hardcodes the lime outside :root", () => {
+    expect(outsideRoot).not.toContain("198 255 61");
+    expect(nav).not.toContain("198_255_61");
+  });
+  it("mixes the glow and the lawn stripes from --accent", () => {
+    expect(outsideRoot).toContain("color-mix(in srgb, var(--accent) 8%, transparent)");
+    expect(outsideRoot).toContain("color-mix(in srgb, var(--accent) 3%, transparent)");
+    expect(nav).toContain("color-mix(in_srgb,var(--accent)_8%,transparent)");
   });
 });
