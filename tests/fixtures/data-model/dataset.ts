@@ -257,6 +257,12 @@ export function validDataset(): FixtureDataset {
         complete: true,
         source: SYNTHETIC,
       },
+      // Every other pair has a row too (rule missing-coverage). They are incomplete on purpose, so
+      // rules that only look at complete coverage (standings, titles) stay as they were.
+      ...["club-b", "club-c", "club-d"].flatMap((id) => [
+        makeCoverage(id, "league-x", "2020-01-01", null, false),
+        makeCoverage(id, "cup-y", "2020-01-01", null, false),
+      ]),
     ],
     "standings.json": [
       {

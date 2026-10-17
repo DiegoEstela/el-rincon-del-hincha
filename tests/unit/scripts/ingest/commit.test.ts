@@ -73,6 +73,15 @@ const valid = (): Record<string, unknown[]> => ({
   "competitions.json": [competition],
   "seasons.json": [season],
   "matches.json": [match("2024-05-10-a-b", "a", "b")],
+  // The validator wants a coverage row for every club and competition pair (plan 0014).
+  "coverage.json": ["a", "b"].map((id) => ({
+    club_id: id,
+    competition_id: "liga",
+    from: "2024-01-01",
+    to: null,
+    complete: false,
+    source: "https://example.org/c",
+  })),
 });
 const snapshot = () =>
   Object.fromEntries(

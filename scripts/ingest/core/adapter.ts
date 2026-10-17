@@ -2,8 +2,11 @@
 // load -> normalize -> merge -> validate -> write. Adapters are pure; all I/O goes through here.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { COVERAGE_GAPS } from "../../../src/data-model/coverage-gaps";
+import type { CoverageGap } from "../../../src/data-model/coverage-generate";
 import { clubSchema, DATASET_FILES, type DatasetFile } from "../../../src/data-model/schemas";
 import type { Club, Competition, Match, Season } from "../../../src/data-model/types";
+import { deriveCoverage } from "../../lib/coverage-file";
 import { commitDataset, type FileSummary } from "./commit";
 import { IngestError } from "./errors";
 import { mergeDataset } from "./merge";
@@ -61,6 +64,8 @@ export type RunOptions = {
   loader: SourceLoader;
   now: Date;
   dryRun?: boolean;
+  /** Declared coverage gaps (plan 0014). Defaults to the reviewed list of the project. */
+  coverageGaps?: readonly CoverageGap[];
 };
 
 export type RunResult = { report: RunReport; summary: Record<string, FileSummary> };
@@ -88,7 +93,7 @@ export async function runAdapter<Raw>(
   adapter: Adapter<Raw>,
   options: RunOptions,
 ): Promise<RunResult> {
-  const { dir, loader, now, dryRun = false } = options;
+  const { dir, loader, now, dryRun = false, coverageGaps = COVERAGE_GAPS } = options;
   const existing = readDataset(dir);
 
   const clubs = (existing["clubs.json"] ?? []).map((c, i) => {
@@ -110,6 +115,14 @@ export async function runAdapter<Raw>(
   if (merged.conflicts.length > 0) throw new IngestError(merged.conflicts);
 
   const files: DatasetFile[] = ["competitions.json", "seasons.json", "matches.json"];
+  // Coverage is derived from what was just merged and written in the same validated commit, so it
+  // can never lag behind the matches (ADR 0017). `null` = an input does not parse; the validator
+  // reports that, and nothing is written.
+  const coverage = deriveCoverage(merged.dataset, coverageGaps);
+  if (coverage !== null) {
+    merged.dataset["coverage.json"] = coverage;
+    files.push("coverage.json");
+  }
   const summary = await commitDataset({ dir, dataset: merged.dataset, files, now, dryRun });
   return { report: output.report, summary };
 }

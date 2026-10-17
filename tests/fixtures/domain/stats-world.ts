@@ -97,6 +97,11 @@ export function statsWorld(): FixtureDataset {
     { club_a: "club-a", club_b: "club-c", is_classic: false, source: "fixture:synthetic" },
   );
 
+  // The baseline already has an incomplete row for every pair; the rows below replace the ones of
+  // clubs B and C in league-x so their coverage can be told in detail.
+  ds["coverage.json"] = ds["coverage.json"].filter(
+    (c) => !(c.competition_id === "league-x" && ["club-b", "club-c"].includes(c.club_id)),
+  );
   ds["coverage.json"].push(
     // Club B is only complete from 2022 (earlier rows are not complete).
     makeCoverage("club-b", "league-x", "2020-01-01", "2021-12-31", false),

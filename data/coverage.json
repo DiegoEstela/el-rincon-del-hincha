@@ -1,0 +1,1858 @@
+[
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2022-10-25",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2022"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "primera-division",
+    "from": "2025-01-23",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2025-apertura..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "primera-division",
+    "from": "2019-07-26",
+    "to": "2023-07-30",
+    "complete": true,
+    "source": "derived:primera-division-2019-20..primera-division-2023"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "primera-division",
+    "from": "2022-06-03",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2022..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2019-04-07",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2018-19"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "primera-division",
+    "from": "2023-01-27",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2023..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "primera-division",
+    "from": "2019-07-26",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2019-20..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2023-07-30",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2023"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "primera-division",
+    "from": "2024-05-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2024..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "primera-division",
+    "from": "2024-05-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2024..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "primera-division",
+    "from": "2023-01-27",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2023..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2022-10-25",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2022"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "primera-division",
+    "from": "2021-07-16",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2021..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2019-04-07",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2018-19"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "primera-division",
+    "from": "2025-01-23",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2025-apertura..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2019-04-07",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2018-19"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "primera-division",
+    "from": "2021-07-16",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2021..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2019-04-07",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2018-19"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "primera-division",
+    "from": "2022-06-03",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2022..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2020-10-30",
+    "to": "2021-02-11",
+    "complete": true,
+    "source": "derived:copa-de-la-liga-profesional-2020..copa-de-la-liga-profesional-2020"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2021-02-12",
+    "to": "2021-06-04",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2021&oldid=175528472"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2022-02-10",
+    "to": "2022-05-22",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2022&oldid=175528478"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2023-08-17",
+    "to": "2023-12-16",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2023&oldid=175528489"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-de-la-liga-profesional",
+    "from": "2024-01-25",
+    "to": "2024-05-05",
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional_2024&oldid=175528520"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "primera-division",
+    "from": "2018-08-10",
+    "to": "2025-05-04",
+    "complete": true,
+    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "primera-division",
+    "from": "2025-05-05",
+    "to": null,
+    "complete": false,
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  }
+]

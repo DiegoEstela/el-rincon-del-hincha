@@ -47,7 +47,7 @@ const toy = (override: Partial<AdapterOutput> = {}): Adapter<string> => ({
         competition_id: "liga",
         name: "Liga 2024",
         start: "2024-01-01",
-        end: "2024-12-31",
+        end: "2024-05-10",
         source: "https://example.org/s",
       },
     ],
@@ -113,33 +113,81 @@ describe("directoryLoader", () => {
 
 describe("runAdapter", () => {
   it("loads, normalizes, merges and writes the three files", async () => {
-    const result = await runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW });
+    const result = await runAdapter(toy(), {
+      dir,
+      loader: directoryLoader(inputs),
+      now: NOW,
+      coverageGaps: [],
+    });
     expect(result.summary["matches.json"]).toEqual({ added: 1, removed: 0, unchanged: 0 });
     expect(readdirSync(dir).sort()).toEqual([
       "clubs.json",
       "competitions.json",
+      "coverage.json",
       "matches.json",
       "seasons.json",
     ]);
-    const rerun = await runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW });
+    const rerun = await runAdapter(toy(), {
+      dir,
+      loader: directoryLoader(inputs),
+      now: NOW,
+      coverageGaps: [],
+    });
     expect(rerun.summary["matches.json"]).toEqual({ added: 0, removed: 0, unchanged: 1 });
   });
 
+  it("regenerates coverage.json in the same run, from the data it just merged", async () => {
+    await runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW, coverageGaps: [] });
+    const rows = JSON.parse(readFileSync(join(dir, "coverage.json"), "utf8")) as {
+      club_id: string;
+      complete: boolean;
+      source: string;
+    }[];
+    expect(rows.map((r) => [r.club_id, r.complete, r.source])).toEqual([
+      ["a", true, "derived:liga-2024..liga-2024"],
+      ["b", true, "derived:liga-2024..liga-2024"],
+    ]);
+  });
+
+  it("stops, writing nothing, when the coverage cannot be derived", async () => {
+    const partial = toy();
+    const normalize = partial.normalize;
+    partial.normalize = (raw, ctx) => {
+      const out = normalize(raw, ctx);
+      return { ...out, seasons: out.seasons.map((x) => ({ ...x, end: "2024-12-31" })) };
+    };
+    await expect(
+      runAdapter(partial, { dir, loader: directoryLoader(inputs), now: NOW, coverageGaps: [] }),
+    ).rejects.toThrow(/coverage:.*liga-2024.*partial/);
+    expect(readdirSync(dir)).toEqual(["clubs.json"]);
+  });
+
   it("does not write in a dry run", async () => {
-    await runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW, dryRun: true });
+    await runAdapter(toy(), {
+      dir,
+      loader: directoryLoader(inputs),
+      now: NOW,
+      coverageGaps: [],
+      dryRun: true,
+    });
     expect(readdirSync(dir)).toEqual(["clubs.json"]);
   });
 
   it("stops on invalid existing JSON before merging", async () => {
     writeFileSync(join(dir, "matches.json"), "{ not json");
     await expect(
-      runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW }),
+      runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW, coverageGaps: [] }),
     ).rejects.toBeInstanceOf(IngestError);
   });
 
   it("fails when the data directory does not exist", async () => {
     await expect(
-      runAdapter(toy(), { dir: join(dir, "missing"), loader: directoryLoader(inputs), now: NOW }),
+      runAdapter(toy(), {
+        dir: join(dir, "missing"),
+        loader: directoryLoader(inputs),
+        now: NOW,
+        coverageGaps: [],
+      }),
     ).rejects.toThrow(/data directory not found/);
   });
 
@@ -160,7 +208,7 @@ describe("runAdapter", () => {
     );
     const before = readFileSync(join(dir, "competitions.json"), "utf8");
     await expect(
-      runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW }),
+      runAdapter(toy(), { dir, loader: directoryLoader(inputs), now: NOW, coverageGaps: [] }),
     ).rejects.toThrow(/differs from the adapter config in: afa_recognized/);
     expect(readFileSync(join(dir, "competitions.json"), "utf8")).toBe(before);
     expect(readdirSync(dir).sort()).toEqual(["clubs.json", "competitions.json"]);

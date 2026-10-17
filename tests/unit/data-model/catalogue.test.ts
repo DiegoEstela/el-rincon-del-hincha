@@ -3,7 +3,12 @@
 import { describe, expect, it } from "vitest";
 import { RULE_IDS, type RuleId } from "@/data-model/types";
 import { validate } from "@/data-model/validate";
-import { FIXED_NOW, validDataset, type FixtureDataset } from "../../fixtures/data-model/dataset";
+import {
+  FIXED_NOW,
+  makeCoverage,
+  validDataset,
+  type FixtureDataset,
+} from "../../fixtures/data-model/dataset";
 
 type Mutation = (ds: FixtureDataset) => Record<string, unknown>;
 const loose = (ds: FixtureDataset) => ds as unknown as Record<string, unknown>;
@@ -79,6 +84,27 @@ const MUTATIONS: Record<Exclude<RuleId, "invalid-json">, Mutation> = {
   "standings-mismatch": (ds) => {
     ds["standings.json"][0].won = 3;
     ds["standings.json"][0].lost = 0;
+    return loose(ds);
+  },
+  "missing-coverage": (ds) => {
+    ds["coverage.json"] = ds["coverage.json"].filter(
+      (c) => !(c.club_id === "club-b" && c.competition_id === "cup-y"),
+    );
+    return loose(ds);
+  },
+  "coverage-overlap": (ds) => {
+    ds["coverage.json"].push(makeCoverage("club-b", "league-x", "2021-01-01", null, false));
+    return loose(ds);
+  },
+  "coverage-overclaim": (ds) => {
+    ds["seasons.json"].push({
+      id: "league-x-2022",
+      competition_id: "league-x",
+      name: "2022",
+      start: "2022-01-01",
+      end: "2022-12-31",
+      source: "fixture:synthetic",
+    });
     return loose(ds);
   },
 };

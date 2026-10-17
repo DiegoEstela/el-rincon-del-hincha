@@ -43,6 +43,9 @@ export const RULE_IDS = [
   "unshared-co-champions",
   "control-totals",
   "standings-mismatch",
+  "missing-coverage",
+  "coverage-overlap",
+  "coverage-overclaim",
   "invalid-json",
 ] as const;
 

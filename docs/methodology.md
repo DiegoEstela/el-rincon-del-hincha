@@ -36,6 +36,32 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 - `unshared-co-champions`: a season has two or more titles and one is not marked `shared`.
 - `control-totals`: in `standings.json` (optional, source-backed), won + drawn + lost differs from played.
 - `standings-mismatch`: with complete coverage, the P/W/D/L tallied from matches differs from the `standings.json` row.
+- `missing-coverage`: a club and competition pair has no row in `coverage.json` (run `pnpm data:coverage`).
+- `coverage-overlap`: two rows of one club and competition share a day.
+- `coverage-overclaim`: a complete row reaches a season of its competition that has no match loaded.
+
+### Coverage table
+
+`data/coverage.json` says, for every club and competition, where our data is complete and where it is not. It is **derived, never written by hand** (ADR 0017): `pnpm data:coverage` builds it from `seasons.json`, `matches.json` and the reviewed list of declared gaps in `src/data-model/coverage-gaps.ts`, and every ingestion run regenerates it in the same validated commit. `pnpm data:coverage --check` fails if the committed file differs from what is derived.
+
+- A row `complete: true` over `[from, to]` means every match of the club in that competition dated in the interval is loaded. It is **per competition**: complete Primera data says nothing about cups.
+- Stretches follow participation. A complete stretch is a run of consecutive loaded seasons that the club played; a season the club missed (relegated, not yet promoted) or that is not loaded ends it. The first stretch of a club starts at its first loaded season, the later of 2018-19 and its first season in the dataset (ADR 0003). A club that left and came back has one stretch per stay, never one across the absence.
+- A season is partial when its last match is before its `end`. The missing tail must be inside a declared gap, otherwise the generator stops.
+- A declared gap becomes one `complete: false` row per club with the source of the gap. A pair with nothing at all gets an incomplete fallback row.
+- A fan whose start date is earlier than the first complete stretch gets a partial notice: the engine returns `partial` with `completeFrom` after the period start. `isComplete` is true only when every listed competition is complete, so the screens must show the notice whenever it is false. The wording belongs to the screens, not to this table.
+- The table only knows the competitions in `competitions.json`. Cups that exist but are not loaded (Copa Argentina, Libertadores, Sudamericana, supercups and others) are not listed yet, so a short period can read complete while those cups were played that season. Phase 2 of plan 0014 registers them with declared gaps; no screen may show a complete badge before that is done.
+
+#### Known coverage gaps
+
+| Competition                   | From       | To         | Why                                                                                                                    | Source                           |
+| ----------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| `copa-de-la-liga-profesional` | 2021-02-12 | 2021-06-04 | Edition 2021 is not loaded.                                                                                            | es.wikipedia, revision 175528472 |
+| `copa-de-la-liga-profesional` | 2022-02-10 | 2022-05-22 | Edition 2022 is not loaded.                                                                                            | es.wikipedia, revision 175528478 |
+| `copa-de-la-liga-profesional` | 2023-08-17 | 2023-12-16 | Edition 2023 is not loaded.                                                                                            | es.wikipedia, revision 175528489 |
+| `copa-de-la-liga-profesional` | 2024-01-25 | 2024-05-05 | Edition 2024, the last one, is not loaded.                                                                             | es.wikipedia, revision 175528520 |
+| `primera-division`            | 2025-05-05 | open       | The 2025 Apertura knockout stage (final on 2025-06-01), the 2025 Clausura and later seasons are not loaded (ADR 0003). | es.wikipedia, revision 175770270 |
+
+The Copa Diego Armando Maradona 2020 (2020-10-30 to 2021-03-31) is the only edition of that cup we have. Its complete stretch ends on 2021-02-11, the day before the 2021 edition starts, so its last matches (the Fase Complementación and the Copa Sudamericana qualifier of 2021-03-31) lie inside a gap and are not claimed.
 
 ### Clubs, aliases and colors
 
@@ -90,6 +116,7 @@ Adapters in `scripts/ingest/` turn an external source into records of `data/` (A
 - **Pinned input.** An adapter reads a fixed upstream revision and checks the sha256 of every file. A mismatch stops the run; moving to a newer revision is a normal data PR.
 - **Ownership.** An adapter replaces only the matches whose `source` starts with its own prefix. Competitions and seasons are added when missing and never overwritten: a difference is a conflict that stops the run.
 - **Write only valid data.** The complete next dataset must pass the same validator as `pnpm data:validate`. If anything fails, nothing is written and every problem is printed.
+- **Coverage is regenerated.** Each run also rewrites `coverage.json` from the merged data, in the same validated commit (ADR 0017), so it never lags behind the matches.
 - **Determinism.** Same input and same `clubs.json` give the same bytes. Records are sorted by key and the files are stable under Prettier. A second run changes nothing.
 - **Unknown clubs stop the run.** Team names resolve only through the club aliases (ADR 0012). Every unresolved name is listed together with the first file and line; a match is never dropped or guessed.
 - **Match ids** are `<date>-<home_id>-<away_id>`, so the same match has the same id whatever the source.
