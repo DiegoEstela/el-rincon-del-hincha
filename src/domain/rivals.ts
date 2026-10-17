@@ -28,6 +28,8 @@ export type RivalGroups = Readonly<{
   even: readonly RivalRow[];
   /** The rival dominates the club. */
   unfavorable: readonly RivalRow[];
+  /** Sorted ids of the competitions with counted matches in the period and filter. */
+  competitionIds: readonly string[];
   /** Coverage notice of the club, once for the whole screen. */
   coverage: CoverageNotice;
 }>;
@@ -82,6 +84,7 @@ export function groupRivals(
     favorable: inGroup(Dominance.Dominates),
     even: inGroup(Dominance.Even),
     unfavorable: inGroup(Dominance.Dominated),
+    competitionIds: [...new Set(views.map((view) => view.competitionId))].sort(compareText),
     coverage: coverageNotice(
       index,
       [clubId],

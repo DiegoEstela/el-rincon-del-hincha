@@ -114,3 +114,20 @@ describe("accent-based glows", () => {
     expect(nav).toContain("color-mix(in_srgb,var(--accent)_8%,transparent)");
   });
 });
+
+describe("rivals screen: dominance chips (plan 0015)", () => {
+  // Each chip is its semantic color on a 5% tint of the same color, over the glass and the glow.
+  // 12% looked richer but failed: "Parejo" fell to 4.20:1 and "Te domina" to 4.06:1 over the glow.
+  const tint = (token: string, surface: string) => {
+    const n = parseInt(t(token).slice(1), 16);
+    return composite(`rgb(${(n >> 16) & 255} ${(n >> 8) & 255} ${n & 255} / 0.05)`, surface);
+  };
+
+  for (const token of ["win", "even", "loss"]) {
+    for (const [name, surface] of Object.entries({ glassOnBg, glassOnRaised, worst })) {
+      it(`${token} text is at least 4.5:1 on its 5% tint over ${name}`, () => {
+        expect(contrastRatio(t(token), tint(token, surface))).toBeGreaterThanOrEqual(4.5);
+      });
+    }
+  }
+});

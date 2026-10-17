@@ -174,3 +174,23 @@ html[data-club] .returning-slot {
     min-height: 7rem;
   }
 }
+
+/* The record bar of the rivals screen grows from the left (only under motion-safe). */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* /rivales: until hydration tells us if a club is saved, show the skeleton to a returning fan
+   (the boot script sets data-club) and the empty state to a new one, with no flash. */
+html[data-club] .pending-empty {
+  display: none;
+}
+
+html:not([data-club]) .pending-skeleton {
+  display: none;
+}
