@@ -1,6 +1,6 @@
 ---
 issue: 53
-status: pending
+status: done
 date: 2026-10-17
 ---
 
@@ -37,10 +37,10 @@ Out of scope (from the issue): any app code change; changing the release-please 
 
 ## Tasks
 
-- [ ] T1 (test first, ~15 min): add the `it.each` table test for `isValidPreMajorRelease` with the four fixtures above. Run `pnpm test tests/unit/release-config.test.ts`: red because the helper does not exist yet.
-- [ ] T2 (~10 min): add the helper in the test file. The table test goes green.
-- [ ] T3 (~10 min): in the real-files case, remove `expect(manifest["."]).toBe("0.1.0")`, keep the `startsWith("0.")` and `package.json` equality assertions. Verify locally by temporarily setting both files to `0.2.0` (test passes), then manifest to `1.0.0` (fails) and a mismatch (fails); revert both files to `0.1.0` before committing.
-- [ ] T4 (~10 min): `pnpm lint`, `pnpm typecheck`, `pnpm test`. Commit `test(release): check the manifest stays in 0.x and matches package.json instead of pinning 0.1.0` with `Fixes #53`.
+- [x] T1 (test first, ~15 min): add the `it.each` table test for `isValidPreMajorRelease` with the four fixtures above. Run `pnpm test tests/unit/release-config.test.ts`: red because the helper does not exist yet.
+- [x] T2 (~10 min): add the helper in the test file. The table test goes green.
+- [x] T3 (~10 min): in the real-files case, remove `expect(manifest["."]).toBe("0.1.0")`, keep the `startsWith("0.")` and `package.json` equality assertions. Verify locally by temporarily setting both files to `0.2.0` (test passes), then manifest to `1.0.0` (fails) and a mismatch (fails); revert both files to `0.1.0` before committing.
+- [x] T4 (~10 min): `pnpm lint`, `pnpm typecheck`, `pnpm test`. Commit `test(release): check the manifest stays in 0.x and matches package.json instead of pinning 0.1.0` with `Fixes #53`.
 
 ## Tests to write
 
