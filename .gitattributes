@@ -1,0 +1,2 @@
+# Keep the openfootball fixtures byte-identical (mixed CRLF/LF) so their sha256 pins hold on every OS.
+tests/fixtures/ingest/openfootball/*.txt -text

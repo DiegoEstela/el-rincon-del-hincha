@@ -8,3 +8,6 @@ test-results
 
 # Intentionally malformed JSON fixture for the data:validate CLI test
 tests/fixtures/data-validate/broken-json/
+
+# Byte-exact copies of third-party files (sha256-pinned, see their README)
+tests/fixtures/ingest/openfootball/*.txt
