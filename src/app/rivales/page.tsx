@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/layout/coming-soon";
+import { RivalsScreen } from "@/components/rivals/rivals-screen";
+import { CLUB_OPTIONS } from "@/lib/club-catalog.server";
 
 export const metadata: Metadata = { title: "Rivales" };
 
+/** A static shell: the club list is the same for everyone, the rest happens in the browser. */
 export default function RivalesPage() {
-  return (
-    <ComingSoon
-      title="Tu club vs. todos"
-      text="Pronto vas a saber a quién tenés de hijo, con quién la historia viene pareja y quién te tiene de hijo a vos."
-    />
-  );
+  return <RivalsScreen clubs={CLUB_OPTIONS} />;
 }
