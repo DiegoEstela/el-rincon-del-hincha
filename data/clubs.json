@@ -28,6 +28,20 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Asociaci%C3%B3n_Atl%C3%A9tica_Argentinos_Juniors&oldid=175811618"
   },
   {
+    "id": "arsenal",
+    "name": "Arsenal",
+    "short_name": "Arsenal",
+    "aliases": ["Arsenal", "Arsenal de Sarandí"],
+    "colors": {
+      "primary": "#a9d6f5",
+      "secondary": "#d62828"
+    },
+    "jersey_pattern": "sash",
+    "founded": 1957,
+    "city": "Sarandí",
+    "source": "https://es.wikipedia.org/w/index.php?title=Arsenal_F%C3%BAtbol_Club&oldid=175446182"
+  },
+  {
     "id": "atletico-tucuman",
     "name": "Atlético Tucumán",
     "short_name": "Atl. Tucumán",
@@ -110,6 +124,20 @@
     "founded": 1919,
     "city": "Santiago del Estero",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Central_C%C3%B3rdoba_(Santiago_del_Estero)&oldid=175837636"
+  },
+  {
+    "id": "colon",
+    "name": "Colón",
+    "short_name": "Colón",
+    "aliases": ["Colón", "Colón de Santa Fe", "Colon"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#111111"
+    },
+    "jersey_pattern": "halves",
+    "founded": 1905,
+    "city": "Santa Fe",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Col%C3%B3n&oldid=175660093"
   },
   {
     "id": "defensa-y-justicia",
@@ -210,6 +238,20 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Independiente&oldid=175833649"
   },
   {
+    "id": "independiente-rivadavia",
+    "name": "Independiente Rivadavia",
+    "short_name": "Ind. Rivadavia",
+    "aliases": ["Independiente Rivadavia", "Ind Rivadavia"],
+    "colors": {
+      "primary": "#0b1f4d",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "solid",
+    "founded": 1913,
+    "city": "Mendoza",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Sportivo_Independiente_Rivadavia&oldid=175403813"
+  },
+  {
     "id": "instituto",
     "name": "Instituto",
     "short_name": "Instituto",
@@ -250,6 +292,20 @@
     "founded": 1903,
     "city": "Rosario",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Newell's_Old_Boys&oldid=175853332"
+  },
+  {
+    "id": "patronato",
+    "name": "Patronato",
+    "short_name": "Patronato",
+    "aliases": ["Patronato", "Patronato de Paraná"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#111111"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1914,
+    "city": "Paraná",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Patronato_de_la_Juventud_Cat%C3%B3lica&oldid=175761742"
   },
   {
     "id": "platense",
@@ -335,6 +391,20 @@
     "founded": 1907,
     "city": "San Juan",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Mart%C3%ADn_(San_Juan)&oldid=175406099"
+  },
+  {
+    "id": "san-martin-tucuman",
+    "name": "San Martín de Tucumán",
+    "short_name": "San Martín Tuc.",
+    "aliases": ["San Martín de Tucumán", "San Martin (T)"],
+    "colors": {
+      "primary": "#d62828",
+      "secondary": "#ffffff"
+    },
+    "jersey_pattern": "vertical_stripes",
+    "founded": 1909,
+    "city": "San Miguel de Tucumán",
+    "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Mart%C3%ADn_(Tucum%C3%A1n)&oldid=175469990"
   },
   {
     "id": "sarmiento-junin",

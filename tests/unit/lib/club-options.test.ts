@@ -14,12 +14,14 @@ const clubs = clubSchema
 const EXPECTED: Record<string, string> = {
   aldosivi: "ALD",
   "argentinos-juniors": "AJ",
+  arsenal: "ARS",
   "atletico-tucuman": "AT",
   banfield: "BAN",
   "barracas-central": "BC",
   belgrano: "BEL",
   "boca-juniors": "BJ",
   "central-cordoba-sde": "CC",
+  colon: "COL",
   "defensa-y-justicia": "DJ",
   "deportivo-riestra": "DR",
   "estudiantes-la-plata": "ELP",
@@ -27,15 +29,18 @@ const EXPECTED: Record<string, string> = {
   "godoy-cruz": "GC",
   huracan: "HUR",
   independiente: "IND",
+  "independiente-rivadavia": "IR",
   instituto: "INS",
   lanus: "LAN",
   "newells-old-boys": "NOB",
+  patronato: "PAT",
   platense: "PLA",
   "racing-club": "RC",
   "river-plate": "RP",
   "rosario-central": "RC",
   "san-lorenzo": "SL",
   "san-martin-san-juan": "SMSJ",
+  "san-martin-tucuman": "SMT",
   "sarmiento-junin": "SAR",
   "talleres-cordoba": "TAL",
   tigre: "TIG",
@@ -45,7 +50,7 @@ const EXPECTED: Record<string, string> = {
 
 describe("clubInitials", () => {
   it("matches the approved table for every club", () => {
-    expect(clubs).toHaveLength(29);
+    expect(clubs).toHaveLength(34);
     for (const club of clubs) expect(clubInitials(club.name)).toBe(EXPECTED[club.id]);
   });
   it("skips de, del and y, and strips accents and apostrophes", () => {

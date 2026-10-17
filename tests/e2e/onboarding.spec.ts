@@ -24,20 +24,30 @@ async function seed(page: Page, clubId: string) {
 test.describe("grid, search and keyboard flow (T19)", () => {
   test("shows the grid, filters it and shows the empty state", async ({ page }, testInfo) => {
     await page.goto("/");
-    await expect(radios(page)).toHaveCount(29);
+    await expect(radios(page)).toHaveCount(34);
     await expect(search(page)).toBeVisible();
     await page.locator("#elegi-tu-club").scrollIntoViewIfNeeded();
     await page.screenshot({ path: `${SCREENS}/${testInfo.project.name}-onboarding-grid.png` });
 
     await search(page).fill("velez");
     await expect(radios(page)).toHaveCount(1);
+    // Former Primera clubs can be picked too (plan 0012).
+    await search(page).fill("arsenal");
+    await expect(radios(page)).toHaveCount(1);
+    await search(page).fill("rivadavia");
+    await expect(radios(page)).toHaveCount(1);
+    await search(page).fill("san martin");
+    await expect(radios(page)).toHaveCount(2);
     await search(page).fill("zzz");
     await expect(page.getByText("No encontramos ese club")).toBeVisible();
+    await expect(
+      page.getByText("Por ahora están los clubes que jugaron en Primera desde 2018."),
+    ).toBeVisible();
     await page.screenshot({
       path: `${SCREENS}/${testInfo.project.name}-onboarding-search-empty.png`,
     });
     await page.getByRole("button", { name: "Ver todos los clubes" }).click();
-    await expect(radios(page)).toHaveCount(29);
+    await expect(radios(page)).toHaveCount(34);
     await expect(search(page)).toBeFocused();
   });
 

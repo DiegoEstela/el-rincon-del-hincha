@@ -35,9 +35,9 @@ describe("ClubPicker", () => {
   it("shows a radio per club and a search box", () => {
     render(<Harness />);
     expect(screen.getByRole("radiogroup", { name: "Elegí tu club" })).toBeInTheDocument();
-    expect(radios()).toHaveLength(29);
+    expect(radios()).toHaveLength(34);
     expect(search()).toHaveAttribute("placeholder", "Ej.: Racing, Lanús, Newell's");
-    expect(screen.getByRole("status")).toHaveTextContent("29 clubes");
+    expect(screen.getByRole("status")).toHaveTextContent("34 clubes");
   });
   it("names each tile with the short name and, when different, the full name", () => {
     render(<Harness />);
@@ -60,7 +60,7 @@ describe("ClubPicker", () => {
     expect(screen.getByText("No encontramos ese club")).toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent("Ningún club");
     await user.click(screen.getByRole("button", { name: "Ver todos los clubes" }));
-    expect(radios()).toHaveLength(29);
+    expect(radios()).toHaveLength(34);
     expect(search()).toHaveValue("");
     expect(search()).toHaveFocus();
   });

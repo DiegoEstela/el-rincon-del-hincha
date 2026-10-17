@@ -67,7 +67,7 @@ export function ClubPicker({ clubs, selectedId, onSelect, searchRef, groupRef }:
           <div className="glass mt-4 rounded-2xl p-6 text-center">
             <p className="font-display text-2xl">No encontramos ese club</p>
             <p className="text-muted mt-1">
-              Probá con otro nombre. Por ahora están los clubes de la Primera División.
+              Probá con otro nombre. Por ahora están los clubes que jugaron en Primera desde 2018.
             </p>
             <button
               type="button"

@@ -25,8 +25,8 @@ describe("accent surfaces match the CSS tokens", () => {
 });
 
 describe("club themes over the whole dataset (AA, acceptance criterion of #40)", () => {
-  it("covers 29 clubs", () => {
-    expect(clubs).toHaveLength(29);
+  it("covers 34 clubs", () => {
+    expect(clubs).toHaveLength(34);
   });
 
   for (const club of clubs) {
@@ -70,12 +70,14 @@ describe("club themes over the whole dataset (AA, acceptance criterion of #40)",
     expect(Object.fromEntries(clubs.map((c) => [c.id, deriveClubTheme(c.colors).accent]))).toEqual({
       aldosivi: "#ffd60a",
       "argentinos-juniors": "#ff6f64",
+      arsenal: "#a9d6f5",
       "atletico-tucuman": "#4da5f2",
       banfield: "#41b46a",
       "barracas-central": "#ff6f64",
       belgrano: "#4da5f2",
       "boca-juniors": "#83a0d8",
       "central-cordoba-sde": "#ffffff",
+      colon: "#ff6f64",
       "defensa-y-justicia": "#ffd60a",
       "deportivo-riestra": "#ffffff",
       "estudiantes-la-plata": "#ff6f64",
@@ -83,15 +85,18 @@ describe("club themes over the whole dataset (AA, acceptance criterion of #40)",
       "godoy-cruz": "#719dff",
       huracan: "#ff6f64",
       independiente: "#ff6f64",
+      "independiente-rivadavia": "#83a0d8",
       instituto: "#ff6f64",
       lanus: "#e67f94",
       "newells-old-boys": "#ff6f64",
+      patronato: "#ff6f64",
       platense: "#c49677",
       "racing-club": "#4da5f2",
       "river-plate": "#ff6f64",
       "rosario-central": "#719dff",
       "san-lorenzo": "#83a0d8",
       "san-martin-san-juan": "#41b46a",
+      "san-martin-tucuman": "#ff6f64",
       "sarmiento-junin": "#41b46a",
       "talleres-cordoba": "#83a0d8",
       tigre: "#83a0d8",

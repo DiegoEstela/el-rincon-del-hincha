@@ -21,7 +21,11 @@ import {
 } from "../../scripts/ingest/openfootball/config";
 import { createOpenfootballAdapter, openfootballAdapter } from "../../scripts/ingest/openfootball";
 import { validate } from "../../src/data-model/validate";
-import { FIXTURE_CLUBS, REAL_CLUBS } from "../fixtures/ingest/openfootball/clubs";
+import {
+  CLUBS_WITHOUT_COLON,
+  COLON_SPELLING,
+  FIXTURE_CLUBS,
+} from "../fixtures/ingest/openfootball/clubs";
 
 const FIXTURES = join(process.cwd(), "tests/fixtures/ingest/openfootball");
 const NOW = new Date("2026-10-17T12:00:00Z");
@@ -163,19 +167,13 @@ describe("failures leave data untouched (T17)", () => {
     expect(snapshot()).toEqual(before);
   });
 
-  it("lists exactly the unresolved club names when the real clubs.json is used", async () => {
-    seedClubs(REAL_CLUBS);
+  it("lists exactly the unresolved club names when a club is missing", async () => {
+    seedClubs(CLUBS_WITHOUT_COLON);
     const before = snapshot();
     const error = await run().catch((e: unknown) => e);
     expect(error).toBeInstanceOf(IngestError);
     const names = (error as IngestError).problems.map((p) => /"(.+?)"/.exec(p)?.[1]);
-    expect(names).toEqual([
-      "Arsenal de Sarandí",
-      "Colón de Santa Fe",
-      "Independiente Rivadavia",
-      "Patronato de Paraná",
-      "San Martín de Tucumán",
-    ]);
+    expect(names).toEqual([COLON_SPELLING]);
     expect(snapshot()).toEqual(before);
   });
 
