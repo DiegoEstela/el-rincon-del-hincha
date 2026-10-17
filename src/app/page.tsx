@@ -1,8 +1,10 @@
 import { Sparkles } from "lucide-react";
+import { Onboarding } from "@/components/onboarding/onboarding";
+import { CLUB_OPTIONS } from "@/lib/club-catalog.server";
 
 export default function Home() {
   return (
-    <div className="pt-4 lg:grid lg:grid-cols-[2fr_1fr] lg:items-start lg:gap-10 lg:pt-0">
+    <div className="pt-4 lg:pt-0">
       <section className="lawn rounded-3xl py-6 lg:rounded-none lg:py-0">
         <p className="rise border-glass-border text-muted inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm">
           <Sparkles aria-hidden size={14} className="text-gold" />
@@ -16,13 +18,15 @@ export default function Home() {
           Elegí tu club, decinos desde cuándo sos hincha y mirá cuántos títulos viviste, a quién
           tenés de hijo y qué te falta ganar.
         </p>
+        <a
+          href="#elegi-tu-club"
+          className="bg-accent text-accent-contrast focus-visible:outline-accent rise mt-6 inline-flex min-h-12 items-center rounded-xl px-6 text-lg font-medium focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          Empezá: elegí tu club
+        </a>
       </section>
-      <div className="glass rise mt-8 rounded-3xl p-6 lg:mt-2 lg:rounded-xl">
-        <p className="font-display text-2xl">Muy pronto</p>
-        <p className="text-muted mt-1">
-          Estamos cargando la historia de todos los clubes de Primera. Cuando esté lista, vas a
-          poder armar tu vitrina y compararte con tus amigos.
-        </p>
+      <div className="mt-10 lg:mt-14">
+        <Onboarding clubs={CLUB_OPTIONS} />
       </div>
     </div>
   );

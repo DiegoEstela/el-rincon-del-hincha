@@ -162,3 +162,15 @@ html:has(dialog[open]) {
     }
   }
 }
+
+/* Reserves the height of the "¡Volviste!" banner when the boot script found a saved club, so
+   the page does not jump after hydration. */
+html[data-club] .returning-slot {
+  min-height: 8.5rem;
+}
+
+@media (min-width: 640px) {
+  html[data-club] .returning-slot {
+    min-height: 7rem;
+  }
+}
