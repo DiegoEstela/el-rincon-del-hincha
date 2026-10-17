@@ -1,6 +1,6 @@
 ---
 issue: 55
-status: pending
+status: done
 date: 2026-10-17
 ---
 
@@ -151,7 +151,7 @@ Test first in every task: write the failing test, then the code. Each task is on
 ### Group D: close
 
 - [x] **T9 ADR 0014.** Write `docs/adr/0014-security-headers-policy.md` (Context / Decision / Consequences): the inline script inventory found in the build, the three options and Diego's choice, the policy table, why no hash is sent under option A and the invariant test that guards it, how the boot script hash would be computed and pinned (for a future switch), inline style trade-off, Referrer-Policy choice, Vercel Toolbar handling, and when to revisit (a route with a dynamic hole, user-generated content, a third-party script, or Next adding hash support for its inline scripts). In the same change, add one line to ADR 0013's consequences pointing to 0014 ("the boot script alone could use a hash, but Next's own inline scripts cannot; see 0014"), without changing its decisions.
-- [ ] **T10 Preview check and plan close.** Open the Vercel preview of the PR (Diego, or the reviewer with access): DevTools console clean on `/`, `/vitrina`, a 404 and after a full onboarding; toolbar works (or is disabled, per decision 3); `curl -sI` the preview URL shows the headers. Record the result and Diego's answers in "Decisions recorded" and set `status: done`.
+- [x] **T10 Preview check and plan close.** Open the Vercel preview of the PR (Diego, or the reviewer with access): DevTools console clean on `/`, `/vitrina`, a 404 and after a full onboarding; toolbar works (or is disabled, per decision 3); `curl -sI` the preview URL shows the headers. Record the result and Diego's answers in "Decisions recorded" and set `status: done`.
 
 ## Tests to write (summary)
 
@@ -191,3 +191,7 @@ Diego answered on 2026-10-17:
 2. **Referrer-Policy:** `same-origin`.
 3. **Vercel Toolbar:** its origins are allowed only on previews (`VERCEL_ENV=preview`).
 4. **Extras** (`X-Frame-Options: DENY`, restrictive `Permissions-Policy`, `poweredByHeader: false`): left as the plan recommends; reviewed on the live site.
+
+## T10 result
+
+Diego reviewed the Vercel preview of PR #56 on 2026-10-17 and approved the merge. He gave no further detail (no problems reported). The header values were not checked by curl because previews are behind Vercel login.
