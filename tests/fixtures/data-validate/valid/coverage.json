@@ -14,5 +14,53 @@
     "to": null,
     "complete": true,
     "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-b",
+    "competition_id": "league-x",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-b",
+    "competition_id": "cup-y",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-c",
+    "competition_id": "league-x",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-c",
+    "competition_id": "cup-y",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-d",
+    "competition_id": "league-x",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
+  },
+  {
+    "club_id": "club-d",
+    "competition_id": "cup-y",
+    "from": "2020-01-01",
+    "to": null,
+    "complete": false,
+    "source": "fixture:synthetic"
   }
 ]

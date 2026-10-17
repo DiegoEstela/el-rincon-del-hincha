@@ -60,15 +60,15 @@ describe("openfootball ingestion on fixtures (T16)", () => {
       await run();
 
       const files = Object.fromEntries(
-        ["clubs.json", "competitions.json", "seasons.json", "matches.json"].map((f) => [
-          f,
-          JSON.parse(read(f)) as unknown[],
-        ]),
+        ["clubs.json", "competitions.json", "seasons.json", "matches.json", "coverage.json"].map(
+          (f) => [f, JSON.parse(read(f)) as unknown[]],
+        ),
       );
       expect(validate(files, { now: NOW })).toEqual([]);
       expect(files["competitions.json"]).toHaveLength(OPENFOOTBALL_COMPETITIONS.length);
       expect(files["seasons.json"]).toHaveLength(OPENFOOTBALL_SEASONS.length);
       expect(files["matches.json"]).toHaveLength(2435);
+      expect(files["coverage.json"]).toHaveLength(232);
 
       // A match from another source, on a day when Boca does not play, must survive every run.
       const matches = files["matches.json"] as {
@@ -127,6 +127,7 @@ describe("openfootball ingestion on fixtures (T16)", () => {
       rmSync(join(dir, "matches.json"));
       rmSync(join(dir, "seasons.json"));
       rmSync(join(dir, "competitions.json"));
+      rmSync(join(dir, "coverage.json"));
       await run();
       expect(snapshot()).toEqual(first);
       for (const f of ["competitions.json", "seasons.json", "matches.json"]) {
