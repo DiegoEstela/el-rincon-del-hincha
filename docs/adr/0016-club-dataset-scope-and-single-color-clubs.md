@@ -17,7 +17,7 @@ Independiente Rivadavia (issue #48) was left out by plan 0007 because its offici
 ## Consequences
 
 - The openfootball ingestion can resolve every team name of 2018-19 to 2025, so issue #8 can commit real matches.
-- The onboarding grid grows from 29 to 33 clubs (34 with Independiente Rivadavia). The empty-state copy "Por ahora están los clubes de la Primera División." becomes inaccurate and is changed with the clubs (plan 0012, D2).
+- The onboarding grid grows from 29 to 34 clubs (the four former clubs and Independiente Rivadavia, shipped together). The empty-state copy "Por ahora están los clubes de la Primera División." becomes inaccurate and is changed with the clubs (plan 0012, D2).
 - Later adapters (Kaggle, from 1967) will add many more former clubs under the same rule; the grid will need grouping or search-first behavior before that. That is a separate issue, not this ADR.
 - No schema, validator or migration change: `secondary` stays required, the Supabase constraints stay as they are, and seeding needs no migration.
 - A trim color can change with the next kit. The record pins the trim verified on the date in the log; a later change is a normal data PR with new sources. The id never changes.

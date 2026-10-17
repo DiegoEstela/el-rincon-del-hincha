@@ -61,6 +61,7 @@ describe("pnpm data:ingest (CLI arguments)", () => {
       out,
     ]);
     expect(r.code).toBe(0);
+    // 2,435 is the sum of the matches of the eight pinned openfootball files (plan 0011).
     expect(r.stdout).toContain("matches.json: +2435 -0 =0");
     expect(r.stdout).toContain("data:ingest dry run ok (nothing written)");
     expect(readdirSync(out)).toEqual(["clubs.json"]);
