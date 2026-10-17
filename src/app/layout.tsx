@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Geist } from "next/font/google";
+import { ClubThemeSync } from "@/components/club-theme-sync";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
+import { CLUB_THEME_CSS } from "@/lib/club-catalog.server";
+import { themeBootScript } from "@/lib/club-theme-css";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -22,8 +25,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={`${geist.variable} ${bebas.variable} h-full antialiased`}>
+    <html
+      lang="es-AR"
+      className={`${geist.variable} ${bebas.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        {/* Build-time constants only: club accents and the no-flash boot script (ADR 0013). */}
+        <style dangerouslySetInnerHTML={{ __html: CLUB_THEME_CSS }} />
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript() }} />
+      </head>
       <body className="flex min-h-full flex-col">
+        <ClubThemeSync />
         <a
           href="#contenido"
           className="bg-accent text-accent-contrast sr-only z-50 rounded-md px-3 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"

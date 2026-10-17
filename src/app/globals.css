@@ -43,7 +43,11 @@
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(50rem 28rem at 50% -8%, rgb(198 255 61 / 0.08), transparent 70%),
+    radial-gradient(
+      50rem 28rem at 50% -8%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 70%
+    ),
     radial-gradient(40rem 24rem at 0% 0%, rgb(20 83 45 / 0.22), transparent 70%),
     linear-gradient(180deg, var(--background-raised), var(--background) 45%);
   background-attachment: fixed;
@@ -59,11 +63,11 @@ body {
   -webkit-backdrop-filter: blur(14px);
 }
 
-/* Mowed-lawn stripes: mobile-only texture, 3% lime so it stays under the 8% glow cap. */
+/* Mowed-lawn stripes: mobile-only texture, 3% accent so it stays under the 8% glow cap. */
 .lawn {
   background-image: repeating-linear-gradient(
     90deg,
-    rgb(198 255 61 / 0.03) 0 2.5rem,
+    color-mix(in srgb, var(--accent) 3%, transparent) 0 2.5rem,
     transparent 2.5rem 5rem
   );
 }
@@ -156,5 +160,17 @@ html:has(dialog[open]) {
       opacity: 0;
       transform: translateY(1rem);
     }
+  }
+}
+
+/* Reserves the height of the "¡Volviste!" banner when the boot script found a saved club, so
+   the page does not jump after hydration. */
+html[data-club] .returning-slot {
+  min-height: 8.5rem;
+}
+
+@media (min-width: 640px) {
+  html[data-club] .returning-slot {
+    min-height: 7rem;
   }
 }

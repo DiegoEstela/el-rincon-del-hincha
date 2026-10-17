@@ -1,15 +1,6 @@
 // Methodology: "Fan period". Pure; the clock is injected as `now`.
-import { isWithin, todayInBuenosAires } from "@/data-model/dates";
+import { isRealIsoDate, isWithin, todayInBuenosAires } from "@/data-model/dates";
 import type { FanPeriod, IsoDate } from "./types";
-
-function isRealIsoDate(value: string): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const [year, month, day] = value.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day));
-  return (
-    date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
-  );
-}
 
 /**
  * Period of a fan: from `start` (inclusive) to today in Buenos Aires (inclusive).
