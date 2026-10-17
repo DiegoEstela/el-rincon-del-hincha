@@ -17,7 +17,8 @@ afterEach(() => {
 });
 
 describe("tests never touch the network", () => {
-  it("ingests the fixtures with fetch stubbed to throw", async () => {
+  // A full ingestion formats about 2,400 records with Prettier: slow under coverage instrumentation.
+  it("ingests the fixtures with fetch stubbed to throw", { timeout: 60_000 }, async () => {
     const fetchStub = vi.fn(() => {
       throw new Error("network access in a test");
     });

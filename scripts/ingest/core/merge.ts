@@ -14,11 +14,13 @@ function differingFields(a: Rec, b: Rec): string[] {
 
 function upsert(file: string, existing: Rec[], incoming: Rec[], conflicts: string[]): Rec[] {
   const result = [...existing];
+  const byId = new Map(existing.map((r) => [r.id, r]));
   for (const record of incoming) {
-    const current = result.find((r) => r.id === record.id);
+    const current = byId.get(record.id);
     if (current === undefined) {
       result.push(record);
-    } else if (!isDeepStrictEqual(current, record)) {
+      byId.set(record.id, record);
+    } else {
       const fields = differingFields(current, record);
       if (fields.length > 0) {
         conflicts.push(

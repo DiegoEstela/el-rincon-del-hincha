@@ -145,8 +145,8 @@ export const OPENFOOTBALL_SEASONS: readonly OpenfootballSeason[] = [
     name: "Torneo Apertura 2025",
     file: "2025_ar1.txt",
     // The file only has the group stage (until 2025-05-04). The final was played on 2025-06-01
-    // (Platense 1-0 Huracán), per the Spanish Wikipedia season article and confirmed by La Nación
-    // and Diario de Cuyo, read on 2026-10-17.
+    // (Platense 1-0 Huracán), per the Spanish Wikipedia season article below, and reported the same day
+    // by La Nación (lanacion.com.ar, nid01062025) and Noticias NQN (noticiasnqn.com.ar, 2025/06/01).
     partial: {
       end: "2025-06-01",
       source:

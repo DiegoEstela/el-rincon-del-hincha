@@ -28,6 +28,40 @@ describe("fetchPinned", () => {
     ).rejects.toThrow(new RegExp(`x\\.txt.*${"0".repeat(64)}.*${sha}`));
   });
 
+  it("never follows redirects", async () => {
+    let seen: RequestInit | undefined;
+    const fetchImpl = async (_url: string, init?: RequestInit) => {
+      seen = init;
+      return new Response(body);
+    };
+    await fetchPinned({ name: "x.txt", url: URL_OK, sha256: sha }, { fetchImpl });
+    expect(seen?.redirect).toBe("error");
+  });
+
+  it("stops reading a streamed body as soon as it passes the cap", async () => {
+    let pulled = 0;
+    const stream = new ReadableStream<Uint8Array>({
+      pull(controller) {
+        pulled += 1;
+        controller.enqueue(new Uint8Array(400));
+      },
+    });
+    await expect(
+      fetchPinned(
+        { name: "x.txt", url: URL_OK, sha256: sha },
+        { fetchImpl: async () => new Response(stream), maxBytes: 1000 },
+      ),
+    ).rejects.toThrow(/too large/i);
+    expect(pulled).toBeLessThan(10);
+  });
+
+  it("rejects a declared content-length over the cap without reading the body", async () => {
+    const response = new Response(body, { headers: { "content-length": "5000000" } });
+    await expect(
+      fetchPinned({ name: "x.txt", url: URL_OK, sha256: sha }, { fetchImpl: async () => response }),
+    ).rejects.toThrow(/too large/i);
+  });
+
   it("rejects a non-200 response", async () => {
     await expect(
       fetchPinned({ name: "x.txt", url: URL_OK, sha256: sha }, { fetchImpl: respond("no", 404) }),

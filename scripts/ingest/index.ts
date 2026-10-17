@@ -8,6 +8,7 @@ import { directoryLoader, networkLoader, runAdapter, type Adapter } from "./core
 import { IngestError } from "./core/commit";
 import { openfootballAdapter } from "./openfootball";
 
+// The registry is heterogeneous: each adapter has its own raw type.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ADAPTERS: Record<string, Adapter<any>> = { openfootball: openfootballAdapter };
 
@@ -59,7 +60,9 @@ async function main(): Promise<number> {
       for (const p of e.problems) console.error(p);
       console.error(`data:ingest failed: ${e.problems.length} problem(s); data/ was not changed`);
     } else {
-      console.error(`data:ingest failed: ${(e as Error).message}; data/ was not changed`);
+      console.error(
+        `data:ingest failed: ${e instanceof Error ? e.message : String(e)}; data/ was not changed`,
+      );
     }
     return 1;
   }

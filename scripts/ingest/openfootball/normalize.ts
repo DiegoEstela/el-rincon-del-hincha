@@ -1,6 +1,6 @@
 // Pure normalization of parsed openfootball files into the data model (plan 0011).
 import type { AdapterOutput, FileReport } from "../core/adapter";
-import { IngestError } from "../core/commit";
+import { IngestError } from "../core/errors";
 import { createClubResolver } from "../core/club-resolver";
 import type { Club, Competition, Match, Season } from "../../../src/data-model/types";
 import {

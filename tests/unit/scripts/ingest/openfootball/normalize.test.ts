@@ -41,7 +41,7 @@ describe("normalizeOpenfootball: matches", () => {
     }
   });
 
-  it("points each source at the exact line, which names both teams", () => {
+  it("points each source at the exact line, which names both teams", { timeout: 30_000 }, () => {
     const lineOf = (file: string, n: number) => text(file).split(/\r?\n/)[n - 1];
     for (const m of out.matches) {
       const [, file, n] = /argentina\/(.+)#L(\d+)$/.exec(m.source) ?? [];

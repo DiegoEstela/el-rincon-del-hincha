@@ -4,7 +4,8 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { clubSchema, DATASET_FILES, type DatasetFile } from "../../../src/data-model/schemas";
 import type { Club, Competition, Match, Season } from "../../../src/data-model/types";
-import { commitDataset, IngestError, type FileSummary } from "./commit";
+import { commitDataset, type FileSummary } from "./commit";
+import { IngestError } from "./errors";
 import { mergeDataset } from "./merge";
 import { checkSha256, fetchPinned, type SourceFile } from "./pinned-fetch";
 

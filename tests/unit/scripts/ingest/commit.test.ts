@@ -129,6 +129,29 @@ describe("commitDataset", () => {
     expect(summary["matches.json"]).toEqual({ added: 1, removed: 0, unchanged: 0 });
   });
 
+  it("restores the files already replaced when a later rename fails", async () => {
+    await commitDataset({ dir, dataset: valid(), files: [...FILES], now: NOW });
+    const before = snapshot();
+    const next = valid();
+    next["seasons.json"] = [{ ...season, name: "Liga 2024 (edited)" }];
+    next["matches.json"] = [match("2024-05-10-b-a", "b", "a")];
+    await expect(
+      commitDataset({
+        dir,
+        dataset: next,
+        files: [...FILES],
+        now: NOW,
+        rename: (from, to) => {
+          if (to.endsWith("matches.json")) throw new Error("disk full");
+          renameSync(from, to);
+        },
+      }),
+    ).rejects.toThrow(/disk full/);
+    const after = snapshot();
+    for (const f of FILES) expect(after[f][0], f).toBe(before[f][0]);
+    expect(temps()).toEqual([]);
+  });
+
   it("cleans up temp files when a rename fails", async () => {
     await expect(
       commitDataset({

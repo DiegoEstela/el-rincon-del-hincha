@@ -224,6 +224,21 @@ describe("scores", () => {
 });
 
 describe("file-level checks", () => {
+  it("rejects a team playing itself", () => {
+    const body = [
+      "  Fri May 10 2024",
+      "    19:00  Alfa                    v Alfa                     1-0",
+    ];
+    expect(() =>
+      parse(file(body, { date: "Fri May 10 2024 - Fri May 10 2024 (1d)", teams: 1, matches: 1 })),
+    ).toThrow(/x\.txt:11:.*itself/i);
+  });
+
+  it("names the real line of the # Date header in its errors", () => {
+    const text = file(TWO_MATCHES, { date: "Sat May 10 2024 - Sat May 11 2024 (2d)" });
+    expect(() => parse(text)).toThrow(/x\.txt:3:.*weekday/i);
+  });
+
   it("rejects a match count that disagrees with the header", () => {
     expect(() => parse(file(TWO_MATCHES, { matches: 3 }))).toThrow(/matches.*3.*2/i);
   });

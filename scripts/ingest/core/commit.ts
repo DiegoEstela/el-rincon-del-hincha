@@ -4,14 +4,10 @@ import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from "nod
 import { join } from "node:path";
 import { recordKey, type DatasetFile } from "../../../src/data-model/schemas";
 import { validate } from "../../../src/data-model/validate";
+import { IngestError } from "./errors";
 import { serializeRecords } from "./serialize";
 
-export class IngestError extends Error {
-  constructor(public readonly problems: string[]) {
-    super(problems.join("\n"));
-    this.name = "IngestError";
-  }
-}
+export { IngestError };
 
 export type FileSummary = { added: number; removed: number; unchanged: number };
 
@@ -40,6 +36,16 @@ function readKeys(file: DatasetFile, path: string): Set<string> {
   return keys;
 }
 
+type Pending = { path: string; temp: string; previous: string | null };
+
+/** Puts back every file that was already replaced, or removes it if it did not exist before. */
+function restore(done: Pending[]): void {
+  for (const { path, previous } of done.reverse()) {
+    if (previous === null) rmSync(path, { force: true });
+    else writeFileSync(path, previous);
+  }
+}
+
 export async function commitDataset(options: CommitOptions): Promise<Record<string, FileSummary>> {
   const { dir, dataset, files, now, dryRun = false, rename = renameSync } = options;
 
@@ -53,13 +59,11 @@ export async function commitDataset(options: CommitOptions): Promise<Record<stri
   }
 
   const summary: Record<string, FileSummary> = {};
-  const pending: { path: string; temp: string }[] = [];
-  const tempFiles: string[] = [];
+  const pending: Pending[] = [];
   try {
     for (const file of files) {
       const path = join(dir, file);
-      const next = serializeRecords(file, dataset[file] ?? []);
-      const text = await next;
+      const text = await serializeRecords(file, dataset[file] ?? []);
       const oldKeys = readKeys(file, path);
       const newKeys = new Set(
         (dataset[file] ?? []).map((r) => recordKey(file, r)).filter((k): k is string => k !== null),
@@ -70,18 +74,27 @@ export async function commitDataset(options: CommitOptions): Promise<Record<stri
         removed: oldKeys.size - unchanged,
         unchanged,
       };
-      const before = existsSync(path) ? readFileSync(path, "utf8") : null;
-      if (before === text) continue;
-      if (!dryRun) {
-        const temp = `${path}.tmp-${process.pid}`;
-        writeFileSync(temp, text);
-        tempFiles.push(temp);
-        pending.push({ path, temp });
-      }
+      const previous = existsSync(path) ? readFileSync(path, "utf8") : null;
+      if (previous === text || dryRun) continue;
+      // Always start from a fresh temp file: `wx` never follows a symlink or reuses a stale file.
+      const temp = `${path}.tmp-${process.pid}`;
+      rmSync(temp, { force: true });
+      writeFileSync(temp, text, { flag: "wx" });
+      pending.push({ path, temp, previous });
     }
-    for (const { path, temp } of pending) rename(temp, path);
+
+    const replaced: Pending[] = [];
+    try {
+      for (const item of pending) {
+        rename(item.temp, item.path);
+        replaced.push(item);
+      }
+    } catch (error) {
+      restore(replaced);
+      throw error;
+    }
   } finally {
-    for (const temp of tempFiles) rmSync(temp, { force: true });
+    for (const { temp } of pending) rmSync(temp, { force: true });
   }
   return summary;
 }

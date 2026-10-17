@@ -93,7 +93,8 @@ function stageGroup(heading: string): string | null {
   if (/^Matchday \d+$/.test(heading)) return null;
   if (/^Group [A-Z]$/.test(heading)) return "Regular Season";
   const prefix = /^(Fase Campeón|Fase Complementación|Copa Sud|1° Semestre)(?:,|$)/.exec(heading);
-  return prefix ? prefix[1] : "?";
+  if (!prefix) throw new ParseError(`no stage group for heading "${heading}"`);
+  return prefix[1];
 }
 
 function parseHeader(file: string, lines: string[]): { edition: string; header: ParsedHeader } {
@@ -101,6 +102,7 @@ function parseHeader(file: string, lines: string[]): { edition: string; header: 
   if (!edition) fail(file, 1, `unexpected title line "${lines[0] ?? ""}"`);
 
   let dates: RegExpExecArray | null = null;
+  let dateLine = 3;
   let teams: number | null = null;
   let matches: number | null = null;
   let stages: { group: string; count: number }[] = [];
@@ -111,8 +113,10 @@ function parseHeader(file: string, lines: string[]): { edition: string; header: 
     const team = /^# Teams\s+(\d+)\s*$/.exec(text);
     const match = /^# Matches\s+(\d+)\s*$/.exec(text);
     const stage = /^# Stages\s+(.+?)\s*$/.exec(text);
-    if (date) dates = date;
-    else if (team) teams = Number(team[1]);
+    if (date) {
+      dates = date;
+      dateLine = i + 1;
+    } else if (team) teams = Number(team[1]);
     else if (match) matches = Number(match[1]);
     else if (stage) {
       stages = stage[1].split(/ {2,}/).map((part) => {
@@ -128,8 +132,8 @@ function parseHeader(file: string, lines: string[]): { edition: string; header: 
 
   const [, w1, m1, d1, y1, w2, m2, d2, y2] = dates;
   const lastYear = Number(y2);
-  const first = buildDate(file, 3, [w1, m1, d1, y1 ? Number(y1) : lastYear]);
-  const last = buildDate(file, 3, [w2, m2, d2, lastYear]);
+  const first = buildDate(file, dateLine, [w1, m1, d1, y1 ? Number(y1) : lastYear]);
+  const last = buildDate(file, dateLine, [w2, m2, d2, lastYear]);
   return { edition: edition[1], header: { first, last, teams, matches, stages } };
 }
 
@@ -213,6 +217,7 @@ function checkFile(file: string, header: ParsedHeader, matches: ParsedMatch[]): 
 
   const seen = new Set<string>();
   for (const m of matches) {
+    if (m.home === m.away) fail(file, m.line, `a team cannot play itself (${m.home})`);
     const key = `${m.date}|${[m.home, m.away].sort().join("|")}`;
     if (seen.has(key)) fail(file, m.line, `duplicate match ${m.home} v ${m.away} on ${m.date}`);
     seen.add(key);
