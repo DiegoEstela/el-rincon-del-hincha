@@ -3,7 +3,7 @@
 // the cups are not loaded (plan 0014, Phase 2) no screen may claim complete history.
 import type { CoverageNotice } from "@/domain/types";
 
-const MONTHS = [
+export const MONTHS = [
   "enero",
   "febrero",
   "marzo",
