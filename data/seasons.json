@@ -1,0 +1,66 @@
+[
+  {
+    "id": "copa-de-la-liga-profesional-2020",
+    "competition_id": "copa-de-la-liga-profesional",
+    "name": "Copa Diego Armando Maradona 2020",
+    "start": "2020-10-30",
+    "end": "2021-03-31",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2020_ar1.txt"
+  },
+  {
+    "id": "primera-division-2018-19",
+    "competition_id": "primera-division",
+    "name": "Superliga 2018-19",
+    "start": "2018-08-10",
+    "end": "2019-04-07",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2018-19_ar1.txt"
+  },
+  {
+    "id": "primera-division-2019-20",
+    "competition_id": "primera-division",
+    "name": "Superliga 2019-20",
+    "start": "2019-07-26",
+    "end": "2020-03-09",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2019-20_ar1.txt"
+  },
+  {
+    "id": "primera-division-2021",
+    "competition_id": "primera-division",
+    "name": "Liga Profesional 2021",
+    "start": "2021-07-16",
+    "end": "2021-12-13",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2021_ar1.txt"
+  },
+  {
+    "id": "primera-division-2022",
+    "competition_id": "primera-division",
+    "name": "Liga Profesional 2022",
+    "start": "2022-06-03",
+    "end": "2022-10-25",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2022_ar1.txt"
+  },
+  {
+    "id": "primera-division-2023",
+    "competition_id": "primera-division",
+    "name": "Liga Profesional 2023",
+    "start": "2023-01-27",
+    "end": "2023-07-30",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2023_ar1.txt"
+  },
+  {
+    "id": "primera-division-2024",
+    "competition_id": "primera-division",
+    "name": "Liga Profesional 2024",
+    "start": "2024-05-10",
+    "end": "2024-12-16",
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2024_ar1.txt"
+  },
+  {
+    "id": "primera-division-2025-apertura",
+    "competition_id": "primera-division",
+    "name": "Torneo Apertura 2025",
+    "start": "2025-01-23",
+    "end": "2025-06-01",
+    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  }
+]

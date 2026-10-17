@@ -1,0 +1,21 @@
+[
+  {
+    "id": "copa-de-la-liga-profesional",
+    "name": "Copa de la Liga Profesional",
+    "type": "national_cup",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_de_la_Liga_Profesional&oldid=171436790"
+  },
+  {
+    "id": "primera-division",
+    "name": "Primera División",
+    "type": "league",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "notes": "Organized by the AFA through its Liga Profesional; run by the Superliga Argentina from 2017-18 to 2019-20.",
+    "source": "https://es.wikipedia.org/w/index.php?title=Primera_Divisi%C3%B3n_de_Argentina&oldid=175775265"
+  }
+]
