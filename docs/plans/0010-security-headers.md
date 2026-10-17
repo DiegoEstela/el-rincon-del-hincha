@@ -139,8 +139,8 @@ Test first in every task: write the failing test, then the code. Each task is on
 
 ### Group B: wiring and build
 
-- [ ] **T4 `next.config.ts`.** Extend `tests/unit/next-config.test.ts`: `await nextConfig.headers()` returns one rule with `source: "/:path*"` whose headers equal `securityHeaders({ dev: false, vercelPreview: false })` when `NODE_ENV` is `test` and `VERCEL_ENV` is unset; with `vi.stubEnv("VERCEL_ENV", "preview")` the CSP includes `https://vercel.live` (if T2 exists); `poweredByHeader` is `false`; the existing `env` assertion still passes. Then add `poweredByHeader: false` and `async headers()` to `next.config.ts` (relative import of the module).
-- [ ] **T5 Build stays static.** Run `pnpm build`: the route table must still mark `/` and every other page as prerendered static, with no new dynamic route (paste the table in the PR). Then `pnpm start` and `curl -sI http://localhost:3000/`, `/_next/static/...` (any chunk) and `/no-existe`: all carry the five headers. Fix and repeat until clean. No test file (build check), but record the output in the PR.
+- [x] **T4 `next.config.ts`.** Extend `tests/unit/next-config.test.ts`: `await nextConfig.headers()` returns one rule with `source: "/:path*"` whose headers equal `securityHeaders({ dev: false, vercelPreview: false })` when `NODE_ENV` is `test` and `VERCEL_ENV` is unset; with `vi.stubEnv("VERCEL_ENV", "preview")` the CSP includes `https://vercel.live` (if T2 exists); `poweredByHeader` is `false`; the existing `env` assertion still passes. Then add `poweredByHeader: false` and `async headers()` to `next.config.ts` (relative import of the module).
+- [x] **T5 Build stays static.** Run `pnpm build`: the route table must still mark `/` and every other page as prerendered static, with no new dynamic route (paste the table in the PR). Then `pnpm start` and `curl -sI http://localhost:3000/`, `/_next/static/...` (any chunk) and `/no-existe`: all carry the five headers. Fix and repeat until clean. No test file (build check), but record the output in the PR.
 
 ### Group C: end to end (`tests/e2e/security-headers.spec.ts`, all three projects)
 
