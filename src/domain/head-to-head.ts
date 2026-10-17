@@ -6,7 +6,7 @@ import { classifyDominance, type Dominance } from "./dominance";
 import { finalSeries, type FinalSeries } from "./finals";
 import { relevantCompetitionIds, selectViews, tallyMatches } from "./history";
 import { compareText } from "./data";
-import { computeStreaks, type Streak } from "./streaks";
+import { computeStreaks, type Run, type Streak } from "./streaks";
 import type {
   CoverageNotice,
   FanPeriod,
@@ -24,6 +24,9 @@ export type HeadToHead = Readonly<{
   lastMatch: MatchView | null;
   currentStreak: Streak | null;
   bestWinStreak: Streak | null;
+  /** Trailing matches without a loss / without a win (a shoot-out is a draw). */
+  currentUnbeaten: Run | null;
+  currentWinless: Run | null;
   /** Largest played win (administrative results and shoot-outs never qualify). */
   biggestWin: MatchView | null;
   biggestLoss: MatchView | null;
@@ -87,6 +90,8 @@ export function headToHead(
     lastMatch: views[views.length - 1] ?? null,
     currentStreak: streaks.current,
     bestWinStreak: streaks.bestWin,
+    currentUnbeaten: streaks.currentUnbeaten,
+    currentWinless: streaks.currentWinless,
     biggestWin: biggest(
       played.filter((view) => view.outcome === "W"),
       (view) => view.goalsFor - view.goalsAgainst,

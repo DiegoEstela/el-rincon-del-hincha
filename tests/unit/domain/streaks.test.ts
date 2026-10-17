@@ -29,7 +29,12 @@ function v(date: string, result: "W" | "D" | "L" | "P"): MatchView {
 
 describe("streaks", () => {
   it("is empty without matches", () => {
-    expect(computeStreaks([])).toEqual({ current: null, bestWin: null });
+    expect(computeStreaks([])).toEqual({
+      current: null,
+      bestWin: null,
+      currentUnbeaten: null,
+      currentWinless: null,
+    });
   });
   it("handles a single match", () => {
     const streaks = computeStreaks([v("2020-01-01", "W")]);
@@ -119,5 +124,49 @@ describe("streaks", () => {
       v("2020-01-15", "W"),
     ]);
     expect(bestWin).toEqual(current);
+  });
+});
+
+describe("unbeaten and winless runs", () => {
+  it("counts wins and draws at the end as unbeaten, and has no winless run", () => {
+    const { currentUnbeaten, currentWinless } = computeStreaks([
+      v("2020-01-01", "L"),
+      v("2020-01-08", "W"),
+      v("2020-01-15", "D"),
+      v("2020-01-22", "W"),
+    ]);
+    expect(currentUnbeaten).toEqual({ length: 3, from: "2020-01-08", to: "2020-01-22" });
+    expect(currentWinless).toBeNull();
+  });
+  it("counts draws and losses at the end as winless", () => {
+    const { currentUnbeaten, currentWinless } = computeStreaks([
+      v("2020-01-01", "W"),
+      v("2020-01-08", "L"),
+      v("2020-01-15", "D"),
+      v("2020-01-22", "D"),
+    ]);
+    expect(currentWinless).toEqual({ length: 3, from: "2020-01-08", to: "2020-01-22" });
+    expect(currentUnbeaten).toEqual({ length: 2, from: "2020-01-15", to: "2020-01-22" });
+  });
+  it("is unbeaten without a win and winless without a loss when all are draws", () => {
+    const { currentUnbeaten, currentWinless } = computeStreaks([
+      v("2020-01-01", "D"),
+      v("2020-01-08", "D"),
+    ]);
+    expect(currentUnbeaten).toEqual(currentWinless);
+    expect(currentUnbeaten).toMatchObject({ length: 2 });
+  });
+  it("has no unbeaten run after a loss and no winless run after a win", () => {
+    const afterLoss = computeStreaks([v("2020-01-01", "W"), v("2020-01-08", "L")]);
+    expect(afterLoss.currentUnbeaten).toBeNull();
+    expect(afterLoss.currentWinless).toEqual({ length: 1, from: "2020-01-08", to: "2020-01-08" });
+  });
+  it("treats a shoot-out as a draw, which extends both runs", () => {
+    const { currentUnbeaten, currentWinless } = computeStreaks([
+      v("2020-01-01", "L"),
+      v("2020-01-08", "P"),
+    ]);
+    expect(currentUnbeaten).toEqual({ length: 1, from: "2020-01-08", to: "2020-01-08" });
+    expect(currentWinless).toEqual({ length: 2, from: "2020-01-01", to: "2020-01-08" });
   });
 });

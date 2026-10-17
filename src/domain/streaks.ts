@@ -10,12 +10,31 @@ export type Streak = Readonly<{
   to: IsoDate;
 }>;
 
+/** A run of matches by a rule other than identical results (unbeaten, winless). */
+export type Run = Readonly<{ length: number; from: IsoDate; to: IsoDate }>;
+
 export type Streaks = Readonly<{
   /** The run of identical outcomes that ends at the latest match. */
   current: Streak | null;
   /** The longest run of wins; on a tie in length the earliest run is kept. */
   bestWin: Streak | null;
+  /** The trailing matches without a loss; null when the latest match is a loss. */
+  currentUnbeaten: Run | null;
+  /** The trailing matches without a win; null when the latest match is a win. */
+  currentWinless: Run | null;
 }>;
+
+/** The run of matches at the end of `views` whose outcome is not `breaker`, or null. */
+function trailingRun(views: readonly MatchView[], breaker: Outcome): Run | null {
+  let start = views.length;
+  while (start > 0 && views[start - 1].outcome !== breaker) start -= 1;
+  if (start === views.length) return null;
+  return {
+    length: views.length - start,
+    from: views[start].match.date,
+    to: views[views.length - 1].match.date,
+  };
+}
 
 export function computeStreaks(views: readonly MatchView[]): Streaks {
   const runs: Streak[] = [];
@@ -38,5 +57,10 @@ export function computeStreaks(views: readonly MatchView[]): Streaks {
       (best, run) => (best === null || run.length > best.length ? run : best),
       null,
     );
-  return { current: runs[runs.length - 1] ?? null, bestWin };
+  return {
+    current: runs[runs.length - 1] ?? null,
+    bestWin,
+    currentUnbeaten: trailingRun(views, "L"),
+    currentWinless: trailingRun(views, "W"),
+  };
 }
