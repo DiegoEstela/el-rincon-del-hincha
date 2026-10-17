@@ -228,6 +228,39 @@ describe("generateCoverage: partial seasons and declared gaps", () => {
       /unknown competition "nope"/,
     );
   });
+
+  it("throws for a gap that ends before it starts", () => {
+    expect(() => rows(world(), [gap("2023-06-01", "2023-01-01")])).toThrow(
+      /gap of "liga" ends \(2023-01-01\) before it starts \(2023-06-01\)/,
+    );
+  });
+
+  it("throws for two gaps of one competition that share a day, whatever their order", () => {
+    const first = gap("2023-01-01", "2023-06-30");
+    const second = gap("2023-06-30", "2023-12-31");
+    expect(() => rows(world(), [first, second])).toThrow(/overlap/i);
+    expect(() => rows(world(), [second, first])).toThrow(/overlap/i);
+    expect(() => rows(world(), [gap("2023-01-01", null), gap("2024-01-01", null)])).toThrow(
+      /overlap/i,
+    );
+  });
+
+  it("accepts adjacent gaps and gaps of different competitions", () => {
+    const ds = world();
+    ds["competitions.json"].push(competition("copa"));
+    ds["seasons.json"].push(season("copa-2020", "copa", "2020-03-01", "2020-12-01"));
+    ds["matches.json"].push(
+      match("copa-2020", "2020-03-01", "a", "b"),
+      match("copa-2020", "2020-12-01", "b", "a"),
+    );
+    expect(() =>
+      rows(ds, [
+        gap("2023-01-01", "2023-06-30"),
+        gap("2023-07-01", "2023-12-31"),
+        gap("2023-01-01", null, "copa"),
+      ]),
+    ).not.toThrow();
+  });
 });
 
 describe("generateCoverage: assembly", () => {

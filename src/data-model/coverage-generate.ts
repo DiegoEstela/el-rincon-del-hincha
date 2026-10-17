@@ -49,6 +49,20 @@ export function generateCoverage(input: CoverageInput, gaps: readonly CoverageGa
     if (!competitionIds.has(g.competition_id)) {
       throw new Error(`coverage gap names unknown competition "${g.competition_id}"`);
     }
+    if (g.to !== null && g.to < g.from) {
+      throw new Error(`gap of "${g.competition_id}" ends (${g.to}) before it starts (${g.from})`);
+    }
+  }
+  // Two gaps of one competition must not share a day: they would produce overlapping rows.
+  for (const g of gaps) {
+    for (const other of gaps) {
+      if (g === other || g.competition_id !== other.competition_id) continue;
+      if (g.from <= (other.to ?? "9999-12-31") && other.from <= (g.to ?? "9999-12-31")) {
+        throw new Error(
+          `gaps of "${g.competition_id}" overlap: ${g.from} to ${g.to ?? "now"} and ${other.from} to ${other.to ?? "now"}`,
+        );
+      }
+    }
   }
 
   // Season load: matches per season, who played, and up to which day the data goes.
@@ -152,6 +166,8 @@ export function generateCoverage(input: CoverageInput, gaps: readonly CoverageGa
         add({
           club_id: club.id,
           competition_id: competition.id,
+          // Never undefined: a competition without seasons has declared gaps (checked above),
+          // and a gap gives every club a row, so this fallback only runs with seasons present.
           from: seasons[0].start,
           to: null,
           complete: false,
