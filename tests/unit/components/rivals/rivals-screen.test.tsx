@@ -104,6 +104,28 @@ describe("RivalsScreen", () => {
     );
   });
 
+  it("does not bring back an old error when the fan returns to a club", async () => {
+    let attemptsOfA = 0;
+    const loadData = vi.fn((id: string) => {
+      if (id === "club-b") return new Promise<ClubData>(() => undefined); // never answers
+      if (++attemptsOfA === 1) return Promise.reject(new Error("network"));
+      return Promise.resolve(docFor(id));
+    });
+    save("club-a");
+    render(<RivalsScreen clubs={clubs} loadData={loadData} />);
+    expect(
+      await screen.findByRole("heading", { name: "Se nos cortó la transmisión" }),
+    ).toBeInTheDocument();
+    save("club-b"); // B is still loading when the fan goes back to A
+    expect(await screen.findByText("Cargando tu historial…")).toBeInTheDocument();
+    save("club-a");
+    // Right after switching back the old failure must not flash: it is loading again.
+    expect(screen.queryByRole("heading", { name: "Se nos cortó la transmisión" })).toBeNull();
+    expect(
+      await screen.findByRole("heading", { level: 1, name: "Ficticio A vs. todos" }),
+    ).toBeInTheDocument();
+  });
+
   it("loads the new club when the saved club changes", async () => {
     const loadData = vi.fn(async (id: string) => docFor(id));
     save("club-a");

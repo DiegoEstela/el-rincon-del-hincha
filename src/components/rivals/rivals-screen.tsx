@@ -50,6 +50,9 @@ export function RivalsScreen({
     );
     return () => {
       cancelled = true;
+      // A result belongs to the club it was loaded for: going to another club and back must not
+      // bring back an old answer (an error would flash before the new load).
+      setLoad(null);
     };
   }, [clubId, attempt, loadData]);
 

@@ -12,6 +12,8 @@ export function RivalsSkeleton() {
     <div aria-busy="true" className="grid gap-4">
       <span className="sr-only">Cargando tu historial…</span>
       <div className={`${block} h-14 w-2/3`} />
+      <div className={`${block} h-36`} />
+      <div className={`${block} h-24`} />
       <div className="grid grid-cols-3 gap-2">
         {[0, 1, 2].map((i) => (
           <div key={i} className={`${block} h-24`} />
@@ -51,6 +53,9 @@ export function RivalsNoMatches({
   return (
     <section className="glass rounded-3xl p-8 text-center lg:rounded-xl lg:text-left">
       <h2 className="font-display text-3xl">Todavía no hay partidos para contar</h2>
+      {!filtersActive ? (
+        <p className="text-muted mt-2">Todavía no cargamos partidos de tu club en este período.</p>
+      ) : null}
       {filtersActive ? (
         <>
           <p className="text-muted mt-2">

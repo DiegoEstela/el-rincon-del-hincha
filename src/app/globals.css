@@ -186,7 +186,8 @@ html[data-club] .returning-slot {
 }
 
 /* /rivales: until hydration tells us if a club is saved, show the skeleton to a returning fan
-   (the boot script sets data-club) and the empty state to a new one, with no flash. */
+   (the boot script sets data-club) and the empty state to a new one, with no flash. Both blocks
+   are in the DOM (each has an h1), so these two rules must stay: dropping them duplicates it. */
 html[data-club] .pending-empty {
   display: none;
 }

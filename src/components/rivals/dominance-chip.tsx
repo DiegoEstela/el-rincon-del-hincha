@@ -24,7 +24,7 @@ export function DominanceChip({ dominance }: { dominance: Dominance }) {
   return (
     <span
       data-dominance={dominance}
-      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium whitespace-nowrap ${classes}`}
+      className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-sm font-medium whitespace-nowrap ${classes}`}
     >
       <Icon aria-hidden size={14} />
       {label}

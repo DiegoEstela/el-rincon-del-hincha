@@ -41,3 +41,7 @@ Options evaluated (details and numbers in plan 0015, "Where the computation runs
 - The statistics are computed after hydration, so the numbers are never in the server HTML: the shell shows a skeleton (returning visitor) or the empty state (no saved club), selected before hydration by the `html[data-club]` attribute that the boot script of ADR 0013 already sets. Search engines see the shell only, which is fine for personal data.
 - Supabase reads stay planned only where the server must know the data (comparisons, #16; share images, Fase 4). ADR 0006's tables are unchanged. If server-side statistics are ever needed (for example an OG image with numbers), the same engine runs on the server over the same slice.
 - The 170 KB budget leaves about 27 KB for the rivals screen over the current shell; plan 0015 caps its client code at 20 KB gzip.
+
+## Note: what the screens may show about the start date (2026-10-17)
+
+The rivals screen shows the month and year the counted period starts in ("Desde mayo de 1990"). That text derives from the start date, which can be a birth date. It stays on the device and is only rendered, never sent anywhere; the privacy audit of plan 0015 accepted it. Future screens must not add logging, analytics or any request around it, and the view model must keep returning a month and year, never the date.

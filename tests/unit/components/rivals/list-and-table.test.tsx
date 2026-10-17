@@ -121,10 +121,7 @@ describe("RivalsTable (desktop)", () => {
       "aria-sort",
       "descending",
     );
-    expect(screen.getByRole("columnheader", { name: "Rival" })).toHaveAttribute(
-      "aria-sort",
-      "none",
-    );
+    expect(screen.getByRole("columnheader", { name: "Rival" })).not.toHaveAttribute("aria-sort");
     cleanup();
     renderTable("played");
     expect(screen.getByRole("columnheader", { name: /PJ/ })).toHaveAttribute(

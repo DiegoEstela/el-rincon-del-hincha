@@ -181,6 +181,9 @@ describe("states", () => {
     const onReset = vi.fn();
     const { rerender } = render(<RivalsNoMatches filtersActive={false} onReset={onReset} />);
     expect(screen.getByText("Todavía no hay partidos para contar")).toBeInTheDocument();
+    expect(
+      screen.getByText("Todavía no cargamos partidos de tu club en este período."),
+    ).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Limpiar filtros" })).toBeNull();
     rerender(<RivalsNoMatches filtersActive onReset={onReset} />);
     expect(

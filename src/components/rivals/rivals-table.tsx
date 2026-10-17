@@ -5,7 +5,8 @@ import type { RivalRowView } from "@/lib/rivals-view";
 import { DominanceChip } from "./dominance-chip";
 import { RecordBar } from "./record-bar";
 
-type Sorted = "ascending" | "descending" | "none";
+/** Only the sorted column says so: "none" is the default and adds noise for a screen reader. */
+type Sorted = "ascending" | "descending" | undefined;
 
 const NUMBERS = [
   ["PJ", "Partidos jugados", "played"],
@@ -26,7 +27,7 @@ export function RivalsTable({
   competitions: string;
 }) {
   const sorted = (key: SortKey): Sorted =>
-    sort === key ? (key === "name" ? "ascending" : "descending") : "none";
+    sort === key ? (key === "name" ? "ascending" : "descending") : undefined;
   const head = "text-muted px-3 py-3 text-left text-xs font-medium";
   return (
     <div className="hidden overflow-x-auto lg:block">
@@ -43,7 +44,7 @@ export function RivalsTable({
               <th
                 key={short}
                 scope="col"
-                aria-sort={short === "PJ" ? sorted("played") : "none"}
+                aria-sort={short === "PJ" ? sorted("played") : undefined}
                 className={`${head} text-right`}
               >
                 <abbr title={long}>{short}</abbr>
