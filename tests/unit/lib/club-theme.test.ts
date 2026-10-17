@@ -25,15 +25,15 @@ describe("pickAccentBase", () => {
     expect(pickAccentBase({ primary: "#111111", secondary: "#1a9850" })).toBe("#1a9850");
   });
   it("takes the tertiary when it is the only chromatic color", () => {
-    expect(
-      pickAccentBase({ primary: "#ffffff", secondary: "#111111", tertiary: "#1d4ed8" }),
-    ).toBe("#1d4ed8");
+    expect(pickAccentBase({ primary: "#ffffff", secondary: "#111111", tertiary: "#1d4ed8" })).toBe(
+      "#1d4ed8",
+    );
   });
   it("takes the lightest color when all are neutral", () => {
     expect(pickAccentBase({ primary: "#111111", secondary: "#ffffff" })).toBe("#ffffff");
-    expect(
-      pickAccentBase({ primary: "#111111", secondary: "#444444", tertiary: "#bbbbbb" }),
-    ).toBe("#bbbbbb");
+    expect(pickAccentBase({ primary: "#111111", secondary: "#444444", tertiary: "#bbbbbb" })).toBe(
+      "#bbbbbb",
+    );
   });
 });
 
