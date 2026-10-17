@@ -28,7 +28,7 @@ The onboarding (`/`, issue #40) lets the fan pick a club and a start date (birth
 ## Consequences
 
 - No flash and no dynamic rendering: every route stays a static shell, and the theme is right on the first paint of a hard navigation. The cost is a 2.5 KB style block and a 300-byte script in every HTML page.
-- A future Content Security Policy must allow the inline script by hash or nonce (the script is a constant, so a hash works).
+- A future Content Security Policy must allow the inline script by hash or nonce (the script is a constant, so a hash works). Update: the boot script alone could use a hash, but Next's own inline scripts cannot; see [0014](0014-security-headers-policy.md).
 - Several clubs share an accent (all the reds become the same coral), because the palette of ADR 0012 is shared. Identity comes from the crest; the accent is a mood.
 - Some lifted accents move away from the shirt color (granate becomes a rose, brown a tan, navy a light blue). The plan lists every club's accent for Diego to approve. A club whose lifted color is not acceptable gets a decision from Diego, not an ad hoc hex.
 - `src/lib/contrast.ts` stops being test tooling only: the server uses it at build time. It must stay out of the client bundle (only server modules import it).
