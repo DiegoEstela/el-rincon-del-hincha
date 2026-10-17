@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.4.0...v0.5.0) (2026-10-17)
+
+
+### Features
+
+* **data:** derive the coverage table and validate it ([#63](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/63)) ([bd9501b](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/bd9501b29ab51864341ca7f4a1797bdde4e336a8))
+
 ## [0.4.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.3.0...v0.4.0) (2026-10-17)
 
 
