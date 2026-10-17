@@ -22,3 +22,14 @@ Independiente Rivadavia (issue #48) was left out by plan 0007 because its offici
 - No schema, validator or migration change: `secondary` stays required, the Supabase constraints stay as they are, and seeding needs no migration.
 - A trim color can change with the next kit. The record pins the trim verified on the date in the log; a later change is a normal data PR with new sources. The id never changes.
 - If Diego prefers the optional `secondary` (rejected alternative of D1), this ADR is superseded by one that relaxes the schema, adds a migration with parity tests, and amends ADR 0012 decision 5 (a single dark color cannot reach 3:1 against the app backgrounds).
+
+## Known weakness: Independiente Rivadavia (recorded 2026-10-17)
+
+Decision 2 asks for two independent sources for the trim. For `independiente-rivadavia` the rule is met only weakly, and Diego accepted it knowing this:
+
+- Mendoza Post (16 Jan 2026) names a white detail on the sleeves and the collar of the home shirt.
+- El Sol (17 Jan 2026) names a white edge (`ribete`) on the **shorts** only, and describes the 2026 shirt as "azul eléctrico en Jacquard", which disagrees with Wikipedia, the official site and Mendoza Post (all dark blue). The one source that disputes the shade is also one of the two that support the trim.
+- The official site never mentions white, and the cited Wikipedia revision calls the shirt "lisa".
+- The kit that both reports describe is the 2026 home kit, so the trim can change with the next kit.
+
+`primary` stays `azul marino` (three sources against one) and `secondary` stays `blanco`. A better source (a kit-launch caption or the club's own post describing white on the shirt) would settle it; until then the record is the least certain of the five and is flagged as such in plan 0012.
