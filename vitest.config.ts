@@ -26,6 +26,7 @@ export default defineConfig({
         branches: 80,
         "src/domain/**": { branches: 100 },
         "src/data-model/**": { branches: 100 },
+        "src/lib/**": { branches: 100 },
       },
     },
   },

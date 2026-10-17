@@ -30,6 +30,7 @@ describe("pickAccentBase", () => {
     );
   });
   it("takes the lightest color when all are neutral", () => {
+    expect(pickAccentBase({ primary: "#ffffff", secondary: "#111111" })).toBe("#ffffff");
     expect(pickAccentBase({ primary: "#111111", secondary: "#ffffff" })).toBe("#ffffff");
     expect(pickAccentBase({ primary: "#111111", secondary: "#444444", tertiary: "#bbbbbb" })).toBe(
       "#bbbbbb",
