@@ -50,6 +50,19 @@ const FILTERS: MatchFilter[] = [
   { competitionTypes: ["international"] },
 ];
 
+const PAIRS: [string, string][] = [
+  ["river-plate", "boca-juniors"],
+  ["belgrano", "talleres-cordoba"],
+  ["arsenal", "racing-club"],
+  ["colon", "union"],
+  ["san-martin-tucuman", "atletico-tucuman"],
+  ["independiente-rivadavia", "godoy-cruz"],
+  ["barracas-central", "river-plate"],
+  ["aldosivi", "tigre"],
+  ["estudiantes-la-plata", "gimnasia-la-plata"],
+  ["patronato", "newells-old-boys"],
+];
+
 describe("a club slice gives the engine the same answers as the full dataset", () => {
   for (const clubId of clubIds) {
     it(`rivals of ${clubId}`, () => {
@@ -70,18 +83,6 @@ describe("a club slice gives the engine the same answers as the full dataset", (
     });
   }
 
-  const PAIRS: [string, string][] = [
-    ["river-plate", "boca-juniors"],
-    ["belgrano", "talleres-cordoba"],
-    ["arsenal", "racing-club"],
-    ["colon", "union"],
-    ["san-martin-tucuman", "atletico-tucuman"],
-    ["independiente-rivadavia", "godoy-cruz"],
-    ["barracas-central", "river-plate"],
-    ["aldosivi", "tigre"],
-    ["estudiantes-la-plata", "gimnasia-la-plata"],
-    ["patronato", "newells-old-boys"],
-  ];
   for (const [a, b] of PAIRS) {
     it(`head to head ${a} v ${b} on two merged slices`, () => {
       const merged = buildStatsIndex(
@@ -93,6 +94,44 @@ describe("a club slice gives the engine the same answers as the full dataset", (
       }
     });
   }
+});
+
+describe("every ordered pair of clubs", () => {
+  it("gives the same head to head on two merged slices as on the full dataset", () => {
+    const started = Date.now();
+    const slices = new Map(clubIds.map((id) => [id, sliceClubData(full, id)]));
+    const period = fanPeriod("1990-05-20", NOW);
+    let pairs = 0;
+    for (const a of clubIds) {
+      for (const b of clubIds) {
+        if (a === b) continue;
+        const merged = buildStatsIndex(statsDataFromClubData(slices.get(a)!, slices.get(b)!));
+        expect(headToHead(merged, a, b, period), `${a} v ${b}`).toEqual(
+          headToHead(fullIndex, a, b, period),
+        );
+        pairs += 1;
+      }
+    }
+    expect(pairs).toBe(clubIds.length * (clubIds.length - 1));
+    console.info(`${pairs} ordered pairs in ${Date.now() - started} ms`);
+  });
+
+  it("holds for every filter and the narrowed period on the fixed pairs", () => {
+    const narrowed = narrowPeriod(fanPeriod("1990-05-20", NOW), { fromYear: 2019, toYear: 2019 });
+    for (const [a, b] of PAIRS) {
+      const merged = buildStatsIndex(
+        statsDataFromClubData(sliceClubData(full, a), sliceClubData(full, b)),
+      );
+      for (const start of STARTS) {
+        for (const filter of FILTERS) {
+          expect(headToHead(merged, a, b, fanPeriod(start, NOW), filter)).toEqual(
+            headToHead(fullIndex, a, b, fanPeriod(start, NOW), filter),
+          );
+        }
+      }
+      expect(headToHead(merged, a, b, narrowed)).toEqual(headToHead(fullIndex, a, b, narrowed));
+    }
+  });
 });
 
 describe("size of the per-club documents (ADR 0018)", () => {
