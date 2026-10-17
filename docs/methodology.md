@@ -82,3 +82,21 @@ The engine in `src/domain` (ADR 0010, plan 0005) is the only implementation of t
   - A competition with no coverage row and no match anywhere is unknown to the engine; `isComplete` means complete for the competitions listed, not that nothing is missing.
   - A club that once played a competition and then left it (for example by relegation) shows that competition as `missing` for fans whose period overlaps a later season of it. This is a deliberate, safe false warning: the engine cannot tell a club that left from a club whose ingestion stopped.
   - Head-to-head final series can include legs outside the period when those legs decide the winner of the final, while the record only counts matches inside the period.
+
+## Ingestion
+
+Adapters in `scripts/ingest/` turn an external source into records of `data/` (ADR 0015). Run one with `pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>]`.
+
+- **Pinned input.** An adapter reads a fixed upstream revision and checks the sha256 of every file. A mismatch stops the run; moving to a newer revision is a normal data PR.
+- **Ownership.** An adapter replaces only the matches whose `source` starts with its own prefix. Competitions and seasons are added when missing and never overwritten: a difference is a conflict that stops the run.
+- **Write only valid data.** The complete next dataset must pass the same validator as `pnpm data:validate`. If anything fails, nothing is written and every problem is printed.
+- **Determinism.** Same input and same `clubs.json` give the same bytes. Records are sorted by key and the files are stable under Prettier. A second run changes nothing.
+- **Unknown clubs stop the run.** Team names resolve only through the club aliases (ADR 0012). Every unresolved name is listed together with the first file and line; a match is never dropped or guessed.
+- **Match ids** are `<date>-<home_id>-<away_id>`, so the same match has the same id whatever the source.
+
+### openfootball (Argentine Primera División, 2018-19 to 2025)
+
+- Each file is one tournament. Matches are stored with the regulation score. A shoot-out is recorded as a draw plus the penalties (`decision: "penalties"`), as in the rules above.
+- `is_final` is true only for the match that decides a title (the `Fase Campeón, Final` of the 2020 Copa de la Liga). The other two "finals" of that file (`Fase Complementación, Final` and the Copa Sudamericana qualifier) are stored with `is_final: false`.
+- Every openfootball record is `verified: false` (single source). Cross-checking against a second source is what can set it to `true`.
+- The 2025 file only has the group stage of the Apertura (until 2025-05-04). Its season ends on 2025-06-01, the day of the final, and the run report marks it partial so the coverage table (issue #12) does not present it as complete.
