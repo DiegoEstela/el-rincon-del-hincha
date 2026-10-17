@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.2.0...v0.3.0) (2026-10-17)
+
+
+### Features
+
+* **security:** add security headers and a Content-Security-Policy ([#56](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/56)) ([7a6a5d4](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/7a6a5d482f28f89151f4222973c83d807ba48f09))
+
 ## [0.2.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.1.0...v0.2.0) (2026-10-17)
 
 
