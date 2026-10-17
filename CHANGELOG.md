@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.3.0...v0.4.0) (2026-10-17)
+
+
+### Features
+
+* **data:** add Arsenal, Colón, Patronato, San Martín de Tucumán and Independiente Rivadavia ([#61](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/61)) ([bc9fa9f](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/bc9fa9f796f728dc830a1dc430beda8f0ec6ed9e))
+* **ingest:** add the adapter core and the openfootball adapter ([#58](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/58)) ([035440e](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/035440efb8e4de6f3e80f8d96438c2a75c1179b4))
+
 ## [0.3.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.2.0...v0.3.0) (2026-10-17)
 
 
