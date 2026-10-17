@@ -12,6 +12,7 @@ import { buildStatsIndex, statsDataFrom } from "@/domain/data";
 import { headToHead } from "@/domain/head-to-head";
 import { fanPeriod, narrowPeriod } from "@/domain/period";
 import { groupRivals } from "@/domain/rivals";
+import { buildRivalryView } from "@/lib/rivalry-view";
 import type { MatchFilter } from "@/domain/types";
 
 const NOW = new Date("2026-10-17T12:00:00Z");
@@ -130,6 +131,35 @@ describe("every ordered pair of clubs", () => {
         }
       }
       expect(headToHead(merged, a, b, narrowed)).toEqual(headToHead(fullIndex, a, b, narrowed));
+    }
+  });
+});
+
+describe("the rivalry view", () => {
+  it("is the same on two merged slices as on the full dataset", () => {
+    const names = (items: readonly { id: string; name: string }[]) =>
+      new Map(items.map((item) => [item.id, item.name]));
+    for (const [a, b, startDate] of [
+      ["river-plate", "boca-juniors", "1990-05-20"],
+      ["boca-juniors", "banfield", "1990-05-20"],
+      ["belgrano", "talleres-cordoba", "2000-01-01"],
+    ]) {
+      const input = {
+        clubId: a,
+        rivalId: b,
+        startDate,
+        startMode: "birth" as const,
+        now: NOW,
+        catalog: new Map(),
+        competitionNames: names(full.competitions),
+        seasonNames: names(full.seasons),
+      };
+      const merged = buildStatsIndex(
+        statsDataFromClubData(sliceClubData(full, a), sliceClubData(full, b)),
+      );
+      expect(buildRivalryView({ ...input, index: merged })).toEqual(
+        buildRivalryView({ ...input, index: fullIndex }),
+      );
     }
   });
 });
