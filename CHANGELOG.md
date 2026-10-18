@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.4.0...v0.5.0) (2026-10-18)
+
+
+### Features
+
+* **data:** derive the coverage table and validate it ([#63](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/63)) ([bd9501b](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/bd9501b29ab51864341ca7f4a1797bdde4e336a8))
+* **rivales:** add the "[my club] vs. everyone" screen ([#68](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/68)) ([81b6d00](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/81b6d00e3b368e54862dee14fe5d8b7a882afca0))
+* **rivales:** add the rivalry detail screen ([#66](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/66)) ([#69](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/69)) ([e48b6ac](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/e48b6ac7832a43f58f257e4bfe418ed6a5c95bb9))
+
 ## [0.4.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.3.0...v0.4.0) (2026-10-17)
 
 
