@@ -352,8 +352,13 @@ Dates on this screen are match dates ("27 de abril de 2025") or months of match 
 
 ## Decisions recorded
 
-(Filled in after Diego answers.)
+Diego answered D1 to D10 with "Aprobar como está (Recomendado)" on 2026-10-18: no filters on the detail, the stake rules with `STAKE_NEAR = 3`, the unbeaten and winless runs in the streak headline, "desde que naciste" by start mode, a real 404 for unknown ids and a friendly state for the same club, whole-card links, `noindex, follow`, the section order of D8, the finals section kept with an empty line, and the copy table as written.
 
 ## Verification log
 
-(Filled in during T1, T3 and T19.)
+- **T1 (2026-10-18).** Production build with the spike page: `/rivales/[rival]` prerendered for the 34 ids; `/rivales/boca-juniors` 200; `/rivales/not-a-club` and `/rivales/..%2Fapi` 404 with `noindex`; no file for unknown ids under `.next/server/app/rivales/` (the rendered 404 is kept in `.next/server/route-cache/`, see ADR 0019). The soft 404 fallback is not needed.
+- **T3.** `headToHead` on two merged slices deep-equals the full dataset for all 1,122 ordered pairs (about 1 s) and for the 10 fixed pairs with every start, filter and the narrowed period; `buildRivalryView` is equal for River v Boca, Boca v Banfield and Belgrano v Talleres.
+- **T4.** The golden values of the plan hold on the real data (`tests/integration/rivalry-golden.test.ts`).
+- **T19 budget.** Module scripts of `.next/server/app/rivales/boca-juniors.html`: 152.9 KB gzip (shell baseline 142.8 KB, limit 170 KB); `/rivales`: 151.5 KB (plan 0015: 150.6 KB, plus 0.9 KB for the links); no Zod in the route chunks.
+- **Coverage.** `pnpm test:coverage`: 100% of statements and branches in `src/domain`, `src/data-model` and `src/lib`.
+- **Fixes found while building.** `<Activity>` hid `/rivales` and its effect cleanup dropped the result and the filters (fixed in `useClubDocuments`, with a test that fails on the old code); an absolutely positioned `sr-only` span gave the link the name "Boca , ver el mano a mano" in Chromium, so the links use `aria-label`.

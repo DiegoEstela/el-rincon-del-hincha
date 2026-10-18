@@ -4,7 +4,8 @@ import type { ReactNode } from "react";
 
 /**
  * The link to a rival's detail (plan 0016). The accessible name starts with the visible name
- * ("Boca, ver el mano a mano"). With `stretched` the link's box covers its positioned parent, so
+ * ("Boca, ver el mano a mano"); an `aria-label` gives it without the stray space an absolutely
+ * positioned `sr-only` span adds in Chromium. With `stretched` the link's box covers its positioned parent, so
  * the whole card is the target while the DOM keeps one link per card.
  */
 export function RivalLink({
@@ -24,10 +25,10 @@ export function RivalLink({
   return (
     <Link
       href={`/rivales/${rivalId}`}
+      aria-label={`${shortName}, ver el mano a mano`}
       className={`${box} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
     >
       {children ?? shortName}
-      <span className="sr-only">, ver el mano a mano</span>
     </Link>
   );
 }

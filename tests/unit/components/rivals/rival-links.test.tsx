@@ -43,8 +43,8 @@ describe("links to the rivalry detail", () => {
   it("keeps the visible name first in the accessible name", () => {
     render(<RivalCardList rows={rows} />);
     const link = screen.getByRole("link", { name: /^Unión/ });
-    expect(link).toHaveTextContent("Unión, ver el mano a mano");
-    expect(link.querySelector(".sr-only")).not.toBeNull();
+    expect(link).toHaveAttribute("aria-label", "Unión, ver el mano a mano");
+    expect(link).toHaveTextContent(/^Unión$/);
   });
 
   it("does not make the chip focusable", () => {

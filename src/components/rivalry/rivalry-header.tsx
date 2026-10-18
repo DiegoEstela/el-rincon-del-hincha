@@ -20,12 +20,11 @@ export function RivalryHeader({
     <header className="grid gap-4">
       <Link
         href="/rivales"
+        aria-label="Volver a Rivales"
         className="text-muted hover:text-foreground focus-visible:outline-accent -ml-2 inline-flex min-h-11 w-fit items-center gap-2 rounded-lg px-2 focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         <ArrowLeft aria-hidden size={18} />
-        <span>
-          <span className="sr-only">Volver a</span> Rivales
-        </span>
+        <span>Rivales</span>
       </Link>
       <div className="flex items-center gap-4">
         <div aria-hidden className="flex shrink-0 items-center gap-2">

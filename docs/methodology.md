@@ -118,6 +118,19 @@ The "[Mi club] vs. Todos" screen (plan 0015, ADR 0018) computes in the browser o
   - A club that once played a competition and then left it (for example by relegation) shows that competition as `missing` for fans whose period overlaps a later season of it. This is a deliberate, safe false warning: the engine cannot tell a club that left from a club whose ingestion stopped.
   - Head-to-head final series can include legs outside the period when those legs decide the winner of the final, while the record only counts matches inside the period.
 
+### Rivalry detail (UI)
+
+The "[Mi club] vs. [Rival]" screen (plan 0016, ADR 0019) computes one `headToHead` in the browser on the two club documents.
+
+- It always shows the whole fan period and every loaded competition. It has no filters, so "Lo que está en juego" and "desde que naciste" stay unambiguous.
+- **Streaks.** The headline is the longest of the current run of identical results, the unbeaten run and the winless run. A tie prefers the identical run, then the unbeaten one. Runs are counted inside the fan period only. A shoot-out is a draw, so it extends both the unbeaten and the winless run.
+- **What is at stake.** `STAKE_NEAR = 3` (in `src/lib/rivalry-copy.ts`). One dominance line always shows (wins to improve, or the cushion in losses when the fan dominates). The warning ("te pasan a dominar") shows only when the record is even and 3 or fewer losses away. The milestone line shows only when 3 or fewer wins away and the fan has won at least once; with no wins the "first win" line replaces it. A pair that never met has no lines.
+- **Wording by start mode.** "desde que naciste" when the fan chose the birth date, "desde que sos hincha" otherwise. Nothing else is said about the date; the screen shows only the month and year the period starts in.
+- **Coverage.** The same rules as the rivals screen: the notice shows whenever `isComplete` is false and the period is not empty, "Contamos: ..." and the line about the cups that are not loaded always show, and there is no complete badge. For a pair that never met the included line says so instead of "no matches loaded".
+- **Finals.** A series can have legs before the period start (marked "antes de tu período"); the series belongs to the period by its last leg.
+- **Biggest win and loss.** Played matches only: an administrative result is never one of them.
+- Match dates are public facts and are shown in full. A match with only a season precision (ADR 0011) will need to show the season instead; today every match has a day.
+
 ## Ingestion
 
 Adapters in `scripts/ingest/` turn an external source into records of `data/` (ADR 0015). Run one with `pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>]`.

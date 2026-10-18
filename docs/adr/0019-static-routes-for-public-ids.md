@@ -32,7 +32,7 @@ Options evaluated (details in plan 0016, "Discarded alternatives"):
 
 ## Consequences
 
-- Known ids are files on the CDN; there is no function cost except for unknown ids, each of which costs one render ending in `notFound()` (the same order of cost as the 400 of `/api/clubs/[clubId]`). The T1 check confirms that unknown ids are not stored as pages.
+- Known ids are files on the CDN; there is no function cost except for unknown ids, each of which costs one render ending in `notFound()` (the same order of cost as the 400 of `/api/clubs/[clubId]`). The T1 check found that unknown ids create no file under `.next/server/app/`, but a rendered 404 is kept in the runtime route cache (`.next/server/route-cache/`, `s-maxage` one year) with its own entry per id. On a self-hosted disk that is one small entry per distinct unknown id; on Vercel it is the platform cache.
 - The public part of the page (the rival's name and crest) is in the static HTML, which helps the first paint; the numbers still arrive after hydration (ADR 0018).
 - A "same club" visit is a 200 with a friendly state, not an error: the server cannot know the fan's club, and the browser decides.
 - `ensureStatic` is new in Next 16.4. If it changes, removing it keeps the route static; the build output check in each plan (route list, prerendered paths) stays the second line of defense.
@@ -48,3 +48,5 @@ On a production build (`pnpm build`, `pnpm start`) with a minimal page and `ensu
 - No file is created under `.next/server/app/rivales/` for unknown ids.
 
 The soft 404 fallback (decision 5) is therefore not needed.
+
+Found later, on Windows only: the file system there ignores case, so a request for `/rivales/BOCA-JUNIORS` and one for `/rivales/boca-juniors` share files. It is a local artifact (Linux and Vercel are case-sensitive and treat the uppercase id as an unknown one, which is a 404). Delete `.next/server/route-cache` after probing unknown ids by hand before running the end to end suite.
