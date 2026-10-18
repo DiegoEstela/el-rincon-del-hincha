@@ -28,10 +28,28 @@ describe("/rivales/[rival] page", () => {
     expect(pageModule.ensureStatic).toBe("navigation");
   });
 
-  it("renders the rival it was asked for", async () => {
+  it("prerenders both pending blocks with the rival and no date", async () => {
     const element = await RivalryPage({ params: Promise.resolve({ rival: "boca-juniors" }) });
-    expect(renderToString(element)).toContain("Boca");
+    const html = renderToString(element);
+    expect(html).toContain("Tu club vs. Boca");
+    expect(html).toContain("pending-skeleton");
+    expect(html).toContain("pending-empty");
+    expect(html).toContain("Cargando el mano a mano…");
+    expect(html).toContain("Todavía no elegiste tu club");
+    expect(html).not.toMatch(/\d{4}-\d{2}-\d{2}/);
     expect(notFound).not.toHaveBeenCalled();
+  });
+
+  it("builds metadata from the public rival only, and asks not to be indexed", async () => {
+    const metadata = await pageModule.generateMetadata({
+      params: Promise.resolve({ rival: "boca-juniors" }),
+    });
+    expect(metadata.title).toBe("Boca Juniors · Rivales");
+    expect(String(metadata.description)).toContain("Boca Juniors");
+    expect(metadata.robots).toEqual({ index: false, follow: true });
+    expect(
+      await pageModule.generateMetadata({ params: Promise.resolve({ rival: "nope" }) }),
+    ).toEqual({});
   });
 
   it("answers not found for an id outside the dataset, without echoing it", async () => {
@@ -50,8 +68,13 @@ describe("/rivales/[rival] not-found", () => {
       vi.spyOn(console, m).mockImplementation(() => undefined),
     );
     render(<NotFound />);
-    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /rivales/i })).toHaveAttribute("href", "/rivales");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Ese rival no está en nuestro fixture" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Ver tus rivales" })).toHaveAttribute(
+      "href",
+      "/rivales",
+    );
     spies.forEach((s) => expect(s).not.toHaveBeenCalled());
   });
 });
