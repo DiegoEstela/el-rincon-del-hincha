@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Crest } from "@/components/crest";
 import { CoverageNotice } from "@/components/coverage/coverage-notice";
+import { useClubDocuments } from "@/components/fan/use-club-documents";
 import { useFanChoice } from "@/components/fan/use-fan-choice";
 import { statsDataFromClubData, type ClubData } from "@/domain/club-data";
 import { buildStatsIndex } from "@/domain/data";
@@ -19,8 +20,6 @@ import { RivalsSummary } from "./rivals-summary";
 import { RivalsTable } from "./rivals-table";
 import { RivalsEmpty, RivalsError, RivalsNoMatches, RivalsSkeleton } from "./rivals-states";
 
-type Load =
-  { clubId: string; status: "ready"; data: ClubData } | { clubId: string; status: "error" };
 type RawFilters = { fromYear?: number; toYear?: number; type?: TypeFilter; sort: SortKey };
 
 /**
@@ -37,24 +36,8 @@ export function RivalsScreen({
 }) {
   const clubIds = useMemo(() => new Set(clubs.map((club) => club.id)), [clubs]);
   const choice = useFanChoice(clubIds);
-  const [load, setLoad] = useState<Load | null>(null);
-  const [attempt, setAttempt] = useState(0);
   const clubId = choice === "unknown" || choice === null ? null : choice.clubId;
-
-  useEffect(() => {
-    if (clubId === null) return;
-    let cancelled = false;
-    loadData(clubId).then(
-      (data) => !cancelled && setLoad({ clubId, status: "ready", data }),
-      () => !cancelled && setLoad({ clubId, status: "error" }),
-    );
-    return () => {
-      cancelled = true;
-      // A result belongs to the club it was loaded for: going to another club and back must not
-      // bring back an old answer (an error would flash before the new load).
-      setLoad(null);
-    };
-  }, [clubId, attempt, loadData]);
+  const documents = useClubDocuments(clubId === null ? null : [clubId], loadData);
 
   if (choice === "unknown") {
     return (
@@ -70,19 +53,11 @@ export function RivalsScreen({
   }
   if (choice === null) return <RivalsEmpty />;
 
-  const current = load !== null && load.clubId === choice.clubId ? load : null;
-  if (current === null) return <RivalsSkeleton />;
-  if (current.status === "error") {
-    return (
-      <RivalsError
-        onRetry={() => {
-          setLoad(null);
-          setAttempt((n) => n + 1);
-        }}
-      />
-    );
-  }
-  return <RivalsContent key={choice.clubId} choice={choice} data={current.data} clubs={clubs} />;
+  if (documents.status === "error") return <RivalsError onRetry={documents.retry} />;
+  if (documents.status !== "ready") return <RivalsSkeleton />;
+  return (
+    <RivalsContent key={choice.clubId} choice={choice} data={documents.docs[0]} clubs={clubs} />
+  );
 }
 
 function RivalsContent({

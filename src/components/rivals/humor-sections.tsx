@@ -1,6 +1,7 @@
 import { Crest } from "@/components/crest";
 import { formatBalance } from "@/lib/rivals-format";
 import type { RivalRowView, RivalsView } from "@/lib/rivals-view";
+import { RivalLink } from "./rival-link";
 
 const SECTIONS = [
   {
@@ -28,9 +29,11 @@ const SECTIONS = [
 
 function Row({ row }: { row: RivalRowView }) {
   return (
-    <li className="flex min-h-11 items-center gap-3">
+    <li className="has-[:focus-visible]:outline-accent relative flex min-h-11 items-center gap-3 rounded-lg has-[:focus-visible]:outline-2">
       {row.crest ? <Crest spec={row.crest} className="size-8 shrink-0" /> : null}
-      <span className="flex-1 truncate font-medium">{row.shortName}</span>
+      <span className="min-w-0 flex-1 truncate font-medium">
+        <RivalLink rivalId={row.rivalId} shortName={row.shortName} stretched />
+      </span>
       <span className="text-muted text-sm tabular-nums">Saldo {formatBalance(row.balance)}</span>
     </li>
   );

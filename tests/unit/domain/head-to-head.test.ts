@@ -172,6 +172,10 @@ describe("head-to-head: streaks, biggest win and loss, finals, what is at stake"
       to: "2021-11-01",
     });
   });
+  it("passes the unbeaten and winless runs of the pair through", () => {
+    expect(h2h.currentUnbeaten).toMatchObject({ length: expect.any(Number), to: "2024-08-01" });
+    expect(h2h.currentWinless).toBeNull();
+  });
   it("does not use the results against other clubs for the pair's current streak", () => {
     const index = indexWith([
       game("g1", "2020-03-01", "club-a", "club-b", 1, 0),

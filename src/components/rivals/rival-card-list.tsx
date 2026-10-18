@@ -2,6 +2,7 @@ import { Crest } from "@/components/crest";
 import { formatBalance } from "@/lib/rivals-format";
 import type { RivalRowView } from "@/lib/rivals-view";
 import { DominanceChip } from "./dominance-chip";
+import { RivalChevron, RivalLink } from "./rival-link";
 import { RecordBar } from "./record-bar";
 
 const STATS = [
@@ -16,11 +17,17 @@ export function RivalCardList({ rows }: { rows: readonly RivalRowView[] }) {
   return (
     <ul aria-label="Rivales" className="grid gap-2 lg:hidden">
       {rows.map((row) => (
-        <li key={row.rivalId} className="glass rounded-2xl p-3">
+        <li
+          key={row.rivalId}
+          className="glass has-[:focus-visible]:outline-accent relative rounded-2xl p-3 has-[:focus-visible]:outline-2"
+        >
           <div className="flex items-center gap-3">
             {row.crest ? <Crest spec={row.crest} className="size-9 shrink-0" /> : null}
-            <span className="flex-1 truncate text-base font-medium">{row.shortName}</span>
+            <span className="min-w-0 flex-1 truncate text-base font-medium">
+              <RivalLink rivalId={row.rivalId} shortName={row.shortName} stretched />
+            </span>
             <DominanceChip dominance={row.dominance} />
+            <RivalChevron />
           </div>
           <dl className="mt-3 grid grid-cols-5 gap-1 text-center">
             {STATS.map(([label, key]) => (

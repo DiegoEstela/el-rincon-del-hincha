@@ -4,6 +4,7 @@ import { formatBalance } from "@/lib/rivals-format";
 import type { RivalRowView } from "@/lib/rivals-view";
 import { DominanceChip } from "./dominance-chip";
 import { RecordBar } from "./record-bar";
+import { RivalLink } from "./rival-link";
 
 /** Only the sorted column says so: "none" is the default and adds noise for a screen reader. */
 type Sorted = "ascending" | "descending" | undefined;
@@ -64,11 +65,15 @@ export function RivalsTable({
         <tbody>
           {rows.map((row) => (
             <tr key={row.rivalId} className="border-glass-border h-12 border-t">
-              <td className="px-3">
-                <span className="flex items-center gap-2">
+              <td className="p-0">
+                <RivalLink
+                  rivalId={row.rivalId}
+                  shortName={row.shortName}
+                  className="flex h-12 items-center gap-2 px-3 font-medium"
+                >
                   {row.crest ? <Crest spec={row.crest} className="size-6 shrink-0" /> : null}
-                  <span className="font-medium">{row.shortName}</span>
-                </span>
+                  {row.shortName}
+                </RivalLink>
               </td>
               {NUMBERS.map(([short, , key]) => (
                 <td key={short} className="px-3 text-right tabular-nums">

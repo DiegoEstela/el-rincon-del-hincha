@@ -44,7 +44,9 @@ type FetchLike = (url: string, init?: RequestInit) => Promise<Response>;
 async function fetchDocument(fetchImpl: FetchLike, clubId: string): Promise<ClubData> {
   let response: Response;
   try {
-    response = await fetchImpl(`/api/clubs/${clubId}`, { credentials: "same-origin" });
+    response = await fetchImpl(`/api/clubs/${encodeURIComponent(clubId)}`, {
+      credentials: "same-origin",
+    });
   } catch {
     throw new ClubDataError("network");
   }
