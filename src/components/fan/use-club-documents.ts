@@ -17,7 +17,8 @@ type Result = { key: string } & (
  * never shows for another club. It is deliberately NOT dropped when the effect is cleaned up,
  * because React `<Activity>` runs the cleanup when it hides a route and the state must survive
  * until the fan comes back. `retry` loads again; the loader forgets failed requests, so only the
- * failed documents are requested again.
+ * failed documents are requested again. The loader must be idempotent and cache by id (the
+ * default does): the effect runs again when a hidden route is shown.
  */
 export function useClubDocuments(
   ids: readonly string[] | null,

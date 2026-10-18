@@ -23,7 +23,9 @@ export function RecordPanel({ record }: { record: RivalryView["record"] }) {
         {STATS.map(([short, long, key]) => (
           <div key={short}>
             <dt className="text-muted text-xs">
-              <abbr title={long}>{short}</abbr>
+              <abbr title={long} aria-label={long}>
+                {short}
+              </abbr>
             </dt>
             <dd className="font-display text-4xl tabular-nums">{record[key]}</dd>
           </div>

@@ -107,10 +107,15 @@ const IDENTICAL_ONE: Record<Outcome, string> = {
   L: "Perdiste el último.",
 };
 
+const IDENTICAL_MANY: Record<Outcome, string> = {
+  W: "triunfos seguidos",
+  D: "empates seguidos",
+  L: "derrotas seguidas",
+};
+
 function identicalRun(streak: Streak): string {
   if (streak.length === 1) return IDENTICAL_ONE[streak.outcome];
-  const what = { W: "triunfos seguidos", D: "empates seguidos", L: "derrotas seguidas" };
-  return `Venís de ${streak.length} ${what[streak.outcome]}.`;
+  return `Venís de ${streak.length} ${IDENTICAL_MANY[streak.outcome]}.`;
 }
 
 /**
