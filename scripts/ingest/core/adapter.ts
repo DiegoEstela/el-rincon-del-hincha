@@ -10,7 +10,7 @@ import { deriveCoverage } from "../../lib/coverage-file";
 import { commitDataset, type FileSummary } from "./commit";
 import { IngestError } from "./errors";
 import { mergeDataset } from "./merge";
-import { checkSha256, fetchPinned, type SourceFile } from "./pinned-fetch";
+import { decodeSource, fetchPinned, type FetchOptions, type SourceFile } from "./pinned-fetch";
 
 export type FileReport = {
   file: string;
@@ -47,14 +47,17 @@ export type Adapter<Raw> = {
 
 export const networkLoader: SourceLoader = (file) => fetchPinned(file);
 
+/** A network loader with the hosts and the size cap of one adapter (plan 0017). */
+export function networkLoaderFor(options: FetchOptions): SourceLoader {
+  return (file) => fetchPinned(file, options);
+}
+
 /** Reads `<dir>/<file.name>` and checks it against the pinned sha256, like the network loader. */
 export function directoryLoader(dir: string): SourceLoader {
   return async (file) => {
     const path = join(dir, file.name);
     if (!existsSync(path)) throw new Error(`${file.name}: file not found at ${path}`);
-    const bytes = readFileSync(path);
-    checkSha256(file, bytes);
-    return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    return decodeSource(file, readFileSync(path));
   };
 }
 

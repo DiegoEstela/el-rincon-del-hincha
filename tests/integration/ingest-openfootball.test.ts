@@ -87,7 +87,7 @@ describe("openfootball ingestion on fixtures (T16)", () => {
       )!;
       const foreign = {
         id: `${date}-boca-juniors-river-plate`,
-        season_id: "primera-division-2021",
+        season_id: "primera-division-2021-friendlies",
         date,
         home_id: "boca-juniors",
         away_id: "river-plate",
@@ -104,6 +104,17 @@ describe("openfootball ingestion on fixtures (T16)", () => {
       };
       const merged = [...matches, foreign];
       writeFileSync(join(dir, "matches.json"), JSON.stringify(merged));
+      // A season has one source only (plan 0017): the foreign match lives in a season of its own.
+      const seasons = JSON.parse(read("seasons.json")) as unknown[];
+      seasons.push({
+        id: "primera-division-2021-friendlies",
+        competition_id: "primera-division",
+        name: "Amistosos 2021",
+        start: date,
+        end: date,
+        source: "https://example.org/other-source",
+      });
+      writeFileSync(join(dir, "seasons.json"), JSON.stringify(seasons));
 
       const second = await run();
       expect(second.summary["matches.json"]).toMatchObject({ added: 0, removed: 0 });
