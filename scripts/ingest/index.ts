@@ -10,10 +10,14 @@ import { runAdapter, type Adapter } from "./core/adapter";
 import { IngestError } from "./core/commit";
 import { chooseLoader } from "./loader-choice";
 import { openfootballAdapter } from "./openfootball";
+import { rsssfAdapter } from "./rsssf";
 
 // The registry is heterogeneous: each adapter has its own raw type.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ADAPTERS: Record<string, Adapter<any>> = { openfootball: openfootballAdapter };
+const ADAPTERS: Record<string, Adapter<any>> = {
+  openfootball: openfootballAdapter,
+  rsssf: rsssfAdapter,
+};
 
 const USAGE = `Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>] [--network] [--cross-check]
 Adapters: ${Object.keys(ADAPTERS).join(", ")}`;
