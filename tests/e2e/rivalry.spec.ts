@@ -296,18 +296,21 @@ test.describe("privacy, metadata and accessibility", () => {
     await page.goto("/rivales");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // The stretched link covers its card with a pseudo-element, so the card is the target.
-    for (const link of await page.getByRole("list", { name: "Rivales" }).getByRole("link").all()) {
-      const card = link.locator("xpath=ancestor::li[1]");
-      await expect(card).toBeVisible();
-      const box = await card.boundingBox();
-      expect(box!.height).toBeGreaterThanOrEqual(43.5);
-    }
+    // Measured in one evaluation in the browser, so a re-render cannot detach the element.
+    const cards = page.getByRole("list", { name: "Rivales" }).getByRole("listitem");
+    await expect(cards.first()).toBeVisible();
+    const heights = await cards.evaluateAll((els) =>
+      els.map((el) => el.getBoundingClientRect().height),
+    );
+    expect(heights.length).toBeGreaterThan(10);
+    for (const height of heights) expect(height).toBeGreaterThanOrEqual(43.5);
+
     await page.goto("/rivales/boca-juniors");
     await expect(h1(page, "River vs. Boca")).toBeVisible();
     const backLink = page.getByRole("link", { name: "Volver a Rivales" });
     await expect(backLink).toBeVisible();
-    const back = await backLink.boundingBox();
-    expect(back!.height).toBeGreaterThanOrEqual(43.5);
+    const back = await backLink.evaluate((el) => el.getBoundingClientRect().height);
+    expect(back).toBeGreaterThanOrEqual(43.5);
   });
 
   test("turns the bar animation off with reduced motion and keeps the footer", async ({ page }) => {
