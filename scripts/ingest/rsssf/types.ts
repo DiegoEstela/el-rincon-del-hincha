@@ -15,6 +15,8 @@ export type ParsedTableRow = {
   points: number;
   /** What follows the points on the row (headquarters, "(Round of 16)"), or null. */
   suffix: string | null;
+  /** The last label above the row ("Champion", "Runner-up", "Teams eliminated in ..."), or null. */
+  mark: string | null;
 };
 
 export type ParsedTable = {

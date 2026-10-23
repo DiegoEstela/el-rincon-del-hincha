@@ -52,7 +52,7 @@ function parseTail(tail: string): Notes {
   }
 }
 
-function toRow(m: RegExpExecArray, line: number): ParsedTableRow {
+function toRow(m: RegExpExecArray, line: number, mark: string | null): ParsedTableRow {
   return {
     line,
     position: Number(m[1]),
@@ -65,6 +65,7 @@ function toRow(m: RegExpExecArray, line: number): ParsedTableRow {
     goalsAgainst: Number(m[8]),
     points: Number(m[9]),
     suffix: m[10] === undefined ? null : m[10],
+    mark,
   };
 }
 
@@ -77,6 +78,7 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
   // between the first round and the end of the matches are.
   let mode: "free" | "matches" | "table" = "free";
   let table: ParsedTable | null = null;
+  let mark: string | null = null;
   let stage: string | null = null;
   let date: string | null = null;
 
@@ -91,10 +93,13 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
     if (mode === "table") {
       const row = TABLE_ROW.exec(raw);
       if (row !== null) {
-        table!.rows.push(toRow(row, line));
+        table!.rows.push(toRow(row, line, mark));
         continue;
       }
-      if (TABLE_LABEL.test(t)) continue;
+      if (TABLE_LABEL.test(t)) {
+        mark = t;
+        continue;
+      }
       mode = "free";
       table = null;
       if (t === "") continue;
@@ -103,6 +108,7 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
     if (TABLE_HEADER.test(raw)) {
       const kind = /Full [Nn]ame/.test(raw) ? "full" : "short";
       table = { line, kind, rows: [] };
+      mark = null;
       tables.push(table);
       mode = "table";
       continue;
