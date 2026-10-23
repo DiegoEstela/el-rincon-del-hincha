@@ -27,6 +27,27 @@
       "ignore": [],
       "variants": [],
       "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/tablesa/argchamp.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "01137aac986b25e5ab4ecd9fbb36c1b72af876628957227dd6d5e49b4c1d12c2",
+      "bytes": 38767,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi", "Héctor Villa Martínez"],
+      "last_updated": "25 May 2026",
+      "layout": "champions-list",
+      "excerpts": [
+        {
+          "name": "champions",
+          "start": "<a href=\"arg2018.html\">2017/18</a>",
+          "end": "<a name=\"about\">",
+          "sha256": "867a5aeb1663e086ddac935c6450d65b65aaea2e242e20c74370907bed73b595"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
     }
   ]
 }

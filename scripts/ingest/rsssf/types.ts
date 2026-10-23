@@ -56,3 +56,11 @@ export type LayoutContext = {
   /** Reviewed lines (exact text) that may appear where a match line would be and are skipped. */
   ignore: readonly string[];
 };
+
+/** A season whose champion is written as a title: the row of the list of champions it comes from. */
+export type TitleSeason = {
+  seasonId: string;
+  competition_id: string;
+  /** Season ("2018/19", "2025") and tournament ("Campeonato", "Torneo Clausura") of the row. */
+  row: { season: string; tournament: string };
+};

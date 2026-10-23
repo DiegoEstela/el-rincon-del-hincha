@@ -4,6 +4,7 @@
 import type { Competition } from "../../../src/data-model/types";
 import { OPENFOOTBALL_COMPETITIONS } from "../openfootball/config";
 import { checkWindow, type DateWindow } from "./dates";
+import type { TitleSeason } from "./types";
 
 /** Matches, standings and titles whose `source` starts with this are owned by the adapter. */
 export const RSSSF_SOURCE_PREFIX = "https://www.rsssf.org/tablesa/";
@@ -54,6 +55,30 @@ export const RSSSF_TOURNAMENTS: readonly TournamentConfig[] = [
     mode: { kind: "own" },
     tableCoversSeason: true,
   },
+];
+
+/** Where the list of champions is in the manifest (plan 0017, D5). */
+export const RSSSF_CHAMPIONS = { page: "argchamp", excerpt: "champions" } as const;
+
+const title = (seasonId: string, season: string, tournament: string): TitleSeason => ({
+  seasonId,
+  competition_id: "primera-division",
+  row: { season, tournament },
+});
+
+/**
+ * The first division seasons we hold and the row of the list that names their champion. The 2025
+ * "Anual LPF" is not here on purpose: the AFA proclaimed it outside the regulations (D5).
+ */
+export const RSSSF_TITLE_SEASONS: readonly TitleSeason[] = [
+  title("primera-division-2018-19", "2018/19", "Campeonato"),
+  title("primera-division-2019-20", "2019/20", "Campeonato"),
+  title("primera-division-2021", "2021", "Campeonato"),
+  title("primera-division-2022", "2022", "Campeonato"),
+  title("primera-division-2023", "2023", "Campeonato"),
+  title("primera-division-2024", "2024", "Campeonato"),
+  title("primera-division-2025-apertura", "2025", "Torneo Apertura"),
+  title("primera-division-2025-clausura", "2025", "Torneo Clausura"),
 ];
 
 for (const t of RSSSF_TOURNAMENTS) checkWindow(t.window);
