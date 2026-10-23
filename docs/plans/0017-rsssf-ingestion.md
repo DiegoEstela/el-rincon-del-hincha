@@ -274,14 +274,18 @@ PR B1: opponents and the domestic cup layout (code and fixtures, no `data/` chan
 - [x] **T47 Selectable only.** Tests first: onboarding, search, `/rivales` list and compare show only selectable clubs; matches against opponents count in totals, history and titles. Then `club-options` and the views.
 - [x] **T48 Neutral crest.** Test first: an opponent crest has no club colors and passes contrast. Then the component.
 - [x] **T49 `cup-full-names` layout.** Fixture from the `nationalcup` section of `arg2025` (reduced) plus a league cup and a Trofeo de Campeones section; tests for date headers, stages, `pso`, rows of the cup table (ignored, not a standings source), unknown line and the caps.
-- [~] **T50 Cup config and competitions.** (B1 done: `appClubsOnly`, `competitions` in the adapter config and the excerpt-level `layout`; the real `config.ts` entries and the competition records move to B2, where they are loaded with their data and a sourced `afa_recognized`.) Tests first (the competition list and ids, season windows, declared gaps for 2020 and 2021); then `config.ts` entries and the competition records (by hand, each with a sourced `afa_recognized`, D-B4).
+- [x] **T50 Cup config and competitions.** (B1 done: `appClubsOnly`, `competitions` in the adapter config and the excerpt-level `layout`; the real `config.ts` entries and the competition records move to B2, where they are loaded with their data and a sourced `afa_recognized`.) Tests first (the competition list and ids, season windows, declared gaps for 2020 and 2021); then `config.ts` entries and the competition records (by hand, each with a sourced `afa_recognized`, D-B4).
 - [x] **T51 Filter to app clubs.** Test first: a match without any of the 34 clubs is read, checked and dropped; an unknown club that faces an app club stops the run with the list of names.
 
 PR B2: the data of the domestic cups 2023 to 2025
 
-- [ ] **T52 Names for Diego.** Dry run on the real excerpts (from the snapshot) and the list of unknown names, split into aliases and new opponents. Stop and ask Diego; approved names go to `clubs.json`.
-- [ ] **T53 Snapshot and ingest.** `pnpm data:snapshot rsssf` for the new excerpts of the pages already in the manifest, then `pnpm data:ingest rsssf`; seasons, matches, titles; `pnpm data:coverage` regenerated in the same commit.
-- [ ] **T54 Docs and review.** Methodology section for the cups, ADR 0020 note, the credit page lists the cup excerpts; auditors; PR.
+- [x] **T52 Names for Diego.** Dry run on the real excerpts (from the snapshot) and the list of unknown names, split into aliases and new opponents. Stop and ask Diego; approved names go to `clubs.json`.
+- [x] **T53 Snapshot and ingest.** `pnpm data:snapshot rsssf` for the new excerpts of the pages already in the manifest, then `pnpm data:ingest rsssf`; seasons, matches, titles; `pnpm data:coverage` regenerated in the same commit.
+- [x] **T54 Docs and review.** Methodology section for the cups, ADR 0020 note, the credit page lists the cup excerpts; auditors; PR.
+
+PR B2b: the Copa de la Liga 2023 and 2024 (groups with tables, tie breaks and abandoned matches need their own layout, found by the dry run of B2)
+
+- [ ] **T59 Layout of the league cup.** Fixtures from `arg2023.leaguecup` and `arg2024.leaguecup`; tests for the zones, the tables, the tie-break lines (`Table Group A (Tie breaks)`), the abandoned match with `see 12 Apr`, and the knockout stages; then names, ingest, coverage (the four declared gaps of the Copa de la Liga 2021 to 2024 shrink to 2021 and 2022), docs, review, PR.
 
 PR B3: Libertadores and Sudamericana 2018 to 2024
 
@@ -421,3 +425,25 @@ Diego approved on 2026-10-23 the four club spellings of the list of champions (`
 ## Verification log: data (T24, T37, T38, T39)
 
 (Filled by the build.)
+
+## Verification log: cups 2023 to 2025 (PR B2, 2026-10-23)
+
+Figures read from RSSSF were checked against the Spanish Wikipedia (permanent revisions, read the same day). Every edition below agrees on champion and date; where the article gives the score it agrees too.
+
+| Edition                      | RSSSF (loaded)                                   | Wikipedia (oldid)                            |
+| ---------------------------- | ------------------------------------------------ | -------------------------------------------- |
+| Copa Argentina 2023          | Estudiantes 1-0 Defensa y Justicia, 2023-12-13   | champion Estudiantes (172198320)             |
+| Copa Argentina 2024          | Central Córdoba (SdE) 1-0 Vélez, 2024-12-11      | Central Córdoba 1-0 Vélez (173426748)        |
+| Copa Argentina 2025          | Independiente Rivadavia 2-2 Argentinos, 5-3 pens | champion Independiente Rivadavia (170882989) |
+| Trofeo de Campeones 2023     | River 2-0 Rosario Central, 2023-12-22            | River, 2023-12-22 (175516794)                |
+| Trofeo de Campeones 2024     | Estudiantes 3-0 Vélez, 2024-12-21                | Estudiantes, 2024-12-21 (175818336)          |
+| Trofeo de Campeones 2025     | Estudiantes 2-1 Platense, 2025-12-20             | Estudiantes, 2025-12-20 (175516803)          |
+| Supercopa Argentina 2023     | River 2-1 Estudiantes, 2024-03-13                | River, 2024-03-13 (173519050)                |
+| Supercopa Argentina 2024     | Vélez 2-0 Central Córdoba, 2025-09-06            | Vélez, 2025-09-06 (174943482)                |
+| Supercopa Internacional 2023 | River 0-0 Talleres, 2-3 pens, 2025-03-05         | Talleres champion on penalties (173519693)   |
+| Supercopa Internacional 2024 | Estudiantes 0-2 Vélez, 2025-07-08                | Vélez 2-0, 2025-07-08 (175552010)            |
+| Supercopa Internacional 2025 | Estudiantes 1-3 Rosario Central, 2026-09-26      | Rosario Central 3-1, 2026-09-26 (175809196)  |
+
+Competition records cite the Spanish Wikipedia revisions of the four articles (Copa Argentina 175769996, Supercopa Argentina 175772737, Trofeo de Campeones 175789259, Supercopa Internacional 175748744): each says the AFA organizes the competition, so `afa_recognized` is true.
+
+Club names: the list asked of Diego is `docs/spike/rsssf-cups-names-b2.md` (answers and the four confirmations recorded there). 11 spellings became aliases of existing clubs, 59 opponents were added (Argentine clubs outside the 34 that play one of them), and two names that never play one of the 34 are dropped (`CD Maipú`, `CA Nueva Chicago`). Names that only became relevant once the San Martín spellings were assigned (for instance `CD Morón` or `CA Ituzaingó`, opponents of San Martín de Tucumán) were added as opponents with the rest.

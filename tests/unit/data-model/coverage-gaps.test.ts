@@ -38,13 +38,17 @@ describe("COVERAGE_GAPS", () => {
     }
   });
 
-  it("declares the tail after the 2025 Clausura and the four Copa de la Liga editions that are not loaded", () => {
+  it("declares what is not loaded: the tail of each competition and four Copa de la Liga editions", () => {
     expect(COVERAGE_GAPS.map((g) => [g.competition_id, g.from, g.to])).toEqual([
+      ["copa-argentina", "2025-11-06", null],
       ["copa-de-la-liga-profesional", "2021-02-12", "2021-06-04"],
       ["copa-de-la-liga-profesional", "2022-02-10", "2022-05-22"],
       ["copa-de-la-liga-profesional", "2023-08-17", "2023-12-16"],
       ["copa-de-la-liga-profesional", "2024-01-25", "2024-05-05"],
       ["primera-division", "2025-12-15", null],
+      ["supercopa-argentina", "2025-09-07", null],
+      ["supercopa-internacional", "2026-09-27", null],
+      ["trofeo-de-campeones", "2025-12-21", null],
     ]);
   });
 

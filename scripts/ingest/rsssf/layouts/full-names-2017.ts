@@ -18,6 +18,8 @@ const TABLE_ROW =
 const TABLE_LABEL = /^(Champion|Runner-up|Teams eliminated in the .+)$/;
 const TABLE_TITLE = /^(Table( Group [A-Z])?|Relegation Table|Triennal General Table of Averages)$/;
 const DATE_HEADER = /^\[(?:(\d{4}) )?([A-Z][a-z]{2}) (\d{1,2})(?:, ([A-Z][a-z]{2}))?\]$/;
+const DATE_HEADER_DAY_FIRST = /^\[([A-Z][a-z]{2}), (\d{1,2}) ([A-Z][a-z]{2}) (\d{4})\]$/;
+const SINGLE_SPACE_PSO = /^(\S.*?) pso,\s*(.*)$/i;
 const ROUND = /^Round (\d+)(?::|\s+-\s+\S.*)?$/;
 const PHASE = /^Primera fase de zonas\b.*$/;
 const MATCH =
@@ -51,8 +53,8 @@ function parseTail(tail: string): Notes {
   let rest = tail;
   for (;;) {
     let m: RegExpExecArray | null;
-    if ((m = /^aet,\s*/.exec(rest))) notes.extraTime = true;
-    else if ((m = /^pso,\s*/.exec(rest))) notes.pso = true;
+    if ((m = /^aet,\s*/i.exec(rest))) notes.extraTime = true;
+    else if ((m = /^pso,\s*/i.exec(rest))) notes.pso = true;
     else if ((m = /^abandoned at ([^,]+),\s*/.exec(rest))) notes.abandoned = m[1].trim();
     else if ((m = /^remaining ([^,]+),\s*/.exec(rest))) notes.resumed = m[1].trim();
     else return notes;
@@ -153,10 +155,15 @@ export function parseFullNames(
     }
 
     const dateHeader = DATE_HEADER.exec(t);
-    if (dateHeader !== null) {
+    const dayFirst = DATE_HEADER_DAY_FIRST.exec(t);
+    if (dateHeader !== null || dayFirst !== null) {
       if (stage === null && options.defaultStage !== null) stage = options.defaultStage;
       if (stage === null) fail(line, `date header "${t}" before any round heading`);
-      const [, year, month, day, weekday] = dateHeader;
+      // `[2025 Sep 6, Sat]` and `[Wed, 5 Mar 2025]` write their year; `[Feb 8, Wed]` does not.
+      const [year, month, day, weekday] =
+        dateHeader !== null
+          ? [dateHeader[1], dateHeader[2], dateHeader[3], dateHeader[4]]
+          : [dayFirst![4], dayFirst![3], dayFirst![2], dayFirst![1]];
       date =
         year === undefined
           ? resolveDate(month, Number(day), weekday, ctx.window, where)
@@ -167,12 +174,17 @@ export function parseFullNames(
 
     const match = MATCH.exec(raw.replace(/^\s+/, ""));
     if (match !== null && date !== null && stage !== null) {
-      const notes = parseTail(match[7] ?? "");
-      const hasScore = match[3] !== undefined;
       const penalties =
         match[2] !== undefined && match[5] !== undefined
           ? { home: Number(match[2]), away: Number(match[5]) }
           : null;
+      // A shoot-out note written one space after the away club ("Club X pso, <stadium>") is not
+      // split by the two-space columns; with a shoot-out score on the line it is cut here.
+      const glued =
+        penalties !== null && match[7] === undefined ? SINGLE_SPACE_PSO.exec(match[6]) : null;
+      const awayName = glued === null ? match[6] : glued[1];
+      const notes = parseTail(glued === null ? (match[7] ?? "") : `pso, ${glued[2]}`);
+      const hasScore = match[3] !== undefined;
       if (penalties !== null && !notes.pso) fail(line, 'a shoot-out score without "pso"');
       if (penalties === null && notes.pso) fail(line, '"pso" without a shoot-out score');
       if (!hasScore && notes.abandoned === null)
@@ -182,7 +194,7 @@ export function parseFullNames(
         date,
         stage,
         home: match[1].trim(),
-        away: match[6].trim(),
+        away: awayName.trim(),
         homeGoals: hasScore ? Number(match[3]) : null,
         awayGoals: hasScore ? Number(match[4]) : null,
         extraTime: notes.extraTime,

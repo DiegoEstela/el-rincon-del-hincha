@@ -1,5 +1,14 @@
 [
   {
+    "id": "agropecuario-argentino",
+    "name": "Agropecuario Argentino",
+    "short_name": "Agropecuario Argentino",
+    "aliases": ["Club Agropecuario Argentino"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
     "id": "aldosivi",
     "name": "Aldosivi",
     "short_name": "Aldosivi",
@@ -12,6 +21,60 @@
     "founded": 1913,
     "city": "Mar del Plata",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Aldosivi&oldid=175419124"
+  },
+  {
+    "id": "all-boys",
+    "name": "All Boys",
+    "short_name": "All Boys",
+    "aliases": ["CA All Boys"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "almagro",
+    "name": "Almagro",
+    "short_name": "Almagro",
+    "aliases": ["Club Almagro"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "almirante-brown",
+    "name": "Almirante Brown",
+    "short_name": "Almirante Brown",
+    "aliases": ["Club Almirante Brown"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "argentino",
+    "name": "Argentino",
+    "short_name": "Argentino",
+    "aliases": ["CD Argentino"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "argentino-de-merlo",
+    "name": "Argentino de Merlo",
+    "short_name": "Argentino de Merlo",
+    "aliases": ["CA Argentino de Merlo"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "argentino-de-quilmes",
+    "name": "Argentino de Quilmes",
+    "short_name": "Argentino de Quilmes",
+    "aliases": ["CA Argentino de Quilmes"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
   },
   {
     "id": "argentinos-juniors",
@@ -36,7 +99,7 @@
     "id": "arsenal",
     "name": "Arsenal",
     "short_name": "Arsenal",
-    "aliases": ["Arsenal", "Arsenal de Sarandí"],
+    "aliases": ["Arsenal", "Arsenal de Sarandí", "Arsenal FC"],
     "colors": {
       "primary": "#a9d6f5",
       "secondary": "#d62828"
@@ -45,6 +108,15 @@
     "founded": 1957,
     "city": "Sarandí",
     "source": "https://es.wikipedia.org/w/index.php?title=Arsenal_F%C3%BAtbol_Club&oldid=175446182"
+  },
+  {
+    "id": "atletico-de-rafaela",
+    "name": "Atlético de Rafaela",
+    "short_name": "Atlético de Rafaela",
+    "aliases": ["AMSyD Atlético de Rafaela"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
   },
   {
     "id": "atletico-tucuman",
@@ -117,6 +189,24 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Belgrano&oldid=175833020"
   },
   {
+    "id": "belgrano-san-francisco",
+    "name": "Belgrano (San Francisco)",
+    "short_name": "Belgrano (San Francisco)",
+    "aliases": ["CS Belgrano"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "berazategui",
+    "name": "Berazategui",
+    "short_name": "Berazategui",
+    "aliases": ["AD Berazategui"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "id": "boca-juniors",
     "name": "Boca Juniors",
     "short_name": "Boca",
@@ -136,6 +226,15 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Boca_Juniors&oldid=175803979"
   },
   {
+    "id": "central-cordoba-rosario",
+    "name": "Central Córdoba (Rosario)",
+    "short_name": "Central Córdoba (Rosario)",
+    "aliases": ["CA Central Córdoba (Rosario)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "id": "central-cordoba-sde",
     "name": "Central Córdoba",
     "short_name": "Central Córdoba",
@@ -144,7 +243,8 @@
       "Central Córdoba SdE",
       "Central Cba (SdE)",
       "CA Central Córdoba (Sant. Estero)",
-      "Club Atlético Central Córdoba Soc. Civil (Santiago del Estero, G)"
+      "Club Atlético Central Córdoba Soc. Civil (Santiago del Estero, G)",
+      "CA Central Córdoba"
     ],
     "colors": {
       "primary": "#111111",
@@ -156,10 +256,64 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Central_C%C3%B3rdoba_(Santiago_del_Estero)&oldid=175837636"
   },
   {
+    "id": "central-norte",
+    "name": "Central Norte",
+    "short_name": "Central Norte",
+    "aliases": ["CA Central Norte"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "chacarita-juniors",
+    "name": "Chacarita Juniors",
+    "short_name": "Chacarita Juniors",
+    "aliases": ["CA Chacarita Juniors"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "chaco-for-ever",
+    "name": "Chaco For Ever",
+    "short_name": "Chaco For Ever",
+    "aliases": ["CA Chaco For Ever"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "ciudad-de-bolivar",
+    "name": "Ciudad de Bolívar",
+    "short_name": "Ciudad de Bolívar",
+    "aliases": ["Club Ciudad de Bolívar"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "claypole",
+    "name": "Claypole",
+    "short_name": "Claypole",
+    "aliases": ["CA Claypole"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "colegiales",
+    "name": "Colegiales",
+    "short_name": "Colegiales",
+    "aliases": ["CA Colegiales"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
     "id": "colon",
     "name": "Colón",
     "short_name": "Colón",
-    "aliases": ["Colón", "Colón de Santa Fe", "Colon"],
+    "aliases": ["Colón", "Colón de Santa Fe", "Colon", "CA Colón"],
     "colors": {
       "primary": "#d62828",
       "secondary": "#111111"
@@ -170,6 +324,15 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Col%C3%B3n&oldid=175660093"
   },
   {
+    "id": "comunicaciones",
+    "name": "Comunicaciones",
+    "short_name": "Comunicaciones",
+    "aliases": ["Club Comunicaciones"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
     "id": "defensa-y-justicia",
     "name": "Defensa y Justicia",
     "short_name": "Defensa",
@@ -177,7 +340,8 @@
       "Defensa y Justicia",
       "Def y Justicia",
       "CSD Defensa y Justicia",
-      "Club Social y Deportivo Defensa y Justicia (Florencio Varela, B)"
+      "Club Social y Deportivo Defensa y Justicia (Florencio Varela, B)",
+      "CSyD Defensa y Justicia"
     ],
     "colors": {
       "primary": "#ffd60a",
@@ -187,6 +351,42 @@
     "founded": 1935,
     "city": "Florencio Varela",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Social_y_Deportivo_Defensa_y_Justicia&oldid=175716573"
+  },
+  {
+    "id": "defensores-de-belgrano",
+    "name": "Defensores de Belgrano",
+    "short_name": "Defensores de Belgrano",
+    "aliases": ["CA Defensores de Belgrano"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "defensores-unidos",
+    "name": "Defensores Unidos",
+    "short_name": "Defensores Unidos",
+    "aliases": ["CA Defensores Unidos"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "deportivo-armenio",
+    "name": "Deportivo Armenio",
+    "short_name": "Deportivo Armenio",
+    "aliases": ["Deportivo Armenio"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "deportivo-espanol",
+    "name": "Deportivo Español",
+    "short_name": "Deportivo Español",
+    "aliases": ["Club Deportivo Español"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   },
   {
     "id": "deportivo-riestra",
@@ -205,6 +405,33 @@
     "founded": 1931,
     "city": "Buenos Aires",
     "source": "https://es.wikipedia.org/w/index.php?title=Deportivo_Riestra&oldid=175825198"
+  },
+  {
+    "id": "douglas-haig",
+    "name": "Douglas Haig",
+    "short_name": "Douglas Haig",
+    "aliases": ["CA Douglas Haig"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "el-porvenir",
+    "name": "El Porvenir",
+    "short_name": "El Porvenir",
+    "aliases": ["Club El Porvenir"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "espanol",
+    "name": "Español",
+    "short_name": "Español",
+    "aliases": ["CSyR Español"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   },
   {
     "id": "estudiantes-la-plata",
@@ -227,6 +454,60 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Estudiantes_de_La_Plata&oldid=175818293"
   },
   {
+    "id": "estudiantes-rio-cuarto",
+    "name": "Estudiantes (Río Cuarto)",
+    "short_name": "Estudiantes (Río Cuarto)",
+    "aliases": ["AA Estudiantes"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "estudiantes-villa-devoto",
+    "name": "Estudiantes (Villa Devoto)",
+    "short_name": "Estudiantes (Villa Devoto)",
+    "aliases": ["CA Estudiantes"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "excursionistas",
+    "name": "Excursionistas",
+    "short_name": "Excursionistas",
+    "aliases": ["CA Excursionistas"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "ferrocarril-midland",
+    "name": "Ferrocarril Midland",
+    "short_name": "Ferrocarril Midland",
+    "aliases": ["CA Ferrocarril Midland"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "general-lamadrid",
+    "name": "General Lamadrid",
+    "short_name": "General Lamadrid",
+    "aliases": ["CA General Lamadrid"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "general-san-martin",
+    "name": "General San Martín",
+    "short_name": "General San Martín",
+    "aliases": ["CS General San Martín"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
     "id": "gimnasia-la-plata",
     "name": "Gimnasia y Esgrima La Plata",
     "short_name": "Gimnasia",
@@ -235,7 +516,8 @@
       "Gimnasia de La Plata",
       "Gimnasia (LP)",
       "Club de Gimnasia y Esgrima LP",
-      "Club de Gimnasia y Esgrima La Plata (La Plata, B)"
+      "Club de Gimnasia y Esgrima La Plata (La Plata, B)",
+      "Cd Gimnasia y Esgrima La Plata"
     ],
     "colors": {
       "primary": "#ffffff",
@@ -245,6 +527,33 @@
     "founded": 1887,
     "city": "La Plata",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_de_Gimnasia_y_Esgrima_La_Plata&oldid=175679492"
+  },
+  {
+    "id": "gimnasia-y-esgrima-mendoza",
+    "name": "Gimnasia y Esgrima (Mendoza)",
+    "short_name": "Gimnasia y Esgrima (Mendoza)",
+    "aliases": ["CA Gimnasia y Esgrima", "CA Gimnasia y Esgrima (Mendoza)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "gimnasia-y-esgrima-ss-jujuy",
+    "name": "Gimnasia y Esgrima (SS Jujuy)",
+    "short_name": "Gimnasia y Esgrima (SS Jujuy)",
+    "aliases": ["CA Gimnasia y Esgrima (SS Jujuy)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "gimnasia-y-tiro-salta",
+    "name": "Gimnasia y Tiro",
+    "short_name": "Gimnasia y Tiro",
+    "aliases": ["Cd Gimnasia y Tiro", "Club de Gimnasia y Tiro"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   },
   {
     "id": "godoy-cruz",
@@ -287,7 +596,13 @@
     "id": "independiente",
     "name": "Independiente",
     "short_name": "Independiente",
-    "aliases": ["Independiente", "CA Independiente", "Club Atlético Independiente (Avellaneda, B)"],
+    "aliases": [
+      "Independiente",
+      "CA Independiente",
+      "Club Atlético Independiente (Avellaneda, B)",
+      "CA Independiente (AVE)",
+      "CA Independiente (Avellaneda)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#0b1f4d"
@@ -296,6 +611,15 @@
     "founded": 1905,
     "city": "Avellaneda",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Independiente&oldid=175833649"
+  },
+  {
+    "id": "independiente-chivilcoy",
+    "name": "Independiente (Chivilcoy)",
+    "short_name": "Independiente (Chivilcoy)",
+    "aliases": ["CA Independiente (CVY)", "CA Independiente (Chivilcoy)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   },
   {
     "id": "independiente-rivadavia",
@@ -336,6 +660,42 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Instituto_Atl%C3%A9tico_Central_C%C3%B3rdoba&oldid=175848159"
   },
   {
+    "id": "ituzaingo",
+    "name": "Ituzaingó",
+    "short_name": "Ituzaingó",
+    "aliases": ["CA Ituzaingó"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "juventud-unida-universitario",
+    "name": "Juventud Unida Universitario",
+    "short_name": "Juventud Unida Universitario",
+    "aliases": ["Club Juventud Unida Universitario"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "kimberley",
+    "name": "Kimberley",
+    "short_name": "Kimberley",
+    "aliases": ["CA Kimberley"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "laferrere",
+    "name": "Laferrere",
+    "short_name": "Laferrere",
+    "aliases": ["CSCyD Laferrere"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
     "id": "lanus",
     "name": "Lanús",
     "short_name": "Lanús",
@@ -348,6 +708,42 @@
     "founded": 1915,
     "city": "Lanús",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Lan%C3%BAs&oldid=175808645"
+  },
+  {
+    "id": "los-andes",
+    "name": "Los Andes",
+    "short_name": "Los Andes",
+    "aliases": ["CA Los Andes"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "madryn",
+    "name": "Madryn",
+    "short_name": "Madryn",
+    "aliases": ["CSD Madryn"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "mitre",
+    "name": "Mitre",
+    "short_name": "Mitre",
+    "aliases": ["CA Mitre"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "moron",
+    "name": "Morón",
+    "short_name": "Morón",
+    "aliases": ["CD Morón"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   },
   {
     "id": "newells-old-boys",
@@ -369,10 +765,19 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Newell's_Old_Boys&oldid=175853332"
   },
   {
+    "id": "olimpo",
+    "name": "Olimpo",
+    "short_name": "Olimpo",
+    "aliases": ["Club Olimpo"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
     "id": "patronato",
     "name": "Patronato",
     "short_name": "Patronato",
-    "aliases": ["Patronato", "Patronato de Paraná"],
+    "aliases": ["Patronato", "Patronato de Paraná", "CA Patronato Juventud Católica"],
     "colors": {
       "primary": "#d62828",
       "secondary": "#111111"
@@ -402,6 +807,15 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Platense&oldid=175806371"
   },
   {
+    "id": "quilmes-ac",
+    "name": "Quilmes AC",
+    "short_name": "Quilmes AC",
+    "aliases": ["Quilmes AC"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
     "id": "racing-club",
     "name": "Racing Club",
     "short_name": "Racing",
@@ -414,6 +828,33 @@
     "founded": 1903,
     "city": "Avellaneda",
     "source": "https://es.wikipedia.org/w/index.php?title=Racing_Club&oldid=175777928"
+  },
+  {
+    "id": "racing-de-cordoba",
+    "name": "Racing (Córdoba)",
+    "short_name": "Racing (Córdoba)",
+    "aliases": ["CA Racing"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "ramon-santamarina",
+    "name": "Ramón Santamarina",
+    "short_name": "Ramón Santamarina",
+    "aliases": ["CB Ramón Santamarina"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "real-pilar-fc",
+    "name": "Real Pilar FC",
+    "short_name": "Real Pilar FC",
+    "aliases": ["Real Pilar FC"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "id": "river-plate",
@@ -472,6 +913,15 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro&oldid=175724689"
   },
   {
+    "id": "san-martin-burzaco",
+    "name": "San Martín (Burzaco)",
+    "short_name": "San Martín (Burzaco)",
+    "aliases": ["CSyD San Martín"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
     "id": "san-martin-san-juan",
     "name": "San Martín de San Juan",
     "short_name": "San Martín SJ",
@@ -479,7 +929,8 @@
       "San Martín de San Juan",
       "San Martin (SJ)",
       "CA San Martín (San Juan)",
-      "Club Atlético San Martín (San Juan, J)"
+      "Club Atlético San Martín (San Juan, J)",
+      "CA San Martín (UAQ)"
     ],
     "colors": {
       "primary": "#111111",
@@ -494,7 +945,12 @@
     "id": "san-martin-tucuman",
     "name": "San Martín de Tucumán",
     "short_name": "San Martín Tuc.",
-    "aliases": ["San Martín de Tucumán", "San Martin (T)"],
+    "aliases": [
+      "San Martín de Tucumán",
+      "San Martin (T)",
+      "CA San Martín (SM de Tucumán)",
+      "CA San Martín (SMC)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#ffffff"
@@ -505,6 +961,24 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_San_Mart%C3%ADn_(Tucum%C3%A1n)&oldid=175469990"
   },
   {
+    "id": "san-miguel",
+    "name": "San Miguel",
+    "short_name": "San Miguel",
+    "aliases": ["CA San Miguel"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "san-telmo",
+    "name": "San Telmo",
+    "short_name": "San Telmo",
+    "aliases": ["CA San Telmo"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "id": "sarmiento-junin",
     "name": "Sarmiento",
     "short_name": "Sarmiento",
@@ -513,7 +987,8 @@
       "Sarmiento de Junín",
       "Sarmiento (J)",
       "CA Sarmiento (Junín)",
-      "Club Atlético Sarmiento (Junín, B)"
+      "Club Atlético Sarmiento (Junín, B)",
+      "CA Sarmiento"
     ],
     "colors": {
       "primary": "#1a9850",
@@ -525,6 +1000,42 @@
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Sarmiento_(Jun%C3%ADn)&oldid=175323958"
   },
   {
+    "id": "sarmiento-la-banda",
+    "name": "Sarmiento (La Banda)",
+    "short_name": "Sarmiento (La Banda)",
+    "aliases": ["CA Sarmiento (La Banda)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "id": "sarmiento-resistencia",
+    "name": "Sarmiento (Resistencia)",
+    "short_name": "Sarmiento (Resistencia)",
+    "aliases": ["CA Sarmiento (Resistencia)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "sol-de-mayo",
+    "name": "Sol de Mayo",
+    "short_name": "Sol de Mayo",
+    "aliases": ["ACSyD Sol de Mayo"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "sportivo-atletico-club",
+    "name": "Sportivo Atlético Club",
+    "short_name": "Sportivo Atlético Club",
+    "aliases": ["Sportivo AC", "Sportivo Atlético Club"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
     "id": "talleres-cordoba",
     "name": "Talleres",
     "short_name": "Talleres",
@@ -533,7 +1044,8 @@
       "Talleres de Córdoba",
       "Talleres (C)",
       "CA Talleres",
-      "Club Atlético Talleres (Córdoba, X)"
+      "Club Atlético Talleres (Córdoba, X)",
+      "CA Talleres (COR)"
     ],
     "colors": {
       "primary": "#0b1f4d",
@@ -543,6 +1055,24 @@
     "founded": 1913,
     "city": "Córdoba",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_Talleres_(C%C3%B3rdoba)&oldid=175835627"
+  },
+  {
+    "id": "talleres-rde",
+    "name": "Talleres (RDE)",
+    "short_name": "Talleres (RDE)",
+    "aliases": ["CA Talleres (RDE)"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "temperley",
+    "name": "Temperley",
+    "short_name": "Temperley",
+    "aliases": ["CA Temperley"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
   },
   {
     "id": "tigre",
@@ -597,5 +1127,23 @@
     "founded": 1910,
     "city": "Buenos Aires",
     "source": "https://es.wikipedia.org/w/index.php?title=Club_Atl%C3%A9tico_V%C3%A9lez_Sarsfield&oldid=175716647"
+  },
+  {
+    "id": "villa-mitre",
+    "name": "Villa Mitre",
+    "short_name": "Villa Mitre",
+    "aliases": ["Club Villa Mitre"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "yupanqui",
+    "name": "Yupanqui",
+    "short_name": "Yupanqui",
+    "aliases": ["CSyD Yupanqui"],
+    "selectable": false,
+    "country": "AR",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
   }
 ]

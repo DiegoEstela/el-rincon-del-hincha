@@ -25,7 +25,7 @@ export function formatMonthYear(isoDate: string): string {
 }
 
 export const CUPS_NOT_LOADED =
-  "Todavía no cargamos Copa Argentina, Libertadores, Sudamericana ni otras copas.";
+  "De la Copa Argentina y las supercopas cargamos 2023 a 2025. Todavía no cargamos Libertadores, Sudamericana ni otras copas.";
 
 export type CoverageCopy = Readonly<{
   show: boolean;

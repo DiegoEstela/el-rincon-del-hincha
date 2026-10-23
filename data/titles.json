@@ -1,5 +1,35 @@
 [
   {
+    "id": "copa-argentina-2023-estudiantes-la-plata",
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-argentina",
+    "season_id": "copa-argentina-2023",
+    "awarded_on": "2023-12-13",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup",
+    "verified": false
+  },
+  {
+    "id": "copa-argentina-2024-central-cordoba-sde",
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-argentina",
+    "season_id": "copa-argentina-2024",
+    "awarded_on": "2024-12-11",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup",
+    "verified": false
+  },
+  {
+    "id": "copa-argentina-2025-independiente-rivadavia",
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-argentina",
+    "season_id": "copa-argentina-2025",
+    "awarded_on": "2025-11-05",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup",
+    "verified": false
+  },
+  {
     "id": "copa-de-la-liga-profesional-2020-boca-juniors",
     "club_id": "boca-juniors",
     "competition_id": "copa-de-la-liga-profesional",
@@ -87,6 +117,86 @@
     "awarded_on": "2025-12-14",
     "shared": false,
     "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "supercopa-argentina-2023-river-plate",
+    "club_id": "river-plate",
+    "competition_id": "supercopa-argentina",
+    "season_id": "supercopa-argentina-2023",
+    "awarded_on": "2024-03-13",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#supercup",
+    "verified": false
+  },
+  {
+    "id": "supercopa-argentina-2024-velez-sarsfield",
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-argentina",
+    "season_id": "supercopa-argentina-2024",
+    "awarded_on": "2025-09-06",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#supercup",
+    "verified": false
+  },
+  {
+    "id": "supercopa-internacional-2023-talleres-cordoba",
+    "club_id": "talleres-cordoba",
+    "competition_id": "supercopa-internacional",
+    "season_id": "supercopa-internacional-2023",
+    "awarded_on": "2025-03-05",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#lpfsuper",
+    "verified": false
+  },
+  {
+    "id": "supercopa-internacional-2024-velez-sarsfield",
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-internacional",
+    "season_id": "supercopa-internacional-2024",
+    "awarded_on": "2025-07-08",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#lpfsuper",
+    "verified": false
+  },
+  {
+    "id": "supercopa-internacional-2025-rosario-central",
+    "club_id": "rosario-central",
+    "competition_id": "supercopa-internacional",
+    "season_id": "supercopa-internacional-2025",
+    "awarded_on": "2026-09-26",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper",
+    "verified": false
+  },
+  {
+    "id": "trofeo-de-campeones-2023-river-plate",
+    "club_id": "river-plate",
+    "competition_id": "trofeo-de-campeones",
+    "season_id": "trofeo-de-campeones-2023",
+    "awarded_on": "2023-12-22",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#leaguesuper",
+    "verified": false
+  },
+  {
+    "id": "trofeo-de-campeones-2024-estudiantes-la-plata",
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "trofeo-de-campeones",
+    "season_id": "trofeo-de-campeones-2024",
+    "awarded_on": "2024-12-21",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#leaguesuper",
+    "verified": false
+  },
+  {
+    "id": "trofeo-de-campeones-2025-estudiantes-la-plata",
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "trofeo-de-campeones",
+    "season_id": "trofeo-de-campeones-2025",
+    "awarded_on": "2025-12-20",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph",
     "verified": false
   }
 ]

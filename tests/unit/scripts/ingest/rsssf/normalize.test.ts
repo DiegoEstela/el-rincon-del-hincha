@@ -412,3 +412,117 @@ describe("normalizeRsssf: cups, only the matches of the app clubs (T51, ADR 0022
     expect(problems.some((p) => p.includes('unknown club "Zzz FC"'))).toBe(true);
   });
 });
+
+describe("normalizeRsssf: the title of a cup is decided in its final (Phase B)", () => {
+  const CUP: TournamentConfig = {
+    id: "copa-x-2025",
+    competition_id: "copa-x",
+    name: "Copa X 2025",
+    page: "arg2025",
+    excerpt: "nationalcup",
+    window: { from: "2025-01-01", to: "2025-12-31" },
+    mode: { kind: "own" },
+    tableCoversSeason: false,
+    appClubsOnly: true,
+    titleFromFinal: true,
+  };
+  const world = [
+    { id: "a", aliases: ["CA A"] },
+    { id: "b", aliases: ["CA B"] },
+    { id: "opp", aliases: ["Opp FC"], selectable: false },
+  ] as never;
+  const run2 = (matches: ParsedMatch[]) =>
+    normalizeRsssf(
+      [
+        {
+          tournament: CUP,
+          page: page(),
+          parsed: { excerpt: "arg2025.nationalcup", matches, tables: [] },
+        },
+      ],
+      world,
+      [],
+    );
+  const final = (home: string, away: string, hg: number, ag: number, extra = {}) =>
+    m("2025-11-05", home, away, hg, ag, { stage: "Final", ...extra });
+
+  it("writes only the competitions of the tournaments of the run", () => {
+    const out = normalizeRsssf(
+      [
+        {
+          tournament: CUP,
+          page: page(),
+          parsed: { excerpt: "x", matches: [final("CA A", "Opp FC", 2, 1)], tables: [] },
+        },
+      ],
+      world,
+      [
+        {
+          id: "copa-x",
+          name: "X",
+          type: "national_cup",
+          scope: "domestic",
+          organizer: "AFA",
+          afa_recognized: true,
+          source: "s",
+        },
+        {
+          id: "copa-unused",
+          name: "Y",
+          type: "national_cup",
+          scope: "domestic",
+          organizer: "AFA",
+          afa_recognized: true,
+          source: "s",
+        },
+      ],
+    );
+    expect(out.competitions.map((c) => c.id)).toEqual(["copa-x"]);
+  });
+
+  it("names the winner on goals", () => {
+    const out = run2([final("CA A", "Opp FC", 2, 1)]);
+    expect(out.titles).toEqual([
+      {
+        id: "copa-x-2025-a",
+        club_id: "a",
+        competition_id: "copa-x",
+        season_id: "copa-x-2025",
+        awarded_on: "2025-11-05",
+        shared: false,
+        source: "https://www.rsssf.org/tablesa/arg2025.html#nationalcup",
+        verified: false,
+      },
+    ]);
+  });
+
+  it("names the winner on penalties when the goals are level, the away side too", () => {
+    const out = run2([
+      final("CA A", "CA B", 2, 2, { penalties: { home: 3, away: 5 }, extraTime: true }),
+    ]);
+    expect(out.titles!.map((t) => t.club_id)).toEqual(["b"]);
+  });
+
+  it("writes no title when the champion is not an app club", () => {
+    const out = run2([
+      m("2025-03-01", "CA A", "Opp FC", 1, 0),
+      final("Opp FC", "Zzz Unknown FC", 1, 0),
+    ]);
+    expect(out.titles ?? []).toEqual([]);
+  });
+
+  it("stops when the section has no final or two", () => {
+    expect(problemsOf(() => run2([m("2025-03-01", "CA A", "Opp FC", 1, 0)]))).toEqual([
+      "copa-x-2025: no final in arg2025.nationalcup to name the champion",
+    ]);
+    expect(
+      problemsOf(() => run2([final("CA A", "Opp FC", 1, 0), final("CA B", "Opp FC", 1, 0)])),
+    ).toEqual(["copa-x-2025: 2 finals in arg2025.nationalcup, expected one to name the champion"]);
+  });
+
+  it("stops when the final has no winner", () => {
+    expect(problemsOf(() => run2([final("CA A", "Opp FC", 1, 1)]))).toEqual([
+      "copa-x-2025: the final 2025-11-05-a-opp has no winner on goals or penalties",
+    ]);
+  });
+});

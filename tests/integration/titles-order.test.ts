@@ -49,7 +49,7 @@ describe("titles written by two adapters", () => {
       await runOpenfootball(b);
       expect(titles(a)).toBe(titles(b));
       expect(titles(a)).toBe(readFileSync(join(process.cwd(), "data/titles.json"), "utf8"));
-      expect(JSON.parse(titles(a))).toHaveLength(9);
+      expect(JSON.parse(titles(a))).toHaveLength(20);
     },
   );
 

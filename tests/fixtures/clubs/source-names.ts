@@ -74,7 +74,7 @@ export const NEAR_MISS_NAMES: readonly string[] = [
   "Colon de Santa Fe",
   "Patronato de Parana",
   "Arsenal de Sarandi",
-  "Arsenal FC",
+  // "Arsenal FC" is an approved alias of Arsenal de Sarandí since the domestic cups (2026-10-23).
   "Independiente Riv",
   "Rivadavia",
 ];

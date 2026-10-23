@@ -1,5 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
+/**
+ * Picks the "Liga" type. The radio is a 1 px sr-only input: on a phone the filters can sit under
+ * the fixed bottom bar, so the control is first brought to the middle of the screen.
+ */
+async function pickLiga(page: Page) {
+  const liga = page.getByLabel("Liga", { exact: true });
+  await liga.evaluate((element) => element.scrollIntoView({ block: "center" }));
+  await liga.check({ force: true });
+}
+
 const KEY = "rincon-del-hincha:fan";
 const DATE = "1990-05-20";
 const DATE_SPELLINGS = ["1990-05-20", "20/05/1990", "19900520", "1990%2D05%2D20"];
@@ -103,7 +113,7 @@ test.describe("the screen with data", () => {
     await expect(page.getByText(/^Contamos:/)).toBeVisible();
     await expect(
       page.getByText(
-        "Todavía no cargamos Copa Argentina, Libertadores, Sudamericana ni otras copas.",
+        "De la Copa Argentina y las supercopas cargamos 2023 a 2025. Todavía no cargamos Libertadores, Sudamericana ni otras copas.",
       ),
     ).toBeVisible();
     expect(await page.locator("body").innerText()).not.toMatch(
@@ -132,7 +142,7 @@ test.describe("the screen with data", () => {
     await page.goto("/rivales");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 
-    await page.getByLabel("Liga", { exact: true }).check({ force: true });
+    await pickLiga(page);
     await expect(page.getByText(/^Contamos:/)).toHaveText("Contamos: Primera División.");
     await expect(page.getByRole("button", { name: "Limpiar filtros" })).toBeVisible();
 
@@ -142,7 +152,7 @@ test.describe("the screen with data", () => {
     // One year of Primera is complete, so the note goes away; the two plain lines stay.
     await expect(page.getByRole("note")).toHaveCount(0);
     await expect(page.getByText(/^Contamos:/)).toBeVisible();
-    await expect(page.getByText(/^Todavía no cargamos Copa Argentina/)).toBeVisible();
+    await expect(page.getByText(/^De la Copa Argentina y las supercopas/)).toBeVisible();
     expect(await page.locator("body").innerText()).not.toMatch(
       /cobertura completa|historial completo/i,
     );
@@ -202,7 +212,7 @@ test.describe("privacy", () => {
     await seed(page, "river-plate");
     await page.goto("/rivales");
     await expect(page.getByRole("heading", { level: 1, name: "River vs. todos" })).toBeVisible();
-    await page.getByLabel("Liga", { exact: true }).check({ force: true });
+    await pickLiga(page);
     await page.getByRole("combobox", { name: "Ordenar por" }).selectOption("played");
 
     for (const spelling of DATE_SPELLINGS) {
@@ -238,7 +248,7 @@ test.describe("accessibility", () => {
     await seed(page, "river-plate");
     await page.goto("/rivales");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await page.getByLabel("Liga", { exact: true }).check({ force: true });
+    await pickLiga(page);
     const targets = [
       ...(await page.getByRole("combobox").all()),
       ...(await page.locator("label:has(input[type=radio])").all()),

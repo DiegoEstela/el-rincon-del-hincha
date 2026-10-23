@@ -119,3 +119,5 @@ The table of each Copa Argentina section lists the clubs of the draw with the re
 Until Diego confirms, `CA Racing`, `CSyD San Martín`, `CA San Martín (UAQ)` and `CA San Martín (SMC)` are not added to any club.
 
 **Confirmed by Diego (2026-10-23):** the four cases are as the page says. `CA Racing` is Racing de Córdoba and `CSyD San Martín` is San Martín de Burzaco, both new opponents; `CA San Martín (UAQ)` is `san-martin-san-juan` and `CA San Martín (SMC)` is `san-martin-tucuman`.
+
+**Final state of section C.** Once the San Martín spellings were assigned, `CA Ituzaingó`, `CD Morón`, `CSCyD Laferrere`, `Club Agropecuario Argentino` and `Club Juventud Unida Universitario` started to play clubs of the 34 and were loaded as opponents, and `CA San Martín (SMC)` became an alias of `san-martin-tucuman`. Only `CD Maipú` and `CA Nueva Chicago` are dropped.

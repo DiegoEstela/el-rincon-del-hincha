@@ -2,6 +2,92 @@
   "version": 1,
   "pages": [
     {
+      "url": "https://www.rsssf.org/tablesa/arg2023.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "5b584f14a2c47f953a680496b8f2d33780877ed2d51eff6b2cf2dcd2aafc4de6",
+      "bytes": 613088,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "7 Mar 2025",
+      "layout": "full-names-2017",
+      "excerpts": [
+        {
+          "name": "leaguesuper",
+          "start": "<a name=\"leaguesuper\">",
+          "end": "<a name=\"lpfsuper\">",
+          "sha256": "dbd97bee2509b32d19dd8ada392aea6dd17fb1fc563b2dddab8dd03b6bdc70af",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "lpfsuper",
+          "start": "<a name=\"lpfsuper\">",
+          "end": "<a name=\"nationalcup\">",
+          "sha256": "e8718f288b1ee0fa4303bd3f82e8bccec53759a4a31274247baec67758fffc12",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "nationalcup",
+          "start": "<a name=\"nationalcup\">",
+          "end": "<a name=\"supercup\">",
+          "sha256": "35a3eb933c80769779f1059a46caeea3950ce1b8996fa3ed00764d8ec39cca66",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "supercup",
+          "start": "<a name=\"supercup\">",
+          "end": "<a name=\"second\">",
+          "sha256": "b03afbd154cd262466d3dc3c19c6ec7b5dea819233aa0412fd2ffc3bd1aeca5f",
+          "layout": "cup-full-names"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/tablesa/arg2024.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "5e6f565b6f708b028ebe2b91762b9b2df6d4c4314d2ed319a2cd14d98366c8bf",
+      "bytes": 749413,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "30 Apr 2026",
+      "layout": "full-names-2017",
+      "excerpts": [
+        {
+          "name": "leaguesuper",
+          "start": "<a name=\"leaguesuper\">",
+          "end": "<a name=\"lpfsuper\">",
+          "sha256": "b90506c6c7bf9ce7d371dfdf87e2c8271601d6018dcd60205b613654aefd8f46",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "lpfsuper",
+          "start": "<a name=\"lpfsuper\">",
+          "end": "<a name=\"nationalcup\">",
+          "sha256": "bc5f33da7d00ed4d24e753061f3fdfb44ec366828ab170e1493e637c8cc9c0fb",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "nationalcup",
+          "start": "<a name=\"nationalcup\">",
+          "end": "<a name=\"supercup\">",
+          "sha256": "778d07df5a37da55ac979bfd5bfd9683435939852287f6dc81a9f94969efccb2",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "supercup",
+          "start": "<a name=\"supercup\">",
+          "end": "<a name=\"second\">",
+          "sha256": "a4fc6b77bc17fed413cc86a9b125b3d0208502be759a115986d635c7e0d5d1b1",
+          "layout": "cup-full-names"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
       "url": "https://www.rsssf.org/tablesa/arg2025.html",
       "retrieved_on": "2026-10-23",
       "sha256": "249377c0f3f693beff8329751757b7c4100b85023912276c19ca41e7a9e4606a",
@@ -22,6 +108,27 @@
           "start": "<a name=\"1clausura\">",
           "end": "<a name=\"1first\">",
           "sha256": "54f9a9912ace7fcda38c95dedfa89629bb9fb3bd57755b17103e1393bb679a5c"
+        },
+        {
+          "name": "1champtroph",
+          "start": "<a name=\"1champtroph\">",
+          "end": "<a name=\"lpfsuper\">",
+          "sha256": "57c6e4b8c23ccd84fccf17277caba4ff501b3939c18432340f0ccfb034f8549e",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "lpfsuper",
+          "start": "<a name=\"lpfsuper\">",
+          "end": "<a name=\"nationalcup\">",
+          "sha256": "209aa7722d5fac600de536deb9a4e335c0b777762965dd0886f80cea3a5385b0",
+          "layout": "cup-full-names"
+        },
+        {
+          "name": "nationalcup",
+          "start": "<a name=\"nationalcup\">",
+          "end": "<a name=\"second\">",
+          "sha256": "1126fbb16946673d843d46144f6cdfb8c68b9abf44bcea358e4b9aa4e6f6b948",
+          "layout": "cup-full-names"
         }
       ],
       "ignore": [],

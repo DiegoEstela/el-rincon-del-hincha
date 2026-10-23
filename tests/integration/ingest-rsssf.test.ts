@@ -101,11 +101,22 @@ function seedClubs(withAliases = true) {
 /** The data before RSSSF: openfootball only, so this test owns every RSSSF record. */
 function withoutRsssf() {
   const own = (r: { source: string }) => r.source.startsWith("https://www.rsssf.org/");
-  for (const file of ["matches.json", "seasons.json"]) {
+  for (const file of ["matches.json", "seasons.json", "titles.json"]) {
     const kept = (JSON.parse(read(file)) as { source: string }[]).filter((r) => !own(r));
     writeFileSync(join(dir, file), JSON.stringify(kept));
   }
   rmSync(join(dir, "standings.json"), { force: true });
+  // The cups come from RSSSF only: without their seasons they would have no coverage either.
+  const cups = new Set([
+    "copa-argentina",
+    "supercopa-argentina",
+    "supercopa-internacional",
+    "trofeo-de-campeones",
+  ]);
+  const competitions = (JSON.parse(read("competitions.json")) as { id: string }[]).filter(
+    (c) => !cups.has(c.id),
+  );
+  writeFileSync(join(dir, "competitions.json"), JSON.stringify(competitions));
 }
 
 beforeEach(() => {

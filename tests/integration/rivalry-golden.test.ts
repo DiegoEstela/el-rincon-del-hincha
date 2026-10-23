@@ -121,10 +121,10 @@ describe("Belgrano v Talleres from 2000-01-01", () => {
 });
 
 describe("pairs with little or no history", () => {
-  it("River v San Martín de Tucumán is a single win", () => {
+  it("River v San Martín de Tucumán is two wins: the league in 2019 and the Copa Argentina in 2025", () => {
     const h = h2h("river-plate", "san-martin-tucuman", "1990-05-20");
-    expect(h.record).toMatchObject({ played: 1, won: 1, drawn: 0, lost: 0 });
-    expect(h.atStake.winsToImprove).toBe(1);
+    expect(h.record).toMatchObject({ played: 2, won: 2, drawn: 0, lost: 0 });
+    expect(h.atStake.winsToImprove).toBeNull();
   });
 
   it("Aldosivi v Deportivo Riestra never met in the loaded data and shows an incomplete notice", () => {

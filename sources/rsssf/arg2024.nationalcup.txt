@@ -1,0 +1,192 @@
+<a name="nationalcup">AFA national cup: Copa Argentina 2024</a></h3>
+<pre>
+Non official table.
+  #.Name                                                      MP   W  D  L  Gf- Ga  Ps Round 
+  1.Club Atlético Central Córdoba Soc. Civil                   6   5  1  0  10-  4  16     6 (Santiago del Estero, G)
+  2.Club Atlético Vélez Sarsfield Asociación Civil             6   5  0  1  12-  7  15     6 (Liniers, C)
+  3.Club Atlético Boca Juniors Asociación Civil                5   2  2  1  10-  7   8     5 (La Boca, C)
+  4.Club Atlético Huracán                                      5   1  3  1   3-  3   6     5 (Parque de los Patricios, C)
+  5.Club de Gimnasia y Esgrima La Plata                        4   3  1  0   6-  3  10     4 (La Plata, B)
+  6.Club Atlético Independiente                                4   3  0  1   8-  1   9     4 (Avellaneda, B)
+  7.Club Atlético Talleres                                     4   2  1  1   5-  4   7     4 (Remedios de Escalada, B)
+  8.Club Atlético Temperley                                    4   0  3  1   3-  4   3     4 (Turdera, B)
+  9.Club Atlético Banfield Sociedad Civil                      3   2  1  0   9-  2   7     3 (Banfield, B)
+ 10.Club Atlético Talleres                                     3   2  1  0   5-  1   7     3 (Córdoba, X)
+ 11.Club Atlético Newell's Old Boys                            3   2  1  0   3-  0   7     3 (Rosario, S)
+ 12.Asociación Atlética Argentinos Juniors                     3   2  1  0   4-  2   7     3 (La Paternal, C)
+ 13.Club Atlético Mitre                                        3   2  1  0   3-  1   7     3 (Santiago del Estero, G)
+ 14.Club Atlético San Lorenzo de Almagro                       3   2  0  1   4-  3   6     3 (Flores, C)
+ 15.Club Deportivo Godoy Cruz Antonio Tomba                    3   1  1  1   4-  3   4     3 (Godoy Cruz, M)
+ 16.Club Atlético Barracas Central                             3   1  1  1   1-  1   4     3 (Barracas, C)
+ 17.Club Atlético River Plate Asoc. Civil                      2   1  1  0   4-  1   4     2 (Belgrano, C)
+ 18.Club Atlético Tucumán Soc. Civil                           2   1  0  1   5-  2   3     2 (San Miguel de Tucumán, T)
+ 19.Racing Club Asociación Civil                               2   1  0  1   4-  2   3     2 (Avellaneda, B)
+ 20.Club Estudiantes de La Plata                               2   1  0  1   4-  2   3     2 (La Plata, B)
+ 21.Asociación Civil Club Atlético Colón                       2   1  0  1   2-  2   3     2 (Santa Fe, S)
+ 22.Arsenal Fútbol Club                                        2   1  0  1   2-  2   3     2 (Sarandí, B)
+ 23.Asociación Mutual Social y Deportiva Atlético de Rafaela   2   1  0  1   2-  2   3     2 (Rafaela, S)
+ 24.Club Atlético Gimnasia y Esgrima                           2   1  0  1   2-  2   3     2 (Mendoza, M)
+ 25.Club Sportivo Independiente Rivadavia                      2   1  0  1   2-  2   3     2 (Mendoza, M)
+ 26.Deportivo Riestra Asociación de Fomento Barrio Colón       2   1  0  1   1-  1   3     2 (Nueva Pompeya, C)
+ 27.Club El Porvenir                                           2   1  0  1   1-  4   3     2 (Gerli, B)
+ 28.Club Atlético Platense Asociación Civil                    2   0  2  0   0-  0   2     2 (Florida, B)
+ 29.Club Almirante Brown                                       2   0  1  1   4-  5   1     2 (San Justo, B)
+ 30.Club Atlético Rosario Central                              2   0  1  1   1-  2   1     2 (Rosario, S)
+ 31.Club Atlético Chacarita Juniors                            2   0  1  1   1-  3   1     2 (Chacarita, C)
+ 32.Club Juventud Unida Universitario                          2   0  1  1   1-  3   1     2 (San Luis, D)
+ 33.Club Atlético San Martín S. Civil                          1   0  1  0   3-  3   1     1 (San Miguel de Tucumán, T)
+ 34.Club Atlético Tigre Sociedad Civil                         1   0  1  0   1-  1   1     1 (Victoria, B)
+ 35.Club Atlético Sarmiento                                    1   0  1  0   1-  1   1     1 (Junín, B)
+ 36.Club Atlético Douglas Haig                                 1   0  1  0   1-  1   1     1 (Pergamino, B)
+ 37.Club Deportivo Maipú                                       1   0  1  0   1-  1   1     1 (Maipú, M)
+ 38.Club Villa Mitre                                           1   0  1  0   0-  0   1     1 (Bahía Blanca, B)
+ 39.Club Olimpo                                                1   0  1  0   0-  0   1     1 (Bahía Blanca, B)
+ 40.Club Atlético San Martín                                   1   0  1  0   0-  0   1     1 (San Juan, J)
+ 41.Club Atlético San Miguel                                   1   0  1  0   0-  0   1     1 (San Miguel, B)
+ 42.Club Social y Deportivo Defensa y Justicia                 1   0  0  1   1-  2   0     1 (Florencio Varela, B)
+ 43.Club Atlético Unión                                        1   0  0  1   1-  2   0     1 (Santa Fe, S)
+ 44.Club Atlético Belgrano                                     1   0  0  1   1-  2   0     1 (Córdoba, X)
+ 45.Club de Gimnasia y Tiro Asociación Civil                   1   0  0  1   1-  2   0     1 (Salta, A)
+ 46.Club Atlético Los Andes                                    1   0  0  1   1-  2   0     1 (Lomas de Zamora, B)
+ 47.Instituto Atlético Central Córdoba                         1   0  0  1   1-  2   0     1 (Córdoba, X)
+ 48.Sportivo Atlético Club                                     1   0  0  1   1-  2   0     1 (Las Parejas, S)
+ 49.Centro Social y Recreativo Español                         1   0  0  1   1-  2   0     1 (Villa Sarmiento, B)
+ 50.Club Atlético Lanús                                        1   0  0  1   0-  1   0     1 (Lanús Este, B)
+ 51.Club Atlético Argentino de Quilmes                         1   0  0  1   0-  1   0     1 (Quilmes, B)
+ 52.Asociación Atlética Estudiantes                            1   0  0  1   0-  1   0     1 (Río Cuarto, X)
+ 53.Club Atlético Independiente                                1   0  0  1   0-  1   0     1 (Chivilcoy, B)
+ 54.Club Comunicaciones                                        1   0  0  1   0-  1   0     1 (Agronomía, C)
+ 55.Quilmes Atlético Club                                      1   0  0  1   1-  3   0     1 (Quilmes, B)
+ 56.Club Atlético Ferrocarril Midland                          1   0  0  1   0-  2   0     1 (Libertad, B)
+ 57.Club Atlético Central Norte                                1   0  0  1   0-  3   0     1 (Salta, A)
+ 58.Club Atlético Excursionistas                               1   0  0  1   0-  3   0     1 (Belgrano, C)
+ 59.Club Agropecuario Argentino Asociación Civil               1   0  0  1   0-  3   0     1 (Carlos Casares, B)
+ 60.Club Social y Cultural Deportivo Laferrere                 1   0  0  1   0-  3   0     1 (Gregorio de Laferrere, B)
+ 61.Club Social y Deportivo San Martín                         1   0  0  1   0-  3   0     1 (Burzaco, B)
+ 62.Club Deportivo Argentino                                   1   0  0  1   0-  3   0     1 (Monte Maíz, X)
+ 63.Club Atlético Defensores de Belgrano                       1   0  0  1   0-  4   0     1 (Núñez, C)
+ 64.Club Ciudad de Bolívar                                     1   0  0  1   0-  6   0     1 (Bolívar, B)
+
+<u>Round of 64</u>:
+[Jan 25, Thu]
+Club Estudiantes de La Plata           3- 0      CD Argentino                       Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+[Feb 6, Tue]
+Cd Gimnasia y Esgrima La Plata         2- 1      CSyR Español                       Centenario Ciudad de Quilmes, Quilmes, B
+[Feb 7, Wed]
+CA Belgrano                            1- 2      CA Mitre                           Eva Perón, Junín, B
+CA River Plate                         3- 0      CA Excursionistas                  Brigadier General Estanislao López, Santa Fe, S
+Deportivo Riestra AFBC                 1- 0      Club Comunicaciones                Alfredo Martín Beranger, Turdera, B
+[Feb 21, Wed]
+CA Tigre                           [4] 1- 1  [5] CA Chacarita Juniors              abandoned at 1:0 in 51m, remaining time on 17 Apr, pso, Julio Humberto Grondona, Sarandí, B
+CA Vélez Sarsfield                     2- 1      Sportivo AC                        Ciudad de Vicente López, Florida, B
+[Feb 27, Tue]
+CA Sarmiento                       [3] 1- 1  [4] CA Temperley                      pso, Ciudad de Caseros, Caseros, B
+[Feb 28, Wed]
+CA San Lorenzo de Almagro              1- 0      CA Independiente (CVY)             Centenario Ciudad de Quilmes, Quilmes, B
+[Mar 14, Thu]
+CA Talleres (COR)                      3- 0      Club Agropecuario Argentino        Centenario Ciudad de Quilmes, Quilmes, B
+CA Rosario Central                 [4] 1- 1  [3] CA Douglas Haig                   pso, 15 de Abril, Santa Fe, S
+[Mar 15, Fri]
+CA Lanús                               0- 1      Club El Porvenir                   Norberto "Tito" Tomaghello, Gobernador Costa, B
+AA Argentinos Juniors                  2- 1      Cd Gimnasia y Tiro                 Ciudad de Caseros, Caseros, B
+[Mar 20, Wed]
+Club Atlético Tucumán                  4- 0      CA Defensores de Belgrano          15 de Abril, Santa Fe, S
+[Mar 21, Thu]
+CSyD Defensa y Justicia                1- 2      AMSyD Atlético de Rafaela          Eva Perón, Junín, B
+Racing Club                            3- 0      CSyD San Martín                    Juan Carmelo Zerillo, La Plata, B 
+[Mar 22, Fri]
+CA Newell's Old Boys                   2- 0      CA Ferrocarril Midland             Brigadier General Estanislao López, Santa Fe, S
+CA Independiente (AVE)                 3- 0      CSCyD Laferrere                    Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+[Mar 23, Sat]
+CA Boca Juniors                        3- 0      CA Central Norte                   Único Madre de Ciudades, Santiago del Estero, G
+[Mar 25, Mon]
+CD Godoy Cruz Antonio Tomba        [4] 0- 0  [3] CA San Martín (UAQ)               pso, Provincial Juan Gilberto Funes, La Punta, D
+CA Platense                        [4] 0- 0  [2] Club Olimpo                       pso, Ciudad de Caseros, Caseros, B
+[Mar 27, Wed]
+CS Independiente Rivadavia             1- 0      CA Argentino de Quilmes            Provincial Juan Gilberto Funes, La Punta, D
+[Apr 2, Tue]
+CA Central Córdoba                     3- 1      Quilmes AC                         Alfredo Martín Beranger, Turdera, B
+[Apr 3, Wed]
+CA Huracán                         [4] 0- 0  [2] Club Villa Mitre                  pso, Centenario Ciudad de Quilmes, Quilmes, B
+Instituto ACC                          1- 2      CA Talleres (RDE)                  Nuevo Monumental, Rafaela, S
+[Apr 9, Tue]
+CA Banfield                            6- 0      Club Ciudad de Bolívar             Ciudad de Vicente López, Florida, B
+[Apr 10, Wed]
+CA Barracas Central                [4] 0- 0  [2] CA San Miguel                     pso, Alfredo Martín Beranger, Turdera, B
+[Apr 17, Wed]
+CA Unión                               1- 2      CA Gimnasia y Esgrima              Eva Perón, Junín, B
+[Apr 18, Thu]
+CD Maipú                           [7] 1- 1  [8] Club Juventud Unida Universitario pso, Julio César Villagra, Córdoba X
+[May 8, Wed]
+Arsenal FC                             1- 0      AA Estudiantes                     Centenario Ciudad de Quilmes, Quilmes, B
+CA Colón                               2- 1      CA Los Andes                       Eva Perón, Junín, B
+[May 15, Wed]
+Club Almirante Brown               [3] 3- 3  [1] CA San Martín (SMC)               pso, Brigadier General Estanislao López, Santa Fe, S
+<u>Round of 32</u>:
+[May 2, Thu]
+Racing Club                            1- 2      CA Talleres (RDE)                  Centenario Ciudad de Quilmes, Quilmes, B
+Club Juventud Unida Universitario      0- 2      CA Independiente (AVE)             Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+[May 15, Wed]
+CA Gimnasia y Esgrima                  0- 1      CA Mitre                           Ciudad de Caseros, Caseros, B
+[May 16, Thu]
+Deportivo Riestra AFBC                 0- 1      CA Newell's Old Boys               Presbítero Bartolomé Grella, Paraná, E
+[May 21, Tue]
+CA Temperley                       [5] 1- 1  [4] CA River Plate                    pso, Malvinas Argentinas, Mendoza, M
+[May 22, Wed]
+Club Atlético Tucumán                  1- 2      Cd Gimnasia y Esgrima La Plata     Brigadier General Estanislao López, Santa Fe, S
+[May 29, Wed]
+Club El Porvenir                       0- 4      CD Godoy Cruz Antonio Tomba        Julio César Villagra, Córdoba X
+[May 30, Thu]
+CS Independiente Rivadavia             1- 2      CA Banfield                        Mario Alberto Kempes, Córdoba, X
+[Jun 5, Wed]
+AA Argentinos Juniors                  1- 0      AMSyD Atlético de Rafaela          Estadio San Nicolás, San Nicolás de los Arroyos, B
+Arsenal FC                             1- 2      CA Vélez Sarsfield                 Julio Humberto Grondona, Sarandí, B
+[Jun 6, Thu]
+CA Talleres (COR)                      1- 0      CA Colón                           Marcelo A. Bielsa, Rosario, S
+[Jun 7, Fri]
+CA San Lorenzo de Almagro              2- 0      CA Chacarita Juniors               Brigadier General Estanislao López, Santa Fe, S
+[Jun 8, Sat]
+CA Platense                        [4] 0- 0  [5] CA Huracán                        pso, Centenario Ciudad de Quilmes, Quilmes, B
+[Jun 19, Wed]
+CA Boca Juniors                        2- 1      Club Almirante Brown               Malvinas Argentinas, Mendoza, M
+[Jul 8, Mon]
+CA Rosario Central                     0- 1      CA Barracas Central                Ciudad de Vicente López, Florida, B
+[Jul 17, Wed]
+Club Estudiantes de La Plata           1- 2      CA Central Córdoba                 Julio César Villagra, Córdoba X
+<u>Round of 16</u>:
+[Jul 31, Wed]
+CA Mitre                           [2] 0- 0  [3] CA Temperley                      pso, Estadio San Nicolás, San Nicolás de los Arroyos, B
+[Aug 6, Tue]
+CA San Lorenzo de Almagro              1- 3      CA Vélez Sarsfield                 Libertadores de América - Ricardo Enrique Bochini, Avellaneda, B
+[Aug 14, Wed]
+AA Argentinos Juniors              [4] 1- 1  [5] CA Huracán                        pso, Libertadores de América - Ricardo Enrique Bochini, Avellaneda, B
+[Aug 15, Thu]
+CA Talleres (RDE)                  [4] 1- 1  [3] CA Banfield                       pso, Centenario Ciudad de Quilmes, Quilmes, B
+[Aug 21, Wed]
+CA Central Córdoba                 [3] 0- 0  [2] CA Newell's Old Boys              pso, Estadio San Nicolás, San Nicolás de los Arroyos, B
+[Aug 22, Thu]
+CA Barracas Central                    0- 1      Cd Gimnasia y Esgrima La Plata     Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+[Aug 28, Wed]
+CD Godoy Cruz Antonio Tomba            0- 3      CA Independiente (AVE)             Mario Alberto Kempes, Córdoba, X
+CA Boca Juniors                    [8] 1- 1  [7] CA Talleres (COR)                 pso,  Malvinas Argentinas, Mendoza, M
+<u>Quarter-finals</u>:
+[Sep 18, Wed]
+CA Central Córdoba                     2- 1      CA Temperley                       Estadio San Nicolás, San Nicolás de los Arroyos, B
+[Sep 19, Thu]
+CA Talleres (RDE)                      0- 1      CA Huracán                         Libertadores de América - Ricardo Enrique Bochini, Avellaneda, B
+[Sep 27, Fri]
+CA Vélez Sarsfield                     1- 0      CA Independiente (AVE)             Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+[Oct 23, Wed]
+CA Boca Juniors                    [2] 1- 1  [1] Cd Gimnasia y Esgrima La Plata    pso,  Marcelo A. Bielsa, Rosario, S
+<u>Semi-finals</u>:
+[Oct 24, Thu]
+CA Huracán                             1- 2      CA Central Córdoba                 Estadio San Nicolás, San Nicolás de los Arroyos, B
+[Nov 27, Wed]
+CA Boca Juniors                        3- 4      CA Vélez Sarsfield                 Mario Alberto Kempes, Córdoba, X
+<u>Final</u>:
+[Dec 11, Wed]
+CA Vélez Sarsfield                     0- 1      CA Central Córdoba                 15 de Abril, Santa Fe, S
+
+</pre>
+<hr>
+<h3>

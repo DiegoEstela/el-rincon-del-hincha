@@ -10,6 +10,7 @@ import {
   RSSSF_CHAMPIONS,
   RSSSF_SOURCE_PREFIX,
   RSSSF_TITLE_SEASONS,
+  RSSSF_CUP_TOURNAMENTS,
   RSSSF_TOURNAMENTS,
   type TournamentConfig,
 } from "./config";
@@ -51,7 +52,7 @@ const readManifest = (): Manifest =>
   );
 
 const DEFAULT_CONFIG: RsssfConfig = {
-  tournaments: RSSSF_TOURNAMENTS,
+  tournaments: [...RSSSF_TOURNAMENTS, ...RSSSF_CUP_TOURNAMENTS],
   titleSeasons: RSSSF_TITLE_SEASONS,
   manifest: readManifest,
 };
