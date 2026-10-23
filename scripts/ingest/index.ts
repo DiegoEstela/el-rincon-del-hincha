@@ -4,6 +4,7 @@
 //   --from        read the pinned input files from this directory instead of the network
 //   --network     read the live pages of an adapter that may (rsssf may not: only data:snapshot requests rsssf.org)
 //   --cross-check print the read-only comparison of the adapter with data/ and write nothing
+import { reportLines } from "./core/report";
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { runAdapter, type Adapter } from "./core/adapter";
@@ -62,12 +63,7 @@ async function main(): Promise<number> {
       console.log(`data:ingest cross-check: ${crossCheck.length} line(s) (nothing written)`);
       return 0;
     }
-    for (const f of report.files) {
-      const note = f.partial
-        ? ` PARTIAL (source ends ${f.lastSourceDate}, season ends ${f.seasonEnd})`
-        : "";
-      console.log(`${f.file}: ${f.parsed} matches, ${f.first} to ${f.last}${note}`);
-    }
+    for (const f of report.files) for (const line of reportLines(f)) console.log(line);
     for (const [file, s] of Object.entries(summary)) {
       console.log(`${file}: +${s.added} -${s.removed} =${s.unchanged}`);
     }

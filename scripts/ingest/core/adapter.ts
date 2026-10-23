@@ -29,6 +29,11 @@ export type FileReport = {
   partial: boolean;
   lastSourceDate: string;
   seasonEnd: string;
+  /**
+   * Names of clubs that were not resolved in matches dropped because no app club played them
+   * (cups, ADR 0022). Listed so a missing alias of an app club is seen by a reviewer.
+   */
+  droppedUnknown?: string[];
 };
 
 export type RunReport = { files: FileReport[] };

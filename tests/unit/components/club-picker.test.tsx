@@ -5,12 +5,12 @@ import { createRef, useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ClubPicker } from "@/components/onboarding/club-picker";
 import { clubSchema } from "@/data-model/schemas";
-import { toClubOption } from "@/lib/club-options";
+import { toClubOptions } from "@/lib/club-options";
 import clubsJson from "../../../data/clubs.json";
 
 afterEach(cleanup);
 
-const clubs = clubSchema.array().parse(clubsJson).map(toClubOption);
+const clubs = toClubOptions(clubSchema.array().parse(clubsJson));
 
 function Harness({ onSelect = () => {} }: { onSelect?: (id: string) => void }) {
   const [selected, setSelected] = useState<string | null>(null);

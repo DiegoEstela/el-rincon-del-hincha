@@ -12,13 +12,13 @@ import { RivalryScreen } from "@/components/rivalry/rivalry-screen";
 import { sliceClubData, type ClubData } from "@/domain/club-data";
 import { statsDataFrom } from "@/domain/data";
 import { headToHead } from "@/domain/head-to-head";
-import { toClubOption } from "@/lib/club-options";
+import { toClubOptions } from "@/lib/club-options";
 import { clearFanChoice, getBrowserStorage, writeFanChoice } from "@/lib/fan-storage";
 import { statsWorld } from "../../../fixtures/domain/stats-world";
 
 const world = statsWorld();
 const data = statsDataFrom(world);
-const clubs = world["clubs.json"].map(toClubOption);
+const clubs = toClubOptions(world["clubs.json"]);
 const rival = clubs.find((c) => c.id === "club-b")!;
 const START = "2020-01-01";
 

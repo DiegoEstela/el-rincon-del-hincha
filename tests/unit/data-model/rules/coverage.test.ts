@@ -34,6 +34,20 @@ describe("missing-coverage", () => {
     expect(where(ds, "missing-coverage")).toHaveLength(7);
   });
 
+  it("does not ask for coverage of an opponent (ADR 0022)", () => {
+    const ds = validDataset();
+    ds["clubs.json"].push({
+      id: "opponent-z",
+      name: "Opponent Z",
+      short_name: "Opponent Z",
+      aliases: [],
+      selectable: false,
+      country: "UY",
+      source: "fixture:synthetic",
+    });
+    expect(where(ds, "missing-coverage")).toEqual([]);
+  });
+
   it("raises nothing without clubs or without competitions", () => {
     const noClubs = validDataset();
     noClubs["clubs.json"] = [];

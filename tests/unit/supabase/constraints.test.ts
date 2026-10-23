@@ -80,7 +80,8 @@ describe("indexes listed by the plan", () => {
 
 describe("clubs colors", () => {
   const checks = model.tables.get("clubs")!.checks;
-  const colors = defOf(defOf(clubSchema).shape!["colors"]!).shape!;
+  // `colors` is optional since opponents have none (ADR 0022); the keys of the object are the same.
+  const colors = defOf(defOf(defOf(clubSchema).shape!["colors"]!).innerType!).shape!;
   const keys = Object.keys(colors);
   const required = keys.filter((k) => defOf(colors[k]!).type !== "optional");
 
@@ -106,5 +107,23 @@ describe("clubs colors", () => {
     for (const value of ["#112233", "#aAbBcC", "#GGGGGG", "112233", "#12345", "#1234567", ""]) {
       expect(re.test(value), value).toBe(zodHex.safeParse(value).success);
     }
+  });
+});
+
+describe("clubs opponents (ADR 0022)", () => {
+  const clubs = model.tables.get("clubs")!;
+  it("keeps the kit data nullable and the opponent columns nullable", () => {
+    for (const name of ["colors", "jersey_pattern", "founded", "city", "selectable", "country"]) {
+      expect(clubs.columns.find((c) => c.name === name)?.nullable, name).toBe(true);
+    }
+  });
+  it("asks for the kit data of a selectable club, as the Zod refinement does", () => {
+    expect(clubs.checks).toContain(
+      "selectable is false or (colors is not null and jersey_pattern is not null and founded is not null and city is not null)",
+    );
+  });
+  it("gives a country to opponents only, as an ISO alpha-2 code", () => {
+    expect(clubs.checks).toContain("(selectable is false) = (country is not null)");
+    expect(clubs.checks).toContain("country ~ '^[A-Z]{2}$'");
   });
 });

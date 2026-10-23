@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Onboarding } from "@/components/onboarding/onboarding";
 import { clubSchema } from "@/data-model/schemas";
-import { toClubOption } from "@/lib/club-options";
+import { toClubOptions } from "@/lib/club-options";
 import {
   FAN_STORAGE_KEY,
   clearFanChoice,
@@ -16,7 +16,7 @@ import clubsJson from "../../../data/clubs.json";
 const push = vi.fn();
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push }) }));
 
-const clubs = clubSchema.array().parse(clubsJson).map(toClubOption);
+const clubs = toClubOptions(clubSchema.array().parse(clubsJson));
 const root = document.documentElement;
 const DATE = "1990-05-20";
 const consoleSpies = (["log", "info", "warn", "error", "debug"] as const).map((m) =>

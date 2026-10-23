@@ -286,6 +286,8 @@ export function parseMigrations(files: string[]): Model {
         const target =
           mode === "enable" ? model.rls : mode === "disable" ? model.rlsDisabled : model.rlsForced;
         target.set(unquote(m[1]!), file);
+      } else if (applyAlterTable(model, stmt)) {
+        // add column, drop not null and add constraint ... check, folded into the table
       } else if ((m = /^create policy ("[^"]+"|\w+) on (?:public\.)?(\w+)(.*)$/i.exec(stmt))) {
         const rest = m[3]!;
         model.policies.push({
@@ -413,4 +415,38 @@ export function netExecute(model: Model, fn: string): Set<string> {
     }
   }
   return roles;
+}
+
+/**
+ * Folds the three `alter table` shapes the migrations use into the table created earlier:
+ * `add column`, `alter column ... drop not null` and `add constraint ... check (...)`.
+ */
+function applyAlterTable(model: Model, stmt: string): boolean {
+  const head = /^alter table (?:only )?(?:public\.)?("?\w+"?) ([\s\S]+)$/i.exec(stmt);
+  if (head === null) return false;
+  const table = model.tables.get(unquote(head[1]!));
+  if (table === undefined) return false;
+  const rest = head[2]!;
+  let m: RegExpExecArray | null;
+  if ((m = /^add column (?:if not exists )?("?\w+"?) ([a-z]+(?:\[\])?)$/i.exec(rest))) {
+    table.columns.push({
+      name: unquote(m[1]!),
+      type: m[2]!.toLowerCase(),
+      nullable: true,
+      default: null,
+      checks: [],
+    });
+    return true;
+  }
+  if ((m = /^alter column ("?\w+"?) drop not null$/i.exec(rest))) {
+    const column = table.columns.find((c) => c.name === unquote(m![1]!));
+    if (column === undefined) throw new Error(`drop not null of an unknown column: ${rest}`);
+    column.nullable = true;
+    return true;
+  }
+  if ((m = /^add constraint \S+ check \(/i.exec(rest))) {
+    table.checks.push(balanced(rest, m[0].length - 1)!.inner.trim());
+    return true;
+  }
+  return false;
 }

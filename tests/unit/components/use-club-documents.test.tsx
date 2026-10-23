@@ -7,7 +7,7 @@ import { useClubDocuments } from "@/components/fan/use-club-documents";
 import { sliceClubData, type ClubData } from "@/domain/club-data";
 import { statsDataFrom } from "@/domain/data";
 import { RivalsScreen } from "@/components/rivals/rivals-screen";
-import { toClubOption } from "@/lib/club-options";
+import { toClubOptions } from "@/lib/club-options";
 import { clearFanChoice, getBrowserStorage, writeFanChoice } from "@/lib/fan-storage";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 
@@ -88,7 +88,7 @@ describe("a screen hidden by <Activity>", () => {
       startDate: "2020-01-01",
       startMode: "other",
     });
-    const clubs = world["clubs.json"].map(toClubOption);
+    const clubs = toClubOptions(world["clubs.json"]);
     const loadData = vi.fn(async (id: string) => docFor(id));
 
     function Host() {

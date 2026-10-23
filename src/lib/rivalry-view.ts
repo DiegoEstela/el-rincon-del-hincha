@@ -7,7 +7,7 @@ import { headToHead } from "@/domain/head-to-head";
 import { fanPeriod } from "@/domain/period";
 import type { MatchView, StatsIndex } from "@/domain/types";
 import type { ClubOption } from "./club-options";
-import { buildMatchCard, type MatchCardView } from "./match-card-view";
+import { buildMatchCard, type MatchCardView, clubShortNamer } from "./match-card-view";
 import { coverageCopy, formatMonthYear, includedLine, type CoverageCopy } from "./coverage-copy";
 import type { StartMode } from "./fan-storage";
 import {
@@ -94,7 +94,7 @@ export function buildRivalryView(input: RivalryViewInput): RivalryView {
   const { index, clubId, rivalId, catalog, competitionNames, seasonNames } = input;
   const fan = fanPeriod(input.startDate, input.now);
   const h = headToHead(index, clubId, rivalId, fan);
-  const shortName = (id: string) => catalog.get(id)?.shortName ?? id;
+  const shortName = clubShortNamer(catalog, index);
   const own = shortName(clubId);
   const rival = shortName(rivalId);
   const { record } = h;

@@ -270,12 +270,12 @@ Fixtures in `tests/fixtures/ingest/rsssf/`: reduced byte-exact excerpts of first
 PR B1: opponents and the domestic cup layout (code and fixtures, no `data/` change)
 
 - [x] **T45 ADR 0022 opponents.** Accepted on 2026-10-23.
-- [ ] **T46 Schema.** Tests first: `selectable` (default true) and `country` on the club schema, the validator and the Supabase constraints, with a migration and the parity tests; `colors` stay required for selectable clubs. Then the code. Existing data validates unchanged.
-- [ ] **T47 Selectable only.** Tests first: onboarding, search, `/rivales` list and compare show only selectable clubs; matches against opponents count in totals, history and titles. Then `club-options` and the views.
-- [ ] **T48 Neutral crest.** Test first: an opponent crest has no club colors and passes contrast. Then the component.
-- [ ] **T49 `cup-full-names` layout.** Fixture from the `nationalcup` section of `arg2025` (reduced) plus a league cup and a Trofeo de Campeones section; tests for date headers, stages, `pso`, rows of the cup table (ignored, not a standings source), unknown line and the caps.
-- [ ] **T50 Cup config and competitions.** Tests first (the competition list and ids, season windows, declared gaps for 2020 and 2021); then `config.ts` entries and the competition records (by hand, each with a sourced `afa_recognized`, D-B4).
-- [ ] **T51 Filter to app clubs.** Test first: a match without any of the 34 clubs is read, checked and dropped; an unknown club that faces an app club stops the run with the list of names.
+- [x] **T46 Schema.** Tests first: `selectable` (default true) and `country` on the club schema, the validator and the Supabase constraints, with a migration and the parity tests; `colors` stay required for selectable clubs. Then the code. Existing data validates unchanged.
+- [x] **T47 Selectable only.** Tests first: onboarding, search, `/rivales` list and compare show only selectable clubs; matches against opponents count in totals, history and titles. Then `club-options` and the views.
+- [x] **T48 Neutral crest.** Test first: an opponent crest has no club colors and passes contrast. Then the component.
+- [x] **T49 `cup-full-names` layout.** Fixture from the `nationalcup` section of `arg2025` (reduced) plus a league cup and a Trofeo de Campeones section; tests for date headers, stages, `pso`, rows of the cup table (ignored, not a standings source), unknown line and the caps.
+- [~] **T50 Cup config and competitions.** (B1 done: `appClubsOnly`, `competitions` in the adapter config and the excerpt-level `layout`; the real `config.ts` entries and the competition records move to B2, where they are loaded with their data and a sourced `afa_recognized`.) Tests first (the competition list and ids, season windows, declared gaps for 2020 and 2021); then `config.ts` entries and the competition records (by hand, each with a sourced `afa_recognized`, D-B4).
+- [x] **T51 Filter to app clubs.** Test first: a match without any of the 34 clubs is read, checked and dropped; an unknown club that faces an app club stops the run with the list of names.
 
 PR B2: the data of the domestic cups 2023 to 2025
 

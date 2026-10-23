@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Adapter, SourceLoader } from "../core/adapter";
 import { IngestError } from "../core/errors";
+import type { Competition } from "../../../src/data-model/types";
 import {
   RSSSF_CHAMPIONS,
   RSSSF_SOURCE_PREFIX,
@@ -13,6 +14,7 @@ import {
   type TournamentConfig,
 } from "./config";
 import { parseChampionsList, type ParsedChampions } from "./layouts/champions-list";
+import { parseCupFullNames } from "./layouts/cup-full-names";
 import { parseFullNames2017 } from "./layouts/full-names-2017";
 import { excerptFileName, manifestSchema, type Manifest, type ManifestPage } from "./manifest";
 import { normalizeRsssf, type RawTournament } from "./normalize";
@@ -27,6 +29,7 @@ type LayoutParser = (text: PreparedText, ctx: LayoutContext) => ParsedTournament
 /** One strict parser per layout; a layout without one stops the run instead of guessing. */
 const PARSERS: Partial<Record<ManifestPage["layout"], LayoutParser>> = {
   "full-names-2017": parseFullNames2017,
+  "cup-full-names": parseCupFullNames,
 };
 
 /** What `load` reads: the tournaments, and the list of champions when the manifest has it. */
@@ -34,6 +37,8 @@ export type RsssfRaw = { tournaments: RawTournament[]; champions: ParsedChampion
 
 export type RsssfConfig = {
   tournaments: readonly TournamentConfig[];
+  /** The competitions the adapter writes when it does not find them (default: the first division). */
+  competitions?: readonly Competition[];
   /** The seasons whose champion is written as a title (needs the list of champions). */
   titleSeasons: readonly TitleSeason[];
   /** The reviewed manifest, read when the adapter loads (default: `sources/rsssf/manifest.json`). */
@@ -75,7 +80,7 @@ async function readExcerpt(
 /** `config` is injectable so tests can use fixtures and small tournament lists. */
 export function createRsssfAdapter(
   config: Pick<RsssfConfig, "tournaments" | "manifest"> &
-    Partial<Pick<RsssfConfig, "titleSeasons">> = DEFAULT_CONFIG,
+    Partial<Pick<RsssfConfig, "titleSeasons" | "competitions">> = DEFAULT_CONFIG,
 ): Adapter<RsssfRaw> {
   const titleSeasons = config.titleSeasons ?? [];
   return {
@@ -92,11 +97,10 @@ export function createRsssfAdapter(
         if (found === null) {
           throw new IngestError([`${label}: not in the manifest of sources/rsssf`]);
         }
-        const parser = PARSERS[found.page.layout];
+        const layout = found.excerpt.layout ?? found.page.layout;
+        const parser = PARSERS[layout];
         if (parser === undefined) {
-          throw new IngestError([
-            `${found.page.url}: the layout "${found.page.layout}" has no parser yet`,
-          ]);
+          throw new IngestError([`${found.page.url}: the layout "${layout}" has no parser yet`]);
         }
         const parsed = parser(await readExcerpt(loader, found, label), {
           window: tournament.window,
@@ -121,7 +125,7 @@ export function createRsssfAdapter(
       return normalizeRsssf(
         raw.tournaments,
         clubs,
-        undefined,
+        config.competitions,
         raw.champions === null ? undefined : { champions: raw.champions, titleSeasons, existing },
       );
     },

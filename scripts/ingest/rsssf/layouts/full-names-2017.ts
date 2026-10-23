@@ -2,7 +2,7 @@
 // names and the headquarters, then rounds of `[Aug 10, Fri]` date headers and match lines whose
 // columns are separated by two or more spaces. Strict: inside the matches, a line the grammar does
 // not know stops the run with the excerpt and the line (plan 0017, ADR 0020 decision 3).
-import { resolveDate } from "../dates";
+import { resolveDate, type DateWindow } from "../dates";
 import type {
   LayoutContext,
   ParsedMatch,
@@ -17,7 +17,7 @@ const TABLE_ROW =
   /^\s*(\d+)\.(\S.*?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)-\s*(\d+)\s+(\d+)(?:\s+(\S.*?))?\s*$/;
 const TABLE_LABEL = /^(Champion|Runner-up|Teams eliminated in the .+)$/;
 const TABLE_TITLE = /^(Table( Group [A-Z])?|Relegation Table|Triennal General Table of Averages)$/;
-const DATE_HEADER = /^\[([A-Z][a-z]{2}) (\d{1,2})(?:, ([A-Z][a-z]{2}))?\]$/;
+const DATE_HEADER = /^\[(?:(\d{4}) )?([A-Z][a-z]{2}) (\d{1,2})(?:, ([A-Z][a-z]{2}))?\]$/;
 const ROUND = /^Round (\d+)(?::|\s+-\s+\S.*)?$/;
 const PHASE = /^Primera fase de zonas\b.*$/;
 const MATCH =
@@ -29,6 +29,14 @@ const KNOCKOUT: [RegExp, string][] = [
   [/^Semi finals?\b.*$/, "Semifinal"],
   [/^Final:?$/, "Final"],
 ];
+
+/** What differs between the first division pages and the cup sections of the same pages. */
+export type FullNamesOptions = {
+  /** Headings of the knockout rounds and the Spanish stage each one is called. */
+  knockout: readonly [RegExp, string][];
+  /** The stage of a match that has a date header but no round heading (a cup of one match). */
+  defaultStage: string | null;
+};
 
 type Notes = {
   extraTime: boolean;
@@ -70,6 +78,15 @@ function toRow(m: RegExpExecArray, line: number, mark: string | null): ParsedTab
 }
 
 export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): ParsedTournament {
+  return parseFullNames(text, ctx, { knockout: KNOCKOUT, defaultStage: null });
+}
+
+/** The grammar of `full-names-2017`, parameterized by what the cup sections change. */
+export function parseFullNames(
+  text: PreparedText,
+  ctx: LayoutContext,
+  options: FullNamesOptions,
+): ParsedTournament {
   const { file } = text;
   const tables: ParsedTable[] = [];
   const matches: ParsedMatch[] = [];
@@ -123,7 +140,7 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
     if (ignore.has(t)) continue;
 
     const round = ROUND.exec(t);
-    const knockout = KNOCKOUT.find(([re]) => re.test(t));
+    const knockout = options.knockout.find(([re]) => re.test(t));
     if (round !== null || knockout !== undefined) {
       stage = round !== null ? `Fecha ${Number(round[1])}` : knockout![1];
       date = null;
@@ -137,8 +154,13 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
 
     const dateHeader = DATE_HEADER.exec(t);
     if (dateHeader !== null) {
+      if (stage === null && options.defaultStage !== null) stage = options.defaultStage;
       if (stage === null) fail(line, `date header "${t}" before any round heading`);
-      date = resolveDate(dateHeader[1], Number(dateHeader[2]), dateHeader[3], ctx.window, where);
+      const [, year, month, day, weekday] = dateHeader;
+      date =
+        year === undefined
+          ? resolveDate(month, Number(day), weekday, ctx.window, where)
+          : resolveDatedYear(Number(year), month, Number(day), weekday, ctx.window, where);
       mode = "matches";
       continue;
     }
@@ -175,4 +197,26 @@ export function parseFullNames2017(text: PreparedText, ctx: LayoutContext): Pars
     if (mode === "matches") fail(line, `unrecognized line "${t}"`);
   }
   return { excerpt: file, tables, matches };
+}
+
+/** A header that writes its year (`[2025 Sep 6, Sat]`): the date must still be inside the window. */
+function resolveDatedYear(
+  year: number,
+  month: string,
+  day: number,
+  weekday: string | undefined,
+  window: DateWindow,
+  where: string,
+): string {
+  const iso = resolveDate(
+    month,
+    day,
+    weekday,
+    { from: `${year}-01-01`, to: `${year}-12-31` },
+    where,
+  );
+  if (iso < window.from || iso > window.to) {
+    throw new Error(`${where}: ${iso} is outside the window ${window.from} to ${window.to}`);
+  }
+  return iso;
 }

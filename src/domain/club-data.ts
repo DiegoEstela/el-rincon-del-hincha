@@ -12,6 +12,7 @@ import type {
   Season,
   Title,
 } from "@/data-model/types";
+import { isSelectable } from "@/data-model/club";
 import { byDateThenId, compareText } from "./data";
 import type { StatsData } from "./types";
 
@@ -45,6 +46,11 @@ function unique<T>(
   const seen = new Map<string, T>();
   for (const record of records) if (!seen.has(key(record))) seen.set(key(record), record);
   return [...seen.values()].sort(order);
+}
+
+/** The ids a fan can pick (and so the ids that have a document): opponents are left out (ADR 0022). */
+export function selectableClubIds(clubs: readonly Club[]): string[] {
+  return clubs.filter(isSelectable).map((club) => club.id);
 }
 
 export function sliceClubData(data: StatsData, clubId: string): ClubData {

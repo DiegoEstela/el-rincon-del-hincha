@@ -2,10 +2,11 @@
 // contrast.ts and the zod `Club` type, so client modules import just the `ClubOption` type.
 import { searchFold } from "./club-search";
 import { contrastRatio } from "./contrast";
+import { isSelectable, type SelectableClub } from "@/data-model/club";
 import type { Club } from "@/data-model/types";
 
 export type CrestSpec = {
-  pattern: Club["jersey_pattern"];
+  pattern: SelectableClub["jersey_pattern"];
   primary: string;
   secondary: string;
   tertiary?: string;
@@ -53,7 +54,7 @@ export function initialsInk(primary: string): string {
 // Nobody types those, and they would make "ca" match every club, so they are not search keys.
 const SOURCE_ONLY_ALIAS = /^(?:CA|CD|CS|CSD|CSyD|AA|Cd|Club) |\s\([^()]*,\s*[A-Z]\)$/;
 
-export function toClubOption(club: Club): ClubOption {
+export function toClubOption(club: SelectableClub): ClubOption {
   const seen = new Set<string>();
   const aliases = club.aliases.filter((alias) => !SOURCE_ONLY_ALIAS.test(alias));
   const searchKeys = [club.name, club.short_name, ...aliases].filter((key) => {
@@ -76,5 +77,25 @@ export function toClubOption(club: Club): ClubOption {
       initials: clubInitials(club.name),
       initialsInk: initialsInk(primary),
     },
+  };
+}
+
+/** The options of the onboarding: opponents (ADR 0022) only appear in matches, never here. */
+export function toClubOptions(clubs: readonly Club[]): ClubOption[] {
+  return clubs.filter(isSelectable).map(toClubOption);
+}
+
+// A neutral slate crest for opponents (ADR 0022): no club colors without a source, so every
+// opponent looks the same except for its initials.
+const OPPONENT_PRIMARY = "#334155";
+const OPPONENT_SECONDARY = "#94a3b8";
+
+export function opponentCrest(name: string): CrestSpec {
+  return {
+    pattern: "solid",
+    primary: OPPONENT_PRIMARY,
+    secondary: OPPONENT_SECONDARY,
+    initials: clubInitials(name),
+    initialsInk: initialsInk(OPPONENT_PRIMARY),
   };
 }

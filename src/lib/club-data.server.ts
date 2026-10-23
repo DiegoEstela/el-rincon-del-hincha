@@ -16,7 +16,7 @@ import {
   seasonSchema,
   titleSchema,
 } from "@/data-model/schemas";
-import { sliceClubData, type ClubData } from "@/domain/club-data";
+import { selectableClubIds, sliceClubData, type ClubData } from "@/domain/club-data";
 import type { StatsData } from "@/domain/types";
 
 const data: StatsData = {
@@ -30,7 +30,7 @@ const data: StatsData = {
   rivalries: [],
 };
 
-export const CLUB_IDS: readonly string[] = data.clubs.map((c) => c.id);
+export const CLUB_IDS: readonly string[] = selectableClubIds(data.clubs);
 
 const known = new Set(CLUB_IDS);
 
