@@ -1,0 +1,252 @@
+<pre>
+<b>First Round</b>
+A single match to determine which team advances to the Group Stage.
+
+(<i>Mar 7, Asunción</i>)
+Tacuary FC                Par  Club General Caballero    Par   2-2  4-2p
+(<i>Mar 7, Caracas</i>)
+Caracas FC                Ven  Puerto Cabello CF         Ven   0-1
+(<i>Mar 7, Maldonado</i>)
+CA River Plate            Uru  CA Peñarol                Uru   0-4
+(<i>Mar 7, Quito</i>)
+LDU (Quito)               Ecu  Delfín SC                 Ecu   4-0
+(<i>Mar 7, Rancagua</i>)
+Audax Italiano            Chi  CD Universidad Católica   Chi   3-2
+(<i>Mar 8, Asunción</i>)
+Club Guaraní              Par  CS Ameliano               Par   3-1
+(<i>Mar 8, Lima</i>)
+CDU César Vallejo         Per  Deportivo Binacional FC   Per   3-1
+(<i>Mar 8, Medellín</i>)
+Águilas Doradas           Col  CI Santa Fe               Col   1-2
+(<i>Mar 8, Mérida</i>)
+Estudiantes de Mérida     Ven  Deportivo Táchira FC      Ven   1-1  3-1p
+(<i>Mar 8, Montevideo</i>)
+Defensor Sporting Club    Uru  Danubio FC                Uru   0-0  3-4p
+(<i>Mar 8, Santa Cruz de la Sierra</i>)
+CDSC Guabirá              Bol  Oriente Petrolero         Bol   0-1
+(<i>Mar 9, Guayaquil</i>)
+CS Emelec                 Ecu  CD Cuenca                 Ecu   2-1
+(<i>Mar 9, Ibagué</i>)
+Deportes Tolima           Col  CDP Junior FC             Col   1-0
+(<i>Mar 9, Lima</i>)
+Universitario de Deportes Per  Club Cienciano            Per   2-0
+(<i>Mar 9, Rancagua</i>)
+CD Cobresal               Chi  CD Palestino              Chi   0-1
+(<i>Mar 9, Santa Cruz de la Sierra</i>)
+Club Blooming             Bol  CAM Vinto Palma Flor      Bol   6-0
+
+<b>Group Phase</b>
+The winners of each group advanced to the round of 16.
+The runners-up of each group advanced to the knockout round play-offs with teams from Copa Libertadores.
+
+Group A
+Apr  4: CDU César Vallejo - LDU (Quito)       1-2
+Apr  6: CD Magallanes - Botafogo FR           2-2x
+Apr 19: LDU Quito - CD Magallanes             4-0
+Apr 20: Botafogo FR - CDU César Vallejo       4-0
+May  2: CD Magallanes - CDU César Vallejo     2-2x
+May  4: Botafogo FR - LDU (Quito)             0-0
+May 23: CD Magallanes - LDU (Quito)           1-1x
+May 25: CDU César Vallejo - Botafogo FR       2-3
+Jun  6: LDU (Quito) - Botafogo FR             0-0
+Jun  8: CDU César Vallejo - CD Magallanes     3-2
+Jun 29: LDU (Quito) - CDU César Vallejo       3-0
+Jun 29: Botafogo FR - CD Magallanes           1-1
+x in Rancagua.
+
+ 1.<b>LDU (Quito)</b>                     6  3  3  0  10- 2 12
+ 2.<i>Botafogo FR</i>                     6  2  4  0  10- 5 10
+ 3.CD Magallanes                   6  0  4  2   8-13  4
+ 4.CDU César Vallejo               6  1  1  4   8-16  4
+
+Group B
+Apr  5: Danubio FC - CS Emelec                2-0
+Apr  6: CA Huracán - Club Guaraní             4-1
+Apr 19: Club Guaraní - Danubio FC             2-1
+Apr 20: CS Emelec - CA Huracán                1-0
+May  2: CA Huracán - Danubio FC               1-1
+May  3: Club Guaraní - CS Emelec              1-1
+May 25: Danubio FC - Club Guaraní             0-2
+May 25: CA Huracán - CS Emelec                2-2
+Jun  7: CS Emelec - Club Guaraní              1-1
+Jun  8: Danubio FC - CA Huracán               1-0
+Jun 28: CS Emelec - Danubio FC                2-1
+Jun 28: Club Guaraní - CA Huracán             2-0
+
+ 1.<b>Club Guaraní</b>                    6  3  2  1   9- 7 11
+ 2.<i>CS Emelec</i>                       6  2  3  1   7- 7  9
+ 3.Danubio FC                      6  2  1  3   6- 7  7
+ 4.CA Huracán                      6  1  2  3   7- 8  5
+
+Group C
+Apr  5: Oriente Petrolero - Estudiantes LP    0-1
+Apr  6: Tacuary FC - RB Bragantino            1-4
+Apr 18: RC Bragantino - Oriente Petrolero     5-0	
+Apr 18: Estudiantes LP - Tacuary FC           4-0
+May  2: Tacuary FC - Oriente Petrolero        3-1
+May  2: RB Bragantino - Estudiantes LP        0-0
+May 25: Tacuary FC - Estudiantes LP           0-4
+May 25: Oriente Petrolero - RB Bragantino     0-4
+Jun  7: Estudiantes LP - RB Bragantino        1-1
+Jun  8: Oriente Petrolero - Tacuary FC        1-3
+Jun 28: Estudiantes LP - Oriente Petrolero    4-0
+Jun 28: RD Bragantino - Tacuary FC            7-1
+
+ 1.<b>RD Bragantino</b>                   6  4  2  0  21- 3  14
+ 2.<i>Estudiantes LP</i>                  6  4  2  0  14- 1  14
+ 3.Tacuary FC                      6  2  0  4   8-21   6
+ 4.Oriente Petrolero               6  0  0  6   2-20   0
+
+Group D
+Apr  6: CA Tigre - São Paulo FC               0-2
+Apr  6: Puerto Cabello CF - Deportes Tolima   0-2x
+Apr 18: São Paulo FC - Puerto Cabello CF      2-0
+Apr 20: Deportes Tolima - CA Tigre            1-2
+May  2: Deportes Tolima - São Paulo FC        0-0
+May  3: Puerto Cabello CF - CA Tigre          0-3x
+May 23: Puerto Cabello CF - São Paulo FC      0-2x
+May 24: CA Tigre - Deportes Tolima            0-0
+Jun  6: CA Tigre - Puerto Cabello CF          2-1
+Jun  8: São Paulo FC - Deportes Tolima        5-0
+Jun 27: São Paulo FC - CA Tigre               2-0
+Jun 27: Deportes Tolima - Puerto Cabello CF   3-1
+x in Valencia.
+
+ 1.<b>São Paulo FC</b>                    6  5  1  0  13- 0  16
+ 2.<i>CA Tigre</i>                        6  3  1  2   7- 6  10
+ 3.Deportes Tolima                 6  2  2  2   6- 8   8
+ 4.Puerto Cabello CF               6  0  0  6   2-14   0
+
+Group E
+Apr  4: Audax Italiano - CA Newell's Old Boys 0-1x
+Apr  4: Club Blooming - Santos FC             0-1
+Apr 18: CA Newell's Old Boys - Club Blooming  3-0
+Apr 20: Santos FC - Audax Italiano            0-0
+May  2: CA Newell's Old Boys - Santos FC      1-0
+May  4: Audax Italiano - Club Blooming        2-0x
+May 24: Audax Italiano - Santos FC            2-1x
+May 24: Club Blooming - CA Newell's Old Boys  2-3
+Jun  6: Santos FC - CA Newell's Old Boys      1-2
+Jun  7: Club Blooming - Audax Italiano        1-2
+Jun 29: Santos FC - Club Blooming             0-0
+Jun 29: CA Newell's Old Boys - Audax Italiano 1-1
+x in Rancagua.
+
+ 1.<b>CA Newell's Old Boys</b>            6  5  1  0  11- 4  16
+ 2.<i>Audax Italiano</i>                  6  3  2  1   7- 4  11
+ 3.Santos FC                       6  1  2  3   3- 5   5
+ 4.Club Blooming                   6  0  1  5   3-11   1
+
+Group F
+Apr  4: Millonarios FC - Defensa y Justicia   3-0
+Apr  5: América FC-MG - CA Peñarol            4-1
+Apr 19: Defensa y Justicia - América FC-MG    2-1
+Apr 20: CA Peñarol - Millonarios FC           0-2
+May  3: Millonarios FC - América FC-MG        1-1
+May  4: Defensa y Justicia - CA Peñarol       4-1
+May 23: América FC-MG - Defensa y Justicia    2-3
+May 23: Millonarios FC - CA Peñarol           3-1
+Jun  6: CA Peñarol - Defensa y Justicia       0-3
+Jun  6: América FC-MG - Millonarios FC        2-0
+Jun 29: CA Peñarol - América FC-MG            1-2
+Jun 29: Defensa y Justicia - Millonarios FC   3-1
+
+ 1.<b>Defensa y Justicia</b>              6  5  0  1  15- 8  15
+ 2.<i>América FC-MG</i>                   6  3  1  2  12- 8  10
+ 3.Millonarios FC                  6  3  1  2  10- 7  10
+ 4.CA Peñarol                      6  0  0  6   4-18   0
+
+Group G
+Apr  4: Goiás EC - CI Santa Fe                0-0
+Apr  5: Gimnasia y Esgrima LP - Universitario 0-1
+Apr 18: CI Santa Fe - Gimnasia y Esgrima LP   2-1
+Apr 20: Universitario - Goiás EC              2-2
+May  4: Gimnasia y Esgrima LP - Goiás EC      0-2
+May  4: Universitario - CI Santa Fe           2-0
+May 23: Gimnasia y Esgrima LP - CI Santa Fe   1-0
+May 23: Goiás EC - Universitario              1-0
+Jun  8: Goiás EC - Gimnasia y Esgrima LP      0-0
+Jun  8: CI Santa Fe - Universitario           2-0
+Jun 28: CI Santa Fe - Goiás EC                1-2
+Jun 28: Universitario - Gimnasia y Esgrima LP 1-0
+
+ 1.<b>Goiás EC</b>                        6  3  3  0   7- 3  12
+ 2.<i>Universitario</i>                   6  3  1  2   6- 5  10
+ 3.CI Santa Fe                     6  2  1  3   5- 6   7
+ 4.Gimnasia y Esgrima LP           6  1  1  4   2- 6   4
+
+Group H
+Apr  4: Estudiantes de Mérida - San Lorenzo   0-1
+Apr  5: Fortaleza EC - CD Palestino           4-0
+Apr 18: CD Palestino - Estudiantes de Mérida  1-0x
+Apr 20: San Lorenzo - Fortaleza EC            3-2
+May  3: CD Palestino - San Lorenzo            0-0x
+May  4; Fortaleza EC - Estudiantes de Mérida  6-1
+May 24: Fortaleza EC - San Lorenzo            3-2
+May 25: Estudiantes de Mérida - CD Palestino  1-5
+Jun  6: Estudiantes de Mérida - Fortaleza EC  1-0
+Jun  8: San Lorenzo - CD Palestino            0-0
+Jun 27: San Lorenzo - Estudiantes de Mérida   4-1
+Jun 27: CD Palestino - Fortaleza EC           1-2x
+x in Rancagua.
+
+ 1.<b>Fortaleza EC</b>                    6  5  0  1  17- 5  15
+ 2.<i>San Lorenzo</i>                     6  2  2  2   7- 6   8
+ 3.CD Palestino                    6  2  2  2   7- 7   8
+ 4.Estudiantes de Mérida           6  1  0  5   4-17   3
+
+<b>Playoff Round</b>
+The eight group runner-ups played a play-off round prior to the round of 1/8 Finals 
+against the eight third-placed teams of the Copa Libertadores group stage.
+
+(<i>Jul 11 & 18</i>)
+SC Corinthians Paulista   Bra  Universitario             Per    1-0 2-1  3-1
+CSD Colo-Colo             Chi  América FC-MG             Bra    2-1 1-5  3-6
+Barcelona SC              Ecu  Estudiantes LP            Arg    2-1 0-4  2-5
+(<i>Jul 12 & 19</i>)
+Sporting Cristal          Per  CS Emelec                 Ecu    0-1 0-0  0-1
+Independiente Medellín    Col  San Lorenzo               Arg   	0–1 0-2  0-3
+CA Patronato              Arg  Botafogo FR               Bra    0-2 1-1  1-3
+(<i>Jul 13 & 20</i>)
+Club Libertad             Par  CA Tigre                  Arg    2-1 1-0  3-1
+(<i>Jul 13 & 21</i>)
+CD Ñublense               Chi  Audax Italiano            Chi    0-0 1-0  1-0x
+x 1st leg in Concepción, 2nd leg in Rancagua.
+
+<b>1/8 Finals</b>
+
+(<i>Aug 1 & 8</i>)
+CS Emelec                 Ecu  Defensa y Justicia        Arg    1-2 0-1  1-3x
+Club Libertad             Par  Fortaleza EC              Bra    0-1 1-1  1-2
+SC Corinthians Pauliata   Bra  CA Newell's Old Boys      Arg    2-1 0-0  2-1
+(<i>Aug 2 & 9</i>)
+Estudiantes LP            Arg  Goiás EC                  Bra    3-0 2-0  5-0
+Botafogo FR               Bra  Club Guaraní              Par    2-1 0-0  2-1
+(<i>Aug 3 & 10</i>)
+América FC-MG             Bra  RD Bragantino             Bra    1-1 3-3  4-4y 4-3p
+San Lorenzo               Arg  São Paulo FC              Bra    1-0 0-2  1-2    
+CD Ñublense               Chi  LDU (Quito)               Ecu    0-1 3-2  3-3z 3-4p
+x 2nd leg in La Plata,
+y 2nd leg in São Paulo.
+z 1st leg in Concepción.
+
+Quarterfinals
+(<i>Aug 22 & 29</i>)
+SC Corinthians Paulista   Bra  Estudiantes LP            Arg    1-0 0-1  1-1  3-2p
+(<i>Aug 23 & 30</i>)
+Botafogo FR               Bra  Defensa y Justicia        Arg    1–1 1-2  2-3x
+(<i>Aug 24 & 31</i>)
+América FC-MG             Bra  Fortaleza EC              Bra    1-3 1-2  2-5
+LDU (Quito)               Ecu  São Paulo FC              Bra    2-1 0-1  2-2  5-4p
+x 2nd leg in Banfield.
+
+<b>Semifinals</b>
+(<i>Sep 26 & Oct 3</i>)
+SC Corinthians Paulista  Bra  Fortaleza EC               Bra    1-1 0-2  1-3
+(<i>Sep 27 & Oct 4</i>)
+LDU (Quito)              Ecu  Defensa y Justicia         Arg    3–0 0-0y 3-0x
+x 2nd leg in Remedios de Escalada.
+
+<b>Final</b> (<i>Oct 28, Maldonado</i>)
+Fortaleza EC             Bra  LDU (Quito)                Ecu    1-1 aet       3-4p
+

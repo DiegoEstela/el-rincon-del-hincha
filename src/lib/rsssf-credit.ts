@@ -19,12 +19,16 @@ function listOf(items: readonly string[]): string {
   return `${items.slice(0, -1).join(", ")} y ${items[items.length - 1]}`;
 }
 
-/** "arg2025.html" -> "Argentina 2025"; any other page keeps its file name. */
+/** "arg2025.html" -> "Argentina 2025", "copa2019.html" -> "Copa Libertadores 2019"; others keep their file name. */
 function labelOf(url: string): string {
   const { pathname } = new URL(url);
   const name = pathname.slice(pathname.lastIndexOf("/") + 1).replace(/\.html$/, "");
-  const year = /^arg(\d{2,4})$/.exec(name);
-  return year === null ? name : `Argentina ${year[1]}`;
+  const league = /^arg(\d{2,4})$/.exec(name);
+  if (league !== null) return `Argentina ${league[1]}`;
+  const libertadores = /^copa(\d{4})$/.exec(name);
+  if (libertadores !== null) return `Copa Libertadores ${libertadores[1]}`;
+  const sudamericana = /^sudamcup(\d{4})$/.exec(name);
+  return sudamericana === null ? name : `Copa Sudamericana ${sudamericana[1]}`;
 }
 
 export function rsssfCredit(source: CreditSource): RsssfCredit {

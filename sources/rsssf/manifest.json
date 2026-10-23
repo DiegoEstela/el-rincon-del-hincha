@@ -2,6 +2,327 @@
   "version": 1,
   "pages": [
     {
+      "url": "https://www.rsssf.org/sacups/copa2018.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "456508c5edfc2e7f7255350fb03881fcb2361b3a0c648e716ac364446ac39ec7",
+      "bytes": 18026,
+      "encoding": "windows-1252",
+      "authors": ["Erik Francisco Lugo", "Karel Stokkermans"],
+      "last_updated": "10 Jan 2020",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "43af00d8f9f5440fe07085351d748d0f6afa9515602bd78accd22a1ed368c6d0",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2019.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "30fc0c62d22d973d9d9fcb1bc6e2d846eb890674969b82a443c9a383a002d8ea",
+      "bytes": 11287,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "25 Mar 2020",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "b9c6b3c51485750d510ddf81c63ab4448834770602dd040d15fe28ea6e9648a8",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2020.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "bdf3692b1c9918d6f5fe9c6fc8bf7aa71d4d44f520c18aba4e68e97c1a90e217",
+      "bytes": 11234,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "12 May 2021",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "c6ac5592bee1c90b27116ede665fa5763227a22236ce2a96cd8f654c4dfcc768",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2021.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "7d34d65222379252f2bc695a0c7a3e703aeaaae39acc1bc7dbae7882b218cc4a",
+      "bytes": 11425,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "5 Dec 2022",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "6c930237ac7c37e845483d34a563ba5b77dd82a14137d04d436ede6e91bbf704",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2022.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "916e26215a1db057c4d1423c7db1d03e599c90a08987e76b0fb2cc884343baa7",
+      "bytes": 11136,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "9 Feb 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "dd94fe91bc6c6fdadcfc672c92d6945f0cd52233fb28a27ca39a5f15505fc60c",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2023.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "b732aac0953adb1a7ce4ac582d96c658102182ea2b0e5ff9b9781a2a1ea66419",
+      "bytes": 11273,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "10 Feb 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "63645a36517b1b1711e8a01372ea8fcc056361c68fe8ff8c4718f2b0106c5c77",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/copa2024.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "28e255037e62cc33885cfe403db91ec9c71d750eb9b76d3d20c48f4949084b2c",
+      "bytes": 11261,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "10 Feb 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<PRE>",
+          "end": "</PRE>",
+          "sha256": "0b70824ce7d364955533145e47d95f2ba49b1647d4c7531ccc705d2bbc3cbb0a",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2018.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "47d5d2583320bdd689c18e5772711478f223c6afed5c8622938d213079bcb58c",
+      "bytes": 10743,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans", "Erik Francisco Lugo"],
+      "last_updated": "7 Mar 2019",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "a9b361c043edfc2d814db0bda35d49d8cbda8851d2ad616e62d793f6a18e51e2",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2019.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "bffe13d55ac180a99826fd5ce2ca1523efb42a88049c1c15ab871bc4abd6fa26",
+      "bytes": 6078,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "25 Mar 2020",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "8344bc80bd85129e164503db1026ccaf81f862d0463c1541ba456284ca23f500",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2020.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "2eb7481c79bb5d5c5a2b78ff71499fe645a9f66116f82ec163748efe5f1ca502",
+      "bytes": 5642,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "12 May 2021",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "93578e29e9204c439943f8dc8ae631c5b7759aa5f57e8f21759f13b6f3dc34b1",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2021.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "c72e853e74076e9a855be553264c12ecdb10f35c5096497787877f861e50db3d",
+      "bytes": 10514,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "5 Dec 2022",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "34031880de52ac7a43afc4b8764d348f221c53b3c4d9d1f5dc11a475978d5dd6",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": ["May 13: River Plate - Sport Huancayo          2-1-"],
+      "variants": [["Arsenal", "Arsenal de Sarandí"]],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2022.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "1e592e72d19318f6bea033fb6379181058272fc63d672174e7c1be28e43c999d",
+      "bytes": 10448,
+      "encoding": "windows-1252",
+      "authors": ["Karel Stokkermans"],
+      "last_updated": "6 Jan 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "81d982f1e1acb1cd35630c53ddf9d4c184240bdeaf5c61e1c02edd46330f6d0a",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2023.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "f51ed87113936cdb881b012c6d4bf13364e4001818d757ac71dc6c8728b1d0b1",
+      "bytes": 11956,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "29 Jan 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "5ab241df516c554766f2ff8f8d35226df347efe10e25d3e711869864eb3f14ed",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [
+        "A single match to determine which team advances to the Group Stage.",
+        "The winners of each group advanced to the round of 16.",
+        "The runners-up of each group advanced to the knockout round play-offs with teams from Copa Libertadores.",
+        "The eight group runner-ups played a play-off round prior to the round of 1/8 Finals",
+        "against the eight third-placed teams of the Copa Libertadores group stage."
+      ],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
+      "url": "https://www.rsssf.org/sacups/sudamcup2024.html",
+      "retrieved_on": "2026-10-23",
+      "sha256": "08577c5d14b7efa928fdd0f2085e3b8540612b614e3d2b4422460a89270b2c6f",
+      "bytes": 13442,
+      "encoding": "windows-1252",
+      "authors": ["Osvaldo José Gorgazzi"],
+      "last_updated": "29 Jan 2025",
+      "layout": "continental-ties",
+      "excerpts": [
+        {
+          "name": "tournament",
+          "start": "<pre>",
+          "end": "</pre>",
+          "sha256": "91a87f8a0c180dee43bae5cdc68db270ea3c8cf350252fd7547abff9ddfeb409",
+          "layout": "continental-ties"
+        }
+      ],
+      "ignore": [
+        "A single match to determine which team advances to the Group Stage.",
+        "The winners of each group advanced to the round of 16.",
+        "The runners-up of each group advanced to the knockout round play-offs with teams from Copa Libertadores.",
+        "Ap   3: Rayo Zuliano - Danubio FC             0-2x",
+        "The eight group runner-ups played a play-off round prior to the round of 1/8 Finals",
+        "against the eight third-placed teams of the Copa Libertadores group stage."
+      ],
+      "variants": [],
+      "tableExceptions": []
+    },
+    {
       "url": "https://www.rsssf.org/tablesa/arg2023.html",
       "retrieved_on": "2026-10-23",
       "sha256": "5b584f14a2c47f953a680496b8f2d33780877ed2d51eff6b2cf2dcd2aafc4de6",

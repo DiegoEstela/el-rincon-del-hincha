@@ -4,11 +4,11 @@
 // champion marked in the final table of the same tournament when we read one. The date is the day
 // of the final when the season has one, else the last match of the season.
 import type { Title } from "../../../src/data-model/types";
-import { RSSSF_SOURCE_PREFIX } from "./config";
+import { RSSSF_TABLES } from "./config";
 import type { ParsedChampions } from "./layouts/champions-list";
 import type { TitleSeason } from "./types";
 
-export const CHAMPIONS_SOURCE = `${RSSSF_SOURCE_PREFIX}argchamp.html#champions`;
+export const CHAMPIONS_SOURCE = `${RSSSF_TABLES}argchamp.html#champions`;
 
 /** The date of the last match of the season (null if it has none) and of its final matches. */
 type SeasonFacts = { last: string | null; finals: string[] };

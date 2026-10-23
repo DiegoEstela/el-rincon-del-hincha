@@ -7,7 +7,10 @@ import { checkWindow, type DateWindow } from "./dates";
 import type { TitleSeason } from "./types";
 
 /** Matches, standings and titles whose `source` starts with this are owned by the adapter. */
-export const RSSSF_SOURCE_PREFIX = "https://www.rsssf.org/tablesa/";
+export const RSSSF_SOURCE_PREFIX = "https://www.rsssf.org/";
+
+/** The league pages (`tablesa/`); the continental cups are in `sacups/`. */
+export const RSSSF_TABLES = `${RSSSF_SOURCE_PREFIX}tablesa/`;
 
 export type TournamentConfig = {
   /** Season id, `primera-division-<year>-<tournament>` (plan 0017, D7). */
@@ -71,6 +74,26 @@ export const RSSSF_COMPETITIONS: readonly Competition[] = [
     afa_recognized: true,
     notes: "Played at a neutral venue, abroad in some editions.",
     source: wiki("Supercopa_Internacional", 175748744),
+  },
+  {
+    id: "copa-libertadores",
+    name: "Copa Libertadores",
+    type: "international",
+    scope: "international",
+    organizer: "CONMEBOL",
+    afa_recognized: true,
+    notes: "Official international competition of CONMEBOL.",
+    source: wiki("Copa_Libertadores_de_Am%C3%A9rica", 175958973),
+  },
+  {
+    id: "copa-sudamericana",
+    name: "Copa Sudamericana",
+    type: "international",
+    scope: "international",
+    organizer: "CONMEBOL",
+    afa_recognized: true,
+    notes: "Official international competition of CONMEBOL.",
+    source: wiki("Copa_Sudamericana", 175964043),
   },
   {
     id: "trofeo-de-campeones",
@@ -228,6 +251,54 @@ export const RSSSF_CUP_TOURNAMENTS: readonly TournamentConfig[] = [
   ),
 ];
 
+/** One edition of a continental cup: the whole text of its page, read with `continental-ties`. */
+const continental = (
+  id: string,
+  competition_id: string,
+  name: string,
+  page: string,
+  window: { from: string; to: string },
+): TournamentConfig => ({
+  id,
+  competition_id,
+  name,
+  page,
+  excerpt: "tournament",
+  window,
+  mode: { kind: "own" },
+  tableCoversSeason: false,
+  appClubsOnly: true,
+  titleFromFinal: true,
+});
+
+// The 2020 editions were stopped by the pandemic and ended in January 2021.
+const editionYear = (y: number) =>
+  y === 2020 ? { from: "2020-02-01", to: "2021-01-31" } : year(y);
+
+/**
+ * The Copa Libertadores and the Copa Sudamericana 2018 to 2024 (plan 0017, Phase B3). Only the
+ * matches of the app clubs are written; the champion is an app club in three editions (River 2018,
+ * Defensa y Justicia 2020 and Racing 2024 in the Sudamericana).
+ */
+export const RSSSF_CONTINENTAL_TOURNAMENTS: readonly TournamentConfig[] = [
+  2018, 2019, 2020, 2021, 2022, 2023, 2024,
+].flatMap((y) => [
+  continental(
+    `copa-libertadores-${y}`,
+    "copa-libertadores",
+    `Copa Libertadores ${y}`,
+    `copa${y}`,
+    editionYear(y),
+  ),
+  continental(
+    `copa-sudamericana-${y}`,
+    "copa-sudamericana",
+    `Copa Sudamericana ${y}`,
+    `sudamcup${y}`,
+    editionYear(y),
+  ),
+]);
+
 /** Where the list of champions is in the manifest (plan 0017, D5). */
 export const RSSSF_CHAMPIONS = { page: "argchamp", excerpt: "champions" } as const;
 
@@ -252,4 +323,10 @@ export const RSSSF_TITLE_SEASONS: readonly TitleSeason[] = [
   title("primera-division-2025-clausura", "2025", "Torneo Clausura"),
 ];
 
-for (const t of [...RSSSF_TOURNAMENTS, ...RSSSF_CUP_TOURNAMENTS]) checkWindow(t.window);
+for (const t of [
+  ...RSSSF_TOURNAMENTS,
+  ...RSSSF_CUP_TOURNAMENTS,
+  ...RSSSF_CONTINENTAL_TOURNAMENTS,
+]) {
+  checkWindow(t.window);
+}

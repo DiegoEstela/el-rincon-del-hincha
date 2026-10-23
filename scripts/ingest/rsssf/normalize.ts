@@ -73,8 +73,8 @@ const KEYS: (keyof Tally)[] = [
   "points",
 ];
 
-function sourceOf(t: TournamentConfig): string {
-  return `${RSSSF_SOURCE_PREFIX}${t.page}.html#${t.excerpt}`;
+function sourceOf(t: TournamentConfig, page: ManifestPage): string {
+  return `${page.url}#${t.excerpt}`;
 }
 
 /** Joins an abandoned line with the line that completes it; one record per fixture (D6). */
@@ -158,7 +158,7 @@ export function normalizeRsssf(
 
   for (const { tournament: t, page, parsed } of raws) {
     const excerpt = `${t.page}.${t.excerpt}`;
-    const source = sourceOf(t);
+    const source = sourceOf(t, page);
     const records: Match[] = [];
     const tallies = new Map<string, Tally>();
     const droppedUnknown = new Set<string>();
@@ -176,6 +176,10 @@ export function normalizeRsssf(
       const homeId = resolver.resolve(m.home, at);
       const awayId = resolver.resolve(m.away, at);
       if (homeId === null || awayId === null) continue;
+      if (m.unreadable !== undefined) {
+        problems.push(`${excerpt}:${m.line}: ${m.unreadable}`);
+        continue;
+      }
       if (t.mode.kind === "extends" && m.date <= t.mode.after) continue;
       const id = `${m.date}-${homeId}-${awayId}`;
       if (ids.has(id)) {
@@ -196,7 +200,7 @@ export function normalizeRsssf(
         away_penalties: m.penalties?.away ?? null,
         stage: m.stage,
         is_final: m.stage === "Final",
-        status: suspended ? "suspended" : "played",
+        status: suspended ? "suspended" : m.awarded === true ? "administrative_result" : "played",
         source,
         verified: false,
       });
@@ -388,9 +392,9 @@ function mismatches(row: ParsedTableRow, tally: Tally): string[] {
 }
 
 /**
- * The title of a cup decided in one final: the winner on goals, else on penalties (D-B4 of plan
- * 0017). A champion that is not an app club has no title row: the final is not even written when
- * neither side is an app club.
+ * The title of a cup decided in a final of one match or of two legs: the winner on goals (the sum
+ * of the legs), else on the penalties of the last leg (D-B4 of plan 0017). A champion that is not
+ * an app club has no title row: the final is not even written when neither side is an app club.
  */
 function titleFromFinal(
   t: TournamentConfig,
@@ -400,35 +404,49 @@ function titleFromFinal(
   appClubs: ReadonlySet<string>,
   problems: string[],
 ): Title | null {
-  const finals = merged.filter(({ match }) => match.stage === "Final");
-  if (finals.length !== 1) {
+  const finals = merged.filter(({ match }) => match.stage === "Final").map(({ match }) => match);
+  if (finals.length === 0) {
+    problems.push(`${t.id}: no final in ${excerpt} to name the champion`);
+    return null;
+  }
+  if (finals.length > 2) {
     problems.push(
-      finals.length === 0
-        ? `${t.id}: no final in ${excerpt} to name the champion`
-        : `${t.id}: ${finals.length} finals in ${excerpt}, expected one to name the champion`,
+      `${t.id}: ${finals.length} finals in ${excerpt}, expected one or the two legs of one tie`,
     );
     return null;
   }
-  // One final was found above: it is only missing from the records when neither side is an app club.
-  const final = records.find((r) => r.is_final);
-  if (final === undefined) return null;
-  const home =
-    (final.home_goals ?? 0) - (final.away_goals ?? 0) ||
-    (final.home_penalties ?? 0) - (final.away_penalties ?? 0);
-  if (home === 0) {
-    problems.push(`${t.id}: the final ${final.id} has no winner on goals or penalties`);
+  const pair = (x: ParsedMatch) => [x.home, x.away].sort().join(" ");
+  if (finals.length === 2 && pair(finals[0]) !== pair(finals[1])) {
+    problems.push(`${t.id}: the 2 finals in ${excerpt} are not the two legs of one tie`);
     return null;
   }
-  const clubId = home > 0 ? final.home_id : final.away_id;
+  // The finals were found above: they are only missing from the records when neither side is an
+  // app club.
+  const legs = records.filter((r) => r.is_final).sort((a, b) => a.date.localeCompare(b.date));
+  if (legs.length === 0) return null;
+  const last = legs[legs.length - 1];
+  const goals = new Map<string, number>();
+  for (const leg of legs) {
+    goals.set(leg.home_id, (goals.get(leg.home_id) ?? 0) + (leg.home_goals ?? 0));
+    goals.set(leg.away_id, (goals.get(leg.away_id) ?? 0) + (leg.away_goals ?? 0));
+  }
+  const home =
+    (goals.get(last.home_id) ?? 0) - (goals.get(last.away_id) ?? 0) ||
+    (last.home_penalties ?? 0) - (last.away_penalties ?? 0);
+  if (home === 0) {
+    problems.push(`${t.id}: the final ${last.id} has no winner on goals or penalties`);
+    return null;
+  }
+  const clubId = home > 0 ? last.home_id : last.away_id;
   if (!appClubs.has(clubId)) return null;
   return {
     id: `${t.id}-${clubId}`,
     club_id: clubId,
     competition_id: t.competition_id,
     season_id: t.id,
-    awarded_on: final.date,
+    awarded_on: last.date,
     shared: false,
-    source: final.source,
+    source: last.source,
     verified: false,
   };
 }

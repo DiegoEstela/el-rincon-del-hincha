@@ -43,6 +43,16 @@ export type ParsedMatch = {
   abandoned: string | null;
   /** The text after "remaining", or null: this line completes an abandoned match. */
   resumed: string | null;
+  /** Continental pages: the code of the country written next to each club of a tie (`Arg`). */
+  homeCode?: string;
+  awayCode?: string;
+  /** The result was decided at a desk (`awd`); the score is the one that was awarded. */
+  awarded?: boolean;
+  /**
+   * Why the line could not be read. It is only a problem when one of the clubs is an app club: the
+   * rest of the matches are dropped anyway.
+   */
+  unreadable?: string;
 };
 
 export type ParsedTournament = {

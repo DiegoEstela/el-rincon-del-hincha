@@ -10,11 +10,13 @@ import {
   RSSSF_CHAMPIONS,
   RSSSF_SOURCE_PREFIX,
   RSSSF_TITLE_SEASONS,
+  RSSSF_CONTINENTAL_TOURNAMENTS,
   RSSSF_CUP_TOURNAMENTS,
   RSSSF_TOURNAMENTS,
   type TournamentConfig,
 } from "./config";
 import { parseChampionsList, type ParsedChampions } from "./layouts/champions-list";
+import { parseContinentalTies } from "./layouts/continental-ties";
 import { parseCupFullNames } from "./layouts/cup-full-names";
 import { parseFullNames2017 } from "./layouts/full-names-2017";
 import { excerptFileName, manifestSchema, type Manifest, type ManifestPage } from "./manifest";
@@ -31,6 +33,7 @@ type LayoutParser = (text: PreparedText, ctx: LayoutContext) => ParsedTournament
 const PARSERS: Partial<Record<ManifestPage["layout"], LayoutParser>> = {
   "full-names-2017": parseFullNames2017,
   "cup-full-names": parseCupFullNames,
+  "continental-ties": parseContinentalTies,
 };
 
 /** What `load` reads: the tournaments, and the list of champions when the manifest has it. */
@@ -52,7 +55,7 @@ const readManifest = (): Manifest =>
   );
 
 const DEFAULT_CONFIG: RsssfConfig = {
-  tournaments: [...RSSSF_TOURNAMENTS, ...RSSSF_CUP_TOURNAMENTS],
+  tournaments: [...RSSSF_TOURNAMENTS, ...RSSSF_CUP_TOURNAMENTS, ...RSSSF_CONTINENTAL_TOURNAMENTS],
   titleSeasons: RSSSF_TITLE_SEASONS,
   manifest: readManifest,
 };

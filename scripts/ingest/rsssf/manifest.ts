@@ -14,6 +14,7 @@ export const RSSSF_LAYOUTS = [
   "table-only",
   "champions-list",
   "cup-full-names",
+  "continental-ties",
 ] as const;
 
 const hex64 = z.string().regex(/^[0-9a-f]{64}$/);
@@ -30,7 +31,7 @@ export const excerptSchema = z.strictObject({
 });
 
 export const pageSchema = z.strictObject({
-  url: z.string().regex(/^https:\/\/www\.rsssf\.org\/tablesa\/[a-z0-9-]+\.html$/),
+  url: z.string().regex(/^https:\/\/www\.rsssf\.org\/(?:tablesa|sacups)\/[a-z0-9-]+\.html$/),
   retrieved_on: isoDate,
   sha256: hex64,
   bytes: z.number().int().positive(),

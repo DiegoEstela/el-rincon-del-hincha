@@ -517,12 +517,139 @@ describe("normalizeRsssf: the title of a cup is decided in its final (Phase B)",
     ]);
     expect(
       problemsOf(() => run2([final("CA A", "Opp FC", 1, 0), final("CA B", "Opp FC", 1, 0)])),
-    ).toEqual(["copa-x-2025: 2 finals in arg2025.nationalcup, expected one to name the champion"]);
+    ).toEqual(["copa-x-2025: the 2 finals in arg2025.nationalcup are not the two legs of one tie"]);
   });
 
   it("stops when the final has no winner", () => {
     expect(problemsOf(() => run2([final("CA A", "Opp FC", 1, 1)]))).toEqual([
       "copa-x-2025: the final 2025-11-05-a-opp has no winner on goals or penalties",
     ]);
+  });
+});
+
+describe("normalizeRsssf: a final in two legs and what a desk decided (Phase B3)", () => {
+  const CUP: TournamentConfig = {
+    id: "copa-y-2018",
+    competition_id: "copa-y",
+    name: "Copa Y 2018",
+    page: "copa2018",
+    excerpt: "tournament",
+    window: { from: "2018-01-01", to: "2018-12-31" },
+    mode: { kind: "own" },
+    tableCoversSeason: false,
+    appClubsOnly: true,
+    titleFromFinal: true,
+  };
+  const world = [
+    { id: "a", aliases: ["CA A"] },
+    { id: "b", aliases: ["CA B"] },
+    { id: "opp", aliases: ["Opp FC"], selectable: false },
+  ] as never;
+  const cupPage = page({ url: "https://www.rsssf.org/sacups/copa2018.html" });
+  const run3 = (matches: ParsedMatch[]) =>
+    normalizeRsssf(
+      [
+        {
+          tournament: CUP,
+          page: cupPage,
+          parsed: { excerpt: "copa2018.tournament", matches, tables: [] },
+        },
+      ],
+      world,
+      [],
+    );
+  const runNoTitle = (matches: ParsedMatch[]) =>
+    normalizeRsssf(
+      [
+        {
+          tournament: { ...CUP, titleFromFinal: false },
+          page: cupPage,
+          parsed: { excerpt: "copa2018.tournament", matches, tables: [] },
+        },
+      ],
+      world,
+      [],
+    );
+  const leg = (
+    date: string,
+    home: string,
+    away: string,
+    hg: number | null,
+    ag: number | null,
+    extra = {},
+  ) => m(date, home, away, hg, ag, { stage: "Final", ...extra });
+
+  it("takes the source from the page, which may be in another directory", () => {
+    const out = runNoTitle([m("2018-03-01", "CA A", "Opp FC", 1, 0)]);
+    expect(out.matches[0].source).toBe("https://www.rsssf.org/sacups/copa2018.html#tournament");
+  });
+
+  it("names the champion of a two-legged final on the aggregate", () => {
+    const out = run3([
+      leg("2018-11-11", "CA A", "CA B", 2, 2),
+      leg("2018-12-09", "CA B", "CA A", 1, 3, { extraTime: true }),
+    ]);
+    expect(out.titles).toMatchObject([
+      { club_id: "a", awarded_on: "2018-12-09", season_id: "copa-y-2018" },
+    ]);
+    expect(out.matches.map((x) => x.is_final)).toEqual([true, true]);
+  });
+
+  it("names the champion on the penalties of the second leg when the aggregate is level", () => {
+    const out = run3([
+      leg("2018-11-11", "CA A", "CA B", 1, 0),
+      leg("2018-12-09", "CA B", "CA A", 1, 0, { penalties: { home: 3, away: 4 } }),
+    ]);
+    expect(out.titles!.map((t) => t.club_id)).toEqual(["a"]);
+  });
+
+  it("stops when a two-legged final is level on the aggregate and has no shoot-out", () => {
+    expect(
+      problemsOf(() =>
+        run3([leg("2018-11-11", "CA A", "CA B", 1, 0), leg("2018-12-09", "CA B", "CA A", 1, 0)]),
+      ),
+    ).toEqual(["copa-y-2018: the final 2018-12-09-b-a has no winner on goals or penalties"]);
+  });
+
+  it("stops when two finals are not the two legs of one tie, or when there are three", () => {
+    expect(
+      problemsOf(() =>
+        run3([
+          leg("2018-11-11", "CA A", "Opp FC", 1, 0),
+          leg("2018-12-09", "CA B", "Opp FC", 1, 0),
+        ]),
+      ),
+    ).toEqual(["copa-y-2018: the 2 finals in copa2018.tournament are not the two legs of one tie"]);
+    expect(
+      problemsOf(() =>
+        run3([
+          leg("2018-11-01", "CA A", "CA B", 1, 0),
+          leg("2018-11-11", "CA B", "CA A", 1, 0),
+          leg("2018-12-09", "CA A", "CA B", 1, 0),
+        ]),
+      ),
+    ).toEqual([
+      "copa-y-2018: 3 finals in copa2018.tournament, expected one or the two legs of one tie",
+    ]);
+  });
+
+  it("writes an awarded leg as an administrative result and an abandoned leg as suspended", () => {
+    const out = runNoTitle([
+      m("2018-08-21", "CA A", "Opp FC", 3, 0, { awarded: true }),
+      m("2018-08-28", "Opp FC", "CA A", null, null, { abandoned: "abandoned" }),
+    ]);
+    expect(out.matches.map((x) => [x.status, x.home_goals, x.away_goals])).toEqual([
+      ["administrative_result", 3, 0],
+      ["suspended", null, null],
+    ]);
+  });
+
+  it("stops on a tie the parser could not read when an app club plays it, and only then", () => {
+    const unreadable = (home: string, away: string) =>
+      m("2018-03-01", home, away, null, null, { unreadable: "the legs do not add up" });
+    expect(problemsOf(() => runNoTitle([unreadable("CA A", "Opp FC")]))).toEqual([
+      `copa2018.tournament:${line}: the legs do not add up`,
+    ]);
+    expect(runNoTitle([unreadable("Opp FC", "Zzz Unknown FC")]).matches).toEqual([]);
   });
 });

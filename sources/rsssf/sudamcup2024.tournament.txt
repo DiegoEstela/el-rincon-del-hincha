@@ -1,0 +1,262 @@
+<pre>
+<b>First Round</b>
+A single match to determine which team advances to the Group Stage.
+
+(<i>Mar 5, Concepción</i>)
+Universidad Católica      Chi  Coquimbo Unido            Chi   0-2
+(<i>Mar 5, Cusco</i>)
+CD Garcilaso              Per  AD Tarma                  Per   0-0  4-3p
+(<i>Mar 5, Ibagué</i>)
+Deportes Tolima           Col  DIM                       Col   0-0  2-4p
+(<i>Mar 5, Tarija</i>)
+Real Tomayapo             Bol  CCD Jorge Wilstermann     Bol   0-0  4-3p
+(<i>Mar 5, Valencia</i>)
+Carabobo FC               Ven  Metropolitanos FC         Ven   1-1  4-5p
+(<i>Mar 6, Asunción</i>)
+Club Guaraní              Par  CS Luqueño                Par   0-1
+(<i>Mar 6, Barranquilla</i>)
+Alianza Petrolera         Col  América de Cali           Col   2-1
+(<i>Mar 6, Cochabamba</i>)
+FC Universitario          Bol  CA Nacional Potosí        Bol   0-2
+(<i>Mar 6, Montevideo</i>)
+Montevideo Wanderers FC   Uru  Danubio FC                Uru   0-1
+(<i>Mar 6, Quito</i>)
+CD Cuenca                 Ecu  Delfín SC                 Ecu   2-5
+(<i>Mar 6, Rancagua</i>)
+Everton                   Chi  Unión La Calera           Chi   0-1
+(<i>Mar 7, Ambato</i>)
+Téc. Universitario        Ecu  Católica Ecuador          Ecu   0-3
+(<i>Mar 7, Asunción</i>)
+CS Ameliano               Par  Club Olimpia              Par   2-0
+(<i>Mar 7, Caracas</i>)
+Rayo Zuliano              Ven  Deportivo La Guaira FC    Ven   0-0  4-2p
+(<i>Mar 7, Montevideo</i>)
+Racing MVD                Uru  Cerro Largo FC            Uru   2-0
+(<i>Mar 7, Trujillo</i>)
+U. César Vallejo          Per  CS Huancayo               Per   2-0
+
+<b>Group Phase</b>
+The winners of each group advanced to the round of 16.
+The runners-up of each group advanced to the knockout round play-offs with teams from Copa Libertadores.
+
+Group A
+Apr  2: U. César Vallejo - Defensa y Justicia 0-1
+Apr  4: Always Ready - DIM                    2-0
+Apr 10: DIM - U. César Vallejo                4-2
+Apr 10: Defensa y Justicia - Always Ready     1-1
+Apr 25: DIM - Defensa y Justicia              2-1
+Apr 25: Always Ready - U. César Vallejo       2-0
+May  7: U. César Vallejo - DIM                1-5
+May  7: Always Ready - Defensa y Justicia     3-0
+May 14: Defensa y Justicia - DIM              1-1
+May 15: U. César Vallejo - Always Ready       2-2
+May 29: Defensa y Justicia - U. César Vallejo 0-1
+May 29: DIM - Always Ready                    4-0
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Deportivo Independiente Medellín</b>                           6  4 1 1  16- 7  13
+2.<i>Club Deportivo Always Ready</i>                                6  3 2 1  10- 7  11
+3.Clus Social y Deportivo Defensa y Justicia                 6  1 2 3   4- 8   5
+4.Club Cultural Social y Deportivo Universidad César Vallejo 6  1 1 4   6-14   4
+
+Group B
+Apr  3: Alianza Petrolera - Unión La Calera   0-1
+Apr  4: Católica Ecuador - Cruzeiro EC	      0-0
+Apr 10: Unión La Calera - Católica Ecuador    0-1x
+Apr 11: Cruzeiro EC - Alianza Petrolera       3-3
+Apr 23: Unión La Calera - Cruzeiro EC         0-0y
+Apr 23: Alianza Petrolera - Católica Ecuador  1-3
+May  7: Alianza Petrolera - Cruzeiro EC       0-3
+May  9: Católica Ecuador - Unión La Calera    4-0
+May 16: Cruzeiro EC - Unión La Calera         1-0
+May 16: Católica Ecuador - Alianza Petrolera  0-0
+May 30: Cruzeiro EC - Católica Ecuador        1-0
+May 30: Unión La Calera - Alianza Petrolera   0-1y
+x in Valparaíso.
+y in Concepción.
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Cruzeiro Esporte Clube</b>                                     6  3 3 0   8- 3  12
+2.<i>Club Deportivo Universidad Católica de Ecuador</i>             6  3 2 1   8- 2  11
+3.Alianza Petrolera Fútbol Club                              6  1 2 3   5-10   5
+4.Club de Deportes Unión La Calera                           6  1 1 4   1- 7   4
+
+NB: Alianza FC inherited qualification to play Copa Sudamericana of Alianza Petrolera FC and played under its name.
+
+Group C
+Apr  2: CA Belgrano - SC Internacional        0-0
+Apr  4: Real Tomayapo - Delfín SC             0-2
+Apr 10: SC Internacional - Real Tomayapo      0-0
+Apr 11: Delfín SC - CA Belgrano               1-1
+Apr 24: Real Tomayapo - CA Belgrano           0-2x
+Apr 25: Delfín SC - SC Internacional          1-2
+May  9: CA Belgrano - Delfín SC               1-1
+May 15: CA Belgrano - Real Tomayapo           1-0
+May 28: SC Internacional - CA Belgrano        1-2y
+May 28: Delfín SC - Real Tomayapo             4-3
+Jun  4: Real Tomayapo - SC Internacional      0-2
+Jun  8: SC Internacional - Delfín SC          1-0z
+x in Santa Cruz de la Sierra.
+y in Barueri.
+z in Caxias do Sul.
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Club Atlético Belgrano</b>                                     6  3 3 0   7- 3  12
+2.<i>Sport Club Internacional</i>                                   6  3 2 1   6- 3  11
+3.Delfín Sporting Club                                       6  2 2 2   9- 8   8
+4.Club Deportivo y Cultural Real Tomayapo                    6  0 1 5   3-11   1
+
+Group D
+Apr  3: CS Trinidense - Fortaleza EC          0-2
+Apr  3: CA Nacional Potosí - Boca Jrs.        0-0
+Apr  9: Boca Jrs. - CS Trinidense             1-0
+Apr 10: Fortaleza EC - CA Nacional Potosí     5-0
+Apr 23: CS Trinidense - CA Nacional Potosí    2-0
+Apr 25: Fortaleza EC - Boca Jrs.              4-2
+May  8: CA Nacional Potosí - Fortaleza EC     4-1
+May  8:	CS Trinidense - Boca Jrs.             1-2
+May 14: CA Nacional Potosí - CS Trinidense    2-1
+May 15: Boca Jrs. - Fortaleza EC              1-1
+May 29: Boca Jrs. - CA Nacional Potosí        4-0
+May 29: Fortaleza EC - CS Trinidense          2-1
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Fortaleza Esporte Clube</b>                                    6  4 1 1  15- 8  13
+2.<i>Club Atlético Boca Juniors</i>                                 6  3 2 1  10- 6  11
+3.Club Atlético Nacional Potosí                              6  2 1 3   6-13   7
+4.Club Sportivo Trinidense                                   6  1 0 5   5- 9   3
+
+Group E
+Apr  2: CS Ameliano - CA Paranaense           1-4
+Ap   3: Rayo Zuliano - Danubio FC             0-2x
+Apr  9: Danubio FC - CS Ameliano              0-0
+Apr  9: CA Paranaense - Rayo Zuliano          6-0
+Apr 24: Danubio FC - CA Paranaense            0-1
+Apr 24: Rayo Zuliano - CS Ameliano            0-4x
+May  7: CS Ameliano - Danubio FC              2-1
+May  8: Rayo Zuliano - CA Paranaense          1-5x
+May 14: CS Ameliano - Rayo Zuliano            1-0
+May 15: CA Paranaense - Danubio FC            1-2
+May 30: CA Paranaense - CS Ameliano           0-1
+May 30: Danubio FC - Rayo Zuliano             0-0
+x in Caracas.
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Club Sportivo Ameliano</b>                                     6  4 1 1   9- 5  13
+2.<i>Club Athletico Paranaense</i>                                  6  4 0 2  17- 5  12
+3.Danubio Fútbol Club                                        6  2 2 2   5- 4   8
+4.Deportivo Rayo Zuliano                                     6  0 1 5   1-18   1
+
+Group F
+Apr  2: Club Nacional - Argentinos Juniors    2-3
+Apr  2: Racing MVD - SC Corinthians           1-1
+Apr  9: Argentinos Juniors - Racing MVD       0-3
+Apr  9: SC Corinthians - Club Nacional        4-0
+Apr 23: Argentinos Juniors - SC Corinthians   1-0
+Apr 25: Club Nacional - Racing MVD            2-2
+May  7: Racing MVD - Argentinos Juniors       2-1
+May  7:	Club Nacional - SC Corinthians        0-2
+May 14: SC Corinthians - Argentinos Juniors   4-0
+May 14: Racing MVD - Club Nacional            2-1
+May 28: SC Corinthians - Racing MVD           3-0
+May 28: Argentinos Juniors - Club Nacional    2-1
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Sport Club Corinthians Paulista</b>                            6  4 1 1  14- 2  13
+2.<i>Racing Club de Montevideo</i>                                  6  3 2 1  10- 8  11
+3.Asociación Atlética Argentinos Juniors                     6  3 0 3   7-12   9
+4.Club Nacional                                              6  0 1 5   6-15   1
+
+Group G
+Apr  3: Cuiabá EC - CA Lanús                  1-1
+Apr  4: CD Garcilaso - Metropolitanos FC      3-2
+Apr 11: Metropolitanos FC - Cuiabá EC         0-2
+Apr 11: CA Lanús - CD Garcilaso               2-1
+Apr 23: CD Garcilaso - Cuiabá EC              1-1
+Apr 25: Metropolitanos FC - CA Lanús          0-2
+May  8: Cuiabá EC - Metropolitanos FC         3-0
+May  9: CD Garcilaso - CA Lanús               0-2
+May 15: CA Lanús - Metropolitanos FC          5-0
+May 15: Cuiabá EC - CD Garcilaso              1-1
+May 29: CA Lanús - Cuiabá EC                  0-1
+May 29: Metropolitanos FC - CD Garcilaso      1-1
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Club Atlético Lanús</b>                                        6  4 1 1  12- 3  13
+2.<i>Cuiabá Esporte Club</i>                                        6  3 3 0   9- 3  12
+3.Club Deportivo Garcilaso                                   6  1 3 2   7- 9   6
+4.Metropolitanos Fútbol Club                                 6  0 1 5   3-16   1
+
+Group H
+Apr  3: Red Bull Bragantino - Coquimbo Unido  1-0
+Apr  4: CS Luqueño - Racing Club              0-2x
+Apr 10: Racing Club - Red Bull Bragantino     3-0
+Apr 11: Coquimbo Unido - CS Luqueño           1-0 
+Apr 24: Coquimbo Unido - Racing Club          1-2
+Apr 24: Red Bull Bragantino - CS Luqueño      2-1
+May  8: CS Luqueño - Coquimbo Unido           0-0x
+May  9: Red Bull Bragantino - Racing Club     2-1
+May 16: Racing Club - Coquimbo Unido          3-0
+May 16: CS Luqueño - Red Bull Bragantino      2-3x
+May 28: Racing Club - CS Luqueño              3-0y
+May 28: Coquimbo Unido - Red Bull Bragantino  1-1
+x in Asumnción.
+y in Remedios de Escalada.
+
+#.Team                                                      MP  W D L  Gf-Ga   P
+1.<b>Racing Club</b>                                                6  5 0 1  14- 3  15
+2.<i>Red Bull Bragantino</i>                                        6	4 1 1   9- 8  13
+3.Coquimbo Unido                                             6  1 2 3   3- 7   5
+4.Club Sportivo Luqueño                                      6  0 1 5   3-11   1
+
+<b>Playoff Round</b>
+The eight group runner-ups played a play-off round prior to the round of 1/8 Finals 
+against the eight third-placed teams of the Copa Libertadores group stage.
+
+(<i>Jul 16 & 23</i>)
+CA Rosario Central        Arg  SC Internacional	         Bra    1-0 1-1  2-1
+CD Huachipato             Arg  Racing MVD                Uru    2-3 1-0  3-3  3-0p
+(<i>Jul 17 & 24</i>)
+Barcelona SC              Ecu  Red Bull Bragantino       Bra    1-1 2-3  3-4
+Club Libertad             Par  Católica Ecuador          Ecu    2-0 1-1  3-1
+Independiente del Valle   Ecu  Boca Jrs.                 Arg    0-0 0-1  0-1
+(<i>Jul 18 & 25</i>)
+Club Cerro Porteño        Par  CA Paranaense             Bra    1-1 1-2  2-3
+CD Palestino              Bra  Cuiabá EC                 Bra    1-1 2-1  3-2x
+LDU (Quito)               Ecu  Always Ready              Bol    3-0 1-3  4-3
+x first leg in Concepción.
+
+<b>1/8 Finals</b>
+(<i>Aug 13 & 20</i>)
+CD Huachipato             Chi  Racing Club               Arg    0-2 1-6  1-8x
+Red Bull Bragantino       Bra  SC Corinthians            Bra    1-2 2-1  3-3y 4-5p
+(<i>Aug 14 & 21</i>)
+CA Rosario Central        Arg  Fortaleza EC              Bra    1-1 1-3  2-4
+LDU (Quito)               Ecu  CA Lanús                  Arg    1-2 1-3  2-5
+CD Palestino              Chi  DIM                       Col    2-2 0-4  2-6z
+(<i>Aug 15 & 22</i>)
+Club Libertad             Par  CS Ameliano               Par    1-1 0-0  1-1  4-3p
+CA Paranaense             Bra  CA Belgrano               Arg    2-1 2-0  4-1
+Boca Jrs.                 Arg  Cruzeiro EC               Bra    1-0 1-2  2-2  4-5p
+x first leg in Viña del Mar.
+y first leg in Ribeirão Preto. 
+z second leg in Pereira.
+
+Quarterfinals
+(<i>Sep 17 & 24</i>)
+Fortaleza EC              Bra  SC Corinthians            Bra    0-2 0-3  0-5
+(<i>Sep 18 & 25</i>)
+CA Lanús                  Arg  DIM                       Col    0-0 1-1  1-1  6-5p
+(<i>Sep 19 & 26</i>)
+Club Libertad             Par  Cruzeiro EC               Bra    0-2 1-1  0-3
+CA Paranaense             Bra  Racing Club               Arg    1-0 1-4  2-4
+
+<b>Semifinals</b>
+(<i>Oct 23 & 30</i>)
+Cruzeiro EC               Bra  CA Lanús                  Arg    1-1 1-0  2-1
+(<i>Oct 24 & 31</i>)
+SC Corinthians            Bra  Racing Club               Arg    2-2 1-2  3-4
+
+<b>Final</b> (<i>Nov 23, Asunción</i>)
+Racing Club               Arg  Cruzeiro EC               Bra    3-1
+
