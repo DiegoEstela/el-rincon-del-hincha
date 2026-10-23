@@ -2,9 +2,9 @@
 // officially recognized competitions; a shared title counts fully for each co-champion).
 import type { Competition, Match, Season, Title } from "@/data-model/types";
 import { competitionById, compareText, matchesOf, seasonById } from "./data";
-import { outcomeFor } from "./match-outcome";
+import { clubView } from "./match-outcome";
 import { inPeriod } from "./period";
-import type { FanPeriod, StatsIndex } from "./types";
+import type { FanPeriod, MatchView, StatsIndex } from "./types";
 
 /** The three shelves of the trophy cabinet (vitrina). */
 export type Shelf = "international" | "domestic" | "other";
@@ -20,21 +20,27 @@ export function isRecognized(competition: Competition): boolean {
 }
 
 /**
- * The match that decided a title, or null when match data is missing (title lists do not
- * depend on match coverage). Cups and international competitions: the club's last counted
- * final leg of the season. Leagues: the club's last counted match of the season on or before
- * `awarded_on`. Suspended matches are never returned.
+ * The match that decided a title seen from the champion, or null when match data is missing
+ * (title lists do not depend on match coverage). Cups and international competitions: the club's
+ * last counted final leg of the season. Leagues: the club's last counted match of the season on or
+ * before `awarded_on`. Suspended matches are never returned.
  */
-export function decidingMatch(index: StatsIndex, title: Title): Match | null {
+export function decidingMatchView(index: StatsIndex, title: Title): MatchView | null {
   const competition = competitionById(index, title.competition_id);
-  const counted = matchesOf(index, title.club_id).filter(
-    (match) => match.season_id === title.season_id && outcomeFor(match, title.club_id) !== null,
-  );
+  const counted = matchesOf(index, title.club_id)
+    .filter((match) => match.season_id === title.season_id)
+    .map((match) => clubView(match, title.club_id, title.competition_id))
+    .filter((view): view is MatchView => view !== null);
   const candidates =
     competition.type === "league"
-      ? counted.filter((match) => match.date <= title.awarded_on)
-      : counted.filter((match) => match.is_final);
+      ? counted.filter((view) => view.match.date <= title.awarded_on)
+      : counted.filter((view) => view.match.is_final);
   return candidates[candidates.length - 1] ?? null;
+}
+
+/** The same match as the record, for callers that do not need the club view. */
+export function decidingMatch(index: StatsIndex, title: Title): Match | null {
+  return decidingMatchView(index, title)?.match ?? null;
 }
 
 export type TitleInPeriod = Readonly<{
@@ -47,6 +53,8 @@ export type TitleInPeriod = Readonly<{
   source: string;
   shelf: Shelf;
   decidingMatch: Match | null;
+  /** The deciding match from the champion's side (null with the match). */
+  decidingView: MatchView | null;
   awardedOn: string;
 }>;
 
@@ -63,6 +71,7 @@ function toTitleInPeriod(index: StatsIndex, title: Title): TitleInPeriod {
     source: title.source,
     shelf: trophyShelf(competition),
     decidingMatch: decidingMatch(index, title),
+    decidingView: decidingMatchView(index, title),
     awardedOn: title.awarded_on,
   };
 }

@@ -4,25 +4,20 @@
 // and are shown in full.
 import type { Dominance } from "@/domain/dominance";
 import { headToHead } from "@/domain/head-to-head";
-import type { Outcome } from "@/domain/match-outcome";
 import { fanPeriod } from "@/domain/period";
 import type { MatchView, StatsIndex } from "@/domain/types";
 import type { ClubOption } from "./club-options";
+import { buildMatchCard, type MatchCardView } from "./match-card-view";
 import { coverageCopy, formatMonthYear, includedLine, type CoverageCopy } from "./coverage-copy";
 import type { StartMode } from "./fan-storage";
 import {
-  ADMINISTRATIVE_NOTE,
   NEVER_MET_INCLUDED,
   NO_BIGGEST_LOSS,
   NO_BIGGEST_WIN,
   NO_FINALS,
   bestStreakLine,
-  competitionLabel,
   finalLine,
-  formatMatchDate,
   matchesCount,
-  penaltiesNote,
-  resultLabel,
   stakeLines,
   streakHeadline,
 } from "./rivalry-copy";
@@ -41,23 +36,7 @@ export type RivalryViewInput = Readonly<{
   seasonNames: ReadonlyMap<string, string>;
 }>;
 
-export type MatchSide = Readonly<{ name: string; goals: number; isFan: boolean }>;
-
-export type MatchCardView = Readonly<{
-  /** "27 de abril de 2025" */
-  date: string;
-  /** "Primera División · Liga Profesional 2025" */
-  competition: string;
-  home: MatchSide;
-  away: MatchSide;
-  outcome: Outcome;
-  /** "Ganaste" */
-  result: string;
-  /** Penalties or administrative note. */
-  note: string | null;
-  /** "River 2, Boca 1": the score as one sentence for screen readers. */
-  spoken: string;
-}>;
+export type { MatchCardView, MatchSide } from "./match-card-view";
 
 export type FinalLegView = MatchCardView & Readonly<{ beforePeriod: boolean }>;
 
@@ -120,31 +99,8 @@ export function buildRivalryView(input: RivalryViewInput): RivalryView {
   const rival = shortName(rivalId);
   const { record } = h;
 
-  const card = (view: MatchView): MatchCardView => {
-    const fanIsHome = view.match.home_id !== view.rivalId;
-    const homeId = view.match.home_id;
-    const awayId = view.match.away_id;
-    const side = (id: string, goals: number, isFan: boolean): MatchSide => ({
-      name: shortName(id),
-      goals,
-      isFan,
-    });
-    const home = side(homeId, fanIsHome ? view.goalsFor : view.goalsAgainst, fanIsHome);
-    const away = side(awayId, fanIsHome ? view.goalsAgainst : view.goalsFor, !fanIsHome);
-    return {
-      date: formatMatchDate(view.match.date),
-      competition: competitionLabel(
-        competitionNames.get(view.competitionId) ?? view.competitionId,
-        seasonNames.get(view.match.season_id) ?? view.match.season_id,
-      ),
-      home,
-      away,
-      outcome: view.outcome,
-      result: resultLabel(view.outcome),
-      note: view.isAdministrative ? ADMINISTRATIVE_NOTE : penaltiesNote(view),
-      spoken: `${home.name} ${home.goals}, ${away.name} ${away.goals}`,
-    };
-  };
+  const card = (view: MatchView): MatchCardView =>
+    buildMatchCard(view, { shortName, competitionNames, seasonNames });
 
   const neverMet = record.played === 0;
   const since = formatMonthYear(fan.start);
