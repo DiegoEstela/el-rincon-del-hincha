@@ -310,6 +310,79 @@ Diego answered on 2026-10-19: D1 to D9 approved as recommended.
 
 **D10, changed by Diego.** The vitrina (#67) is fed by RSSSF **and by everything else we have**, not by a separate cups evaluation that it waits for. Consequences for this plan: the vitrina reads `titles.json` as soon as Phase A writes the first-division titles (D5); cup titles join it from whichever permitted source lands first (RSSSF after a written reply, or the openfootball CC0 files and Wikipedia titles evaluated in their own issue); every shelf shows what is loaded and its coverage, never an invented total. The evaluation issue of the alternative sources stays, but as an input to the vitrina, not as a condition for it.
 
+## Verification log: unknown-name inventory (T24, 2026-10-23, page `arg2025`)
+
+A dry run of `pnpm data:ingest rsssf --dry-run` on the real excerpts `arg2025.1apertura` and `arg2025.1clausura` (258 and 255 match lines, all read; the final tables read) stops only on club names. All 59 spellings are spellings of the 30 clubs of the 2025 season that are already in `data/clubs.json`; **no club is new**. Nothing was searched on the web: the table lists what the page says and the club it appears to be. **Waiting for Diego to approve this list** (his rule: names that are missing are asked, never researched) before it is added to the `aliases` of `data/clubs.json` in the A2 data PR.
+
+**Spellings in match lines** (29)
+
+| Spelling on RSSSF                 | Club                      |
+| --------------------------------- | ------------------------- |
+| CA Aldosivi                       | `aldosivi`                |
+| AA Argentinos Juniors             | `argentinos-juniors`      |
+| Club Atlético Tucumán             | `atletico-tucuman`        |
+| CA Banfield                       | `banfield`                |
+| CA Barracas Central               | `barracas-central`        |
+| CA Belgrano                       | `belgrano`                |
+| CA Boca Juniors                   | `boca-juniors`            |
+| CA Central Córdoba (Sant. Estero) | `central-cordoba-sde`     |
+| CSD Defensa y Justicia            | `defensa-y-justicia`      |
+| Deportivo Riestra AFBC            | `deportivo-riestra`       |
+| Club Estudiantes de La Plata      | `estudiantes-la-plata`    |
+| Club de Gimnasia y Esgrima LP     | `gimnasia-la-plata`       |
+| CD Godoy Cruz Antonio Tomba       | `godoy-cruz`              |
+| CA Huracán                        | `huracan`                 |
+| CA Independiente                  | `independiente`           |
+| CS Independiente Rivadavia        | `independiente-rivadavia` |
+| Instituto ACC                     | `instituto`               |
+| CA Lanús                          | `lanus`                   |
+| CA Newell's Old Boys              | `newells-old-boys`        |
+| CA Platense                       | `platense`                |
+| CA River Plate                    | `river-plate`             |
+| CA Rosario Central                | `rosario-central`         |
+| CA San Lorenzo de Almagro         | `san-lorenzo`             |
+| CA San Martín (San Juan)          | `san-martin-san-juan`     |
+| CA Sarmiento (Junín)              | `sarmiento-junin`         |
+| CA Talleres                       | `talleres-cordoba`        |
+| CA Tigre                          | `tigre`                   |
+| CA Unión                          | `union`                   |
+| CA Vélez Sarsfield                | `velez-sarsfield`         |
+
+**Spellings in the final tables (legal name and headquarters)** (30)
+
+| Spelling on RSSSF                                                       | Club                      |
+| ----------------------------------------------------------------------- | ------------------------- |
+| Club Atlético Aldosivi (Mar del Plata, B)                               | `aldosivi`                |
+| Asociación Atlética Argentinos Juniors (La Paternal, C)                 | `argentinos-juniors`      |
+| Club Atlético Tucumán Soc. Civil (San Miguel de Tucumán, T)             | `atletico-tucuman`        |
+| Club Atlético Banfield Sociedad Civil (Banfield, B)                     | `banfield`                |
+| Club Atlético Barracas Central (Barracas, C)                            | `barracas-central`        |
+| Club Atlético Belgrano (Córdoba, X)                                     | `belgrano`                |
+| Club Atlético Boca Juniors Asociación Civil (La Boca, C)                | `boca-juniors`            |
+| Club Atlético Central Córdoba Soc. Civil (Santiago del Estero, G)       | `central-cordoba-sde`     |
+| Club Social y Deportivo Defensa y Justicia (Florencio Varela, B)        | `defensa-y-justicia`      |
+| Deportivo Riestra Asociación de Fomento Barrio Colón (Nueva Pompeya, C) | `deportivo-riestra`       |
+| Club Estudiantes de La Plata (La Plata, B)                              | `estudiantes-la-plata`    |
+| Club de Gimnasia y Esgrima La Plata (La Plata, B)                       | `gimnasia-la-plata`       |
+| Club Deportivo Godoy Cruz Antonio Tomba (Godoy Cruz, M)                 | `godoy-cruz`              |
+| Club Atlético Huracán (Parque de los Patricios, C)                      | `huracan`                 |
+| Club Atlético Independiente (Avellaneda, B)                             | `independiente`           |
+| Club Sportivo Independiente Rivadavia (Mendoza, M)                      | `independiente-rivadavia` |
+| Instituto Atlético Central Córdoba (Córdoba, X)                         | `instituto`               |
+| Club Atlético Lanús (Lanús Este, B)                                     | `lanus`                   |
+| Club Atlético Newell's Old Boys (Rosario, S)                            | `newells-old-boys`        |
+| Club Atlético Platense Asociación Civil (Florida, B)                    | `platense`                |
+| Racing Club Asociación Civil (Avellaneda, B)                            | `racing-club`             |
+| Club Atlético River Plate Asoc. Civil (Belgrano, C)                     | `river-plate`             |
+| Club Atlético Rosario Central (Rosario, S)                              | `rosario-central`         |
+| Club Atlético San Lorenzo de Almagro (Flores, C)                        | `san-lorenzo`             |
+| Club Atlético San Martín (San Juan, J)                                  | `san-martin-san-juan`     |
+| Club Atlético Sarmiento (Junín, B)                                      | `sarmiento-junin`         |
+| Club Atlético Talleres (Córdoba, X)                                     | `talleres-cordoba`        |
+| Club Atlético Tigre Sociedad Civil (Victoria, B)                        | `tigre`                   |
+| Club Atlético Unión (Santa Fe, S)                                       | `union`                   |
+| Club Atlético Vélez Sarsfield Asociación Civil (Liniers, C)             | `velez-sarsfield`         |
+
 ## Verification log: page inventory (T2)
 
 (Filled by T2.)
