@@ -101,3 +101,19 @@ Dry run over the cup sections of `arg2023`, `arg2024` and `arg2025` (Copa Argent
 - `Club Juventud Unida Universitario pso, Julio César Villagra, Córdoba X`
 
 Note on the last line of C: `Club Juventud Unida Universitario pso, ...` is one name followed by a note with a single space (`pso, <stadium>`), which the strict parser would read as part of the name. It only matters when the match involves one of the 34, and it will be handled in the parser before the data is written.
+
+## Diego's answers (2026-10-23)
+
+- **A:** all eleven are the same club as proposed. `Arsenal FC` is Arsenal de Sarandí in the domestic cups; in a continental page it can be the English club, so the continental cups (PR B3) read the country next to the name before using this spelling.
+- **B:** `CA Gimnasia y Esgrima` (2023 and 2024) is Gimnasia y Esgrima de **Mendoza**, the same club as `CA Gimnasia y Esgrima (Mendoza)` of 2025; `CA Gimnasia y Esgrima (SS Jujuy)` stays a different club. The three pairs of spellings (Independiente de Chivilcoy, Gimnasia y Tiro, Sportivo Atlético Club) are the same club each. `CA Sarmiento (La Banda)`, `CA Sarmiento (Resistencia)` and `CA Central Córdoba (Rosario)` stay new opponents: the Junín and Santiago del Estero clubs are the plain `CA Sarmiento` and `CA Central Córdoba` of A. The rest of B is loaded as proposed.
+- **C:** dropped.
+
+## To confirm: what the page itself says (Diego said "racing es racing club" and "san martín es el mismo")
+
+The table of each Copa Argentina section lists the clubs of the draw with the result of their only match, which pairs a spelling with a club without any outside source:
+
+- `CA Racing` lost 0-3 to River in 2023 and 1-3 to Defensa y Justicia in 2025. The table of both years has `Club Atlético Racing Soc. Civil (Córdoba, X)` with exactly one match and that loss, and lists `Racing Club Asociación Civil (Avellaneda, B)` separately with its own matches, which the page writes `Racing Club`. So the page says **Racing de Córdoba**, not Racing Club.
+- 2024 `CSyD San Martín` lost 0-3 to Racing Club: the table has `Club Social y Deportivo San Martín (Burzaco, B)` with that loss. It is a different club from the San Martín clubs we have.
+- 2024 `CA San Martín (UAQ)` drew 0-0 with Godoy Cruz (the table has San Martín de San Juan with one match 0-0) and `CA San Martín (SMC)` drew 3-3 with Almirante Brown (the table has San Martín de Tucumán with one match 3-3). So the page points to `san-martin-san-juan` for UAQ and `san-martin-tucuman` for SMC.
+
+Until Diego confirms, `CA Racing`, `CSyD San Martín`, `CA San Martín (UAQ)` and `CA San Martín (SMC)` are not added to any club.
