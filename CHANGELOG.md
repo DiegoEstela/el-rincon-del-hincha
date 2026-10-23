@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.6.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.5.0...v0.6.0) (2026-10-23)
+
+
+### Features
+
+* **data:** add opponents and the cup layout of the RSSSF adapter ([#70](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/70)) ([#79](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/79)) ([40c0613](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/40c06133ef59d1f748ae995180d84b16b599b523))
+* **data:** add the RSSSF adapter and load the 2025 Clausura ([#70](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/70)) ([#72](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/72)) ([16e2eb6](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/16e2eb65af86964cdca9175d8ca2d3e01d94c8fc))
+* **data:** load the domestic cups 2023 to 2025 from RSSSF ([#70](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/70)) ([#81](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/81)) ([0316650](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/03166502b06b99ba11e807aafbe2bdffd6d2dd3e))
+* **data:** load the first division titles and the 2020 Copa title ([#70](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/70)) ([#74](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/74)) ([947db7e](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/947db7ee571fc9815c3c272d2b619b3d865c0816))
+* **vitrina:** add the vitrina screen ([#67](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/67)) ([#75](https://github.com/DiegoEstela/el-rincon-del-hincha/issues/75)) ([e107076](https://github.com/DiegoEstela/el-rincon-del-hincha/commit/e10707611ce97565455828bf8502d5811017db13))
+
 ## [0.5.0](https://github.com/DiegoEstela/el-rincon-del-hincha/compare/v0.4.0...v0.5.0) (2026-10-18)
 
 
