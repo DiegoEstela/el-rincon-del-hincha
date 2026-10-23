@@ -61,7 +61,7 @@ describe("data/coverage.json", () => {
       coverage
         .filter((r) => r.club_id === club && r.competition_id === "primera-division" && r.complete)
         .map((r) => `${r.from} to ${r.to}`);
-    const full = "2018-08-10 to 2025-05-04";
+    const full = "2018-08-10 to 2025-12-14";
     for (const club of [
       "argentinos-juniors",
       "atletico-tucuman",
@@ -72,19 +72,19 @@ describe("data/coverage.json", () => {
     ]) {
       expect(stretches(club), club).toEqual([full]);
     }
-    expect(stretches("central-cordoba-sde")).toEqual(["2019-07-26 to 2025-05-04"]);
-    expect(stretches("platense")).toEqual(["2021-07-16 to 2025-05-04"]);
-    expect(stretches("barracas-central")).toEqual(["2022-06-03 to 2025-05-04"]);
-    expect(stretches("instituto")).toEqual(["2023-01-27 to 2025-05-04"]);
-    expect(stretches("deportivo-riestra")).toEqual(["2024-05-10 to 2025-05-04"]);
-    expect(stretches("independiente-rivadavia")).toEqual(["2024-05-10 to 2025-05-04"]);
+    expect(stretches("central-cordoba-sde")).toEqual(["2019-07-26 to 2025-12-14"]);
+    expect(stretches("platense")).toEqual(["2021-07-16 to 2025-12-14"]);
+    expect(stretches("barracas-central")).toEqual(["2022-06-03 to 2025-12-14"]);
+    expect(stretches("instituto")).toEqual(["2023-01-27 to 2025-12-14"]);
+    expect(stretches("deportivo-riestra")).toEqual(["2024-05-10 to 2025-12-14"]);
+    expect(stretches("independiente-rivadavia")).toEqual(["2024-05-10 to 2025-12-14"]);
     // Clubs that left and came back have one stretch per stay, never one across the absence.
-    expect(stretches("aldosivi")).toEqual(["2018-08-10 to 2022-10-25", "2025-01-23 to 2025-05-04"]);
-    expect(stretches("belgrano")).toEqual(["2018-08-10 to 2019-04-07", "2023-01-27 to 2025-05-04"]);
-    expect(stretches("tigre")).toEqual(["2018-08-10 to 2019-04-07", "2022-06-03 to 2025-05-04"]);
+    expect(stretches("aldosivi")).toEqual(["2018-08-10 to 2022-10-25", "2025-01-23 to 2025-12-14"]);
+    expect(stretches("belgrano")).toEqual(["2018-08-10 to 2019-04-07", "2023-01-27 to 2025-12-14"]);
+    expect(stretches("tigre")).toEqual(["2018-08-10 to 2019-04-07", "2022-06-03 to 2025-12-14"]);
     expect(stretches("san-martin-san-juan")).toEqual([
       "2018-08-10 to 2019-04-07",
-      "2025-01-23 to 2025-05-04",
+      "2025-01-23 to 2025-12-14",
     ]);
     // Former Primera clubs end where our data for them ends.
     expect(stretches("arsenal")).toEqual(["2019-07-26 to 2023-07-30"]);
@@ -93,10 +93,10 @@ describe("data/coverage.json", () => {
     expect(stretches("san-martin-tucuman")).toEqual(["2018-08-10 to 2019-04-07"]);
   });
 
-  it("never marks a day of 2025-05-05 onwards, or a Copa de la Liga edition not loaded, as complete", () => {
+  it("never marks a day of 2025-12-15 onwards, or a Copa de la Liga edition not loaded, as complete", () => {
     for (const r of coverage.filter((x) => x.complete)) {
       expect(r.to !== null, `${r.club_id} ${r.from}`).toBe(true);
-      if (r.competition_id === "primera-division") expect(r.to! <= "2025-05-04").toBe(true);
+      if (r.competition_id === "primera-division") expect(r.to! <= "2025-12-14").toBe(true);
       if (r.competition_id === "copa-de-la-liga-profesional") {
         expect(r.from).toBe("2020-10-30");
         expect(r.to).toBe("2021-02-11");
@@ -120,7 +120,7 @@ describe("the engine on the real coverage", () => {
   const status = (notice: { competitions: readonly { competitionId: string }[] }, id: string) =>
     notice.competitions.find((c) => c.competitionId === id);
 
-  it("River since 2010: Primera is partial, complete only between 2018-08-10 and 2025-05-04", () => {
+  it("River since 2010: Primera is partial, complete only between 2018-08-10 and 2025-12-14", () => {
     const { coverage: notice } = calculateHistory(
       index,
       "river-plate",
@@ -131,7 +131,7 @@ describe("the engine on the real coverage", () => {
       competitionId: "primera-division",
       status: "partial",
       completeFrom: "2018-08-10",
-      completeTo: "2025-05-04",
+      completeTo: "2025-12-14",
     });
   });
 
@@ -156,7 +156,7 @@ describe("the engine on the real coverage", () => {
       competitionId: "primera-division",
       status: "partial",
       completeFrom: "2023-01-27",
-      completeTo: "2025-05-04",
+      completeTo: "2025-12-14",
     });
   });
 
@@ -197,7 +197,7 @@ describe("the engine on the real coverage", () => {
     expect(status(since.coverage, "primera-division")).toMatchObject({
       status: "partial",
       completeFrom: "2018-08-10",
-      completeTo: "2025-05-04",
+      completeTo: "2025-12-14",
     });
     const within = headToHead(
       index,

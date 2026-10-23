@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { directoryLoader, runAdapter } from "../../../../scripts/ingest/core/adapter";
 import { openfootballAdapter } from "../../../../scripts/ingest/openfootball";
+import { OPENFOOTBALL_ONLY_GAPS } from "../../../fixtures/ingest/openfootball/gaps";
 import { FIXTURE_CLUBS } from "../../../fixtures/ingest/openfootball/clubs";
 
 let dir: string;
@@ -32,6 +33,7 @@ describe("tests never touch the network", () => {
         dir,
         loader: directoryLoader(inputs),
         now: new Date("2026-10-17T12:00:00Z"),
+        coverageGaps: OPENFOOTBALL_ONLY_GAPS,
       });
       expect(result.report.files).toHaveLength(8);
       expect(fetchStub).not.toHaveBeenCalled();

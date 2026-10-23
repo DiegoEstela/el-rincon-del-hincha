@@ -1,2 +1,6 @@
 # Keep the openfootball fixtures byte-identical (mixed CRLF/LF) so their sha256 pins hold on every OS.
 tests/fixtures/ingest/openfootball/*.txt -text
+
+# Byte-exact copies of RSSSF excerpts (sha256-pinned in the manifest)
+tests/fixtures/ingest/rsssf/*.txt -text
+sources/rsssf/*.txt -text

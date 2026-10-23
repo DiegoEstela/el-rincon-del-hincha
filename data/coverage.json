@@ -51,17 +51,17 @@
     "club_id": "aldosivi",
     "competition_id": "primera-division",
     "from": "2025-01-23",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2025-apertura..primera-division-2025-apertura"
+    "source": "derived:primera-division-2025-apertura..primera-division-2025-clausura"
   },
   {
     "club_id": "aldosivi",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "argentinos-juniors",
@@ -107,17 +107,17 @@
     "club_id": "argentinos-juniors",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "argentinos-juniors",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "arsenal",
@@ -170,10 +170,10 @@
   {
     "club_id": "arsenal",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "atletico-tucuman",
@@ -219,17 +219,17 @@
     "club_id": "atletico-tucuman",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "atletico-tucuman",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "banfield",
@@ -275,17 +275,17 @@
     "club_id": "banfield",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "banfield",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "barracas-central",
@@ -323,17 +323,17 @@
     "club_id": "barracas-central",
     "competition_id": "primera-division",
     "from": "2022-06-03",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2022..primera-division-2025-apertura"
+    "source": "derived:primera-division-2022..primera-division-2025-clausura"
   },
   {
     "club_id": "barracas-central",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "belgrano",
@@ -379,17 +379,17 @@
     "club_id": "belgrano",
     "competition_id": "primera-division",
     "from": "2023-01-27",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2023..primera-division-2025-apertura"
+    "source": "derived:primera-division-2023..primera-division-2025-clausura"
   },
   {
     "club_id": "belgrano",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "boca-juniors",
@@ -435,17 +435,17 @@
     "club_id": "boca-juniors",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "boca-juniors",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "central-cordoba-sde",
@@ -491,17 +491,17 @@
     "club_id": "central-cordoba-sde",
     "competition_id": "primera-division",
     "from": "2019-07-26",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2019-20..primera-division-2025-apertura"
+    "source": "derived:primera-division-2019-20..primera-division-2025-clausura"
   },
   {
     "club_id": "central-cordoba-sde",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "colon",
@@ -554,10 +554,10 @@
   {
     "club_id": "colon",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "defensa-y-justicia",
@@ -603,17 +603,17 @@
     "club_id": "defensa-y-justicia",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "defensa-y-justicia",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "deportivo-riestra",
@@ -651,17 +651,17 @@
     "club_id": "deportivo-riestra",
     "competition_id": "primera-division",
     "from": "2024-05-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2024..primera-division-2025-apertura"
+    "source": "derived:primera-division-2024..primera-division-2025-clausura"
   },
   {
     "club_id": "deportivo-riestra",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "estudiantes-la-plata",
@@ -707,17 +707,17 @@
     "club_id": "estudiantes-la-plata",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "estudiantes-la-plata",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "gimnasia-la-plata",
@@ -763,17 +763,17 @@
     "club_id": "gimnasia-la-plata",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "gimnasia-la-plata",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "godoy-cruz",
@@ -819,17 +819,17 @@
     "club_id": "godoy-cruz",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "godoy-cruz",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "huracan",
@@ -875,17 +875,17 @@
     "club_id": "huracan",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "huracan",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "independiente-rivadavia",
@@ -923,17 +923,17 @@
     "club_id": "independiente-rivadavia",
     "competition_id": "primera-division",
     "from": "2024-05-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2024..primera-division-2025-apertura"
+    "source": "derived:primera-division-2024..primera-division-2025-clausura"
   },
   {
     "club_id": "independiente-rivadavia",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "independiente",
@@ -979,17 +979,17 @@
     "club_id": "independiente",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "independiente",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "instituto",
@@ -1027,17 +1027,17 @@
     "club_id": "instituto",
     "competition_id": "primera-division",
     "from": "2023-01-27",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2023..primera-division-2025-apertura"
+    "source": "derived:primera-division-2023..primera-division-2025-clausura"
   },
   {
     "club_id": "instituto",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "lanus",
@@ -1083,17 +1083,17 @@
     "club_id": "lanus",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "lanus",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "newells-old-boys",
@@ -1139,17 +1139,17 @@
     "club_id": "newells-old-boys",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "newells-old-boys",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "patronato",
@@ -1202,10 +1202,10 @@
   {
     "club_id": "patronato",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "platense",
@@ -1243,17 +1243,17 @@
     "club_id": "platense",
     "competition_id": "primera-division",
     "from": "2021-07-16",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2021..primera-division-2025-apertura"
+    "source": "derived:primera-division-2021..primera-division-2025-clausura"
   },
   {
     "club_id": "platense",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "racing-club",
@@ -1299,17 +1299,17 @@
     "club_id": "racing-club",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "racing-club",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "river-plate",
@@ -1355,17 +1355,17 @@
     "club_id": "river-plate",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "river-plate",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "rosario-central",
@@ -1411,17 +1411,17 @@
     "club_id": "rosario-central",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "rosario-central",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "san-lorenzo",
@@ -1467,17 +1467,17 @@
     "club_id": "san-lorenzo",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "san-lorenzo",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "san-martin-san-juan",
@@ -1523,17 +1523,17 @@
     "club_id": "san-martin-san-juan",
     "competition_id": "primera-division",
     "from": "2025-01-23",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2025-apertura..primera-division-2025-apertura"
+    "source": "derived:primera-division-2025-apertura..primera-division-2025-clausura"
   },
   {
     "club_id": "san-martin-san-juan",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "san-martin-tucuman",
@@ -1578,10 +1578,10 @@
   {
     "club_id": "san-martin-tucuman",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "sarmiento-junin",
@@ -1619,17 +1619,17 @@
     "club_id": "sarmiento-junin",
     "competition_id": "primera-division",
     "from": "2021-07-16",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2021..primera-division-2025-apertura"
+    "source": "derived:primera-division-2021..primera-division-2025-clausura"
   },
   {
     "club_id": "sarmiento-junin",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "talleres-cordoba",
@@ -1675,17 +1675,17 @@
     "club_id": "talleres-cordoba",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "talleres-cordoba",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "tigre",
@@ -1731,17 +1731,17 @@
     "club_id": "tigre",
     "competition_id": "primera-division",
     "from": "2022-06-03",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2022..primera-division-2025-apertura"
+    "source": "derived:primera-division-2022..primera-division-2025-clausura"
   },
   {
     "club_id": "tigre",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "union",
@@ -1787,17 +1787,17 @@
     "club_id": "union",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "union",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
     "club_id": "velez-sarsfield",
@@ -1843,16 +1843,16 @@
     "club_id": "velez-sarsfield",
     "competition_id": "primera-division",
     "from": "2018-08-10",
-    "to": "2025-05-04",
+    "to": "2025-12-14",
     "complete": true,
-    "source": "derived:primera-division-2018-19..primera-division-2025-apertura"
+    "source": "derived:primera-division-2018-19..primera-division-2025-clausura"
   },
   {
     "club_id": "velez-sarsfield",
     "competition_id": "primera-division",
-    "from": "2025-05-05",
+    "from": "2025-12-15",
     "to": null,
     "complete": false,
-    "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   }
 ]

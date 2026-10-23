@@ -2,7 +2,18 @@
 // run so the report lists all of them at once. Names are never guessed.
 import { resolveClubId, type ClubAliases } from "../../../src/data-model/club-aliases";
 
-export type NameLocation = { file: string; line: number; season: string };
+export type NameLocation = {
+  file: string;
+  line: number;
+  season: string;
+  /** Where the name appears ("matches", "table"): the same-season check runs per context. */
+  context?: string;
+};
+
+export type ResolverOptions = {
+  /** Reviewed pairs of spellings of one club that really appear together in a season. */
+  variants?: readonly (readonly [string, string])[];
+};
 
 export type ClubResolver = {
   /** Club id for a source spelling, or null (and recorded as a problem) when it is unknown. */
@@ -11,10 +22,17 @@ export type ClubResolver = {
   problems(): string[];
 };
 
-export function createClubResolver(clubs: readonly ClubAliases[]): ClubResolver {
+const norm = (name: string) => name.normalize("NFC").trim();
+const pairKey = (a: string, b: string) => [a, b].sort().join("\u0000");
+
+export function createClubResolver(
+  clubs: readonly ClubAliases[],
+  options: ResolverOptions = {},
+): ClubResolver {
+  const allowed = new Set((options.variants ?? []).map(([a, b]) => pairKey(norm(a), norm(b))));
   const unknown = new Map<string, NameLocation>();
-  // season -> club id -> distinct source spellings seen
-  const bySeason = new Map<string, Map<string, Set<string>>>();
+  // season + context -> club id -> distinct source spellings seen
+  const bySeason = new Map<string, { season: string; ids: Map<string, Set<string>> }>();
 
   return {
     resolve(name, at) {
@@ -23,11 +41,12 @@ export function createClubResolver(clubs: readonly ClubAliases[]): ClubResolver 
         if (!unknown.has(name)) unknown.set(name, at);
         return null;
       }
-      const spellings = bySeason.get(at.season) ?? new Map<string, Set<string>>();
-      bySeason.set(at.season, spellings);
-      const names = spellings.get(id) ?? new Set<string>();
-      spellings.set(id, names);
-      names.add(name.normalize("NFC").trim());
+      const key = `${at.season}\u0000${at.context ?? ""}`;
+      const bucket = bySeason.get(key) ?? { season: at.season, ids: new Map() };
+      bySeason.set(key, bucket);
+      const names = bucket.ids.get(id) ?? new Set<string>();
+      bucket.ids.set(id, names);
+      names.add(norm(name));
       return id;
     },
     problems() {
@@ -35,16 +54,24 @@ export function createClubResolver(clubs: readonly ClubAliases[]): ClubResolver 
       for (const [name, at] of unknown) {
         list.push(`unknown club "${name}" (first seen at ${at.file}:${at.line})`);
       }
-      for (const [season, ids] of bySeason) {
+      for (const { season, ids } of bySeason.values()) {
         for (const [id, names] of ids) {
-          if (names.size < 2) continue;
-          const [first, second] = [...names].sort();
-          list.push(
-            `season ${season}: "${first}" and "${second}" both resolve to the club "${id}"`,
-          );
+          const sorted = [...names].sort();
+          // Every pair of spellings must be a reviewed variant; report the first pair that is not.
+          const bad = sorted.flatMap((a, i) =>
+            sorted
+              .slice(i + 1)
+              .filter((b) => !allowed.has(pairKey(a, b)))
+              .map((b) => [a, b] as const),
+          )[0];
+          if (bad !== undefined) {
+            list.push(
+              `season ${season}: "${bad[0]}" and "${bad[1]}" both resolve to the club "${id}"`,
+            );
+          }
         }
       }
-      return list.sort();
+      return [...new Set(list)].sort();
     },
   };
 }

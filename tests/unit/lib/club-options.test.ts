@@ -102,6 +102,19 @@ describe("toClubOption", () => {
     const plain = toClubOption(clubs.find((c) => c.id === "aldosivi")!);
     expect("tertiary" in plain.crest).toBe(false);
   });
+  it("leaves out the aliases that only exist to read a source", () => {
+    const club = {
+      ...river,
+      aliases: [
+        "River",
+        "CA River Plate",
+        "CD River",
+        "Club Atlético River Plate Asoc. Civil (Belgrano, C)",
+        "Millonarios",
+      ],
+    };
+    expect(toClubOption(club).searchKeys).toEqual(["River Plate", "River", "Millonarios"]);
+  });
   it("dedupes the search keys, ignoring case and accents", () => {
     expect(toClubOption(clubs.find((c) => c.id === "aldosivi")!).searchKeys).toEqual(["Aldosivi"]);
     expect(toClubOption(clubs.find((c) => c.id === "huracan")!).searchKeys).toEqual(["Huracán"]);

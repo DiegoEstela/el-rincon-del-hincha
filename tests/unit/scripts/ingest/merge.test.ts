@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import { mergeDataset } from "../../../../scripts/ingest/core/merge";
 
 const OF = "https://github.com/openfootball/south-america/blob/abc/argentina/";
-const match = (id: string, source: string) => ({ id, source });
+// Every match is in its own season: a season has one source only (plan 0017).
+const match = (id: string, source: string) => ({ id, source, season_id: id, date: "2020-01-01" });
 const comp = (extra = {}) => ({ id: "liga", name: "Liga", afa_recognized: true, ...extra });
 const season = (id: string) => ({ id, competition_id: "liga" });
 

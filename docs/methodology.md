@@ -53,13 +53,13 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 
 #### Known coverage gaps
 
-| Competition                   | From       | To         | Why                                                                                                                    | Source                           |
-| ----------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| `copa-de-la-liga-profesional` | 2021-02-12 | 2021-06-04 | Edition 2021 is not loaded.                                                                                            | es.wikipedia, revision 175528472 |
-| `copa-de-la-liga-profesional` | 2022-02-10 | 2022-05-22 | Edition 2022 is not loaded.                                                                                            | es.wikipedia, revision 175528478 |
-| `copa-de-la-liga-profesional` | 2023-08-17 | 2023-12-16 | Edition 2023 is not loaded.                                                                                            | es.wikipedia, revision 175528489 |
-| `copa-de-la-liga-profesional` | 2024-01-25 | 2024-05-05 | Edition 2024, the last one, is not loaded.                                                                             | es.wikipedia, revision 175528520 |
-| `primera-division`            | 2025-05-05 | open       | The 2025 Apertura knockout stage (final on 2025-06-01), the 2025 Clausura and later seasons are not loaded (ADR 0003). | es.wikipedia, revision 175770270 |
+| Competition                   | From       | To         | Why                                                                                                                                    | Source                              |
+| ----------------------------- | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `copa-de-la-liga-profesional` | 2021-02-12 | 2021-06-04 | Edition 2021 is not loaded.                                                                                                            | es.wikipedia, revision 175528472    |
+| `copa-de-la-liga-profesional` | 2022-02-10 | 2022-05-22 | Edition 2022 is not loaded.                                                                                                            | es.wikipedia, revision 175528478    |
+| `copa-de-la-liga-profesional` | 2023-08-17 | 2023-12-16 | Edition 2023 is not loaded.                                                                                                            | es.wikipedia, revision 175528489    |
+| `copa-de-la-liga-profesional` | 2024-01-25 | 2024-05-05 | Edition 2024, the last one, is not loaded.                                                                                             | es.wikipedia, revision 175528520    |
+| `primera-division`            | 2025-12-15 | open       | The 2026 Apertura and later tournaments are not loaded: the RSSSF page of 2025 ends with the Clausura final on 2025-12-14 (plan 0017). | rsssf.org, `arg2025.html#1clausura` |
 
 The Copa Diego Armando Maradona 2020 (2020-10-30 to 2021-03-31) is the only edition of that cup we have. Its complete stretch ends on 2021-02-11, the day before the 2021 edition starts, so its last matches (the Fase Complementación and the Copa Sudamericana qualifier of 2021-03-31) lie inside a gap and are not claimed.
 
@@ -149,3 +149,17 @@ Adapters in `scripts/ingest/` turn an external source into records of `data/` (A
 - `is_final` is true only for the match that decides a title (the `Fase Campeón, Final` of the 2020 Copa de la Liga). The other two "finals" of that file (`Fase Complementación, Final` and the Copa Sudamericana qualifier) are stored with `is_final: false`.
 - Every openfootball record is `verified: false` (single source). Cross-checking against a second source is what can set it to `true`.
 - The 2025 file only has the group stage of the Apertura (until 2025-05-04). Its season ends on 2025-06-01, the day of the final, and the run report marks it partial so the coverage table (issue #12) does not present it as complete.
+
+### RSSSF (Argentine first division, from the 2025 Apertura knockouts)
+
+Plan 0017, ADR 0020. The permission covers the results and final tables of the first division only (`docs/spike/replies/2026-10-16-rsssf.md`); no cup and no lower division is read, and a test fails if an excerpt mentions one.
+
+- **Pinned excerpts.** RSSSF pages are edited in place, so `sources/rsssf/manifest.json` pins each page (sha256, bytes, retrieval date, the author and "last updated" the page shows) and `sources/rsssf/<page>.<excerpt>.txt` keeps the byte-exact first-division sections we read, never the whole page. `pnpm data:snapshot rsssf [--check]` is the only code that requests rsssf.org: one page at a time, five seconds apart, https only, no redirects, a user agent with no personal data. It is never run in tests or in CI.
+- **One strict parser per layout.** `full-names-2017` reads the pages of 2017-18 onward. A line the grammar does not know inside the matches stops the run with the excerpt and the line; it is never skipped or guessed.
+- **Dates.** The pages write month and day without the year. Each tournament has a window of at most 12 months (`scripts/ingest/rsssf/config.ts`); the year is the one that puts the date inside the window, and a weekday written on the page must match.
+- **Abandoned matches.** Abandoned and completed later (two lines, or one line with "remaining time on 24 Oct"): one record with the final score, dated the day it was completed. Never completed: `suspended`, with no score.
+- **One source per season.** A season has matches of one source only. The exception is the 2025 Apertura: openfootball is the base (group stage, up to 2025-05-04) and RSSSF adds the knockout stage after that date. Each adapter refuses to write on the other side of that line.
+- **Final tables are checked.** For a season whose final table counts every match, each club's matches, wins, draws, losses, goals and points must equal the table, with a shoot-out counted as a draw. A difference stops the run unless the manifest lists it as a reviewed exception with its reason; an unused exception is an error.
+- **Standings.** One row per club of the final table (matches, wins, draws, losses).
+- **Club names** resolve only through the aliases of `data/clubs.json`; the table names carry the legal name and the headquarters, which are aliases too. Aliases that exist only to read a source (a legal form in front, a headquarters after) are not search keys in the club picker.
+- **Credit.** `/acerca` names the author of every page in the manifest and links each page.

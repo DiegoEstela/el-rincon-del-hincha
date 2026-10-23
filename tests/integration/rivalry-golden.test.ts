@@ -35,15 +35,15 @@ const h2h = (club: string, rival: string, start: string) =>
 describe("River v Boca from 1990-05-20", () => {
   const h = h2h("river-plate", "boca-juniors", "1990-05-20");
 
-  it("has 8 played, 5-2-1, goals 10 to 5 and dominates", () => {
+  it("has 9 played, 5-2-2, goals 10 to 7 and dominates", () => {
     expect(h.record).toMatchObject({
-      played: 8,
+      played: 9,
       won: 5,
       drawn: 2,
-      lost: 1,
+      lost: 2,
       goalsFor: 10,
-      goalsAgainst: 5,
-      balance: 4,
+      goalsAgainst: 7,
+      balance: 3,
     });
     expect(h.dominance).toBe("dominates");
     expect(h.competitionIds).toEqual(["copa-de-la-liga-profesional", "primera-division"]);
@@ -51,18 +51,23 @@ describe("River v Boca from 1990-05-20", () => {
   });
 
   it("has the last match, the streaks and the biggest results", () => {
-    expect(h.lastMatch?.match.id).toBe("2025-04-27-river-plate-boca-juniors");
+    expect(h.lastMatch?.match.id).toBe("2025-10-19-boca-juniors-river-plate");
     expect(h.currentStreak).toEqual({
+      outcome: "L",
+      length: 1,
+      from: "2025-10-19",
+      to: "2025-10-19",
+    });
+    expect(h.bestWinStreak).toEqual({
       outcome: "W",
       length: 3,
       from: "2023-05-07",
       to: "2025-04-27",
     });
-    expect(h.bestWinStreak).toEqual(h.currentStreak);
-    expect(h.currentUnbeaten).toEqual({ length: 3, from: "2023-05-07", to: "2025-04-27" });
-    expect(h.currentWinless).toBeNull();
+    expect(h.currentUnbeaten).toBeNull();
+    expect(h.currentWinless).toEqual({ length: 1, from: "2025-10-19", to: "2025-10-19" });
     expect(h.biggestWin?.match.id).toBe("2018-09-23-boca-juniors-river-plate");
-    expect(h.biggestLoss?.match.id).toBe("2022-09-11-boca-juniors-river-plate");
+    expect(h.biggestLoss?.match.id).toBe("2025-10-19-boca-juniors-river-plate");
     expect(h.finals).toEqual([]);
   });
 
@@ -70,7 +75,7 @@ describe("River v Boca from 1990-05-20", () => {
     expect(h.atStake).toEqual({
       winsToImprove: null,
       improvesTo: null,
-      lossesToWorsen: 3,
+      lossesToWorsen: 2,
       worsensTo: "even",
       nextWinMilestone: { milestone: 10, winsNeeded: 5 },
     });
@@ -81,7 +86,7 @@ describe("Boca v Banfield from 1990-05-20", () => {
   const h = h2h("boca-juniors", "banfield", "1990-05-20");
 
   it("counts the shoot-out of the only final as a draw and a final won", () => {
-    expect(h.record).toMatchObject({ played: 8, won: 4, drawn: 2, lost: 2 });
+    expect(h.record).toMatchObject({ played: 9, won: 5, drawn: 2, lost: 2 });
     expect(h.record.shootouts).toEqual({ played: 1, won: 1, lost: 0 });
     expect(h.finals).toHaveLength(1);
     expect(h.finals[0]).toMatchObject({
@@ -101,10 +106,10 @@ describe("Belgrano v Talleres from 2000-01-01", () => {
   const h = h2h("belgrano", "talleres-cordoba", "2000-01-01");
 
   it("has not won in 4 and is one defeat from being dominated", () => {
-    expect(h.record).toMatchObject({ played: 4, won: 0, drawn: 3, lost: 1, balance: -1 });
+    expect(h.record).toMatchObject({ played: 5, won: 0, drawn: 4, lost: 1, balance: -1 });
     expect(h.dominance).toBe("even");
-    expect(h.currentWinless).toEqual({ length: 4, from: "2018-10-07", to: "2025-03-30" });
-    expect(h.currentUnbeaten).toEqual({ length: 3, from: "2023-05-21", to: "2025-03-30" });
+    expect(h.currentWinless).toEqual({ length: 5, from: "2018-10-07", to: "2025-10-05" });
+    expect(h.currentUnbeaten).toEqual({ length: 4, from: "2023-05-21", to: "2025-10-05" });
     expect(h.atStake).toMatchObject({
       winsToImprove: 3,
       improvesTo: "dominates",

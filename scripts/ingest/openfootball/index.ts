@@ -32,6 +32,8 @@ export function createOpenfootballAdapter(
   return {
     id: "openfootball",
     sourcePrefix: OPENFOOTBALL_SOURCE_PREFIX,
+    // A season the file only has in part is completed by RSSSF (plan 0017): openfootball stays its base.
+    extendedBy: config.seasons.filter((s) => s.partial !== undefined).map((s) => s.id),
     async load(loader) {
       const parsed: ParsedFile[] = [];
       for (const f of config.files) {

@@ -3,7 +3,7 @@
     "id": "aldosivi",
     "name": "Aldosivi",
     "short_name": "Aldosivi",
-    "aliases": ["Aldosivi"],
+    "aliases": ["Aldosivi", "CA Aldosivi", "Club Atlético Aldosivi (Mar del Plata, B)"],
     "colors": {
       "primary": "#ffd60a",
       "secondary": "#0b5d2a"
@@ -17,7 +17,12 @@
     "id": "argentinos-juniors",
     "name": "Argentinos Juniors",
     "short_name": "Argentinos",
-    "aliases": ["Argentinos Juniors", "Argentinos"],
+    "aliases": [
+      "Argentinos Juniors",
+      "Argentinos",
+      "AA Argentinos Juniors",
+      "Asociación Atlética Argentinos Juniors (La Paternal, C)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#ffffff"
@@ -45,7 +50,12 @@
     "id": "atletico-tucuman",
     "name": "Atlético Tucumán",
     "short_name": "Atl. Tucumán",
-    "aliases": ["Atlético Tucumán", "Atl Tucuman"],
+    "aliases": [
+      "Atlético Tucumán",
+      "Atl Tucuman",
+      "Club Atlético Tucumán",
+      "Club Atlético Tucumán Soc. Civil (San Miguel de Tucumán, T)"
+    ],
     "colors": {
       "primary": "#3b94e0",
       "secondary": "#ffffff"
@@ -59,7 +69,7 @@
     "id": "banfield",
     "name": "Banfield",
     "short_name": "Banfield",
-    "aliases": ["Banfield"],
+    "aliases": ["Banfield", "CA Banfield", "Club Atlético Banfield Sociedad Civil (Banfield, B)"],
     "colors": {
       "primary": "#1a9850",
       "secondary": "#ffffff"
@@ -73,7 +83,11 @@
     "id": "barracas-central",
     "name": "Barracas Central",
     "short_name": "Barracas",
-    "aliases": ["Barracas Central"],
+    "aliases": [
+      "Barracas Central",
+      "CA Barracas Central",
+      "Club Atlético Barracas Central (Barracas, C)"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#d62828"
@@ -87,7 +101,12 @@
     "id": "belgrano",
     "name": "Belgrano",
     "short_name": "Belgrano",
-    "aliases": ["Belgrano", "Belgrano de Córdoba"],
+    "aliases": [
+      "Belgrano",
+      "Belgrano de Córdoba",
+      "CA Belgrano",
+      "Club Atlético Belgrano (Córdoba, X)"
+    ],
     "colors": {
       "primary": "#3b94e0",
       "secondary": "#ffffff"
@@ -101,7 +120,11 @@
     "id": "boca-juniors",
     "name": "Boca Juniors",
     "short_name": "Boca",
-    "aliases": ["Boca Juniors"],
+    "aliases": [
+      "Boca Juniors",
+      "CA Boca Juniors",
+      "Club Atlético Boca Juniors Asociación Civil (La Boca, C)"
+    ],
     "colors": {
       "primary": "#0b1f4d",
       "secondary": "#d4a017"
@@ -115,7 +138,13 @@
     "id": "central-cordoba-sde",
     "name": "Central Córdoba",
     "short_name": "Central Córdoba",
-    "aliases": ["Central Córdoba", "Central Córdoba SdE", "Central Cba (SdE)"],
+    "aliases": [
+      "Central Córdoba",
+      "Central Córdoba SdE",
+      "Central Cba (SdE)",
+      "CA Central Córdoba (Sant. Estero)",
+      "Club Atlético Central Córdoba Soc. Civil (Santiago del Estero, G)"
+    ],
     "colors": {
       "primary": "#111111",
       "secondary": "#ffffff"
@@ -143,7 +172,12 @@
     "id": "defensa-y-justicia",
     "name": "Defensa y Justicia",
     "short_name": "Defensa",
-    "aliases": ["Defensa y Justicia", "Def y Justicia"],
+    "aliases": [
+      "Defensa y Justicia",
+      "Def y Justicia",
+      "CSD Defensa y Justicia",
+      "Club Social y Deportivo Defensa y Justicia (Florencio Varela, B)"
+    ],
     "colors": {
       "primary": "#ffd60a",
       "secondary": "#0b5d2a"
@@ -157,7 +191,11 @@
     "id": "deportivo-riestra",
     "name": "Deportivo Riestra",
     "short_name": "Riestra",
-    "aliases": ["Deportivo Riestra"],
+    "aliases": [
+      "Deportivo Riestra",
+      "Deportivo Riestra AFBC",
+      "Deportivo Riestra Asociación de Fomento Barrio Colón (Nueva Pompeya, C)"
+    ],
     "colors": {
       "primary": "#111111",
       "secondary": "#ffffff"
@@ -171,7 +209,13 @@
     "id": "estudiantes-la-plata",
     "name": "Estudiantes de La Plata",
     "short_name": "Estudiantes",
-    "aliases": ["Estudiantes de La Plata", "Estudiantes", "Estudiantes (LP)"],
+    "aliases": [
+      "Estudiantes de La Plata",
+      "Estudiantes",
+      "Estudiantes (LP)",
+      "Club Estudiantes de La Plata",
+      "Club Estudiantes de La Plata (La Plata, B)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#ffffff"
@@ -185,7 +229,13 @@
     "id": "gimnasia-la-plata",
     "name": "Gimnasia y Esgrima La Plata",
     "short_name": "Gimnasia",
-    "aliases": ["Gimnasia y Esgrima La Plata", "Gimnasia de La Plata", "Gimnasia (LP)"],
+    "aliases": [
+      "Gimnasia y Esgrima La Plata",
+      "Gimnasia de La Plata",
+      "Gimnasia (LP)",
+      "Club de Gimnasia y Esgrima LP",
+      "Club de Gimnasia y Esgrima La Plata (La Plata, B)"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#0b1f4d"
@@ -199,7 +249,11 @@
     "id": "godoy-cruz",
     "name": "Godoy Cruz",
     "short_name": "Godoy Cruz",
-    "aliases": ["Godoy Cruz"],
+    "aliases": [
+      "Godoy Cruz",
+      "CD Godoy Cruz Antonio Tomba",
+      "Club Deportivo Godoy Cruz Antonio Tomba (Godoy Cruz, M)"
+    ],
     "colors": {
       "primary": "#1d4ed8",
       "secondary": "#ffffff"
@@ -213,7 +267,12 @@
     "id": "huracan",
     "name": "Huracán",
     "short_name": "Huracán",
-    "aliases": ["Huracán", "Huracan"],
+    "aliases": [
+      "Huracán",
+      "Huracan",
+      "CA Huracán",
+      "Club Atlético Huracán (Parque de los Patricios, C)"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#d62828"
@@ -227,7 +286,7 @@
     "id": "independiente",
     "name": "Independiente",
     "short_name": "Independiente",
-    "aliases": ["Independiente"],
+    "aliases": ["Independiente", "CA Independiente", "Club Atlético Independiente (Avellaneda, B)"],
     "colors": {
       "primary": "#d62828",
       "secondary": "#0b1f4d"
@@ -241,7 +300,12 @@
     "id": "independiente-rivadavia",
     "name": "Independiente Rivadavia",
     "short_name": "Ind. Rivadavia",
-    "aliases": ["Independiente Rivadavia", "Ind Rivadavia"],
+    "aliases": [
+      "Independiente Rivadavia",
+      "Ind Rivadavia",
+      "CS Independiente Rivadavia",
+      "Club Sportivo Independiente Rivadavia (Mendoza, M)"
+    ],
     "colors": {
       "primary": "#0b1f4d",
       "secondary": "#ffffff"
@@ -255,7 +319,12 @@
     "id": "instituto",
     "name": "Instituto",
     "short_name": "Instituto",
-    "aliases": ["Instituto", "Instituto de Córdoba"],
+    "aliases": [
+      "Instituto",
+      "Instituto de Córdoba",
+      "Instituto ACC",
+      "Instituto Atlético Central Córdoba (Córdoba, X)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#ffffff"
@@ -269,7 +338,7 @@
     "id": "lanus",
     "name": "Lanús",
     "short_name": "Lanús",
-    "aliases": ["Lanús", "Lanus"],
+    "aliases": ["Lanús", "Lanus", "CA Lanús", "Club Atlético Lanús (Lanús Este, B)"],
     "colors": {
       "primary": "#7b1e3a",
       "secondary": "#ffffff"
@@ -283,7 +352,12 @@
     "id": "newells-old-boys",
     "name": "Newell's Old Boys",
     "short_name": "Newell's",
-    "aliases": ["Newell's Old Boys", "Newells"],
+    "aliases": [
+      "Newell's Old Boys",
+      "Newells",
+      "CA Newell's Old Boys",
+      "Club Atlético Newell's Old Boys (Rosario, S)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#111111"
@@ -311,7 +385,7 @@
     "id": "platense",
     "name": "Platense",
     "short_name": "Platense",
-    "aliases": ["Platense"],
+    "aliases": ["Platense", "CA Platense", "Club Atlético Platense Asociación Civil (Florida, B)"],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#6b4226"
@@ -325,7 +399,7 @@
     "id": "racing-club",
     "name": "Racing Club",
     "short_name": "Racing",
-    "aliases": ["Racing Club"],
+    "aliases": ["Racing Club", "Racing Club Asociación Civil (Avellaneda, B)"],
     "colors": {
       "primary": "#3b94e0",
       "secondary": "#ffffff"
@@ -339,7 +413,11 @@
     "id": "river-plate",
     "name": "River Plate",
     "short_name": "River",
-    "aliases": ["River Plate"],
+    "aliases": [
+      "River Plate",
+      "CA River Plate",
+      "Club Atlético River Plate Asoc. Civil (Belgrano, C)"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#d62828",
@@ -354,7 +432,11 @@
     "id": "rosario-central",
     "name": "Rosario Central",
     "short_name": "Central",
-    "aliases": ["Rosario Central"],
+    "aliases": [
+      "Rosario Central",
+      "CA Rosario Central",
+      "Club Atlético Rosario Central (Rosario, S)"
+    ],
     "colors": {
       "primary": "#1d4ed8",
       "secondary": "#ffd60a"
@@ -368,7 +450,11 @@
     "id": "san-lorenzo",
     "name": "San Lorenzo",
     "short_name": "San Lorenzo",
-    "aliases": ["San Lorenzo"],
+    "aliases": [
+      "San Lorenzo",
+      "CA San Lorenzo de Almagro",
+      "Club Atlético San Lorenzo de Almagro (Flores, C)"
+    ],
     "colors": {
       "primary": "#0b1f4d",
       "secondary": "#d62828"
@@ -382,7 +468,12 @@
     "id": "san-martin-san-juan",
     "name": "San Martín de San Juan",
     "short_name": "San Martín SJ",
-    "aliases": ["San Martín de San Juan", "San Martin (SJ)"],
+    "aliases": [
+      "San Martín de San Juan",
+      "San Martin (SJ)",
+      "CA San Martín (San Juan)",
+      "Club Atlético San Martín (San Juan, J)"
+    ],
     "colors": {
       "primary": "#111111",
       "secondary": "#1a9850"
@@ -410,7 +501,13 @@
     "id": "sarmiento-junin",
     "name": "Sarmiento",
     "short_name": "Sarmiento",
-    "aliases": ["Sarmiento", "Sarmiento de Junín", "Sarmiento (J)"],
+    "aliases": [
+      "Sarmiento",
+      "Sarmiento de Junín",
+      "Sarmiento (J)",
+      "CA Sarmiento (Junín)",
+      "Club Atlético Sarmiento (Junín, B)"
+    ],
     "colors": {
       "primary": "#1a9850",
       "secondary": "#ffffff"
@@ -424,7 +521,13 @@
     "id": "talleres-cordoba",
     "name": "Talleres",
     "short_name": "Talleres",
-    "aliases": ["Talleres", "Talleres de Córdoba", "Talleres (C)"],
+    "aliases": [
+      "Talleres",
+      "Talleres de Córdoba",
+      "Talleres (C)",
+      "CA Talleres",
+      "Club Atlético Talleres (Córdoba, X)"
+    ],
     "colors": {
       "primary": "#0b1f4d",
       "secondary": "#ffffff"
@@ -438,7 +541,7 @@
     "id": "tigre",
     "name": "Tigre",
     "short_name": "Tigre",
-    "aliases": ["Tigre"],
+    "aliases": ["Tigre", "CA Tigre", "Club Atlético Tigre Sociedad Civil (Victoria, B)"],
     "colors": {
       "primary": "#0b1f4d",
       "secondary": "#d62828"
@@ -452,7 +555,13 @@
     "id": "union",
     "name": "Unión",
     "short_name": "Unión",
-    "aliases": ["Unión", "Unión de Santa Fe", "Union"],
+    "aliases": [
+      "Unión",
+      "Unión de Santa Fe",
+      "Union",
+      "CA Unión",
+      "Club Atlético Unión (Santa Fe, S)"
+    ],
     "colors": {
       "primary": "#d62828",
       "secondary": "#ffffff"
@@ -466,7 +575,12 @@
     "id": "velez-sarsfield",
     "name": "Vélez Sarsfield",
     "short_name": "Vélez",
-    "aliases": ["Vélez Sarsfield", "Velez"],
+    "aliases": [
+      "Vélez Sarsfield",
+      "Velez",
+      "CA Vélez Sarsfield",
+      "Club Atlético Vélez Sarsfield Asociación Civil (Liniers, C)"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#1d4ed8"

@@ -38,10 +38,10 @@ export const COVERAGE_GAPS: readonly CoverageGap[] = [
   },
   {
     competition_id: "primera-division",
-    from: "2025-05-05",
+    from: "2025-12-15",
     to: null,
     reason:
-      "The 2025 Apertura knockout stage (final on 2025-06-01), the 2025 Clausura and every later season are not loaded (ADR 0003, decision 3).",
-    source: wiki("Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)", 175770270),
+      "The 2026 Apertura and every later tournament are not loaded: the RSSSF page of 2025 ends with the Clausura final on 2025-12-14 (plan 0017).",
+    source: "https://www.rsssf.org/tablesa/arg2025.html#1clausura",
   },
 ];

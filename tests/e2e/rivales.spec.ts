@@ -152,23 +152,25 @@ test.describe("the screen with data", () => {
     await expect(rows(page).first()).toContainText("Aldosivi");
   });
 
-  test("shows the empty favorable section for Belgrano, and the notice", async ({
+  test("shows the empty favorable section for San Martín SJ, and the notice", async ({
     page,
   }, testInfo) => {
-    await seed(page, "belgrano", "2000-01-01");
+    await seed(page, "san-martin-san-juan", "2000-01-01");
     await page.goto("/rivales");
-    await expect(page.getByRole("heading", { level: 1, name: "Belgrano vs. todos" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 1, name: "San Martín SJ vs. todos" }),
+    ).toBeVisible();
     await expect(
       page.getByText("Todavía no tenés hijos futboleros. Paciencia, que la tuya se sigue jugando."),
     ).toBeVisible();
     await expect(page.getByRole("note")).toBeVisible();
-    await shot(page, testInfo.project.name, "belgrano");
+    await shot(page, testInfo.project.name, "san-martin-sj");
   });
 
   test("says there is nothing to count when the start is after the last loaded match", async ({
     page,
   }) => {
-    await seed(page, "racing-club", "2025-06-01");
+    await seed(page, "racing-club", "2026-01-01");
     await page.goto("/rivales");
     await expect(page.getByText("Todavía no hay partidos para contar")).toBeVisible();
     await expect(page.getByRole("note")).toBeVisible();

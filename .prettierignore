@@ -11,3 +11,7 @@ tests/fixtures/data-validate/broken-json/
 
 # Byte-exact copies of third-party files (sha256-pinned, see their README)
 tests/fixtures/ingest/openfootball/*.txt
+
+# Byte-exact copies of RSSSF excerpts (windows-1252, never reformatted)
+tests/fixtures/ingest/rsssf/*.txt
+sources/rsssf/*.txt
