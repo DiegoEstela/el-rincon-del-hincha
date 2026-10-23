@@ -117,3 +117,5 @@ The table of each Copa Argentina section lists the clubs of the draw with the re
 - 2024 `CA San Martín (UAQ)` drew 0-0 with Godoy Cruz (the table has San Martín de San Juan with one match 0-0) and `CA San Martín (SMC)` drew 3-3 with Almirante Brown (the table has San Martín de Tucumán with one match 3-3). So the page points to `san-martin-san-juan` for UAQ and `san-martin-tucuman` for SMC.
 
 Until Diego confirms, `CA Racing`, `CSyD San Martín`, `CA San Martín (UAQ)` and `CA San Martín (SMC)` are not added to any club.
+
+**Confirmed by Diego (2026-10-23):** the four cases are as the page says. `CA Racing` is Racing de Córdoba and `CSyD San Martín` is San Martín de Burzaco, both new opponents; `CA San Martín (UAQ)` is `san-martin-san-juan` and `CA San Martín (SMC)` is `san-martin-tucuman`.
