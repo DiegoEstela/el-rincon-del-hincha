@@ -79,12 +79,12 @@ function mergeAbandoned(
     const where = `${parsed.excerpt}:${m.line}`;
     if (m.abandoned !== null && m.resumed !== null) {
       // One line with the final score and the day it was completed: "remaining time on 24 Oct".
-      const on = /\bon ([A-Z][a-z]{2}) (\d{1,2})$/.exec(m.resumed);
+      const on = /\bon (\d{1,2}) ([A-Z][a-z]{2})$/.exec(m.resumed);
       if (on === null || m.homeGoals === null) {
         problems.push(`${where}: cannot read when the abandoned match was completed`);
         continue;
       }
-      const date = resolveDate(on[1], Number(on[2]), undefined, window, where);
+      const date = resolveDate(on[2], Number(on[1]), undefined, window, where);
       out.push({ match: { ...m, date }, suspended: false });
     } else if (m.abandoned !== null) {
       if (m.homeGoals !== null) {
