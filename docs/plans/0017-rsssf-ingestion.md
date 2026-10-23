@@ -383,6 +383,10 @@ A dry run of `pnpm data:ingest rsssf --dry-run` on the real excerpts `arg2025.1a
 | Club Atlético Unión (Santa Fe, S)                                       | `union`                   |
 | Club Atlético Vélez Sarsfield Asociación Civil (Liniers, C)             | `velez-sarsfield`         |
 
+## Verification log: titles (T20, 2026-10-23)
+
+Diego approved on 2026-10-23 the four club spellings of the list of champions (`Club Atlético Boca Juniors`, `Club Atlético River Plate`, `Club Atlético Vélez Sarsfield`, `Club Atlético Platense`) and the title of the 2020 Copa Diego Armando Maradona (Boca, from the final already loaded, one source, not verified). Nine titles are in `data/titles.json`: the eight first division champions of 2018-19 to the 2025 Clausura and the Copa title. The 2025 "Anual LPF" (Rosario Central) is not loaded. `tests/integration/titles-data.test.ts` checks the dates and the champions against the matches with its own code.
+
 ## Verification log: page inventory (T2)
 
 (Filled by T2.)

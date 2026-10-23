@@ -94,6 +94,11 @@ export type OpenfootballSeason = {
    * come from the cited reference instead of the file.
    */
   partial?: { end: string; source: string };
+  /**
+   * The winner of the final of this season is its champion, and a title is written from that
+   * match (a cup decided in one final). Leagues get their titles from another source.
+   */
+  titleFromFinal?: boolean;
 };
 
 export const OPENFOOTBALL_SEASONS: readonly OpenfootballSeason[] = [
@@ -114,6 +119,8 @@ export const OPENFOOTBALL_SEASONS: readonly OpenfootballSeason[] = [
     competition_id: "copa-de-la-liga-profesional",
     name: "Copa Diego Armando Maradona 2020",
     file: "2020_ar1.txt",
+    // A single final (Boca 1-1 Banfield, 5-3 on penalties), already loaded as a match.
+    titleFromFinal: true,
   },
   {
     id: "primera-division-2021",
