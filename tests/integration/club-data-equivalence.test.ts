@@ -12,6 +12,7 @@ import { buildStatsIndex, statsDataFrom } from "@/domain/data";
 import { headToHead } from "@/domain/head-to-head";
 import { fanPeriod, narrowPeriod } from "@/domain/period";
 import { groupRivals } from "@/domain/rivals";
+import { pendingTitles, titleCoverage, titlesBeforePeriod, titlesInPeriod } from "@/domain/titles";
 import { buildRivalryView } from "@/lib/rivalry-view";
 import type { MatchFilter } from "@/domain/types";
 
@@ -95,6 +96,33 @@ describe("a club slice gives the engine the same answers as the full dataset", (
       }
     });
   }
+});
+
+describe("titles on a club slice (ADR 0021)", () => {
+  it("give the engine the same answers as the full dataset, for every club", () => {
+    expect(full.titles.length).toBeGreaterThan(0);
+    for (const clubId of clubIds) {
+      const sliceIndex = buildStatsIndex(statsDataFromClubData(sliceClubData(full, clubId)));
+      for (const start of STARTS) {
+        const period = fanPeriod(start, NOW);
+        for (const includeUnrecognized of [false, true]) {
+          const options = { includeUnrecognized };
+          expect(titlesInPeriod(sliceIndex, clubId, period, options), `${clubId} ${start}`).toEqual(
+            titlesInPeriod(fullIndex, clubId, period, options),
+          );
+          expect(titlesBeforePeriod(sliceIndex, clubId, period, options)).toEqual(
+            titlesBeforePeriod(fullIndex, clubId, period, options),
+          );
+        }
+        expect(pendingTitles(sliceIndex, clubId, period)).toEqual(
+          pendingTitles(fullIndex, clubId, period),
+        );
+      }
+      expect(titleCoverage(sliceIndex, "2026-10-23")).toEqual(
+        titleCoverage(fullIndex, "2026-10-23"),
+      );
+    }
+  });
 });
 
 describe("every ordered pair of clubs", () => {

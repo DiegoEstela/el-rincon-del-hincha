@@ -24,18 +24,25 @@ const COLLECTIONS = [
 ] as const;
 
 const MATCH_STRINGS = ["id", "date", "home_id", "away_id", "season_id"] as const;
+const TITLE_STRINGS = ["id", "club_id", "competition_id", "season_id", "awarded_on"] as const;
 
-/** Light structural guard (the server is ours): version, club, arrays and the match keys. */
+/** Light structural guard (the server is ours): version, club, arrays, the match and title keys. */
 export function isClubData(value: unknown, clubId: string): value is ClubData {
   if (typeof value !== "object" || value === null) return false;
   const doc = value as Record<string, unknown>;
   if (doc.v !== CLUB_DATA_VERSION || doc.clubId !== clubId) return false;
   if (!COLLECTIONS.every((key) => Array.isArray(doc[key]))) return false;
-  return (doc.matches as unknown[]).every(
-    (match) =>
-      typeof match === "object" &&
-      match !== null &&
-      MATCH_STRINGS.every((key) => typeof (match as Record<string, unknown>)[key] === "string"),
+  const hasStrings = (record: unknown, keys: readonly string[]) =>
+    typeof record === "object" &&
+    record !== null &&
+    keys.every((key) => typeof (record as Record<string, unknown>)[key] === "string");
+  return (
+    (doc.matches as unknown[]).every((match) => hasStrings(match, MATCH_STRINGS)) &&
+    (doc.titles as unknown[]).every(
+      (title) =>
+        hasStrings(title, TITLE_STRINGS) &&
+        typeof (title as Record<string, unknown>).shared === "boolean",
+    )
   );
 }
 

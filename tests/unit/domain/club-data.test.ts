@@ -28,12 +28,18 @@ describe("sliceClubData", () => {
     expect(slice.matches.length).toBeLessThan(data.matches.length);
   });
 
-  it("keeps only the rows of the club in coverage, titles, movements and rivalries", () => {
+  it("keeps only the rows of the club in coverage, movements and rivalries", () => {
     expect(slice.coverage.every((c) => c.club_id === "club-a")).toBe(true);
-    expect(slice.titles.every((t) => t.club_id === "club-a")).toBe(true);
     expect(slice.movements.every((m) => m.club_id === "club-a")).toBe(true);
     expect(slice.rivalries.every((r) => r.club_a === "club-a" || r.club_b === "club-a")).toBe(true);
     expect(slice.rivalries.length).toBeGreaterThan(0);
+  });
+
+  it("keeps every title, sorted by id, like competitions and seasons (ADR 0021)", () => {
+    expect(data.titles.length).toBeGreaterThan(0);
+    expect(slice.titles.map((t) => t.id)).toEqual(data.titles.map((t) => t.id).sort());
+    expect(new Set(slice.titles.map((t) => t.club_id)).size).toBeGreaterThan(1);
+    expect(sliceClubData(data, "club-c").titles).toEqual(slice.titles);
   });
 
   it("keeps every competition and season, sorted by id", () => {

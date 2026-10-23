@@ -63,7 +63,9 @@ export function sliceClubData(data: StatsData, clubId: string): ClubData {
     coverage: data.coverage
       .filter((c) => c.club_id === clubId)
       .sort((a, b) => compareText(coverageKey(a), coverageKey(b))),
-    titles: data.titles.filter((t) => t.club_id === clubId).sort(byId),
+    // The whole table, like competitions and seasons: the vitrina names the co-champions of a
+    // shared title and works out which seasons have a champion loaded (ADR 0021).
+    titles: [...data.titles].sort(byId),
     movements: data.movements.filter((m) => m.club_id === clubId).sort(byId),
     rivalries: data.rivalries
       .filter((r) => r.club_a === clubId || r.club_b === clubId)
