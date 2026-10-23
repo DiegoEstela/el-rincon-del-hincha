@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { ComingSoon } from "@/components/layout/coming-soon";
+import { VitrinaScreen } from "@/components/vitrina/vitrina-screen";
+import { CLUB_OPTIONS } from "@/lib/club-catalog.server";
 
-export const metadata: Metadata = { title: "Mi vitrina" };
+export const metadata: Metadata = {
+  title: "Mi vitrina",
+  description: "Los trofeos que ganó tu club desde que sos hincha, y los que todavía te faltan.",
+};
 
+/** A static shell: the club list is the same for everyone, the rest happens in the browser. */
 export default function VitrinaPage() {
-  return (
-    <ComingSoon
-      title="Mi vitrina"
-      text="Acá vas a ver los trofeos que ganó tu club desde que naciste, y los que todavía te faltan."
-    />
-  );
+  return <VitrinaScreen clubs={CLUB_OPTIONS} />;
 }

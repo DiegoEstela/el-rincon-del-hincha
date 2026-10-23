@@ -1,6 +1,6 @@
 # 0021 — Titles travel as a shared table, and the vitrina derives its own title coverage
 
-Status: **Proposed** (2026-10-23). Written with plan 0018 (issue #67, the vitrina `/vitrina`). Amends ADR 0018 decision 1 (what a per-club document holds). Becomes Accepted when Diego approves plan 0018 (items D1 to D3 and D9).
+Status: **Accepted** (2026-10-24, Diego approved plan 0018 D1 to D11). Written with plan 0018 (issue #67, the vitrina `/vitrina`). Amends ADR 0018 decision 1 (what a per-club document holds). Accepted with plan 0018.
 
 ## Context
 

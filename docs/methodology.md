@@ -98,7 +98,9 @@ The engine in `src/domain` (ADR 0010, plan 0005) is the only implementation of t
 - **Biggest win and loss (head-to-head):** only played matches (administrative results are not real scores; shoot-outs are draws). Tie-break: larger margin, then more goals by the winning side, then the most recent.
 - **Finals:** the legs of a final are grouped by season and club pair. The winner is the shoot-out winner if the last leg went to penalties, otherwise the higher aggregate of regulation plus extra time goals, otherwise undetermined (`null`). Suspended legs are ignored. A series belongs to the period when its last leg is inside it. By default only recognized competitions count.
 - **Recognized titles:** "officially recognized" means `competition.afa_recognized`. By default only recognized titles are listed; `includeUnrecognized` lists the rest with `recognized: false`. A shared title counts fully for each co-champion and carries `shared: true`. Each title is placed on a shelf: `other` for competitions of type `other`, `international` for international scope, `domestic` otherwise. Title lists do not depend on match coverage; the deciding match is `null` when match data is missing.
-- **Pending titles:** the recognized competitions that were played during the period (a season overlaps it) and that the club did not win inside the period, with the number of seasons played; sorted by shelf, then competition id.
+- **Title coverage (ADR 0021):** `titleCoverage(index, today)` gives, per recognized competition, the **title window**: from the first season that has a champion record to the last one (`windowStart`, `windowEnd`), and the `missingSeasonIds`, the seasons inside the window that have ended and have no champion. A competition with no champion has an empty window. It is derived from the titles themselves, never stored: title lists do not depend on match coverage.
+- **Pending titles:** the recognized competitions that were played during the period (a season overlaps it) and that the club did not win inside the period, with the number of seasons played; sorted by shelf, then competition id. Each is `pending` only when its title window overlaps the period ("te falta" is then true for the seasons of the window, which the item carries); otherwise it is `unknown` and the screens say nothing about it. A title before the period does not remove the entry.
+- **Titles before the period:** `titlesBeforePeriod` lists the club titles dated before the fan period starts (the boundary day belongs to the period). They are never counted; an empty period has every title before it. `coChampions` names the other clubs with a title of the same season.
 - **Rival grouping:** one row per opponent with at least one counted match; groups by dominance (favorable, even, unfavorable); sorted by balance desc, played desc, rival id; `isClassic` from the rivalries table; `competitionIds` lists, sorted, the competitions with counted matches in the period and filter, so a screen can say which competitions its numbers include.
 
 ### Rivals screen (UI)
@@ -130,6 +132,17 @@ The "[Mi club] vs. [Rival]" screen (plan 0016, ADR 0019) computes one `headToHea
 - **Finals.** A series can have legs before the period start (marked "antes de tu período"); the series belongs to the period by its last leg.
 - **Biggest win and loss.** Played matches only: an administrative result is never one of them.
 - Match dates are public facts and are shown in full. A match with only a season precision (ADR 0011) will need to show the season instead; today every match has a day.
+
+### Vitrina (UI)
+
+The `/vitrina` screen (plan 0018, ADR 0021) computes in the browser on the club document, which carries the whole titles table.
+
+- Three shelves, always in the order Internacionales, Locales, Otros: one lit trophy per title inside the fan period (by date), then the silhouettes of the competitions still missing. A silhouette is "te falta" only for a competition whose champions are loaded inside the period; a shelf with no loaded competition says it is under construction and never shows a silhouette, because "te falta" would be false for a cup that is not loaded.
+- The two counters ("Trofeos ganados desde que naciste" or "desde que sos hincha", and "Trofeos que te faltan") always carry the caption "En los torneos y temporadas que tenemos cargados.". Titles before the fan arrived are shown apart, muted, and not counted; titles of competitions the AFA does not recognize are shown apart as disputed, with their criterion, and not counted.
+- The notice shows for every non-empty period and says which champions are loaded per competition and which seasons inside the window are missing. **There is no complete badge**, and no text claims a complete history, because the cups are not loaded (plan 0014, Phase 2).
+- With no title in the dataset the screen says the titles are not loaded and shows no counters; with titles but none for the club it shows a clean-shelf line.
+- The detail of a trophy (a modal sheet, no URL) shows the day, the final or the last match day with its score, the co-champions, the source as a link when it is https, and the criterion.
+- The view never contains the start date, only the month and year of the period start.
 
 ## Ingestion
 

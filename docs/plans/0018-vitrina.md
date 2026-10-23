@@ -1,6 +1,6 @@
 ---
 issue: 67
-status: pending
+status: in-review
 date: 2026-10-23
 ---
 
@@ -269,8 +269,10 @@ Dates on this screen are title and match dates (public facts, shown in full) or 
 
 ## Decisions recorded
 
-(Filled after Diego answers.)
+Diego approved D1 to D11 as recommended on 2026-10-24. Built with two small changes found while testing: when only one season has its champion loaded the notice says "tenemos el campeón de X" instead of a range "de X a X", and the silhouettes use the muted color of the palette (the `--line-strong` outline did not reach 3:1 over the glow), with a muted filled trophy for titles from before the fan arrived so they cannot be mistaken for a silhouette.
 
 ## Verification log
 
 (Filled by the build.)
+
+- 2026-10-24: `pnpm test` with 100% branches in `src/**`; `vitrina-golden.test.ts` on the real data (River, Boca, Banfield, Racing) checked by hand against `data/titles.json`; `tests/e2e/vitrina.spec.ts` green on the three projects with a synthetic document and with the real data.

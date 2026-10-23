@@ -109,6 +109,7 @@ describe("isClubData", () => {
 
   it("rejects everything that is not a document of that club", () => {
     const match = doc.matches[0];
+    const title = { ...doc.titles[0] };
     const bad: unknown[] = [
       null,
       undefined,
@@ -134,6 +135,11 @@ describe("isClubData", () => {
       { ...doc, matches: [{ ...match, home_id: 3 }] },
       { ...doc, matches: [{ ...match, away_id: null }] },
       { ...doc, matches: [{ ...match, season_id: {} }] },
+      { ...doc, titles: [null] },
+      { ...doc, titles: [{ ...title, season_id: undefined }] },
+      { ...doc, titles: [{ ...title, awarded_on: 5 }] },
+      { ...doc, titles: [{ ...title, source: undefined }] },
+      { ...doc, titles: [{ ...title, shared: "no" }] },
     ];
     for (const value of bad) expect(isClubData(value, "club-a")).toBe(false);
   });

@@ -45,3 +45,5 @@ Options evaluated (details and numbers in plan 0015, "Where the computation runs
 ## Note: what the screens may show about the start date (2026-10-17)
 
 The rivals screen shows the month and year the counted period starts in ("Desde mayo de 1990"). That text derives from the start date, which can be a birth date. It stays on the device and is only rendered, never sent anywhere; the privacy audit of plan 0015 accepted it. Future screens must not add logging, analytics or any request around it, and the view model must keep returning a month and year, never the date.
+
+> Amended by [ADR 0021](0021-titles-shared-table-and-title-coverage.md): `titles` is a shared table in every club document, like competitions and seasons.
