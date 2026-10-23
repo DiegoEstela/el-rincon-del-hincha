@@ -1,0 +1,95 @@
+<h3><a name="primera">Primera División 2018/2019</a></h3>
+<p>
+<a href="#1campeonato">Campeonato</a> | <a href="#1relegation">Relegation</a>
+</p><h4><a name="1campeonato">Campeonato de Primera División “Superliga 2018/2019”</a></h4>
+[2018/2019 SAF First Division Championship “2018/2019 Superleague”]
+<pre> #.Full Name                                        MP   W  D  L  Gf- Ga   P  (Headquarters on)
+ 1.Racing Club Asociación Civil                     25  17  6  2  43- 16  57  (Avellaneda, B)
+ 2.Club Social y Deportivo Defensa y Justicia       25  15  8  2  33- 18  53  (Florencio Varela, B)
+ 3.Club Atlético Boca Juniors Asociación Civil      25  15  6  4  42- 18  51  (La Boca, C)
+ 4.Club Atlético River Plate Asociación Civil       25  13  6  6  42- 21  45  (Belgrano, C)
+ 5.Club Atlético Tucumán Sociedad Civil             25  12  6  7  36- 29  42  (San Miguel de Tucumán, T)
+ 6.Club Atlético Vélez Sarsfield Asociación Civil   25  11  7  7  34- 25  40  (Liniers, C)
+ 7.Club Atlético Independiente                      25  10  8  7  35- 28  38  (Avellaneda, B)
+ 8.Club Atlético Unión                              25   9  9  7  29- 24  36  (Santa Fe, S)
+ 9.Club Atlético Tigre Sociedad Civil               25   9  9  7  39- 42  36  (Victoria, B)
+10.Club Atlético Huracán                            25   9  8  8  28- 28  35  (Parque de los Patricios, C)
+11.Club Atlético Lanús                              25   9  7  9  27- 32  34  (Lanús Este, B)
+12.Club Atlético Talleres                           25   9  6 10  25- 24  33  (Córdoba, X)
+13.Club Atlético Aldosivi                           25   9  6 10  21- 24  33  (Mar del Plata, B)
+14.Club Deportivo Godoy Cruz Antonio Tomba          25   9  5 11  23- 30  32  (Godoy Cruz, M)
+15.Club Atlético Newell's Old Boys                  25   7  8 10  26- 23  29  (Rosario, S)
+16.Club Atlético Banfield Sociedad Civil            25   6 11  8  27- 31  29  (Banfield, B)
+17.Club Estudiantes de La Plata                     25   7  8 10  21- 25  29  (La Plata, B)
+18.Club de Gimnasia y Esgrima La Plata              25   8  5 12  21- 32  29  (La Plata, B)
+19.Club Atlético Patronato de la Juventud Católica  25   7  5 13  29- 37  26  (Paraná, E)
+20.Club Atlético Rosario Central                    25   6  8 11  16- 26  26  (Rosario, S)
+21.Club Atlético San Martín                         25   6  7 12  24- 34  25  (San Juan, J)
+22.Club Atlético Belgrano                           25   4 12  9  16- 23  24  (Córdoba, X)
+23.Club Atlético San Lorenzo de Almagro             25   3 14  8  21- 30  23  (Flores, C)
+24.Asociación Civil Club Atlético Colón             25   4 11 10  21- 33  23  (Santa Fe, S)
+25.Club Atlético San Martín Sociedad Civil          25   4 11 10  25- 38  23  (San Miguel de Tucumán, T)
+26.Asociación Atlética Argentinos Juniors           25   5  7 13  15- 28  22  (La Paternal, C)
+
+Mar 22
+CA San Lorenzo de Almagro: SAF decided to deduct 6 points at the end of the championship.
+Apr 8
+CA Huracán: SAF decided to deduct 6 points at the end of the championship.
+Jun 10
+CA San Lorenzo de Almagro: SAF decided to suspend conditionally the sanction of Mar 22.
+CA Huracán: SAF decided to suspend conditionally the sanction of Apr 8.
+
+<u>Round 1</u>
+[Aug 10, Fri]
+CA Tigre                               2-2      CA San Lorenzo de Almagro         Monumental de Victoria don José Dellagiovanna, Victoria, B
+CA Vélez Sarsfield                     2-0      CA Newell's Old Boys              José Amalfitani, Liniers, C
+[Aug 11, Sat]
+CA Belgrano                            0-0      CA San Martín (San Juan)          El Gigante Julio César Villagra, Córdoba X
+CA Patronato                           0-0      CA Colón                          Presbítero Bartolomé Grella, Paraná, E
+CA Unión                               1-0      CA Aldosivi                       15 de Abril, Santa Fe, S
+Cd Gimnasia y Esgrima La Plata         1-0      AA Argentinos Juniors             Juan Carmelo Zerillo, La Plata, B
+[Aug 12, Sun]
+CA Boca Juniors                        1-0      CA Talleres                       La Bombonera Alberto José Armando, Boca, C
+CA Huracán                             0-0      CA River Plate                    El Palacio Tomás Adolfo Ducó, Parque Patricios, C
+CA Lanús                               2-2      CSyD Defensa y Justicia           Ciudad de Lanús - Néstor Díaz Pérez, Remedios de Escalada, B
+CA Rosario Central                     1-0      CA Banfield                       Gigante de Arroyito, Rosario, S
+CD Godoy Cruz Antonio Tomba            1-0      Club Estudiantes de La Plata      Malvinas Argentinas, Mendoza, M
+<u>Round 8</u>
+[Oct 6, Sat]
+CA Aldosivi                            2-0      CA San Martín (SM de Tucumán)     José María Minella, Mar del Plata, B
+CA Patronato                           1-2      CA Independiente (Avellaneda)     Presbítero Bartolomé Grella, Paraná, E
+CA San Martín (San Juan)               3-1      CA Vélez Sarsfield                Ingeniero Hilario Sánchez, San Juan, J
+Cd Gimnasia y Esgrima La Plata         1-0      CD Godoy Cruz Antonio Tomba       Juan Carmelo Zerillo, La Plata, B
+[Oct 7, Sun]
+CA Banfield                            2-0      CA San Lorenzo de Almagro         Florencio Sola, Banfield, B
+CA Rosario Central                     0-4      CA Unión                          Gigante de Arroyito, Rosario, S
+CA Talleres                            3-0      CA Belgrano                       Mario Alberto Kempes, Córdoba, X
+Club Atlético Tucumán                  0-0      CA Lanús                          Monumental José Fierro, San Miguel de Tucumán, T
+Racing Club                            2-2      CA Boca Juniors                   Presidente Perón, Avellaneda, B
+[Oct 8, Mon]
+CA Colón                               1-0      CA Newell's Old Boys              Brigadier General Estanislao López, Santa Fe, S
+CA Tigre                               1-0      Club Estudiantes de La Plata      Monumental de Victoria don José Dellagiovanna, Victoria, B
+[Dec 13, Thu]
+CA Huracán                             0-0      AA Argentinos Juniors             El Palacio Tomás Adolfo Ducó, Parque Patricios, C
+[Jan 19, Sat]
+CA River Plate                         0-1      CSyD Defensa y Justicia           Monumental Antonio Vespucio Liberti, Belgrano, C
+<u>Round 9  - International Day against Breast Cancer</u>
+[Oct 19, Fri]
+CA Colón                               1-0      CA River Plate                    Brigadier General Estanislao López, Santa Fe, S
+CA Vélez Sarsfield                     1-0      Cd Gimnasia y Esgrima La Plata    José Amalfitani, Liniers, C
+CSyD Defensa y Justicia                2-0      CA Talleres                       Norberto Tito Tomaghello, Gobernador Costa, B
+Table
+ #.Name                              MP   W  D  L  Gf- Ga   P Position of
+ 1.Racing Club                       25  17  6  2  43- 16  57 Champion     Libertadores 2020
+ 2.CSyD Defensa y Justicia           25  15  8  2  33- 18  53              Libertadores 2020
+ 3.CA Boca Juniors                   25  15  6  4  42- 18  51              Libertadores 2020
+ 4.CA River Plate                    25  13  6  6  42- 21  45              Libertadores 2020 as Copa Argentina champion
+ 5.Club Atlético Tucumán             25  12  6  7  36- 29  42              Libertadores 2020
+ 6.CA Vélez Sarsfield                25  11  7  7  34- 25  40              Sudamericana 2020
+Note.
+To be defined:
+CA Talleres qualified for the 2020 Copa Sudamericana in accordance with the literal regulations:
+Best team in Superliga 2018/2019 not previously qualified if Copa de la Superliga was not approved until November 30, 2018.
+AA Argentinos Juniors qualified for the 2020 Copa Sudamericana in accordance with the spirit of what SAF wanted to regulate:
+Best team in Copa de la Superliga not previously qualified.
+Copa de Superliga was approved on December 12, 2018.
