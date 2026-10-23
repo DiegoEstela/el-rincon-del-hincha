@@ -11,8 +11,14 @@ function find(page: Uint8Array, marker: string, from: number): number {
 
 /** Bytes from the start marker up to, and not including, the first end marker after it. */
 export function sliceExcerpt(page: Uint8Array, start: string, end: string): Uint8Array {
-  if (start === "" || end === "")
+  if (start === "" || end === "") {
     throw new Error("an excerpt needs a non-empty start and end marker");
+  }
+  for (const marker of [start, end]) {
+    if ([...marker].some((c) => c.charCodeAt(0) > 0xff)) {
+      throw new Error(`the marker ${JSON.stringify(marker)} has a character outside latin1`);
+    }
+  }
   const first = find(page, start, 0);
   if (first === -1) throw new Error(`start marker ${JSON.stringify(start)} not found in the page`);
   if (find(page, start, first + 1) !== -1) {

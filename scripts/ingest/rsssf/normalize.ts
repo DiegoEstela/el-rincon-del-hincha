@@ -84,11 +84,19 @@ function mergeAbandoned(
         problems.push(`${where}: cannot read when the abandoned match was completed`);
         continue;
       }
-      const date = resolveDate(on[2], Number(on[1]), undefined, window, where);
-      out.push({ match: { ...m, date }, suspended: false });
+      try {
+        const date = resolveDate(on[2], Number(on[1]), undefined, window, where);
+        out.push({ match: { ...m, date }, suspended: false });
+      } catch (e) {
+        problems.push(e instanceof Error ? e.message : String(e));
+      }
     } else if (m.abandoned !== null) {
       if (m.homeGoals !== null) {
         problems.push(`${where}: an abandoned match with a score is not supported`);
+        continue;
+      }
+      if (open.has(key)) {
+        problems.push(`${where}: the same fixture is abandoned twice before it is completed`);
         continue;
       }
       open.set(key, out.length);
@@ -97,6 +105,10 @@ function mergeAbandoned(
       const index = open.get(key);
       if (index === undefined) {
         problems.push(`${where}: resumes a match that was not abandoned before`);
+        continue;
+      }
+      if (m.date < out[index].match.date) {
+        problems.push(`${where}: completes a match before the day it was abandoned`);
         continue;
       }
       open.delete(key);
@@ -159,10 +171,14 @@ export function normalizeRsssf(
         verified: false,
       });
       if (!suspended) {
+        if (m.homeGoals === null || m.awayGoals === null) {
+          problems.push(`${excerpt}:${m.line}: a played match has no score`);
+          continue;
+        }
         const home = tallies.get(homeId) ?? tallyOf();
         const away = tallies.get(awayId) ?? tallyOf();
-        addResult(home, m.homeGoals!, m.awayGoals!);
-        addResult(away, m.awayGoals!, m.homeGoals!);
+        addResult(home, m.homeGoals, m.awayGoals);
+        addResult(away, m.awayGoals, m.homeGoals);
         tallies.set(homeId, home);
         tallies.set(awayId, away);
       }
@@ -227,6 +243,14 @@ export function normalizeRsssf(
           if (!used.has(e.club))
             problems.push(`${excerpt}: the table exception for ${e.club} is unused`);
         }
+      }
+    }
+
+    if (!t.tableCoversSeason) {
+      for (const e of page.tableExceptions.filter((x) => x.excerpt === t.excerpt)) {
+        problems.push(
+          `${excerpt}: the table exception for ${e.club} is unused (no table is checked)`,
+        );
       }
     }
 

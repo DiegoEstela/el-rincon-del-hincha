@@ -2,7 +2,7 @@
 // Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>] [--network] [--cross-check]
 //   --out         data directory to read and write (default: data)
 //   --from        read the pinned input files from this directory instead of the network
-//   --network     read the live pages (the pinned hashes of the adapter still apply)
+//   --network     read the live pages of an adapter that may (rsssf may not: only data:snapshot requests rsssf.org)
 //   --cross-check print the read-only comparison of the adapter with data/ and write nothing
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";

@@ -2,7 +2,7 @@
 // requests rsssf.org: one page at a time, at least five seconds apart, https only, no redirects, a
 // 2 MB cap and a user agent with no personal data. It refreshes the pages already listed in the
 // manifest; adding a page or an excerpt is a reviewed edit of the manifest. All the work is done in
-// memory first, so a failure leaves every file as it was.
+// memory first, so a failure before the writes leaves every file as it was.
 import { createHash } from "node:crypto";
 import { renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";

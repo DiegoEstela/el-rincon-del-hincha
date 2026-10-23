@@ -40,8 +40,13 @@ const ENTITIES: Record<string, string> = {
 
 function decodeEntities(text: string, where: string): string {
   return text.replace(/&(#x[0-9a-fA-F]+|#\d+|[A-Za-z][A-Za-z0-9]*);/g, (whole, body: string) => {
-    if (body.startsWith("#x")) return String.fromCodePoint(parseInt(body.slice(2), 16));
-    if (body.startsWith("#")) return String.fromCodePoint(parseInt(body.slice(1), 10));
+    if (body.startsWith("#")) {
+      const code = body.startsWith("#x")
+        ? parseInt(body.slice(2), 16)
+        : parseInt(body.slice(1), 10);
+      if (code > 0x10ffff) throw new Error(`${where}: the entity "${whole}" is out of range`);
+      return String.fromCodePoint(code);
+    }
     const value = ENTITIES[body];
     if (value === undefined) throw new Error(`${where}: unknown entity "${whole}"`);
     return value;

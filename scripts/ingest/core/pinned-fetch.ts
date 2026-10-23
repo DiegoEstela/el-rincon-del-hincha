@@ -37,7 +37,7 @@ export function decodeSource(file: SourceFile, bytes: Uint8Array): string {
   const text = new TextDecoder(encoding, { fatal: true }).decode(bytes);
   if (encoding !== "utf-8" && C1_CONTROL.test(text)) {
     throw new Error(
-      `${file.name}: a control character was decoded; the encoding is not ${encoding}`,
+      `${file.name}: a control character was decoded; the bytes are probably not ${encoding}`,
     );
   }
   return text;

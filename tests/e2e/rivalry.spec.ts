@@ -296,11 +296,11 @@ test.describe("privacy, metadata and accessibility", () => {
     await page.goto("/rivales");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // The stretched link covers its card with a pseudo-element, so the card is the target.
-    // Measured in one evaluation in the browser, so a re-render cannot detach the element.
+    // Measured in one evaluation with the layout height (offsetHeight), which the entry animation does not scale.
     const cards = page.getByRole("list", { name: "Rivales" }).getByRole("listitem");
     await expect(cards.first()).toBeVisible();
     const heights = await cards.evaluateAll((els) =>
-      els.map((el) => el.getBoundingClientRect().height),
+      els.map((el) => (el as HTMLElement).offsetHeight),
     );
     expect(heights.length).toBeGreaterThan(10);
     for (const height of heights) expect(height).toBeGreaterThanOrEqual(43.5);
@@ -309,7 +309,7 @@ test.describe("privacy, metadata and accessibility", () => {
     await expect(h1(page, "River vs. Boca")).toBeVisible();
     const backLink = page.getByRole("link", { name: "Volver a Rivales" });
     await expect(backLink).toBeVisible();
-    const back = await backLink.evaluate((el) => el.getBoundingClientRect().height);
+    const back = await backLink.evaluate((el) => (el as HTMLElement).offsetHeight);
     expect(back).toBeGreaterThanOrEqual(43.5);
   });
 
