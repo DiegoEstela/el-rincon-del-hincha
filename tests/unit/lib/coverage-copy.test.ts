@@ -146,7 +146,7 @@ describe("includedLine", () => {
 describe("CUPS_NOT_LOADED", () => {
   it("is the fixed line about the cups that are not loaded", () => {
     expect(CUPS_NOT_LOADED).toBe(
-      "Todavía no cargamos Copa Argentina, Libertadores, Sudamericana ni otras copas.",
+      "De la Copa Argentina y las supercopas cargamos 2023 a 2025. Todavía no cargamos Libertadores, Sudamericana ni otras copas.",
     );
   });
 });

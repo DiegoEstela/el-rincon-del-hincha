@@ -86,7 +86,7 @@ describe("RivalryScreen", () => {
       "Finales entre ustedes",
     ]);
     expect(screen.getByText(/Contamos:/)).toBeInTheDocument();
-    expect(screen.getByText(/Todavía no cargamos Copa Argentina/)).toBeInTheDocument();
+    expect(screen.getByText(/De la Copa Argentina y las supercopas/)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/cobertura completa|historial completo/i);
     expect(loadData.mock.calls.map((c) => c.join())).toEqual(["club-a", "club-b"]);
     expect(headToHead).toHaveBeenCalled();

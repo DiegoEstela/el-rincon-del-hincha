@@ -7,12 +7,17 @@ vi.mock("server-only", () => ({}));
 import { CLUB_IDS, clubDataFor } from "@/lib/club-data.server";
 
 const dataDir = join(process.cwd(), "data");
-const clubs = JSON.parse(readFileSync(join(dataDir, "clubs.json"), "utf8")) as { id: string }[];
+const clubs = JSON.parse(readFileSync(join(dataDir, "clubs.json"), "utf8")) as {
+  id: string;
+  selectable?: boolean;
+}[];
 
 describe("club-data.server", () => {
   it("lists the 34 club ids in dataset order", () => {
     expect(CLUB_IDS).toHaveLength(34);
-    expect(CLUB_IDS).toEqual(clubs.map((c) => c.id));
+    // Opponents (ADR 0022) are in the file, but have no document.
+    expect(CLUB_IDS).toEqual(clubs.filter((c) => c.selectable !== false).map((c) => c.id));
+    expect(clubDataFor(clubs.find((c) => c.selectable === false)!.id)).toBeNull();
   });
 
   it("serves the slice of a club, with its own matches and coverage", () => {

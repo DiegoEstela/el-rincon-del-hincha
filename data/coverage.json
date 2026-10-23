@@ -1,6 +1,30 @@
 [
   {
     "club_id": "aldosivi",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2023-12-13",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2023"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-argentina",
+    "from": "2025-01-22",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2025..copa-argentina-2025"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
+    "club_id": "aldosivi",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
     "to": "2021-02-11",
@@ -64,6 +88,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "aldosivi",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "aldosivi",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "argentinos-juniors",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -118,6 +182,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2024-12-11",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2024"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "arsenal",
@@ -176,6 +280,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "arsenal",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "arsenal",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "atletico-tucuman",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -232,6 +376,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "atletico-tucuman",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "banfield",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -286,6 +470,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "banfield",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "barracas-central",
@@ -334,6 +558,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "barracas-central",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "belgrano",
@@ -392,6 +656,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "belgrano",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "belgrano",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "boca-juniors",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -446,6 +750,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "boca-juniors",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "central-cordoba-sde",
@@ -504,6 +848,54 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-06",
+    "to": "2025-09-06",
+    "complete": true,
+    "source": "derived:supercopa-argentina-2024..supercopa-argentina-2024"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "colon",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -560,6 +952,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "colon",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "colon",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "defensa-y-justicia",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -614,6 +1046,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "deportivo-riestra",
@@ -664,6 +1136,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "deportivo-riestra",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "estudiantes-la-plata",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -720,6 +1232,70 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "supercopa-argentina",
+    "from": "2024-03-13",
+    "to": "2024-03-13",
+    "complete": true,
+    "source": "derived:supercopa-argentina-2023..supercopa-argentina-2023"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "supercopa-internacional",
+    "from": "2025-07-08",
+    "to": "2026-09-26",
+    "complete": true,
+    "source": "derived:supercopa-internacional-2024..supercopa-internacional-2025"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2024-12-21",
+    "to": "2025-12-20",
+    "complete": true,
+    "source": "derived:trofeo-de-campeones-2024..trofeo-de-campeones-2025"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "gimnasia-la-plata",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -776,6 +1352,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "godoy-cruz",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -832,6 +1448,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "godoy-cruz",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "huracan",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -886,6 +1542,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "huracan",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "independiente-rivadavia",
@@ -936,6 +1632,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "independiente",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -990,6 +1726,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "independiente",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "instituto",
@@ -1040,6 +1816,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "instituto",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "instituto",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "lanus",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1096,6 +1912,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "lanus",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "lanus",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "newells-old-boys",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1150,6 +2006,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2023-12-13",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2023"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "patronato",
@@ -1208,6 +2104,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "patronato",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "patronato",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "platense",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2021-02-12",
@@ -1256,6 +2192,54 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "platense",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-20",
+    "to": "2025-12-20",
+    "complete": true,
+    "source": "derived:trofeo-de-campeones-2025..trofeo-de-campeones-2025"
+  },
+  {
+    "club_id": "platense",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "racing-club",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1312,6 +2296,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "racing-club",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "racing-club",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "river-plate",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1368,6 +2392,70 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "river-plate",
+    "competition_id": "supercopa-argentina",
+    "from": "2024-03-13",
+    "to": "2024-03-13",
+    "complete": true,
+    "source": "derived:supercopa-argentina-2023..supercopa-argentina-2023"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "supercopa-internacional",
+    "from": "2025-03-05",
+    "to": "2025-03-05",
+    "complete": true,
+    "source": "derived:supercopa-internacional-2023..supercopa-internacional-2023"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2023-12-22",
+    "to": "2023-12-22",
+    "complete": true,
+    "source": "derived:trofeo-de-campeones-2023..trofeo-de-campeones-2023"
+  },
+  {
+    "club_id": "river-plate",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "rosario-central",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1424,6 +2512,62 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "rosario-central",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-26",
+    "to": "2026-09-26",
+    "complete": true,
+    "source": "derived:supercopa-internacional-2025..supercopa-internacional-2025"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2023-12-22",
+    "to": "2023-12-22",
+    "complete": true,
+    "source": "derived:trofeo-de-campeones-2023..trofeo-de-campeones-2023"
+  },
+  {
+    "club_id": "rosario-central",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "san-lorenzo",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1478,6 +2622,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "san-martin-san-juan",
@@ -1536,6 +2720,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "san-martin-tucuman",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2021-02-12",
@@ -1584,6 +2808,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "san-martin-tucuman",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "sarmiento-junin",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2021-02-12",
@@ -1630,6 +2894,46 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "talleres-cordoba",
@@ -1686,6 +2990,54 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "supercopa-internacional",
+    "from": "2025-03-05",
+    "to": "2025-03-05",
+    "complete": true,
+    "source": "derived:supercopa-internacional-2023..supercopa-internacional-2023"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
   },
   {
     "club_id": "tigre",
@@ -1744,6 +3096,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "tigre",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "tigre",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "union",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1800,6 +3192,46 @@
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   },
   {
+    "club_id": "union",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "union",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-argentina",
+    "from": "2023-01-24",
+    "to": "2025-11-05",
+    "complete": true,
+    "source": "derived:copa-argentina-2023..copa-argentina-2025"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "copa-argentina",
+    "from": "2025-11-06",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "club_id": "velez-sarsfield",
     "competition_id": "copa-de-la-liga-profesional",
     "from": "2020-10-30",
@@ -1854,5 +3286,53 @@
     "to": null,
     "complete": false,
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-06",
+    "to": "2025-09-06",
+    "complete": true,
+    "source": "derived:supercopa-argentina-2024..supercopa-argentina-2024"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-argentina",
+    "from": "2025-09-07",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-internacional",
+    "from": "2025-07-08",
+    "to": "2025-07-08",
+    "complete": true,
+    "source": "derived:supercopa-internacional-2024..supercopa-internacional-2024"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "supercopa-internacional",
+    "from": "2026-09-27",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2024-12-21",
+    "to": "2024-12-21",
+    "complete": true,
+    "source": "derived:trofeo-de-campeones-2024..trofeo-de-campeones-2024"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "competition_id": "trofeo-de-campeones",
+    "from": "2025-12-21",
+    "to": null,
+    "complete": false,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
   }
 ]

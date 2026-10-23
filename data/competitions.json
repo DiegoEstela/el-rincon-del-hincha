@@ -1,5 +1,14 @@
 [
   {
+    "id": "copa-argentina",
+    "name": "Copa Argentina",
+    "type": "national_cup",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "source": "https://es.wikipedia.org/w/index.php?title=Copa_Argentina_(f%C3%BAtbol)&oldid=175769996"
+  },
+  {
     "id": "copa-de-la-liga-profesional",
     "name": "Copa de la Liga Profesional",
     "type": "national_cup",
@@ -17,5 +26,34 @@
     "afa_recognized": true,
     "notes": "Organized by the AFA through its Liga Profesional; run by the Superliga Argentina from 2017-18 to 2019-20.",
     "source": "https://es.wikipedia.org/w/index.php?title=Primera_Divisi%C3%B3n_de_Argentina&oldid=175775265"
+  },
+  {
+    "id": "supercopa-argentina",
+    "name": "Supercopa Argentina",
+    "type": "other",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "source": "https://es.wikipedia.org/w/index.php?title=Supercopa_Argentina&oldid=175772737"
+  },
+  {
+    "id": "supercopa-internacional",
+    "name": "Supercopa Internacional",
+    "type": "other",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "notes": "Played at a neutral venue, abroad in some editions.",
+    "source": "https://es.wikipedia.org/w/index.php?title=Supercopa_Internacional&oldid=175748744"
+  },
+  {
+    "id": "trofeo-de-campeones",
+    "name": "Trofeo de Campeones de la Liga Profesional",
+    "type": "other",
+    "scope": "domestic",
+    "organizer": "AFA",
+    "afa_recognized": true,
+    "notes": "Organized by the AFA through its Liga Profesional.",
+    "source": "https://es.wikipedia.org/w/index.php?title=Trofeo_de_Campeones_de_Primera_Divisi%C3%B3n&oldid=175789259"
   }
 ]

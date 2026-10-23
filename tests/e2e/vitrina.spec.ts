@@ -49,7 +49,7 @@ test.describe("ready content (synthetic document)", () => {
     const note = page.getByRole("note");
     await expect(note).toContainText("Tu vitrina puede estar incompleta");
     await expect(page.getByText(/^Contamos títulos de:/)).toBeVisible();
-    await expect(page.getByText(/^Todavía no cargamos Copa Argentina/)).toBeVisible();
+    await expect(page.getByText(/^De la Copa Argentina y las supercopas/)).toBeVisible();
     expect(await bodyText(page)).not.toMatch(CLAIMS_COMPLETE);
 
     await expect(page.getByRole("heading", { level: 2 })).toHaveText([
@@ -205,19 +205,30 @@ test.describe("states", () => {
 });
 
 test.describe("real data", () => {
-  test("River from 1990: two league titles lit, the Copa de la Liga still missing", async ({
+  test("River from 1990: two league titles, the Trofeo de Campeones and the Supercopa lit", async ({
     page,
   }, testInfo) => {
     await seed(page, "river-plate", "1990-05-20");
     await page.goto("/vitrina");
     await expect(h1(page, "Mi vitrina")).toBeVisible();
     const counters = page.getByRole("region", { name: "Tus trofeos" });
-    await expect(counters.locator("p.font-display")).toHaveText(["2", "1"]);
+    await expect(counters.locator("p.font-display")).toHaveText(["4", "3"]);
     await expect(
       page.getByRole("button", { name: /^2021 Liga Profesional 2021, campeón el/ }),
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: /^2023 Liga Profesional 2023, campeón el/ }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", {
+        name: /^2023 Trofeo de Campeones 2023, campeón el 22 de diciembre de 2023/,
+      }),
+    ).toBeVisible();
+    // Played in March 2024, so the shelf dates it by that year.
+    await expect(
+      page.getByRole("button", {
+        name: /^2024 Supercopa Argentina 2023, campeón el 13 de marzo de 2024/,
+      }),
     ).toBeVisible();
     await page.getByText("Ver qué cargamos").click();
     await expect(page.getByText(/^Primera División: tenemos los campeones de/)).toBeVisible();

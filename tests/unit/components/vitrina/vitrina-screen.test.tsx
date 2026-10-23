@@ -82,7 +82,7 @@ describe("VitrinaScreen (plan 0018, T17)", () => {
       "Títulos discutidos",
     ]);
     expect(screen.getByRole("note")).toHaveTextContent("Tu vitrina puede estar incompleta");
-    expect(screen.getByText(/^Todavía no cargamos Copa Argentina/)).toBeInTheDocument();
+    expect(screen.getByText(/^De la Copa Argentina y las supercopas/)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/(?<!in)complet[ao]\b|toda la historia/i);
     expect(loadData.mock.calls).toEqual([["club-a"]]);
   });

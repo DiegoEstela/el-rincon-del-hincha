@@ -126,24 +126,28 @@ describe("titles on a club slice (ADR 0021)", () => {
 });
 
 describe("every ordered pair of clubs", () => {
-  it("gives the same head to head on two merged slices as on the full dataset", () => {
-    const started = Date.now();
-    const slices = new Map(clubIds.map((id) => [id, sliceClubData(full, id)]));
-    const period = fanPeriod("1990-05-20", NOW);
-    let pairs = 0;
-    for (const a of clubIds) {
-      for (const b of clubIds) {
-        if (a === b) continue;
-        const merged = buildStatsIndex(statsDataFromClubData(slices.get(a)!, slices.get(b)!));
-        expect(headToHead(merged, a, b, period), `${a} v ${b}`).toEqual(
-          headToHead(fullIndex, a, b, period),
-        );
-        pairs += 1;
+  it(
+    "gives the same head to head on two merged slices as on the full dataset",
+    { timeout: 60_000 },
+    () => {
+      const started = Date.now();
+      const slices = new Map(clubIds.map((id) => [id, sliceClubData(full, id)]));
+      const period = fanPeriod("1990-05-20", NOW);
+      let pairs = 0;
+      for (const a of clubIds) {
+        for (const b of clubIds) {
+          if (a === b) continue;
+          const merged = buildStatsIndex(statsDataFromClubData(slices.get(a)!, slices.get(b)!));
+          expect(headToHead(merged, a, b, period), `${a} v ${b}`).toEqual(
+            headToHead(fullIndex, a, b, period),
+          );
+          pairs += 1;
+        }
       }
-    }
-    expect(pairs).toBe(clubIds.length * (clubIds.length - 1));
-    console.info(`${pairs} ordered pairs in ${Date.now() - started} ms`);
-  });
+      expect(pairs).toBe(clubIds.length * (clubIds.length - 1));
+      console.info(`${pairs} ordered pairs in ${Date.now() - started} ms`);
+    },
+  );
 
   it("holds for every filter and the narrowed period on the fixed pairs", () => {
     const narrowed = narrowPeriod(fanPeriod("1990-05-20", NOW), { fromYear: 2019, toYear: 2019 });

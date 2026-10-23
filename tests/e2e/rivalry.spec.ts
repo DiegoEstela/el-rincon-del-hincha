@@ -1,5 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
+/**
+ * Picks the "Liga" type. The radio is a 1 px sr-only input: on a phone the filters can sit under
+ * the fixed bottom bar, so the control is first brought to the middle of the screen.
+ */
+async function pickLiga(page: Page) {
+  const liga = page.getByLabel("Liga", { exact: true });
+  await liga.evaluate((element) => element.scrollIntoView({ block: "center" }));
+  await liga.check({ force: true });
+}
+
 const KEY = "rincon-del-hincha:fan";
 const DATE = "1990-05-20";
 const DATE_SPELLINGS = ["1990-05-20", "20/05/1990", "19900520", "1990%2D05%2D20"];
@@ -32,7 +42,7 @@ test.describe("from the list and back", () => {
     await seed(page, "river-plate");
     await page.goto("/rivales");
     await expect(h1(page, "River vs. todos")).toBeVisible();
-    await page.getByLabel("Liga", { exact: true }).check({ force: true });
+    await pickLiga(page);
     await expect(visibleText(page, /^Contamos:/)).toHaveText("Contamos: Primera División.");
 
     await page.getByRole("link", { name: "Boca, ver el mano a mano" }).first().click();
@@ -73,7 +83,7 @@ test.describe("ready content", () => {
 
     await expect(page.getByRole("note")).toContainText("Tu historial puede estar incompleto");
     await expect(page.getByText(/^Contamos:/)).toBeVisible();
-    await expect(page.getByText(/^Todavía no cargamos Copa Argentina/)).toBeVisible();
+    await expect(page.getByText(/^De la Copa Argentina y las supercopas/)).toBeVisible();
     expect(await bodyText(page)).not.toMatch(NO_COMPLETE);
     await expect(page.getByText("Desde mayo de 1990 · 9 partidos")).toBeVisible();
 

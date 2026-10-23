@@ -1,5 +1,29 @@
 [
   {
+    "id": "copa-argentina-2023",
+    "competition_id": "copa-argentina",
+    "name": "Copa Argentina 2023",
+    "start": "2023-01-24",
+    "end": "2023-12-13",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#nationalcup"
+  },
+  {
+    "id": "copa-argentina-2024",
+    "competition_id": "copa-argentina",
+    "name": "Copa Argentina 2024",
+    "start": "2024-01-25",
+    "end": "2024-12-11",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#nationalcup"
+  },
+  {
+    "id": "copa-argentina-2025",
+    "competition_id": "copa-argentina",
+    "name": "Copa Argentina 2025",
+    "start": "2025-01-22",
+    "end": "2025-11-05",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#nationalcup"
+  },
+  {
     "id": "copa-de-la-liga-profesional-2020",
     "competition_id": "copa-de-la-liga-profesional",
     "name": "Copa Diego Armando Maradona 2020",
@@ -70,5 +94,69 @@
     "start": "2025-07-11",
     "end": "2025-12-14",
     "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "id": "supercopa-argentina-2023",
+    "competition_id": "supercopa-argentina",
+    "name": "Supercopa Argentina 2023",
+    "start": "2024-03-13",
+    "end": "2024-03-13",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#supercup"
+  },
+  {
+    "id": "supercopa-argentina-2024",
+    "competition_id": "supercopa-argentina",
+    "name": "Supercopa Argentina 2024",
+    "start": "2025-09-06",
+    "end": "2025-09-06",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#supercup"
+  },
+  {
+    "id": "supercopa-internacional-2023",
+    "competition_id": "supercopa-internacional",
+    "name": "Supercopa Internacional 2023",
+    "start": "2025-03-05",
+    "end": "2025-03-05",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#lpfsuper"
+  },
+  {
+    "id": "supercopa-internacional-2024",
+    "competition_id": "supercopa-internacional",
+    "name": "Supercopa Internacional 2024",
+    "start": "2025-07-08",
+    "end": "2025-07-08",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#lpfsuper"
+  },
+  {
+    "id": "supercopa-internacional-2025",
+    "competition_id": "supercopa-internacional",
+    "name": "Supercopa Internacional 2025",
+    "start": "2026-09-26",
+    "end": "2026-09-26",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#lpfsuper"
+  },
+  {
+    "id": "trofeo-de-campeones-2023",
+    "competition_id": "trofeo-de-campeones",
+    "name": "Trofeo de Campeones 2023",
+    "start": "2023-12-22",
+    "end": "2023-12-22",
+    "source": "https://www.rsssf.org/tablesa/arg2023.html#leaguesuper"
+  },
+  {
+    "id": "trofeo-de-campeones-2024",
+    "competition_id": "trofeo-de-campeones",
+    "name": "Trofeo de Campeones 2024",
+    "start": "2024-12-21",
+    "end": "2024-12-21",
+    "source": "https://www.rsssf.org/tablesa/arg2024.html#leaguesuper"
+  },
+  {
+    "id": "trofeo-de-campeones-2025",
+    "competition_id": "trofeo-de-campeones",
+    "name": "Trofeo de Campeones 2025",
+    "start": "2025-12-20",
+    "end": "2025-12-20",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1champtroph"
   }
 ]

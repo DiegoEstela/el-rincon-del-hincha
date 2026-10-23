@@ -3,6 +3,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { isSelectable } from "@/data-model/club";
 import { COVERAGE_GAPS } from "@/data-model/coverage-gaps";
 import { generateCoverage } from "@/data-model/coverage-generate";
 import { FILE_SCHEMAS, type DatasetFile } from "@/data-model/schemas";
@@ -21,11 +22,13 @@ function load<K extends DatasetFile>(file: K): Dataset[K] {
   return FILE_SCHEMAS[file].array().parse(JSON.parse(text)) as Dataset[K];
 }
 
-const clubs = load("clubs.json");
+const allClubs = load("clubs.json");
+// Opponents (ADR 0022) have no coverage: only the clubs a fan can pick do.
+const clubs = allClubs.filter(isSelectable);
 const competitions = load("competitions.json");
 const coverage = load("coverage.json");
 const input = {
-  "clubs.json": clubs,
+  "clubs.json": allClubs,
   "competitions.json": competitions,
   "seasons.json": load("seasons.json"),
   "matches.json": load("matches.json"),
@@ -38,12 +41,17 @@ describe("data/coverage.json", () => {
     expect(text).toBe(await serializeRecords("coverage.json", coverage));
   });
 
-  it("has a row for every club and competition (34 x 2) and 232 rows in all", () => {
+  it("has a row for every club and competition (34 x 6) and 417 rows in all", () => {
     expect(clubs).toHaveLength(34);
     expect(competitions.map((c) => c.id)).toEqual([
+      "copa-argentina",
       "copa-de-la-liga-profesional",
       "primera-division",
+      "supercopa-argentina",
+      "supercopa-internacional",
+      "trofeo-de-campeones",
     ]);
+    expect(coverage.some((r) => !clubs.some((c) => c.id === r.club_id))).toBe(false);
     for (const club of clubs) {
       for (const competition of competitions) {
         expect(
@@ -52,8 +60,8 @@ describe("data/coverage.json", () => {
         ).toBe(true);
       }
     }
-    expect(coverage).toHaveLength(232);
-    expect(coverage.filter((r) => r.complete)).toHaveLength(62);
+    expect(coverage).toHaveLength(417);
+    expect(coverage.filter((r) => r.complete)).toHaveLength(111);
   });
 
   it("starts each club's first complete Primera stretch at its first loaded season (ADR 0003)", () => {

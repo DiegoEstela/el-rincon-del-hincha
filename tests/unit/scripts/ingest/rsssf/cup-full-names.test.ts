@@ -152,3 +152,42 @@ describe("cup-full-names: the rest of the grammar", () => {
     ).not.toThrow();
   });
 });
+
+describe("cup-full-names: variants of the cup sections of 2023 to 2025", () => {
+  it("reads PSO and AET in capitals", () => {
+    const text = inline(
+      "Final:\n[Feb 8, Sat]\nCA A    [4] 1- 1  [5] CA B    aet, PSO, Somewhere, B\n",
+    );
+    const [match] = parse(text).matches;
+    expect(match).toMatchObject({ extraTime: true, penalties: { home: 4, away: 5 } });
+  });
+
+  it("reads a shoot-out note written one space after the away club", () => {
+    const text = inline(
+      "Final:\n[Apr 18, Fri]\nCD A    [7] 1- 1  [8] Club B Universitario pso, Somewhere, X\n",
+    );
+    const [match] = parse(text).matches;
+    expect(match).toMatchObject({
+      away: "Club B Universitario",
+      penalties: { home: 7, away: 8 },
+    });
+  });
+
+  it("does not split a name that contains pso when there is no shoot-out score", () => {
+    const text = inline("Final:\n[Apr 18, Fri]\nCD A    1- 0   Club pso Norte   Somewhere, X\n");
+    expect(parse(text).matches[0].away).toBe("Club pso Norte");
+  });
+
+  it("reads a header that writes the weekday first and the year last", () => {
+    const text = inline(
+      "[Wed, 5 Mar 2025]\nCA A   [2] 0- 0 [3]  CA B     aet, pso, Somewhere, PAR\n",
+    );
+    const [match] = parse(text, { from: "2025-01-01", to: "2025-12-31" }).matches;
+    expect(match).toMatchObject({ date: "2025-03-05", stage: "Final" });
+  });
+
+  it("checks the weekday of that header too", () => {
+    const text = inline("[Thu, 5 Mar 2025]\nCA A   1- 0  CA B     Somewhere\n");
+    expect(() => parse(text)).toThrow(/2025-03-05 is a Wed, but the page says Thu/);
+  });
+});

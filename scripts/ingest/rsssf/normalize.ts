@@ -153,6 +153,7 @@ export function normalizeRsssf(
   const standings: Standing[] = [];
   const reports: FileReport[] = [];
   const ids = new Set<string>();
+  const cupTitles: Title[] = [];
   const appClubs = new Set(clubs.filter(isSelectable).map((club) => club.id));
 
   for (const { tournament: t, page, parsed } of raws) {
@@ -213,6 +214,11 @@ export function normalizeRsssf(
       }
     }
     matches.push(...records);
+
+    if (t.titleFromFinal) {
+      const title = titleFromFinal(t, excerpt, merged, records, appClubs, problems);
+      if (title !== null) cupTitles.push(title);
+    }
 
     if (t.mode.kind === "own") {
       const dates = (
@@ -352,11 +358,16 @@ export function normalizeRsssf(
   problems.push(...resolver.problems());
   if (problems.length > 0) throw new IngestError(problems);
   return {
-    competitions: [...competitions],
+    // Only the competitions the tournaments of this run belong to: adapters add what they use.
+    competitions: competitions.filter((c) =>
+      raws.some((r) => r.tournament.competition_id === c.id),
+    ),
     seasons,
     matches,
     standings,
-    ...(titles === undefined ? {} : { titles }),
+    ...(titles === undefined && cupTitles.length === 0
+      ? {}
+      : { titles: [...(titles ?? []), ...cupTitles] }),
     report: { files: reports },
   };
 }
@@ -374,4 +385,49 @@ function mismatches(row: ParsedTableRow, tally: Tally): string[] {
   return KEYS.filter((k) => row[k] !== tally[k]).map(
     (k) => `the table says ${names[k]}=${row[k]} but the matches give ${tally[k]}`,
   );
+}
+
+/**
+ * The title of a cup decided in one final: the winner on goals, else on penalties (D-B4 of plan
+ * 0017). A champion that is not an app club has no title row: the final is not even written when
+ * neither side is an app club.
+ */
+function titleFromFinal(
+  t: TournamentConfig,
+  excerpt: string,
+  merged: readonly { match: ParsedMatch }[],
+  records: readonly Match[],
+  appClubs: ReadonlySet<string>,
+  problems: string[],
+): Title | null {
+  const finals = merged.filter(({ match }) => match.stage === "Final");
+  if (finals.length !== 1) {
+    problems.push(
+      finals.length === 0
+        ? `${t.id}: no final in ${excerpt} to name the champion`
+        : `${t.id}: ${finals.length} finals in ${excerpt}, expected one to name the champion`,
+    );
+    return null;
+  }
+  const final = records.find((r) => r.is_final);
+  if (final === undefined) return null;
+  const home =
+    (final.home_goals ?? 0) - (final.away_goals ?? 0) ||
+    (final.home_penalties ?? 0) - (final.away_penalties ?? 0);
+  if (home === 0) {
+    problems.push(`${t.id}: the final ${final.id} has no winner on goals or penalties`);
+    return null;
+  }
+  const clubId = home > 0 ? final.home_id : final.away_id;
+  if (!appClubs.has(clubId)) return null;
+  return {
+    id: `${t.id}-${clubId}`,
+    club_id: clubId,
+    competition_id: t.competition_id,
+    season_id: t.id,
+    awarded_on: final.date,
+    shared: false,
+    source: final.source,
+    verified: false,
+  };
 }
