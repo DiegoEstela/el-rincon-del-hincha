@@ -75,24 +75,24 @@ test.describe("ready content", () => {
     await expect(page.getByText(/^Contamos:/)).toBeVisible();
     await expect(page.getByText(/^Todavía no cargamos Copa Argentina/)).toBeVisible();
     expect(await bodyText(page)).not.toMatch(NO_COMPLETE);
-    await expect(page.getByText("Desde mayo de 1990 · 8 partidos")).toBeVisible();
+    await expect(page.getByText("Desde mayo de 1990 · 9 partidos")).toBeVisible();
 
     const record = page.getByRole("region", { name: "El historial" });
-    await expect(record.getByRole("definition")).toHaveText(["8", "5", "2", "1", "+4"]);
+    await expect(record.getByRole("definition")).toHaveText(["9", "5", "2", "2", "+3"]);
     await expect(record.getByText("Dominás")).toBeVisible();
-    await expect(record.getByText("Goles: 10 a 5")).toBeVisible();
+    await expect(record.getByText("Goles: 10 a 7")).toBeVisible();
 
     await expect(
       page.getByText(
-        "Tenés colchón: harían falta 3 derrotas más para que esto vuelva a estar parejo.",
+        "Tenés colchón: harían falta 2 derrotas más para que esto vuelva a estar parejo.",
       ),
     ).toBeVisible();
 
     const last = page.getByRole("region", { name: "El último partido" });
-    await expect(last).toContainText("27 de abril de 2025");
-    await expect(last.getByText("River 2, Boca 1")).toBeAttached();
-    await expect(last.getByText("Ganaste")).toBeVisible();
-    await expect(page.getByText("Venís de 3 triunfos seguidos.")).toBeVisible();
+    await expect(last).toContainText("19 de octubre de 2025");
+    await expect(last.getByText("Boca 2, River 0")).toBeAttached();
+    await expect(last.getByText("Perdiste")).toBeVisible();
+    await expect(page.getByText("Perdiste el último.")).toBeVisible();
 
     await expect(page.getByRole("region", { name: "Goleadas" })).toContainText(
       "23 de septiembre de 2018",
@@ -138,7 +138,7 @@ test.describe("ready content", () => {
     await expect(stakes).toContainText("Con 3 triunfos más pasás a dominar este historial.");
     await expect(stakes).toContainText("Ojo: con 1 derrota más te pasan a dominar.");
     await expect(stakes).toContainText("Todavía no le ganaste desde que naciste.");
-    await expect(page.getByText("Venís de 4 partidos sin ganarle.")).toBeVisible();
+    await expect(page.getByText("Venís de 5 partidos sin ganarle.")).toBeVisible();
     await shot(page, testInfo.project.name, "belgrano");
   });
 
@@ -297,7 +297,9 @@ test.describe("privacy, metadata and accessibility", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     // The stretched link covers its card with a pseudo-element, so the card is the target.
     for (const link of await page.getByRole("list", { name: "Rivales" }).getByRole("link").all()) {
-      const box = await link.locator("xpath=ancestor::li[1]").boundingBox();
+      const card = link.locator("xpath=ancestor::li[1]");
+      await expect(card).toBeVisible();
+      const box = await card.boundingBox();
       expect(box!.height).toBeGreaterThanOrEqual(43.5);
     }
     await page.goto("/rivales/boca-juniors");
