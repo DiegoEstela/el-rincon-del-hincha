@@ -18,6 +18,11 @@ export type MergeOptions = {
    * source pass. Every other season belongs to one source only (plan 0017, ADR 0020).
    */
   extends?: readonly string[];
+  /**
+   * Seasons another source extends: the adapter is the base there and may rewrite its own
+   * matches, as long as they are dated before the first match of the source that extends it.
+   */
+  extendedBy?: readonly string[];
 };
 export type MergeResult = { dataset: Record<string, unknown[]>; conflicts: string[] };
 
@@ -77,6 +82,7 @@ function checkSeasonOwnership(
   incoming: Rec[],
   prefix: string,
   extendable: ReadonlySet<string>,
+  extended: ReadonlySet<string>,
   conflicts: string[],
 ): void {
   const others = new Map<string, Rec[]>();
@@ -90,12 +96,16 @@ function checkSeasonOwnership(
     const season = String(m.season_id);
     const held = others.get(season);
     if (held === undefined || reported.has(season)) continue;
-    const last = held.map((h) => String(h.date)).sort()[held.length - 1];
+    const dates = held.map((h) => String(h.date)).sort();
+    const last = dates[dates.length - 1];
     if (extendable.has(season) && String(m.date) > last) continue;
+    if (extended.has(season) && String(m.date) < dates[0]) continue;
     reported.add(season);
     const how = extendable.has(season)
       ? `it may only add matches after ${last} (found ${String(m.date)})`
-      : "a season has one source only";
+      : extended.has(season)
+        ? `it may only write matches before ${dates[0]} (found ${String(m.date)})`
+        : "a season has one source only";
     conflicts.push(
       `season ${season}: holds matches of ${String(held[0].source)}, and the adapter ${prefix} brings more; ${how}`,
     );
@@ -130,6 +140,7 @@ export function mergeDataset(
     records.matches,
     sourcePrefix,
     new Set(options.extends ?? []),
+    new Set(options.extendedBy ?? []),
     conflicts,
   );
   dataset["matches.json"] = [...kept, ...records.matches];

@@ -59,6 +59,8 @@ export type Adapter<Raw> = {
   networkLoader?: SourceLoader;
   /** Seasons the adapter may extend after another source last match (ADR 0020, decision 5). */
   extends?: readonly string[];
+  /** Seasons another source extends: this adapter is their base (see mergeDataset). */
+  extendedBy?: readonly string[];
   /** Read-only comparison with the data already in `data/`; returns the lines of a report. */
   crossCheck?(
     raw: Raw,
@@ -155,7 +157,7 @@ export async function runAdapter<Raw>(
       titles: output.titles,
     },
     adapter.sourcePrefix,
-    { extends: adapter.extends },
+    { extends: adapter.extends, extendedBy: adapter.extendedBy },
   );
   if (merged.conflicts.length > 0) throw new IngestError(merged.conflicts);
 

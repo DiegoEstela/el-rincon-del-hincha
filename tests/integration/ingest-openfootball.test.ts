@@ -26,6 +26,7 @@ import {
   COLON_SPELLING,
   FIXTURE_CLUBS,
 } from "../fixtures/ingest/openfootball/clubs";
+import { OPENFOOTBALL_ONLY_GAPS } from "../fixtures/ingest/openfootball/gaps";
 
 const FIXTURES = join(process.cwd(), "tests/fixtures/ingest/openfootball");
 const NOW = new Date("2026-10-17T12:00:00Z");
@@ -50,7 +51,12 @@ const read = (name: string) => readFileSync(join(dir, name), "utf8");
 const snapshot = () =>
   Object.fromEntries(readdirSync(dir).map((f) => [f, readFileSync(join(dir, f), "utf8")]));
 const run = (adapter = openfootballAdapter) =>
-  runAdapter(adapter, { dir, loader: directoryLoader(inputs), now: NOW });
+  runAdapter(adapter, {
+    dir,
+    loader: directoryLoader(inputs),
+    now: NOW,
+    coverageGaps: OPENFOOTBALL_ONLY_GAPS,
+  });
 
 describe("openfootball ingestion on fixtures (T16)", () => {
   it(

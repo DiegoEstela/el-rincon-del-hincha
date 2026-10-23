@@ -162,4 +162,40 @@ describe("one source per season and extends (plan 0017, T6)", () => {
     );
     expect(result.conflicts).toHaveLength(1);
   });
+
+  describe("the base source of an extended season", () => {
+    const held = {
+      "matches.json": [match("r1", "s1", "2025-05-10", B), match("r2", "s1", "2025-06-01", B)],
+    };
+
+    it("may rewrite matches dated before the first match of the extending source", () => {
+      const result = mergeDataset(
+        held,
+        { ...none, matches: [match("o1", "s1", "2025-05-04", A)] },
+        A,
+        { extendedBy: ["s1"] },
+      );
+      expect(result.conflicts).toEqual([]);
+    });
+
+    it("is a conflict on or after that first match, naming the date", () => {
+      const result = mergeDataset(
+        held,
+        { ...none, matches: [match("o1", "s1", "2025-05-10", A)] },
+        A,
+        { extendedBy: ["s1"] },
+      );
+      expect(result.conflicts).toEqual([expect.stringMatching(/before 2025-05-10.*2025-05-10/)]);
+    });
+
+    it("does not apply to other seasons", () => {
+      const result = mergeDataset(
+        held,
+        { ...none, matches: [match("o1", "s1", "2025-05-04", A)] },
+        A,
+        { extendedBy: ["other"] },
+      );
+      expect(result.conflicts).toHaveLength(1);
+    });
+  });
 });

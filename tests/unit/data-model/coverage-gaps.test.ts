@@ -38,21 +38,30 @@ describe("COVERAGE_GAPS", () => {
     }
   });
 
-  it("declares the 2025 Apertura tail and the four Copa de la Liga editions that are not loaded", () => {
+  it("declares the tail after the 2025 Clausura and the four Copa de la Liga editions that are not loaded", () => {
     expect(COVERAGE_GAPS.map((g) => [g.competition_id, g.from, g.to])).toEqual([
       ["copa-de-la-liga-profesional", "2021-02-12", "2021-06-04"],
       ["copa-de-la-liga-profesional", "2022-02-10", "2022-05-22"],
       ["copa-de-la-liga-profesional", "2023-08-17", "2023-12-16"],
       ["copa-de-la-liga-profesional", "2024-01-25", "2024-05-05"],
-      ["primera-division", "2025-05-05", null],
+      ["primera-division", "2025-12-15", null],
     ]);
   });
 
-  it("cites a permanent es.wikipedia revision for every Phase 1 gap", () => {
+  it("cites a permanent es.wikipedia revision, or a pinned RSSSF page, for every gap", () => {
+    const pinned = (
+      JSON.parse(readFileSync(join(process.cwd(), "sources/rsssf/manifest.json"), "utf8")) as {
+        pages: { url: string }[];
+      }
+    ).pages.map((p) => p.url);
     for (const g of COVERAGE_GAPS) {
       const url = new URL(g.source);
-      expect(url.host, g.source).toBe("es.wikipedia.org");
-      expect(url.searchParams.get("oldid"), g.source).toMatch(/^\d+$/);
+      if (url.host === "www.rsssf.org") {
+        expect(pinned, g.source).toContain(`${url.origin}${url.pathname}`);
+      } else {
+        expect(url.host, g.source).toBe("es.wikipedia.org");
+        expect(url.searchParams.get("oldid"), g.source).toMatch(/^\d+$/);
+      }
     }
   });
 });

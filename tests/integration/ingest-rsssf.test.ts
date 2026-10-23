@@ -11,6 +11,7 @@ import { IngestError } from "../../scripts/ingest/core/errors";
 import { createRsssfAdapter } from "../../scripts/ingest/rsssf";
 import type { TournamentConfig } from "../../scripts/ingest/rsssf/config";
 import { manifestSchema } from "../../scripts/ingest/rsssf/manifest";
+import { OPENFOOTBALL_ONLY_GAPS } from "../fixtures/ingest/openfootball/gaps";
 
 const NOW = new Date("2026-10-20T12:00:00Z");
 const FIXTURE = join(process.cwd(), "tests/fixtures/ingest/rsssf/clausura-2025.txt");
@@ -83,8 +84,12 @@ let inputs: string;
 const read = (file: string) => readFileSync(join(dir, file), "utf8");
 const adapter = () => createRsssfAdapter({ tournaments: [tournament], manifest: () => manifest });
 
+/** Clubs with the RSSSF aliases (as in data/) or without them (to see the unknown names). */
 function seedClubs(withAliases = true) {
   const clubs = JSON.parse(read("clubs.json")) as { id: string; aliases: string[] }[];
+  for (const club of clubs) {
+    club.aliases = club.aliases.filter((alias) => ALIASES[alias] !== club.id);
+  }
   if (withAliases) {
     for (const [alias, id] of Object.entries(ALIASES)) {
       clubs.find((c) => c.id === id)!.aliases.push(alias);
@@ -93,10 +98,21 @@ function seedClubs(withAliases = true) {
   writeFileSync(join(dir, "clubs.json"), JSON.stringify(clubs));
 }
 
+/** The data before RSSSF: openfootball only, so this test owns every RSSSF record. */
+function withoutRsssf() {
+  const own = (r: { source: string }) => r.source.startsWith("https://www.rsssf.org/");
+  for (const file of ["matches.json", "seasons.json"]) {
+    const kept = (JSON.parse(read(file)) as { source: string }[]).filter((r) => !own(r));
+    writeFileSync(join(dir, file), JSON.stringify(kept));
+  }
+  rmSync(join(dir, "standings.json"), { force: true });
+}
+
 beforeEach(() => {
   dir = mkdtempSync(join(tmpdir(), "rsssf-data-"));
   inputs = mkdtempSync(join(tmpdir(), "rsssf-in-"));
   cpSync(join(process.cwd(), "data"), dir, { recursive: true });
+  withoutRsssf();
   cpSync(FIXTURE, join(inputs, "arg2025.1clausura.txt"));
 });
 afterEach(() => {
@@ -104,7 +120,13 @@ afterEach(() => {
   rmSync(inputs, { recursive: true, force: true });
 });
 
-const run = () => runAdapter(adapter(), { dir, loader: directoryLoader(inputs), now: NOW });
+const run = () =>
+  runAdapter(adapter(), {
+    dir,
+    loader: directoryLoader(inputs),
+    now: NOW,
+    coverageGaps: OPENFOOTBALL_ONLY_GAPS,
+  });
 
 describe("RSSSF ingestion on a real excerpt (T23)", () => {
   it(

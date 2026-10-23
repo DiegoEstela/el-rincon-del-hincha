@@ -48,10 +48,13 @@ describe("pnpm data:ingest (CLI arguments)", () => {
     expect(r.stderr).toContain("data directory not found");
   });
 
-  it("dry run with the real clubs plans the writes and writes nothing", () => {
+  it("dry run on the real data changes nothing and writes nothing", () => {
     const out = mkdtempSync(join(tmpdir(), "cli-out-"));
     temps.push(out);
-    cpSync(join(root, "data/clubs.json"), join(out, "clubs.json"));
+    cpSync(join(root, "data"), out, { recursive: true });
+    const before = Object.fromEntries(
+      readdirSync(out).map((f) => [f, readFileSync(join(out, f), "utf8")]),
+    );
     const r = run([
       "openfootball",
       "--dry-run",
@@ -61,10 +64,12 @@ describe("pnpm data:ingest (CLI arguments)", () => {
       out,
     ]);
     expect(r.code).toBe(0);
-    // 2,435 is the sum of the matches of the eight pinned openfootball files (plan 0011).
-    expect(r.stdout).toContain("matches.json: +2435 -0 =0");
+    // The eight pinned files give the 2,435 matches already in data/ (plan 0011); RSSSF matches stay.
+    expect(r.stdout).toMatch(/matches\.json: \+0 -0 =\d+/);
     expect(r.stdout).toContain("data:ingest dry run ok (nothing written)");
-    expect(readdirSync(out)).toEqual(["clubs.json"]);
+    expect(
+      Object.fromEntries(readdirSync(out).map((f) => [f, readFileSync(join(out, f), "utf8")])),
+    ).toEqual(before);
   }, 60_000);
 
   it("dry run lists the unknown clubs and writes nothing", () => {
