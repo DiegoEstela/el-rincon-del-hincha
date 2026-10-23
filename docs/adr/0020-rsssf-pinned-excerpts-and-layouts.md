@@ -1,6 +1,6 @@
 # 0020 — RSSSF ingestion: pinned excerpts, layout profiles and season ownership
 
-Status: **Proposed** (2026-10-19). Written with plan 0017 (issue #70). Decisions 1 to 4, 6 and 9 are technical and follow from ADRs 0003, 0011, 0012, 0015 and 0017. Decisions 5, 7 and 8 depend on Diego's answers to plan 0017 (D3 to D7); this ADR is accepted, or amended, with those answers.
+Status: **Accepted** (2026-10-23). Written with plan 0017 (issue #70). Diego approved D1 to D9 of the plan as recommended and changed D10 (the vitrina is fed by RSSSF and by every permitted source). Decisions 1 to 4, 6 and 9 follow from ADRs 0003, 0011, 0012, 0015 and 0017; decisions 5, 7 and 8 were confirmed by those answers. Built and checked on the real 2025 page (see the verification log of the plan).
 
 ## Context
 

@@ -306,7 +306,7 @@ Fixtures in `tests/fixtures/ingest/rsssf/`: reduced byte-exact excerpts of first
 
 ## Decisions recorded
 
-Diego answered on 2026-10-19: D1 to D9 approved as recommended.
+Diego answered on 2026-10-19: D1 to D9 approved as recommended. On 2026-10-23 he approved the 59 club aliases of the 2025 pages (his rule: club names that are missing are asked to him, never searched on the web).
 
 **D10, changed by Diego.** The vitrina (#67) is fed by RSSSF **and by everything else we have**, not by a separate cups evaluation that it waits for. Consequences for this plan: the vitrina reads `titles.json` as soon as Phase A writes the first-division titles (D5); cup titles join it from whichever permitted source lands first (RSSSF after a written reply, or the openfootball CC0 files and Wikipedia titles evaluated in their own issue); every shelf shows what is loaded and its coverage, never an invented total. The evaluation issue of the alternative sources stays, but as an input to the vitrina, not as a condition for it.
 
