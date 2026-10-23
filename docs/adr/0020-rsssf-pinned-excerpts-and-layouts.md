@@ -30,7 +30,7 @@ ADR 0015 was written for openfootball, a GitHub repository with commits, plain-t
 
 ## Consequences
 
-- The repository holds copies of the first-division sections of the RSSSF pages used, never whole pages; cup and lower-division text is never committed before a written reply covers it (issue #70, Phase B).
+- The repository holds copies of the first-division sections of the RSSSF pages used, never whole pages; cup and lower-division text is never committed before a written reply covers it (issue #70, Phase B). **Update 2026-10-23:** RSSSF answered that any data needed may be used with a citation of the dataset owner (`docs/spike/replies/2026-10-23-rsssf-all-data.md`), so cups are inside the permission; the per-page author credit and the per-record `source` still apply.
 - RSSSF pages change, so the network path will often stop with a hash mismatch; that is the intended signal. Picking up corrections is a normal data PR: run the snapshot script, review the excerpt diff, re-run the adapter, review the `data/` diff.
 - Each new era costs a layout parser, its fixtures and the clubs of that era (ADR 0016). Eras are added one at a time, in their own PRs.
 - The Kaggle adapter (ADR 0003 decision 2, issue #38) must not load seasons that RSSSF owns: day precision wins (ADR 0011 decision 6), and decision 5 stops a second source in the same season anyway.
