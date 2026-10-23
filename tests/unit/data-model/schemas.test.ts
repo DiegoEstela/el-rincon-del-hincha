@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { isSelectable } from "@/data-model/club";
 import {
   DATASET_FILES,
   KEY_FIELDS,
@@ -14,6 +15,7 @@ import {
   titleSchema,
 } from "@/data-model/schemas";
 
+const parseClub = (value: unknown) => clubSchema.parse(value);
 const SRC = "fixture:synthetic";
 
 const club = {
@@ -130,6 +132,55 @@ describe("clubSchema", () => {
   });
   it("rejects a blank source", () => {
     expect(ok(clubSchema, { ...club, source: "  " })).toBe(false);
+  });
+  it("treats a club without `selectable` as selectable and asks for its kit data", () => {
+    expect(ok(clubSchema, { ...club, selectable: true })).toBe(true);
+    for (const key of ["colors", "jersey_pattern", "founded", "city"] as const) {
+      expect(ok(clubSchema, { ...club, [key]: undefined })).toBe(false);
+    }
+  });
+  it("rejects a selectable club that carries a country", () => {
+    expect(ok(clubSchema, { ...club, country: "UY" })).toBe(false);
+  });
+});
+
+describe("clubSchema, opponents (ADR 0022)", () => {
+  const opponent = {
+    id: "opponent-a",
+    name: "Opponent A",
+    short_name: "Opponent A",
+    aliases: ["Opponent A (Montevideo)"],
+    selectable: false,
+    country: "UY",
+    source: SRC,
+  };
+  it("accepts an opponent with no colors, pattern, founded year or city", () => {
+    expect(ok(clubSchema, opponent)).toBe(true);
+  });
+  it("accepts an opponent with sourced colors, and still checks them", () => {
+    const colors = { primary: "#112233", secondary: "#FFFFFF" };
+    expect(ok(clubSchema, { ...opponent, colors })).toBe(true);
+    expect(ok(clubSchema, { ...opponent, colors: { primary: "red", secondary: "#FFFFFF" } })).toBe(
+      false,
+    );
+    expect(ok(clubSchema, { ...opponent, jersey_pattern: "hoops", founded: 1900, city: "X" })).toBe(
+      true,
+    );
+  });
+  it("requires an ISO 3166 alpha-2 country", () => {
+    expect(ok(clubSchema, { ...opponent, country: undefined })).toBe(false);
+    for (const country of ["uy", "URY", "U", "1A", ""]) {
+      expect(ok(clubSchema, { ...opponent, country })).toBe(false);
+    }
+  });
+  it("keeps the source required and the record strict", () => {
+    expect(ok(clubSchema, { ...opponent, source: " " })).toBe(false);
+    expect(ok(clubSchema, { ...opponent, fuente: "x" })).toBe(false);
+  });
+  it("tells an opponent from a selectable club", () => {
+    expect(isSelectable(parseClub(club))).toBe(true);
+    expect(isSelectable(parseClub(opponent))).toBe(false);
+    expect(isSelectable(parseClub({ ...club, selectable: true }))).toBe(true);
   });
 });
 

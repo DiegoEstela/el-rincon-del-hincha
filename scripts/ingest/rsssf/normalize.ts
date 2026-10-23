@@ -3,8 +3,10 @@
 // completes it, checks every final table against the parsed matches, and writes standings. Every
 // problem of a run is collected and reported at once.
 import type { AdapterOutput, FileReport } from "../core/adapter";
+import { resolveClubId } from "../../../src/data-model/club-aliases";
 import { createClubResolver } from "../core/club-resolver";
 import { IngestError } from "../core/errors";
+import { isSelectable } from "../../../src/data-model/club";
 import type {
   Club,
   Competition,
@@ -151,14 +153,24 @@ export function normalizeRsssf(
   const standings: Standing[] = [];
   const reports: FileReport[] = [];
   const ids = new Set<string>();
+  const appClubs = new Set(clubs.filter(isSelectable).map((club) => club.id));
 
   for (const { tournament: t, page, parsed } of raws) {
     const excerpt = `${t.page}.${t.excerpt}`;
     const source = sourceOf(t);
     const records: Match[] = [];
     const tallies = new Map<string, Tally>();
+    const droppedUnknown = new Set<string>();
+    const merged = mergeAbandoned(parsed, t.window, problems);
 
-    for (const { match: m, suspended } of mergeAbandoned(parsed, t.window, problems)) {
+    for (const { match: m, suspended } of merged) {
+      if (t.appClubsOnly) {
+        const sides = [m.home, m.away].map((name) => ({ name, id: resolveClubId(clubs, name) }));
+        if (!sides.some(({ id }) => id !== null && appClubs.has(id))) {
+          for (const { name, id } of sides) if (id === null) droppedUnknown.add(name);
+          continue;
+        }
+      }
       const at = { file: excerpt, line: m.line, season: t.id, context: "matches" };
       const homeId = resolver.resolve(m.home, at);
       const awayId = resolver.resolve(m.away, at);
@@ -203,7 +215,9 @@ export function normalizeRsssf(
     matches.push(...records);
 
     if (t.mode.kind === "own") {
-      const dates = records.map((r) => r.date).sort();
+      const dates = (
+        t.appClubsOnly ? merged.map((x) => x.match.date) : records.map((r) => r.date)
+      ).sort();
       if (dates.length === 0) {
         problems.push(`${excerpt}: no match was read, so the season has no dates`);
       } else {
@@ -281,6 +295,7 @@ export function normalizeRsssf(
       partial: false,
       lastSourceDate: dates[dates.length - 1] ?? "",
       seasonEnd: dates[dates.length - 1] ?? "",
+      ...(t.appClubsOnly ? { droppedUnknown: [...droppedUnknown].sort() } : {}),
     });
   }
 

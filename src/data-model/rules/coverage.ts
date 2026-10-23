@@ -1,3 +1,4 @@
+import { isSelectable } from "../club";
 import type { Dataset, ValidationIssue } from "../types";
 import { groupBy, issue } from "./shared";
 
@@ -14,7 +15,8 @@ export function checkCoverage(ds: Dataset): ValidationIssue[] {
   const rows = ds["coverage.json"];
 
   const withRows = new Set(rows.map((c) => `${c.club_id}/${c.competition_id}`));
-  for (const club of ds["clubs.json"]) {
+  // Opponents (ADR 0022) have no coverage: only the clubs a fan can pick are asked for rows.
+  for (const club of ds["clubs.json"].filter(isSelectable)) {
     for (const competition of ds["competitions.json"]) {
       const pair = `${club.id}/${competition.id}`;
       if (!withRows.has(pair)) {

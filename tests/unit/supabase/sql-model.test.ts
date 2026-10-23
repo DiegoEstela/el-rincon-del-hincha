@@ -162,7 +162,8 @@ describe("statement allowlist", () => {
     ["a drop", "drop table public.x"],
     ["a plain select", "select 1"],
     ["a non-cron select", "select pg_sleep(1)"],
-    ["an alter table other than RLS", "alter table public.x add column y text"],
+    ["an alter table of an unknown table", "alter table public.x add column y text"],
+    ["an alter table that drops a column", "alter table public.clubs drop column city"],
     [
       "a default privilege grant",
       "alter default privileges in schema public grant all on tables to anon",
@@ -303,5 +304,33 @@ describe("function execute privileges", () => {
   it("keeps a grant that comes after the revoke", () => {
     const sql = `${f} revoke all on function public.f() from public; grant execute on function public.f() to anon;`;
     expect([...netExecute(parseMigrations([sql]), "f")]).toEqual(["anon"]);
+  });
+});
+
+describe("alter table folded into the table", () => {
+  const create = "create table public.t (id text primary key, v integer not null)";
+  it("adds a nullable column, drops a not null and adds a check", () => {
+    const model = parseMigrations([
+      `${create};
+alter table public.t add column w text;
+alter table public.t alter column v drop not null;
+alter table public.t add constraint t_w check (w is null or w <> '');`,
+    ]);
+    const table = model.tables.get("t")!;
+    expect(table.columns.map((c) => [c.name, c.type, c.nullable])).toEqual([
+      ["id", "text", false],
+      ["v", "integer", true],
+      ["w", "text", true],
+    ]);
+    expect(table.checks).toEqual(["w is null or w <> ''"]);
+    expect(model.unrecognized).toEqual([]);
+  });
+  it("fails loudly on a drop not null of a column that does not exist", () => {
+    expect(() =>
+      parseMigrations([
+        `${create};
+alter table public.t alter column q drop not null;`,
+      ]),
+    ).toThrow(/unknown column/);
   });
 });

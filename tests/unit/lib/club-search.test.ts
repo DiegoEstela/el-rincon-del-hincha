@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { isSelectable } from "@/data-model/club";
 import { clubSchema } from "@/data-model/schemas";
 import { toClubOption } from "@/lib/club-options";
 import { searchClubs, searchFold, type SearchableClub } from "@/lib/club-search";
@@ -60,6 +61,7 @@ const clubs = clubSchema
     JSON.parse(readFileSync(join(process.cwd(), "data", "clubs.json"), "utf8").replace(/^﻿/, "")),
   )
   // The keys the picker really uses: source-only aliases ("CA Boca Juniors") are left out.
+  .filter(isSelectable)
   .map((c) => toClubOption(c));
 
 describe("searchClubs on the real dataset", () => {

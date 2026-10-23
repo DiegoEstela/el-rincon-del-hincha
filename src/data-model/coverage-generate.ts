@@ -4,6 +4,7 @@
 // A row `complete: true` over `[from, to]` means: every match of the club in that competition
 // dated in the interval is loaded. It is only ever claimed for a run of consecutive seasons that
 // are loaded and that the club played (so a season the club missed always breaks the run).
+import { isSelectable } from "./club";
 import { nextDay, previousDay } from "./dates";
 import type { Coverage, Dataset } from "./types";
 
@@ -114,7 +115,7 @@ export function generateCoverage(input: CoverageInput, gaps: readonly CoverageGa
       }
     }
 
-    for (const club of input["clubs.json"]) {
+    for (const club of input["clubs.json"].filter(isSelectable)) {
       // Runs of consecutive seasons that are loaded and that the club played.
       const intervals: Interval[] = [];
       let run: Interval | null = null;

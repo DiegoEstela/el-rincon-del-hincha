@@ -1,4 +1,5 @@
 // Methodology: "Rivals" (summary cards of the rivals screen). One row per opponent.
+import { isSelectable } from "@/data-model/club";
 import { compareText } from "./data";
 import { classifyDominance, Dominance } from "./dominance";
 import { coverageNotice } from "./coverage-notice";
@@ -66,7 +67,12 @@ export function groupRivals(
     else list.push(view);
   }
   const classics = classicRivalIds(index, clubId);
+  // Opponents only appear in matches (ADR 0022): they count in the fan's totals, never as a rival.
+  const opponents = new Set(
+    index.data.clubs.filter((club) => !isSelectable(club)).map((club) => club.id),
+  );
   const all = [...viewsByRival.entries()]
+    .filter(([rivalId]) => !opponents.has(rivalId))
     .map(([rivalId, rivalViews]): RivalRow => {
       const suspendedCount = suspended.filter((m) => opponentOf(m, clubId) === rivalId).length;
       const record = tallyMatches(rivalViews, suspendedCount);

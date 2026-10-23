@@ -120,14 +120,14 @@ describe("buildRivalryView on the synthetic world", () => {
     expect(view.coverage.heading === "" || view.coverage.show).toBe(true);
   });
 
-  it("falls back to ids for names missing from the catalog and the maps", () => {
+  it("falls back to the document names for clubs missing from the catalog, and to ids for the maps", () => {
     const bare = buildRivalryView({
       ...inputFor(null),
       catalog: new Map(),
       competitionNames: new Map(),
       seasonNames: new Map(),
     });
-    expect(bare.title).toBe("club-a vs. club-b");
+    expect(bare.title).toBe("Ficticio A vs. Ficticio B");
     expect(bare.lastMatch?.competition).toContain("league-x");
     expect(bare.finals[0].season).toMatch(/^cup-y-/);
   });

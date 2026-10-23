@@ -329,3 +329,78 @@ describe("table check (plan 0017, T19)", () => {
     });
   });
 });
+
+describe("normalizeRsssf: cups, only the matches of the app clubs (T51, ADR 0022)", () => {
+  const CUP: TournamentConfig = {
+    id: "copa-x-2025",
+    competition_id: "copa-x",
+    name: "Copa X 2025",
+    page: "arg2025",
+    excerpt: "nationalcup",
+    window: { from: "2025-01-01", to: "2025-12-31" },
+    mode: { kind: "own" },
+    tableCoversSeason: false,
+    appClubsOnly: true,
+  };
+  const world = [
+    { id: "a", aliases: ["CA A"] },
+    { id: "b", aliases: ["CA B"], selectable: true },
+    { id: "opp", aliases: ["Opp FC"], selectable: false },
+  ] as never;
+  const cup = (matches: ParsedMatch[]) => ({
+    excerpt: "arg2025.nationalcup",
+    matches,
+    tables: [],
+  });
+  const runCup = (matches: ParsedMatch[], t = CUP) =>
+    normalizeRsssf([{ tournament: t, page: page(), parsed: cup(matches) }], world, []);
+
+  it("keeps the matches where an app club plays, against an opponent too", () => {
+    const out = runCup([
+      m("2025-02-01", "CA A", "Opp FC", 2, 0, { stage: "32avos de final" }),
+      m("2025-02-08", "Opp FC", "CA B", 1, 1, { stage: "16avos de final" }),
+    ]);
+    expect(out.matches.map((x) => x.id)).toEqual(["2025-02-01-a-opp", "2025-02-08-opp-b"]);
+  });
+
+  it("drops a match between two clubs that are not app clubs, known or not", () => {
+    const out = runCup([
+      m("2025-02-01", "CA A", "CA B", 2, 0),
+      m("2025-02-02", "Some Unknown FC", "Another Unknown FC", 3, 1),
+      m("2025-02-03", "Opp FC", "Some Unknown FC", 0, 0),
+    ]);
+    expect(out.matches.map((x) => x.id)).toEqual(["2025-02-01-a-b"]);
+  });
+
+  it("stops and names the club when an app club meets a club it does not know", () => {
+    const problems = problemsOf(() => runCup([m("2025-02-01", "CA A", "Newcomers FC", 1, 0)]));
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toMatch(
+      /^unknown club "Newcomers FC" \(first seen at arg2025\.nationalcup:/,
+    );
+  });
+
+  it("reports in the run which unknown names were dropped, so a missing alias is seen", () => {
+    const out = runCup([
+      m("2025-02-02", "Some Unknown FC", "Another Unknown FC", 3, 1),
+      m("2025-02-03", "Opp FC", "Some Unknown FC", 0, 0),
+    ]);
+    expect(out.report.files[0].droppedUnknown).toEqual(["Another Unknown FC", "Some Unknown FC"]);
+    expect(out.report.files[0].parsed).toBe(0);
+  });
+
+  it("dates the season from every match of the page, not only the kept ones", () => {
+    const out = runCup([
+      m("2025-02-01", "Some Unknown FC", "Another Unknown FC", 3, 1),
+      m("2025-03-01", "CA A", "Opp FC", 1, 0),
+      m("2025-11-05", "Another Unknown FC", "Some Unknown FC", 1, 0),
+    ]);
+    expect(out.seasons[0]).toMatchObject({ start: "2025-02-01", end: "2025-11-05" });
+    expect(out.matches).toHaveLength(1);
+  });
+
+  it("does not drop anything in a league tournament", () => {
+    const problems = problemsOf(() => run(base([m("2025-07-11", "CA A", "Zzz FC", 1, 0)], [])));
+    expect(problems.some((p) => p.includes('unknown club "Zzz FC"'))).toBe(true);
+  });
+});

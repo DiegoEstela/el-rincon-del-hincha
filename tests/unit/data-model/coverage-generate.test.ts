@@ -83,6 +83,25 @@ const gap = (from: string, to: string | null, competition = "liga"): CoverageGap
 const view = (ds: ReturnType<typeof world>, gaps: CoverageGap[] = []) =>
   rows(ds, gaps).map((r) => `${r.club_id}/${r.competition_id} ${r.from}..${r.to} ${r.complete}`);
 
+describe("generateCoverage: opponents (ADR 0022)", () => {
+  it("gives no coverage row to an opponent, but the matches against it still count", () => {
+    const ds = world();
+    ds["clubs.json"].push({
+      id: "opp",
+      name: "opp",
+      short_name: "opp",
+      aliases: ["opp"],
+      selectable: false,
+      country: "UY",
+      source: S,
+    } as never);
+    ds["matches.json"].push(match("liga-2022", "2022-06-01", "opp", "a"));
+    const lines = view(ds);
+    expect(lines.some((l) => l.startsWith("opp/"))).toBe(false);
+    expect(lines.filter((l) => l.startsWith("a/"))).toEqual(["a/liga 2020-03-01..2022-12-01 true"]);
+  });
+});
+
 describe("generateCoverage: stretches", () => {
   it("gives one complete stretch to a club that played every season", () => {
     expect(view(world()).filter((l) => l.startsWith("a/"))).toEqual([

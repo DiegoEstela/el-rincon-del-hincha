@@ -20,7 +20,7 @@ import type { ClubOption } from "./club-options";
 import { formatMatchDate } from "./rivalry-copy";
 import { formatMonthYear, type CoverageCopy } from "./coverage-copy";
 import type { StartMode } from "./fan-storage";
-import { buildMatchCard, type MatchCardView } from "./match-card-view";
+import { buildMatchCard, type MatchCardView, clubShortNamer } from "./match-card-view";
 import {
   COUNTER_CAPTION,
   CRITERION,
@@ -147,7 +147,7 @@ function kindOf(competition: Competition): TrophyKind {
 export function buildVitrinaView(input: VitrinaViewInput): VitrinaView {
   const { index, clubId, catalog, competitionNames, seasonNames } = input;
   const fan = fanPeriod(input.startDate, input.now);
-  const shortName = (id: string) => catalog.get(id)?.shortName ?? id;
+  const shortName = clubShortNamer(catalog, index);
   const competitionName = (id: string) => competitionNames.get(id) ?? id;
   const seasonName = (id: string) => seasonNames.get(id) ?? id;
   const names = { shortName, competitionNames, seasonNames };

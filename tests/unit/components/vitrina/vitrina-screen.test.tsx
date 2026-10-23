@@ -11,14 +11,14 @@ vi.mock("@/lib/vitrina-view", async (importOriginal) => {
 import { VitrinaScreen } from "@/components/vitrina/vitrina-screen";
 import { sliceClubData, type ClubData } from "@/domain/club-data";
 import { statsDataFrom } from "@/domain/data";
-import { toClubOption } from "@/lib/club-options";
+import { toClubOptions } from "@/lib/club-options";
 import { clearFanChoice, getBrowserStorage, writeFanChoice } from "@/lib/fan-storage";
 import { buildVitrinaView } from "@/lib/vitrina-view";
 import { statsWorld } from "../../../fixtures/domain/stats-world";
 
 const world = statsWorld();
 const data = statsDataFrom(world);
-const clubs = world["clubs.json"].map(toClubOption);
+const clubs = toClubOptions(world["clubs.json"]);
 const START = "2020-01-01";
 
 const docFor = (clubId: string): ClubData => sliceClubData(data, clubId);

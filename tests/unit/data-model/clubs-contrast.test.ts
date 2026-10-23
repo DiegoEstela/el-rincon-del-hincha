@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { isSelectable } from "@/data-model/club";
 import { clubSchema } from "@/data-model/schemas";
 import { contrastRatio, meetsAA } from "@/lib/contrast";
 import { parseRootTokens } from "@/lib/css-tokens";
@@ -9,7 +10,8 @@ const clubs = clubSchema
   .array()
   .parse(
     JSON.parse(readFileSync(join(process.cwd(), "data", "clubs.json"), "utf8").replace(/^﻿/, "")),
-  );
+  )
+  .filter(isSelectable);
 const tokens = parseRootTokens(readFileSync(join(process.cwd(), "src/app/globals.css"), "utf8"));
 const background = tokens["background"];
 const raised = tokens["background-raised"];

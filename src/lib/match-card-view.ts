@@ -1,7 +1,8 @@
 // The card of one match as the screens show it (rivalry detail, trophy detail): the date, the
 // competition, the score from both sides with the fan side marked, the result and a note. Pure.
 import type { Outcome } from "@/domain/match-outcome";
-import type { MatchView } from "@/domain/types";
+import type { MatchView, StatsIndex } from "@/domain/types";
+import type { ClubOption } from "./club-options";
 import {
   ADMINISTRATIVE_NOTE,
   competitionLabel,
@@ -34,6 +35,18 @@ export type CardNames = Readonly<{
   competitionNames: ReadonlyMap<string, string>;
   seasonNames: ReadonlyMap<string, string>;
 }>;
+
+/**
+ * Short name of a club id for the screens: the catalog (selectable clubs) first, then the record
+ * of an opponent in the document (ADR 0022), then the id itself.
+ */
+export function clubShortNamer(
+  catalog: ReadonlyMap<string, ClubOption>,
+  index: StatsIndex,
+): (clubId: string) => string {
+  const recorded = new Map(index.data.clubs.map((club) => [club.id, club.short_name]));
+  return (clubId) => catalog.get(clubId)?.shortName ?? recorded.get(clubId) ?? clubId;
+}
 
 export function buildMatchCard(view: MatchView, names: CardNames): MatchCardView {
   const fanIsHome = view.match.home_id !== view.rivalId;

@@ -1,15 +1,17 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { isSelectable } from "@/data-model/club";
 import { clubSchema } from "@/data-model/schemas";
-import { clubInitials, initialsInk, toClubOption } from "@/lib/club-options";
+import { clubInitials, initialsInk, opponentCrest, toClubOption } from "@/lib/club-options";
 import { contrastRatio } from "@/lib/contrast";
 
 const clubs = clubSchema
   .array()
   .parse(
     JSON.parse(readFileSync(join(process.cwd(), "data", "clubs.json"), "utf8").replace(/^﻿/, "")),
-  );
+  )
+  .filter(isSelectable);
 
 const EXPECTED: Record<string, string> = {
   aldosivi: "ALD",
@@ -119,5 +121,20 @@ describe("toClubOption", () => {
     expect(toClubOption(clubs.find((c) => c.id === "aldosivi")!).searchKeys).toEqual(["Aldosivi"]);
     expect(toClubOption(clubs.find((c) => c.id === "huracan")!).searchKeys).toEqual(["Huracán"]);
     expect(toClubOption(river).searchKeys).toEqual(["River Plate", "River"]);
+  });
+});
+
+describe("opponentCrest (ADR 0022)", () => {
+  it("is one neutral solid crest with the initials of the name", () => {
+    const crest = opponentCrest("Peñarol de Montevideo");
+    expect(crest.pattern).toBe("solid");
+    expect(crest.initials).toBe("PM");
+    expect(opponentCrest("Flamengo").initials).toBe("FLA");
+    expect(opponentCrest("Flamengo").primary).toBe(crest.primary);
+  });
+  it("keeps the initials readable (4.5:1) and the pattern visible (3:1)", () => {
+    const crest = opponentCrest("Flamengo");
+    expect(contrastRatio(crest.initialsInk, crest.primary)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(crest.primary, crest.secondary)).toBeGreaterThanOrEqual(3);
   });
 });

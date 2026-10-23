@@ -8,16 +8,43 @@ const hex = z.string().regex(/^#[0-9a-fA-F]{6}$/);
 const count = z.number().int();
 const nullableCount = count.nullable();
 
-export const clubSchema = z.strictObject({
+const clubFields = {
   id: slug,
   name: z.string().min(1),
   short_name: z.string().min(1),
   aliases: z.array(z.string().min(1)),
-  colors: z.strictObject({ primary: hex, secondary: hex, tertiary: hex.optional() }),
-  jersey_pattern: z.enum(["solid", "vertical_stripes", "sash", "hoops", "halves", "other"]),
-  founded: count,
-  city: z.string().min(1),
+  colors: z.strictObject({ primary: hex, secondary: hex, tertiary: hex.optional() }).optional(),
+  jersey_pattern: z
+    .enum(["solid", "vertical_stripes", "sash", "hoops", "halves", "other"])
+    .optional(),
+  founded: count.optional(),
+  city: z.string().min(1).optional(),
+  /** Absent means selectable. `false` marks an opponent that only appears in matches (ADR 0022). */
+  selectable: z.boolean().optional(),
+  /** ISO 3166 alpha-2; only for opponents. */
+  country: z
+    .string()
+    .regex(/^[A-Z]{2}$/)
+    .optional(),
   source,
+};
+
+/** A selectable club needs its kit data; an opponent needs a country and nothing else. */
+export const clubSchema = z.strictObject(clubFields).superRefine((club, ctx) => {
+  if (club.selectable === false) {
+    if (club.country === undefined) {
+      ctx.addIssue({ code: "custom", path: ["country"], message: "an opponent needs a country" });
+    }
+    return;
+  }
+  for (const key of ["colors", "jersey_pattern", "founded", "city"] as const) {
+    if (club[key] === undefined) {
+      ctx.addIssue({ code: "custom", path: [key], message: "a selectable club needs " + key });
+    }
+  }
+  if (club.country !== undefined) {
+    ctx.addIssue({ code: "custom", path: ["country"], message: "only opponents have a country" });
+  }
 });
 
 export const competitionSchema = z.strictObject({

@@ -13,6 +13,7 @@ export const RSSSF_LAYOUTS = [
   "full-names-2017",
   "table-only",
   "champions-list",
+  "cup-full-names",
 ] as const;
 
 const hex64 = z.string().regex(/^[0-9a-f]{64}$/);
@@ -24,6 +25,8 @@ export const excerptSchema = z.strictObject({
   start: z.string().min(1),
   end: z.string().min(1),
   sha256: hex64,
+  /** The layout of this excerpt when it differs from the one of its page (a cup on a league page). */
+  layout: z.enum(RSSSF_LAYOUTS).optional(),
 });
 
 export const pageSchema = z.strictObject({

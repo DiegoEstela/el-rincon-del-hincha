@@ -116,3 +116,30 @@ describe("rival grouping (5.3 summary cards)", () => {
     expect(groupRivals(world, "club-a", fanPeriod("2030-01-01", FIXED_NOW)).all).toEqual([]);
   });
 });
+
+describe("opponents are not rivals (ADR 0022, D-B3)", () => {
+  function withOpponent() {
+    const ds = validDataset();
+    ds["clubs.json"].push({
+      id: "opponent-z",
+      name: "Opponent Z",
+      short_name: "Opponent Z",
+      aliases: [],
+      selectable: false,
+      country: "UY",
+      source: "fixture:synthetic",
+    });
+    ds["matches.json"] = [
+      game("o1", "2020-03-01", "club-a", "opponent-z", 3, 0),
+      game("o2", "2020-03-08", "club-a", "club-b", 1, 0),
+    ];
+    return buildStatsIndex(statsDataFrom(ds));
+  }
+
+  it("leaves the opponent out of the rivals list and the groups", () => {
+    const groups = groupRivals(withOpponent(), "club-a", from2020);
+    expect(groups.all.map((r) => r.rivalId)).toEqual(["club-b"]);
+    const grouped = [...groups.favorable, ...groups.even, ...groups.unfavorable];
+    expect(grouped.map((r) => r.rivalId)).toEqual(["club-b"]);
+  });
+});

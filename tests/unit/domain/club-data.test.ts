@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { statsWorld } from "../../fixtures/domain/stats-world";
 import { statsDataFrom } from "@/domain/data";
-import { CLUB_DATA_VERSION, sliceClubData, statsDataFromClubData } from "@/domain/club-data";
+import {
+  CLUB_DATA_VERSION,
+  selectableClubIds,
+  sliceClubData,
+  statsDataFromClubData,
+} from "@/domain/club-data";
 
 const data = statsDataFrom(statsWorld());
 
@@ -99,5 +104,40 @@ describe("statsDataFromClubData", () => {
 
   it("is deterministic whatever the order of the slices", () => {
     expect(JSON.stringify(statsDataFromClubData(b, a))).toBe(JSON.stringify(merged));
+  });
+});
+
+describe("selectableClubIds (ADR 0022)", () => {
+  it("lists the clubs a fan can pick and leaves the opponents out", () => {
+    const opponent = {
+      id: "opponent-z",
+      name: "Opponent Z",
+      short_name: "Opponent Z",
+      aliases: [],
+      selectable: false,
+      country: "UY",
+      source: "fixture:synthetic",
+    };
+    expect(selectableClubIds([...data.clubs, opponent])).toEqual(data.clubs.map((c) => c.id));
+  });
+
+  it("keeps an opponent in the slice of a club that played it, with its name", () => {
+    const opponent = {
+      id: "opponent-z",
+      name: "Opponent Z",
+      short_name: "Opponent Z",
+      aliases: [],
+      selectable: false,
+      country: "UY",
+      source: "fixture:synthetic",
+    };
+    const match = data.matches.find((m) => m.home_id === "club-a")!;
+    const withOpponent = {
+      ...data,
+      clubs: [...data.clubs, opponent],
+      matches: [...data.matches, { ...match, id: "vs-opponent", away_id: "opponent-z" }],
+    };
+    const slice = sliceClubData(withOpponent, "club-a");
+    expect(slice.clubs.map((c) => c.id)).toContain("opponent-z");
   });
 });

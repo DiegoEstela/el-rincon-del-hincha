@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { foldName, resolveClubId } from "@/data-model/club-aliases";
 import { CLUB_PALETTE } from "@/data-model/club-palette";
+import { isSelectable } from "@/data-model/club";
 import { clubSchema } from "@/data-model/schemas";
 import { validate } from "@/data-model/validate";
 import {
@@ -17,7 +18,7 @@ import {
 const raw: unknown = JSON.parse(
   readFileSync(join(process.cwd(), "data", "clubs.json"), "utf8").replace(/^﻿/, ""),
 );
-const clubs = clubSchema.array().parse(raw);
+const clubs = clubSchema.array().parse(raw).filter(isSelectable);
 const now = new Date();
 // Clubs of the 2025 list that cannot be delivered yet. Empty since plan 0012 (issue #48); keep the
 // constant so a future pending club has a place, and the contract below then skips it.

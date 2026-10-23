@@ -27,6 +27,11 @@ export type TournamentConfig = {
   mode: { kind: "own" } | { kind: "extends"; after: string };
   /** The final table counts every match of the season, so it is checked against the matches. */
   tableCoversSeason: boolean;
+  /**
+   * Cups (ADR 0022): only the matches where one of the selectable clubs plays are written. The rest
+   * are read and checked, and the season is dated from every match of the section.
+   */
+  appClubsOnly?: boolean;
 };
 
 export const RSSSF_COMPETITIONS: readonly Competition[] = OPENFOOTBALL_COMPETITIONS.filter(
