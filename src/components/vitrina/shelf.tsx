@@ -19,7 +19,7 @@ export function TrophyButton({
       onClick={() => onOpen(trophy.id)}
       className="focus-visible:outline-accent hover:bg-glass flex min-h-11 w-full flex-col items-center gap-1 rounded-xl p-2 text-center focus-visible:outline-2 focus-visible:outline-offset-2"
     >
-      <TrophyArt kind={trophy.kind} lit={!muted} className="size-14" />
+      <TrophyArt kind={trophy.kind} tone={muted ? "muted" : "gold"} className="size-14" />
       <span className="font-display text-2xl leading-none tabular-nums">{trophy.year}</span>
       <span className="text-muted text-xs">{trophy.seasonName}</span>
       {trophy.shared ? (
@@ -56,7 +56,7 @@ export function Shelf({ shelf, onOpen }: { shelf: ShelfView; onOpen: (id: string
             key={silhouette.competitionId}
             className="flex flex-col items-center gap-1 p-2 text-center"
           >
-            <TrophyArt kind={silhouette.kind} lit={false} className="size-14" />
+            <TrophyArt kind={silhouette.kind} tone="outline" className="size-14" />
             <span className="text-sm font-medium">{silhouette.name}</span>
             <span className="text-even text-xs font-medium">Te falta</span>
             <span className="text-muted text-xs">{silhouette.caption}</span>

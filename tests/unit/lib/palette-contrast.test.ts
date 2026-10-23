@@ -131,3 +131,19 @@ describe("rivals screen: dominance chips (plan 0015)", () => {
     }
   }
 });
+
+describe("vitrina (plan 0018)", () => {
+  for (const [name, surface] of Object.entries({ glassOnBg, glassOnRaised, worst, raised })) {
+    it(`the gold of the year and of the counter is at least 4.5:1 on ${name}`, () => {
+      expect(contrastRatio(t("gold"), surface)).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it(`the outline of a silhouette (muted) is at least 3:1 on ${name} (non-text contrast)`, () => {
+      expect(contrastRatio(t("muted"), surface)).toBeGreaterThanOrEqual(3);
+    });
+  }
+
+  it("the mark inside a lit trophy (the background) is at least 3:1 on the gold", () => {
+    expect(contrastRatio(t("background"), t("gold"))).toBeGreaterThanOrEqual(3);
+  });
+});

@@ -41,28 +41,34 @@ export const trophy = (extra: Partial<TrophyView> = {}): TrophyView => ({
 });
 
 describe("TrophyArt (plan 0018, T11)", () => {
-  it("draws one decorative svg per kind, lit in gold or as an outline", () => {
-    for (const kind of ["league", "cup", "international", "other"] as TrophyKind[]) {
-      const { container, unmount } = render(<TrophyArt kind={kind} lit />);
-      const lit = container.querySelector("svg")!;
+  const kinds: TrophyKind[] = ["league", "cup", "international", "other"];
+
+  it("draws one decorative svg per kind: gold, muted or an outline", () => {
+    for (const kind of kinds) {
+      const gold = render(<TrophyArt kind={kind} tone="gold" />);
+      const lit = gold.container.querySelector("svg")!;
       expect(lit).toHaveAttribute("aria-hidden", "true");
       expect(lit).toHaveClass("text-gold");
       expect(lit.dataset.kind).toBe(kind);
       expect(lit.querySelector("g")).toHaveAttribute("fill", "currentColor");
-      unmount();
-      const { container: outline, unmount: unmount2 } = render(
-        <TrophyArt kind={kind} lit={false} />,
-      );
-      const dim = outline.querySelector("svg")!;
-      expect(dim).toHaveClass("text-line-strong");
+      gold.unmount();
+
+      const outline = render(<TrophyArt kind={kind} tone="outline" />);
+      const dim = outline.container.querySelector("svg")!;
+      expect(dim).toHaveClass("text-muted");
       expect(dim.querySelector("g")).toHaveAttribute("fill", "none");
-      unmount2();
+      outline.unmount();
+
+      const muted = render(<TrophyArt kind={kind} tone="muted" />);
+      expect(muted.container.querySelector("svg")).toHaveClass("text-muted");
+      expect(muted.container.querySelector("g")).toHaveAttribute("fill", "currentColor");
+      muted.unmount();
     }
   });
 
   it("gives each kind its own mark", () => {
-    const marks = (["league", "cup", "international", "other"] as TrophyKind[]).map((kind) => {
-      const { container, unmount } = render(<TrophyArt kind={kind} lit />);
+    const marks = kinds.map((kind) => {
+      const { container, unmount } = render(<TrophyArt kind={kind} tone="gold" />);
       const mark = container.querySelectorAll("path")[3].getAttribute("d");
       unmount();
       return mark;
@@ -147,7 +153,8 @@ describe("Shelf (T12)", () => {
 
   it("draws a muted trophy without the gold", () => {
     const { container } = render(<TrophyButton trophy={trophy()} onOpen={() => undefined} muted />);
-    expect(container.querySelector("svg")).toHaveClass("text-line-strong");
+    expect(container.querySelector("svg")).toHaveClass("text-muted");
+    expect(container.querySelector("svg")).not.toHaveClass("text-gold");
   });
 });
 

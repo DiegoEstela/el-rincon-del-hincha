@@ -18,32 +18,42 @@ const MARKS: Record<TrophyKind, string> = {
   other: "M32 14l6 8-6 8-6-8z",
 };
 
+export type Tone = "gold" | "muted" | "outline";
+
+const TONE_CLASS: Record<Tone, string> = {
+  gold: "text-gold",
+  muted: "text-muted",
+  outline: "text-muted",
+};
+
 /**
- * A lit trophy is filled with the gold of the palette; a silhouette is only an outline, so it
- * reads as "still missing" without color alone (the caption says it too).
+ * "gold": a title of the fan, filled with the gold of the palette. "muted": a title from before the
+ * fan arrived, filled but without the gold. "outline": a silhouette, only a line, so it reads as
+ * "still missing" without color alone (the caption says it too).
  */
 export function TrophyArt({
   kind,
-  lit,
+  tone,
   className,
 }: {
   kind: TrophyKind;
-  lit: boolean;
+  tone: Tone;
   className?: string;
 }) {
+  const filled = tone !== "outline";
   return (
     <svg
       viewBox="0 0 64 64"
       aria-hidden="true"
       focusable="false"
       data-kind={kind}
-      data-lit={lit ? "true" : "false"}
-      className={`${lit ? "text-gold" : "text-line-strong"} ${className ?? ""}`}
+      data-tone={tone}
+      className={`${TONE_CLASS[tone]} ${className ?? ""}`}
     >
       <g
-        fill={lit ? "currentColor" : "none"}
+        fill={filled ? "currentColor" : "none"}
         stroke="currentColor"
-        strokeWidth={lit ? 1 : 2.5}
+        strokeWidth={filled ? 1 : 2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -54,7 +64,7 @@ export function TrophyArt({
       <path
         d={MARKS[kind]}
         fill="none"
-        stroke={lit ? "var(--background)" : "currentColor"}
+        stroke={filled ? "var(--background)" : "currentColor"}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
