@@ -6,11 +6,14 @@ export function TrophyButton({
   trophy,
   onOpen,
   muted = false,
+  tag,
 }: {
   trophy: TrophyView;
   onOpen: (id: string) => void;
   /** Titles from before the fan arrived are shown without the gold. */
   muted?: boolean;
+  /** A small mark under the trophy ("No cuenta"). */
+  tag?: string;
 }) {
   return (
     <button
@@ -21,12 +24,19 @@ export function TrophyButton({
     >
       <TrophyArt kind={trophy.kind} tone={muted ? "muted" : "gold"} className="size-14" />
       <span className="font-display text-2xl leading-none tabular-nums">{trophy.year}</span>
-      <span className="text-muted text-xs">{trophy.seasonName}</span>
+      {trophy.seasonName === trophy.year ? null : (
+        <span className="text-muted text-xs">{trophy.seasonName}</span>
+      )}
       {trophy.shared ? (
         <span className="border-gold/50 text-gold rounded-full border px-2 text-xs">
           Compartido
         </span>
       ) : null}
+      {tag === undefined ? null : (
+        <span className="border-line-strong text-muted rounded-full border border-dashed px-2 text-xs">
+          {tag}
+        </span>
+      )}
     </button>
   );
 }

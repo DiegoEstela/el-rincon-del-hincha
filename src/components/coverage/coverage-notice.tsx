@@ -10,11 +10,21 @@ import { CUPS_NOT_LOADED, type CoverageCopy } from "@/lib/coverage-copy";
 export function CoverageNotice({
   copy,
   included,
+  foldLines,
 }: {
   copy: CoverageCopy;
   /** "Contamos: ..." */
   included: string;
+  /** Folds the line per competition under a summary (a long note on a phone pushes the content). */
+  foldLines?: string;
 }) {
+  const list = (
+    <ul className="text-muted list-disc pl-5">
+      {copy.lines.map((line) => (
+        <li key={line}>{line}</li>
+      ))}
+    </ul>
+  );
   return (
     <div className="grid gap-2">
       {copy.show ? (
@@ -23,13 +33,16 @@ export function CoverageNotice({
           <div className="grid gap-1 text-sm">
             <p className="font-medium">{copy.heading}</p>
             <p className="text-muted">{copy.lead}</p>
-            {copy.lines.length > 0 ? (
-              <ul className="text-muted list-disc pl-5">
-                {copy.lines.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            ) : null}
+            {copy.lines.length === 0 ? null : foldLines === undefined ? (
+              list
+            ) : (
+              <details>
+                <summary className="text-accent focus-visible:outline-accent min-h-11 cursor-pointer py-2 underline focus-visible:outline-2">
+                  {foldLines}
+                </summary>
+                {list}
+              </details>
+            )}
           </div>
         </div>
       ) : null}

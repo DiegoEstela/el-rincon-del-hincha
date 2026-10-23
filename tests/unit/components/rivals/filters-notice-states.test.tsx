@@ -130,6 +130,21 @@ describe("CoverageNotice", () => {
     expect(within(note).getByText(copy.lines[0])).toBeInTheDocument();
   });
 
+  it("can fold the per-competition lines under a summary", () => {
+    const { container } = render(
+      <CoverageNotice
+        copy={copy}
+        included="Contamos: Primera División."
+        foldLines="Ver qué cargamos"
+      />,
+    );
+    const details = container.querySelector("details");
+    expect(details).not.toBeNull();
+    expect(details).not.toHaveAttribute("open");
+    expect(within(details!).getByText("Ver qué cargamos")).toBeInTheDocument();
+    expect(within(details!).getByText(copy.lines[0])).toBeInTheDocument();
+  });
+
   it("always says what is counted and that some cups are not loaded", () => {
     render(<CoverageNotice copy={copy} included="Contamos: Primera División." />);
     expect(screen.getByText("Contamos: Primera División.")).toBeInTheDocument();

@@ -59,13 +59,14 @@ export function TrophyDetail({
         openerRef.current?.focus();
         onClose();
       }}
+      // The padding is on an inner box, so only a click on the backdrop reaches the dialog itself.
       onClick={(event) => {
         if (event.target === event.currentTarget) dialogRef.current?.close();
       }}
-      className="info-sheet bg-raised border-line-strong text-foreground fixed inset-x-3 top-auto bottom-3 m-0 mx-auto max-h-[85vh] w-auto max-w-md overflow-y-auto rounded-2xl border p-4 lg:inset-y-3 lg:right-3 lg:left-auto lg:mx-0 lg:max-h-none lg:w-96"
+      className="info-sheet bg-raised border-line-strong text-foreground fixed inset-x-3 top-auto bottom-3 m-0 mx-auto max-h-[85vh] w-auto max-w-md overflow-y-auto rounded-2xl border p-0 lg:inset-y-3 lg:right-3 lg:left-auto lg:mx-0 lg:max-h-none lg:w-96"
     >
       {trophy === null || detail === undefined ? null : (
-        <div className="grid gap-4">
+        <div className="grid gap-4 p-4">
           <div className="flex items-start justify-between gap-2">
             <div>
               <h2
@@ -88,8 +89,10 @@ export function TrophyDetail({
             </button>
           </div>
           <p className="text-lg">Campeón el {detail.awardedOn}</p>
-          <section aria-label={detail.matchHeading} className="grid gap-2">
-            <h3 className="font-display text-2xl">{detail.matchHeading}</h3>
+          <section aria-labelledby="detalle-partido" className="grid gap-2">
+            <h3 id="detalle-partido" className="font-display text-2xl">
+              {detail.matchHeading}
+            </h3>
             {detail.match === null ? (
               <p className="text-muted text-sm">{detail.noMatchLine}</p>
             ) : (

@@ -161,7 +161,7 @@ export function titleCoverage(index: StatsIndex, today: string): TitleWindow[] {
           missingSeasonIds: [],
         };
       }
-      const last = seasons.length - 1 - [...seasons].reverse().findIndex((s) => titled.has(s.id));
+      const last = seasons.map((season) => titled.has(season.id)).lastIndexOf(true);
       const inside = seasons.slice(first, last + 1);
       return {
         competitionId: competition.id,

@@ -8,7 +8,6 @@ import type { StartMode } from "./fan-storage";
 import { formatMatchDate } from "./rivalry-copy";
 
 export const COUNTER_CAPTION = "En los torneos y temporadas que tenemos cargados.";
-export const COUNTER_MISSING = "Trofeos que te faltan";
 export const CRITERION =
   "Contamos solo títulos reconocidos por la AFA. Un título compartido cuenta entero para cada campeón.";
 
@@ -29,14 +28,28 @@ const SINCE: Record<StartMode, string> = {
   other: "desde que sos hincha",
 };
 
-/** "Trofeos ganados desde que naciste" / "... desde que sos hincha". */
-export function wonLabel(startMode: StartMode): string {
-  return `Trofeos ganados ${SINCE[startMode]}`;
+/** "Trofeos ganados desde que naciste" / "... desde que sos hincha"; "Trofeo ganado" for one. */
+export function wonLabel(startMode: StartMode, count: number): string {
+  return `${count === 1 ? "Trofeo ganado" : "Trofeos ganados"} ${SINCE[startMode]}`;
 }
 
-/** "Superliga 2018-19, campeón el 7 de abril de 2019. Ver detalle" */
-export function trophyButtonLabel(seasonName: string, awardedOn: string): string {
-  return `${seasonName}, campeón el ${formatMatchDate(awardedOn)}. Ver detalle`;
+/** "Trofeos que te faltan"; "Trofeo que te falta" for one. */
+export function missingLabel(count: number): string {
+  return count === 1 ? "Trofeo que te falta" : "Trofeos que te faltan";
+}
+
+/**
+ * The text a trophy button shows: the year, then the season name unless it is the year itself.
+ * The accessible name starts with exactly this text (WCAG 2.5.3, label in name).
+ */
+export function trophyVisibleText(year: string, seasonName: string, shared: boolean): string {
+  const base = seasonName === year ? year : `${year} ${seasonName}`;
+  return shared ? `${base} Compartido` : base;
+}
+
+/** "2019 Superliga 2018-19, campeón el 7 de abril de 2019. Ver detalle" */
+export function trophyButtonLabel(visibleText: string, awardedOn: string): string {
+  return `${visibleText}, campeón el ${formatMatchDate(awardedOn)}. Ver detalle`;
 }
 
 /** The caption of a silhouette: the seasons in which the champion is loaded. */
@@ -94,6 +107,8 @@ export const BEFORE_PERIOD = {
   title: (count: number) => `Antes de que llegaras (${count})`,
   text: "Los festejó tu club antes de que te hicieras hincha. No suman a tu vitrina, pero son parte de la historia.",
 } as const;
+
+export const NOT_COUNTED = "No cuenta";
 
 export const DISPUTED = {
   title: "Títulos discutidos",

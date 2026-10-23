@@ -24,7 +24,14 @@ const COLLECTIONS = [
 ] as const;
 
 const MATCH_STRINGS = ["id", "date", "home_id", "away_id", "season_id"] as const;
-const TITLE_STRINGS = ["id", "club_id", "competition_id", "season_id", "awarded_on"] as const;
+const TITLE_STRINGS = [
+  "id",
+  "club_id",
+  "competition_id",
+  "season_id",
+  "awarded_on",
+  "source",
+] as const;
 
 /** Light structural guard (the server is ours): version, club, arrays, the match and title keys. */
 export function isClubData(value: unknown, clubId: string): value is ClubData {

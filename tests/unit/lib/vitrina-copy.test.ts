@@ -6,17 +6,20 @@ import {
   CRITERION,
   DISPUTED,
   EMPTY_PERIOD,
+  NOT_COUNTED,
   NO_TITLES_LOADED,
   SHELF_TITLES,
   UNDER_CONSTRUCTION,
   checklistLabel,
   matchHeading,
+  missingLabel,
   sharedWith,
   silhouetteCaption,
   sourceHost,
   titleCoverageCopy,
   titlesIncludedLine,
   trophyButtonLabel,
+  trophyVisibleText,
   wonLabel,
   zeroTitlesLine,
   type NoticeRow,
@@ -24,14 +27,21 @@ import {
 
 describe("vitrina copy: labels", () => {
   it("words the first counter by start mode", () => {
-    expect(wonLabel("birth")).toBe("Trofeos ganados desde que naciste");
-    expect(wonLabel("other")).toBe("Trofeos ganados desde que sos hincha");
+    expect(wonLabel("birth", 5)).toBe("Trofeos ganados desde que naciste");
+    expect(wonLabel("other", 0)).toBe("Trofeos ganados desde que sos hincha");
+    expect(wonLabel("birth", 1)).toBe("Trofeo ganado desde que naciste");
+    expect(missingLabel(3)).toBe("Trofeos que te faltan");
+    expect(missingLabel(0)).toBe("Trofeos que te faltan");
+    expect(missingLabel(1)).toBe("Trofeo que te falta");
     expect(COUNTER_CAPTION).toBe("En los torneos y temporadas que tenemos cargados.");
   });
 
-  it("names a trophy button with the season and the day", () => {
-    expect(trophyButtonLabel("Superliga 2018-19", "2019-04-07")).toBe(
-      "Superliga 2018-19, campeón el 7 de abril de 2019. Ver detalle",
+  it("names a trophy button starting with the text it shows (label in name)", () => {
+    expect(trophyVisibleText("2019", "Superliga 2018-19", false)).toBe("2019 Superliga 2018-19");
+    expect(trophyVisibleText("2021", "Liga 2021", true)).toBe("2021 Liga 2021 Compartido");
+    expect(trophyVisibleText("2020", "2020", false)).toBe("2020");
+    expect(trophyButtonLabel("2019 Superliga 2018-19", "2019-04-07")).toBe(
+      "2019 Superliga 2018-19, campeón el 7 de abril de 2019. Ver detalle",
     );
   });
 
@@ -83,6 +93,7 @@ describe("vitrina copy: labels", () => {
     expect(BEFORE_PERIOD.title(2)).toBe("Antes de que llegaras (2)");
     expect(DISPUTED.title).toBe("Títulos discutidos");
     expect(CRITERION).toMatch(/reconocidos por la AFA/);
+    expect(NOT_COUNTED).toBe("No cuenta");
   });
 });
 

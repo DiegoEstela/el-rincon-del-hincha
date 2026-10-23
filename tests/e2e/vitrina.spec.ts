@@ -41,7 +41,7 @@ test.describe("ready content (synthetic document)", () => {
     await expect(page.getByText("River · desde enero de 2020")).toBeVisible();
 
     await expect(page.getByText("Trofeos ganados desde que naciste")).toBeVisible();
-    await expect(page.getByText("Trofeos que te faltan")).toBeVisible();
+    await expect(page.getByText("Trofeo que te falta")).toBeVisible();
     await expect(page.getByText("En los torneos y temporadas que tenemos cargados.")).toBeVisible();
     const counters = page.getByRole("region", { name: "Tus trofeos" });
     await expect(counters.locator("p.font-display")).toHaveText(["5", "1"]);
@@ -91,7 +91,7 @@ test.describe("ready content (synthetic document)", () => {
     await seed(page, "river-plate", "2022-06-01", "other");
     await serve(page);
     await page.goto("/vitrina");
-    await expect(page.getByText("Trofeos ganados desde que sos hincha")).toBeVisible();
+    await expect(page.getByText(/^Trofeos? ganados? desde que sos hincha$/)).toBeVisible();
     const before = page.getByText(/^Antes de que llegaras \(\d+\)$/);
     await expect(before).toBeVisible();
     await expect(page.locator("details[open]")).toHaveCount(0);
@@ -214,11 +214,12 @@ test.describe("real data", () => {
     const counters = page.getByRole("region", { name: "Tus trofeos" });
     await expect(counters.locator("p.font-display")).toHaveText(["2", "1"]);
     await expect(
-      page.getByRole("button", { name: /^Liga Profesional 2021, campeón el/ }),
+      page.getByRole("button", { name: /^2021 Liga Profesional 2021, campeón el/ }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /^Liga Profesional 2023, campeón el/ }),
+      page.getByRole("button", { name: /^2023 Liga Profesional 2023, campeón el/ }),
     ).toBeVisible();
+    await page.getByText("Ver qué cargamos").click();
     await expect(page.getByText(/^Primera División: tenemos los campeones de/)).toBeVisible();
     expect(await bodyText(page)).not.toMatch(CLAIMS_COMPLETE);
     await shot(page, testInfo.project.name, "river");
@@ -240,7 +241,7 @@ test.describe("real data", () => {
     await page.goto("/vitrina");
     await expect(
       page.getByRole("button", {
-        name: /^Copa Diego Armando Maradona 2020, campeón el 17 de enero de 2021/,
+        name: /^2021 Copa Diego Armando Maradona 2020, campeón el 17 de enero de 2021/,
       }),
     ).toBeVisible();
   });

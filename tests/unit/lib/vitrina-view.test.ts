@@ -58,7 +58,7 @@ describe("buildVitrinaView on the synthetic world", () => {
     expect(view.counters).toMatchObject({
       wonLabel: "Trofeos ganados desde que naciste",
       won: 5,
-      missingLabel: "Trofeos que te faltan",
+      missingLabel: "Trofeo que te falta",
       missing: 1,
       caption: "En los torneos y temporadas que tenemos cargados.",
     });

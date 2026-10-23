@@ -23,19 +23,20 @@ import type { StartMode } from "./fan-storage";
 import { buildMatchCard, type MatchCardView } from "./match-card-view";
 import {
   COUNTER_CAPTION,
-  COUNTER_MISSING,
   CRITERION,
   NO_DECIDING_MATCH,
   SHELF_TITLES,
   UNDER_CONSTRUCTION,
   checklistLabel,
   matchHeading,
+  missingLabel,
   sharedWith,
   silhouetteCaption,
   sourceHost,
   titleCoverageCopy,
   titlesIncludedLine,
   trophyButtonLabel,
+  trophyVisibleText,
   wonLabel,
   zeroTitlesLine,
   type ChecklistStatus,
@@ -169,7 +170,10 @@ export function buildVitrinaView(input: VitrinaViewInput): VitrinaView {
       competitionName: competitionName(t.competition.id),
       kind: kindOf(t.competition),
       shared: t.shared,
-      buttonLabel: trophyButtonLabel(seasonName(t.season.id), t.awardedOn),
+      buttonLabel: trophyButtonLabel(
+        trophyVisibleText(t.awardedOn.slice(0, 4), seasonName(t.season.id), t.shared),
+        t.awardedOn,
+      ),
       detail: {
         awardedOn: formatMatchDate(t.awardedOn),
         matchHeading: matchHeading(t.decidingMatch?.is_final ?? false),
@@ -184,20 +188,40 @@ export function buildVitrinaView(input: VitrinaViewInput): VitrinaView {
     };
   };
 
+  // The seasons of the title window that the fan lived: "te falta" is only claimed for those.
+  const windowSeasons = (competitionId: string, firstId: string, lastId: string) => {
+    const seasons = index.data.seasons
+      .filter((s) => s.competition_id === competitionId)
+      .sort((a, b) => a.start.localeCompare(b.start));
+    const inWindow = seasons.slice(
+      seasons.findIndex((s) => s.id === firstId),
+      seasons.findIndex((s) => s.id === lastId) + 1,
+    );
+    // A pending title always has a lived season in its window (the engine only opens one then).
+    return inWindow.filter((s) => s.start <= fan.end && s.end >= fan.start);
+  };
+
   const silhouettes = pending
     .filter((p) => p.status === "pending")
-    .map((p) => ({
-      shelf: p.shelf,
-      view: {
-        competitionId: p.competition.id,
-        name: competitionName(p.competition.id),
-        kind: kindOf(p.competition),
-        caption: silhouetteCaption(
-          seasonName(p.windowFirstSeasonId!),
-          seasonName(p.windowLastSeasonId!),
-        ),
-      } satisfies SilhouetteView,
-    }));
+    .map((p) => {
+      const seasons = windowSeasons(
+        p.competition.id,
+        p.windowFirstSeasonId!,
+        p.windowLastSeasonId!,
+      );
+      return {
+        shelf: p.shelf,
+        view: {
+          competitionId: p.competition.id,
+          name: competitionName(p.competition.id),
+          kind: kindOf(p.competition),
+          caption: silhouetteCaption(
+            seasonName(seasons[0].id),
+            seasonName(seasons[seasons.length - 1].id),
+          ),
+        } satisfies SilhouetteView,
+      };
+    });
 
   const recognized = index.data.competitions.filter(isRecognized);
   const shelves = SHELF_ORDER.map((key): ShelfView => {
@@ -268,9 +292,9 @@ export function buildVitrinaView(input: VitrinaViewInput): VitrinaView {
     hasAnyTitles,
     emptyPeriod: fan.isEmpty,
     counters: {
-      wonLabel: wonLabel(input.startMode),
+      wonLabel: wonLabel(input.startMode, won.length),
       won: won.length,
-      missingLabel: COUNTER_MISSING,
+      missingLabel: missingLabel(silhouettes.length),
       missing: silhouettes.length,
       caption: COUNTER_CAPTION,
     },

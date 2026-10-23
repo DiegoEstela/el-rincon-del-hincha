@@ -80,7 +80,8 @@ function VitrinaContent({
   data: ClubData;
   clubs: readonly ClubOption[];
 }) {
-  // "Today" is taken once the page is in the browser, never while prerendering.
+  // "Today" is taken once the page is in the browser, never while prerendering. It is not
+  // refreshed while the tab stays open: after midnight a reload brings the new day.
   const [now] = useState(() => new Date());
   const [openId, setOpenId] = useState<string | null>(null);
   const index = useMemo(() => buildStatsIndex(statsDataFromClubData(data)), [data]);
@@ -149,7 +150,7 @@ function VitrinaContent({
         <Counters counters={view.counters} />
       </div>
       <div className="lg:col-start-3 lg:row-start-3">
-        <CoverageNotice copy={view.notice} included={view.included} />
+        <CoverageNotice copy={view.notice} included={view.included} foldLines="Ver qué cargamos" />
       </div>
       <div className="grid gap-4 lg:col-span-2 lg:col-start-1 lg:row-span-4 lg:row-start-2">
         {view.emptyLine === null ? null : <p className="text-muted">{view.emptyLine}</p>}

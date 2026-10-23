@@ -233,6 +233,7 @@ describe("BeforePeriod and Disputed (T15)", () => {
     expect(
       screen.getByText("No los contamos: no están reconocidos por la AFA."),
     ).toBeInTheDocument();
+    expect(screen.getByText("No cuenta")).toBeInTheDocument();
   });
 });
 

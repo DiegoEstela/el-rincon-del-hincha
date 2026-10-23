@@ -1,4 +1,4 @@
-import { BEFORE_PERIOD, DISPUTED } from "@/lib/vitrina-copy";
+import { BEFORE_PERIOD, DISPUTED, NOT_COUNTED } from "@/lib/vitrina-copy";
 import type { TrophyView } from "@/lib/vitrina-view";
 import { TrophyButton } from "./shelf";
 
@@ -46,7 +46,7 @@ export function Disputed({
       <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4">
         {trophies.map((trophy) => (
           <li key={trophy.id}>
-            <TrophyButton trophy={trophy} onOpen={onOpen} muted />
+            <TrophyButton trophy={trophy} onOpen={onOpen} muted tag={NOT_COUNTED} />
           </li>
         ))}
       </ul>
