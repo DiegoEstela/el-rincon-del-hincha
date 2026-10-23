@@ -15,7 +15,7 @@ Load the history of the Argentine first division from RSSSF through an adapter t
 The work has two phases:
 
 - **Phase A, the league (permitted, ships alone).** Matches, final tables (standings) and, if Diego approves D5, league titles of the first division. It ships in three PRs: A1 code and fixtures (no `data/` change), A2 club records and aliases, A3 the data, the coverage table and the credit.
-- **Phase B, the cups (BLOCKED).** Nothing from the cups is fetched, parsed, committed or shown until Diego has sent the request (task T1 drafts it) and the written reply is stored in `docs/spike/replies/`. Phase B is re-planned then.
+- **Phase B, the cups (re-planned 2026-10-23).** RSSSF's second reply covers the cups; the scope, the opponents model and the PRs are in "Phase B: the cups" below.
 
 ## Acceptance criteria (copied from issue #70)
 
@@ -139,49 +139,49 @@ None of the bytes is valid UTF-8. Findings that shape the design:
 - **Let RSSSF take over the 2018-19 to 2025 seasons.** One source for the whole history is attractive, but it rewrites 2,435 reviewed matches and their ids and changes every golden test, for no new information. Rejected (D3 alternative). Taking over only the 2025 Apertura is described in D3.
 - **Fuzzy or city-aware name matching.** Breaks ADR 0012. Rejected; the table key `<name> (<headquarters>)` keeps matching exact.
 
-## Phase B: the cups (BLOCKED)
+## Phase B: the cups (re-planned 2026-10-23)
 
-**Nothing from the cups is fetched, parsed, committed or shown before the written reply is stored in `docs/spike/replies/`.** In Phase A the excerpts are cut before any cup section, a manifest test fails if an excerpt contains an anchor that is not listed, and an integration test fails if any record with the RSSSF prefix belongs to a competition other than `primera-division`. The research of this plan read two season pages that contain cup sections, in a temporary directory outside the repository; no cup data was used or kept.
+RSSSF's second written reply (`docs/spike/replies/2026-10-23-rsssf-all-data.md`) lets us use any data we need, citing the owner of the dataset. The page inventory is in `docs/spike/rsssf-cups-inventory.md`. Diego approved the five recommendations of that inventory on 2026-10-23 (see "Decisions recorded"), so this phase has no open product question except the ones listed under "Decisions for Diego (Phase B)" below.
 
-### Request draft (task T1 adds it to `docs/spike/permission-requests.md` as section 3; Diego sends it, in the same thread as the first request)
+### Scope (approved)
 
-> Subject: Follow-up: Argentine cups and Argentine clubs in CONMEBOL competitions
->
-> Hello,
->
-> Thank you again for your reply of 16 October 2026 about the Argentine first division. Rincón del Hincha now uses those pages, with the credit you suggested and a link to every page used.
->
-> Fans have asked for the cups too, so I would like to ask before using anything else. Under the same conditions as before (a free, non-commercial web app with no ads and no betting content, a source field with the URL of the page on every record, and credit to RSSSF and the author of each page), could you confirm in writing whether I may:
->
-> 1. Store the match results and final tables of the **Copa Argentina** in the public repository of the project.
-> 2. Store the results of the matches played by **Argentine clubs in the Copa Libertadores and the Copa Sudamericana**, and the tables of the groups they played in.
-> 3. Store the results of the cups that the Argentine league organizes for first-division clubs and that appear on the Argentina season pages: the Copa de la Liga Profesional (2020 to 2024), the Copa de la Superliga (2019), the Supercopa Argentina, the Trofeo de Campeones and the Supercopa Internacional. If you consider these already covered by your first reply, please just say so.
-> 4. Keep in the same repository byte-exact copies of only the sections of each page that we use (never whole pages), so that anyone can check every record against the text it came from. This applies to the first-division sections we already use as well.
-> 5. Show statistics derived from all of the above in the app, as with the league.
->
-> If the pages of the international cups are maintained by other authors, please tell me how they would like to be credited. As before, I am happy to remove any content on request.
->
-> Thank you very much,
-> Diego Estela Lopez
+- **Window:** editions whose final falls on or after 2018-07-01 (the first day after the openfootball data starts), loaded whole. Earlier editions follow as separate PRs, like the earlier eras of the league.
+- **Matches:** only those where at least one of the 34 clubs of the app plays. Every other match of the page is read, checked and dropped.
+- **Competitions** (all `afa_recognized` decided per competition with a sourced reason, see D-B4):
+  - `copa-argentina`, `copa-libertadores`, `copa-sudamericana`: the three cups of the issue.
+  - `copa-de-la-liga-profesional` (already exists, 2020 to 2024 from the season pages), `copa-de-la-superliga` (2019 and 2019-20), `trofeo-de-campeones`, `supercopa-argentina`, `supercopa-internacional`: the league and AFA cups that sit on the season pages. Recognition decides whether each one counts as a title or goes under "Títulos discutidos" (ADR 0021).
+- **Titles:** the champion of every loaded edition (the final decides it) is written to `titles.json` with the final as its source, under the rules of ADR 0021.
+- **Order of work (approved):** the 2023, 2024 and 2025 sections first (the layout already exists), then 2018 to 2022.
 
-### When the reply arrives (re-plan, outline only)
+### What the pages give (from the inventory)
 
-- Store it in `docs/spike/replies/`, update ADR 0003 decision 6 and ADR 0020 with the exact scope, and re-plan Phase B in this file before any code.
-- **Foreign clubs need an ADR first.** Libertadores and Sudamericana matches are against clubs from other countries, which ADR 0016 does not allow in `clubs.json` (crest colors, contrast, sources, onboarding). Options: foreign clubs as records that are not selectable, or a separate `opponents` list. This is a product and data-model decision for Diego.
-- Competitions: `copa-argentina`, `copa-libertadores`, `copa-sudamericana` (plan 0014 Phase 2, T17, may already add them with declared gaps); their seasons, stages and finals (`is_final` per leg; two-legged finals use the existing final-series rules).
-- New layouts for the cup sections and the CONMEBOL pages; the same excerpt, table-check and ownership rules.
-- Coverage: the declared gaps of the three cups narrow to the editions still missing; the cups line of the notice is narrowed by the UI issue that owns that copy; the vitrina (#67) reads cup titles.
+| Source                                      | Pages                                                                                                                                          | Layout                                                                            |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Domestic cups 2023 to 2025                  | `arg2023`, `arg2024`, `arg2025`: anchors `nationalcup`, `leaguecup`, `leaguesuper`, `1champtroph`, `lpfsuper`, `supercup`                      | `full-names-2017` rows with cup stage headers and `pso`                           |
+| Domestic cups 2018 to 2022                  | `arg2018` to `arg2022`: anchors `copa`, `copaliga`, `copadam`, `trofeocampeones`, `leaguesuper`, `trofeo`, `supercopa`, `supercup`, `lpfsuper` | older style, one layout task per style found                                      |
+| Libertadores and Sudamericana 2018 to 2024  | `sacups/copaYYYY`, `sacups/sudamcupYYYY` (14 pages, 6 to 18 KB)                                                                                | new layout `continental-ties`: two-leg tie lines, dated groups                    |
+| Copa Argentina 2020 and 2021                | the same season pages                                                                                                                          | no regular edition in 2020 and 2021: declared gap with a source, nothing invented |
+| Libertadores and Sudamericana 2025 and 2026 | no page yet (404)                                                                                                                              | declared gap; the champions of 2025 come from another source or stay out          |
 
-### Alternatives to evaluate for the cups (options only, nothing ingested)
+### Approach
 
-| Option                                                                                        | What it would give                                                                                                                              | Open questions                                                                                                         |
-| --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| openfootball `south-america/copa-libertadores/` (CC0-1.0; file list only, checked 2026-10-19) | Files `2012_copal.txt` to `2026_copal.txt` (Libertadores) and `2012_copas.txt` to `2025_copas.txt` (Sudamericana), last auto-update 2026-07-11. | Content, completeness and grammar not read; no Copa Argentina; only from 2012; foreign clubs still need the ADR above. |
-| API-Football free plan (ADR 0003 decision 5)                                                  | Copa Argentina, Libertadores and Sudamericana for 2022 to 2024.                                                                                 | Vendor terms to re-read; key server-only; responses not redistributable, so synthetic fixtures; three seasons only.    |
-| Wikipedia lists of champions (CC BY-SA, ADR 0003 decision 4)                                  | Cup **titles** (not matches) for the vitrina, independent of match coverage (methodology: title lists do not depend on match coverage).         | Per-record oldid and attribution; recognition of each title; does not feed rivalries.                                  |
-| Wikipedia edition articles                                                                    | Finals and knockout results.                                                                                                                    | Share-alike reading for a data compilation; uneven completeness; a second source per fact.                             |
+1. **Opponents (ADR 0022, proposed).** The foreign and lower-division clubs are not selectable clubs. They become opponent records: the same `clubs` table with `selectable: false`, a `country` and generic neutral crest (no colors are researched; the record has no colors unless a source is already in hand). The onboarding grid, search and `/rivales` club list keep only selectable clubs. Details and the data-model changes are in the ADR.
+2. **Manifest and snapshot.** The cup sections are new excerpts of pages that are already in the manifest (domestic) or new pages (continental). Same rules as Phase A: byte-exact excerpts, sha256, author, last updated, snapshot tool unchanged apart from a page list. A page is added only with its author.
+3. **Layouts.** `cup-full-names` (the 2023 to 2025 cup sections: dated headers, `[3] 0- 0 [1]` plus `pso`, stage names in English and Spanish) reuses the first-division grammar, and `continental-ties` is new. Both are exhaustive, anchored, linear-time grammars that fail loudly on an unknown line, and each has a reduced fixture.
+4. **Two-leg ties.** Each leg is one match. Dates come from the header `(Feb 6 & 13)` with the year of the page; the first club named hosts the first leg; the aggregate, away goals, awarded legs (`x`) and shoot-outs (`4-1p`) are checked against the legs and a mismatch stops the run. Group matches are one line each.
+5. **Neutral venues.** One-match finals (Copa Argentina, Libertadores since 2019, Sudamericana since 2019, Supercopas) keep the order of the page for home and away, with `neutral: true` if the schema has it, otherwise the rule of D6 of Phase A.
+6. **Club resolution.** Exact aliases only. Unknown names produce the list for Diego (his rule: ask, never search the web), split into aliases of existing clubs and new opponents. The domestic cups also bring short names (`CA Racing`, `Club de Gimnasia y Esgrima LP`).
+7. **Coverage.** The cups get coverage rows per club (from the first loaded edition, with declared gaps for 2020 and 2021 and for 2025 onward in the continental cups). The "cups not loaded" notice (plan 0014 Phase 2) narrows to the competitions still missing and its copy is owned by the UI issue.
+8. **Vitrina.** The shelf of each cup reads `titles.json`; competitions of ADR 0021 that are loaded stop being silhouettes with "no cargamos". Nothing else in the vitrina changes.
+9. **Rivals and head-to-head.** Cup matches against the 34 clubs appear in the existing rivalry screens through their competition filters (ADR 0019); opponents do not get a rivalry page (D-B3).
 
-Evaluating any of these is a separate issue (D10, changed by Diego: the vitrina is fed by RSSSF and by every permitted source we have, and it does not wait for any single one).
+### Decisions for Diego (Phase B)
+
+- **D-B1. Opponents as `selectable: false` clubs.** Add `selectable` and `country` to the club schema, validator and Supabase `clubs` (a migration with parity tests), keep the generic crest, and write ADR 0022. **Recommended: yes.** Alternative: a separate `opponents` table, which needs a second foreign key on every match and doubles the join in the engine.
+- **D-B2. Neutral crest.** Opponents with no sourced colors use one neutral crest with the initials; no color is researched without a source. **Recommended: yes.**
+- **D-B3. Opponents in the rivals list.** The rivals list shows the 34 clubs only; a match against an opponent counts for the head-to-head of a pair only when both are clubs of the app, and for the fan's totals and titles in every case. **Recommended: yes**, so the list does not fill with 60 foreign clubs.
+- **D-B4. Recognition.** `afa_recognized` per competition, each with a sourced reason (AFA page or a dated Wikipedia revision); a competition without a source goes to "Títulos discutidos". **Recommended: yes.** Stop and ask Diego if a source contradicts another.
+- **D-B5. First slice.** PR B1 is the code and fixtures for `cup-full-names` (2023 to 2025 domestic cups) with opponents; PR B2 loads those editions and the Copa Argentina titles; PR B3 adds `continental-ties` and the Libertadores and Sudamericana 2018 to 2024; PR B4 the 2018 to 2022 domestic sections. **Recommended: yes**; each PR passes the data auditor and shows the cups line of the coverage notice narrowed accordingly.
 
 ## Decisions for Diego (NEEDS DIEGO)
 
@@ -262,11 +262,36 @@ Fixtures in `tests/fixtures/ingest/rsssf/`: reduced byte-exact excerpts of first
 - [ ] **T41 Docs.** `docs/methodology.md`: an "RSSSF (Argentine first division)" section (excerpts and refresh, layouts, date resolution, one source per season and `extends`, abandoned, resumed and awarded matches, standings, titles and `awarded_on`, Promoción excluded, home and away at neutral venues, the table check), the known gaps table, the attribution. ADR 0020 to Accepted with Diego's answers; pointers in ADR 0003 (decisions 2, 3, 4 and the attribution section), ADR 0012 (decision 3) and ADR 0015 (decisions 2, 3, 8). This plan: "Decisions recorded", verification logs, status.
 - [ ] **T42 Gates.** `pnpm lint`, `pnpm typecheck`, `pnpm test:coverage`, `pnpm data:validate`, `pnpm data:coverage --check`, `pnpm build`, `pnpm e2e`.
 
-### Phase B (BLOCKED until the written reply is stored)
+### Phase B (tasks written by T44; every group starts with tests)
 
-- [ ] **T43 (Diego) Send the request** of T1 and store the reply in `docs/spike/replies/`. Not a builder task.
-- [ ] **T44 Re-plan Phase B** in this file with the real scope of the reply, the foreign-clubs ADR, the competitions and gaps, the layouts and the tasks; get Diego's answers before any code.
-- [ ] **T45 onward** are written by T44.
+- [x] **T43 (Diego) Send the request** and store the reply. Done: the second reply is stored in `docs/spike/replies/2026-10-23-rsssf-all-data.md` (it covers any data, so the request of T1 was not needed as drafted).
+- [x] **T44 Re-plan Phase B** (this section) and the page inventory (`docs/spike/rsssf-cups-inventory.md`).
+
+PR B1: opponents and the domestic cup layout (code and fixtures, no `data/` change)
+
+- [ ] **T45 ADR 0022 opponents.** Accepted after Diego's answer to D-B1 and D-B2.
+- [ ] **T46 Schema.** Tests first: `selectable` (default true) and `country` on the club schema, the validator and the Supabase constraints, with a migration and the parity tests; `colors` stay required for selectable clubs. Then the code. Existing data validates unchanged.
+- [ ] **T47 Selectable only.** Tests first: onboarding, search, `/rivales` list and compare show only selectable clubs; matches against opponents count in totals, history and titles. Then `club-options` and the views.
+- [ ] **T48 Neutral crest.** Test first: an opponent crest has no club colors and passes contrast. Then the component.
+- [ ] **T49 `cup-full-names` layout.** Fixture from the `nationalcup` section of `arg2025` (reduced) plus a league cup and a Trofeo de Campeones section; tests for date headers, stages, `pso`, rows of the cup table (ignored, not a standings source), unknown line and the caps.
+- [ ] **T50 Cup config and competitions.** Tests first (the competition list and ids, season windows, declared gaps for 2020 and 2021); then `config.ts` entries and the competition records (by hand, each with a sourced `afa_recognized`, D-B4).
+- [ ] **T51 Filter to app clubs.** Test first: a match without any of the 34 clubs is read, checked and dropped; an unknown club that faces an app club stops the run with the list of names.
+
+PR B2: the data of the domestic cups 2023 to 2025
+
+- [ ] **T52 Names for Diego.** Dry run on the real excerpts (from the snapshot) and the list of unknown names, split into aliases and new opponents. Stop and ask Diego; approved names go to `clubs.json`.
+- [ ] **T53 Snapshot and ingest.** `pnpm data:snapshot rsssf` for the new excerpts of the pages already in the manifest, then `pnpm data:ingest rsssf`; seasons, matches, titles; `pnpm data:coverage` regenerated in the same commit.
+- [ ] **T54 Docs and review.** Methodology section for the cups, ADR 0020 note, the credit page lists the cup excerpts; auditors; PR.
+
+PR B3: Libertadores and Sudamericana 2018 to 2024
+
+- [ ] **T55 `continental-ties` layout.** Fixtures reduced from `copa2019`, `copa2024`, `sudamcup2019` and `sudamcup2024`; tests for the legs and dates ("Feb 6 & 13"), shoot-outs, away goals, awarded legs, group lines and tables, the final, the aggregate check and the unknown-line failure.
+- [ ] **T56 Pages in the manifest.** The 14 pages, each with its author (Karel Stokkermans, Osvaldo José Gorgazzi, Erik Francisco Lugo), as full-page entries because the whole page is the cup.
+- [ ] **T57 Names for Diego, ingest, coverage, docs, review, PR** as T52 to T54.
+
+PR B4: the domestic cups 2018 to 2022
+
+- [ ] **T58 Layouts for the older sections** (one task per style found, T17 pattern), then names, ingest, coverage, docs, review, PR.
 
 ## Tests to write (summary)
 
@@ -309,6 +334,8 @@ Fixtures in `tests/fixtures/ingest/rsssf/`: reduced byte-exact excerpts of first
 Diego answered on 2026-10-19: D1 to D9 approved as recommended. On 2026-10-23 he approved the 59 club aliases of the 2025 pages (his rule: club names that are missing are asked to him, never searched on the web).
 
 **D10, changed by Diego.** The vitrina (#67) is fed by RSSSF **and by everything else we have**, not by a separate cups evaluation that it waits for. Consequences for this plan: the vitrina reads `titles.json` as soon as Phase A writes the first-division titles (D5); cup titles join it from whichever permitted source lands first (RSSSF after a written reply, or the openfootball CC0 files and Wikipedia titles evaluated in their own issue); every shelf shows what is loaded and its coverage, never an invented total. The evaluation issue of the alternative sources stays, but as an input to the vitrina, not as a condition for it.
+
+**Phase B scope, approved by Diego on 2026-10-23** (the five recommendations of `docs/spike/rsssf-cups-inventory.md`): (1) the cups load from the editions that end on or after 2018-07-01; (2) foreign and lower-division clubs are opponents, loaded only when an app club plays them, and the list of new names is given to him for approval; (3) only matches where one of the 34 clubs plays; (4) the three official cups plus the league cups the AFA recognizes count as titles, the rest go under "Títulos discutidos" or stay out, as in ADR 0021; (5) the 2023 to 2025 sections go first. D-B1 to D-B5 below the Phase B section are still to be answered.
 
 ## Verification log: unknown-name inventory (T24, 2026-10-23, page `arg2025`)
 
