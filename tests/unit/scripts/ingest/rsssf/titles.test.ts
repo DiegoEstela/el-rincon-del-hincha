@@ -27,9 +27,9 @@ const seasons: TitleSeason[] = [
   },
 ];
 const ids: Record<string, string> = { Racing: "racing-club", Est: "estudiantes-la-plata" };
-const facts = new Map([
-  ["liga-2018-19", { end: "2019-05-19", finals: [] as string[] }],
-  ["liga-2025-clausura", { end: "2025-12-14", finals: ["2025-12-14"] }],
+const facts = new Map<string, { last: string | null; finals: string[] }>([
+  ["liga-2018-19", { last: "2019-05-19", finals: [] as string[] }],
+  ["liga-2025-clausura", { last: "2025-12-14", finals: ["2025-12-14"] }],
 ]);
 
 const run = (overrides: Partial<Parameters<typeof buildTitles>[0]> = {}) => {
@@ -70,10 +70,21 @@ describe("buildTitles (plan 0017, T20)", () => {
 
   it("dates a title on the final when the season has one, else on its last match", () => {
     const withFinals = new Map(facts);
-    withFinals.set("liga-2018-19", { end: "2019-05-19", finals: ["2019-05-12", "2019-05-18"] });
+    withFinals.set("liga-2018-19", { last: "2019-05-19", finals: ["2019-05-12", "2019-05-18"] });
     const { titles } = run({ seasons: withFinals });
     expect(titles[0].awarded_on).toBe("2019-05-18");
     expect(titles[1].awarded_on).toBe("2025-12-14");
+  });
+
+  it("takes the latest of two finals in one season, and reports a season with no match", () => {
+    const two = new Map(facts);
+    two.set("liga-2025-clausura", { last: "2025-12-20", finals: ["2025-12-14", "2025-12-20"] });
+    expect(run({ seasons: two }).titles[1].awarded_on).toBe("2025-12-20");
+    const none = new Map(facts);
+    none.set("liga-2018-19", { last: null, finals: [] });
+    const result = run({ seasons: none });
+    expect(result.problems[0]).toMatch(/liga-2018-19 has no match to date its title/);
+    expect(result.titles).toHaveLength(1);
   });
 
   it("never writes the Anual LPF, which the config does not list", () => {
@@ -124,7 +135,9 @@ describe("normalizeRsssf with titles", () => {
     ] as never;
     const existing = {
       "seasons.json": [{ id: "liga-2018-19", end: "2019-05-19" }],
-      "matches.json": [],
+      "matches.json": [
+        { season_id: "liga-2018-19", date: "2019-05-19", is_final: false, source: "https://x/" },
+      ],
     };
     const out = normalizeRsssf([], clubs, [], {
       champions,

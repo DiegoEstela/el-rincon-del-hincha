@@ -286,13 +286,21 @@ export function normalizeRsssf(
 
   let titles: Title[] | undefined;
   if (titlesSource !== undefined) {
-    // End date and final dates of every season: what is held and what this run adds.
-    const facts = new Map<string, { end: string; finals: string[] }>();
+    // The data as it will be after this run: the seasons held and added, and the matches of the
+    // other sources plus the ones this run writes. The matches of this adapter that are in
+    // data/ now are replaced by this run, so they must not date a title.
+    const facts = new Map<string, { last: string | null; finals: string[] }>();
     for (const s of [...((titlesSource.existing["seasons.json"] ?? []) as Season[]), ...seasons]) {
-      facts.set(s.id, { end: s.end, finals: [] });
+      facts.set(s.id, { last: null, finals: [] });
     }
-    for (const m of [...((titlesSource.existing["matches.json"] ?? []) as Match[]), ...matches]) {
-      if (m.is_final) facts.get(m.season_id)?.finals.push(m.date);
+    const held = ((titlesSource.existing["matches.json"] ?? []) as Match[]).filter(
+      (m) => !m.source.startsWith(RSSSF_SOURCE_PREFIX),
+    );
+    for (const m of [...held, ...matches]) {
+      const season = facts.get(m.season_id);
+      if (season === undefined) continue;
+      if (season.last === null || m.date > season.last) season.last = m.date;
+      if (m.is_final) season.finals.push(m.date);
     }
     // The champion marked in the final table of a tournament we read, to check the list against.
     const tableChampions = new Map<string, string>();

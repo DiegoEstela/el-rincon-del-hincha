@@ -10,14 +10,15 @@ import type { TitleSeason } from "./types";
 
 export const CHAMPIONS_SOURCE = `${RSSSF_SOURCE_PREFIX}argchamp.html#champions`;
 
-type SeasonFacts = { end: string; finals: string[] };
+/** The date of the last match of the season (null if it has none) and of its final matches. */
+type SeasonFacts = { last: string | null; finals: string[] };
 
 export type TitlesInput = {
   champions: ParsedChampions;
   titleSeasons: readonly TitleSeason[];
   /** Club id for a champion name of the list, or null (already reported as unknown). */
   resolve: (name: string, line: number) => string | null;
-  /** Season id -> its end date and the dates of its final matches (existing data and this run). */
+  /** Season id -> its last match date and its final dates (the data as it will be after this run). */
   seasons: ReadonlyMap<string, SeasonFacts>;
   /** Season id -> the club id marked "Champion" in the final table we read, when we read one. */
   tableChampions: ReadonlyMap<string, string>;
@@ -54,12 +55,19 @@ export function buildTitles(input: TitlesInput): Title[] {
       continue;
     }
     const finals = [...facts.finals].sort();
+    const awardedOn = finals.length > 0 ? finals[finals.length - 1] : facts.last;
+    if (awardedOn === null) {
+      problems.push(
+        `${champions.excerpt}:${row.line}: the season ${t.seasonId} has no match to date its title`,
+      );
+      continue;
+    }
     titles.push({
       id: `${t.seasonId}-${clubId}`,
       club_id: clubId,
       competition_id: t.competition_id,
       season_id: t.seasonId,
-      awarded_on: finals.length > 0 ? finals[finals.length - 1] : facts.end,
+      awarded_on: awardedOn,
       shared: false,
       source: CHAMPIONS_SOURCE,
       verified: false,
