@@ -269,7 +269,7 @@ Fixtures in `tests/fixtures/ingest/rsssf/`: reduced byte-exact excerpts of first
 
 PR B1: opponents and the domestic cup layout (code and fixtures, no `data/` change)
 
-- [ ] **T45 ADR 0022 opponents.** Accepted after Diego's answer to D-B1 and D-B2.
+- [x] **T45 ADR 0022 opponents.** Accepted on 2026-10-23.
 - [ ] **T46 Schema.** Tests first: `selectable` (default true) and `country` on the club schema, the validator and the Supabase constraints, with a migration and the parity tests; `colors` stay required for selectable clubs. Then the code. Existing data validates unchanged.
 - [ ] **T47 Selectable only.** Tests first: onboarding, search, `/rivales` list and compare show only selectable clubs; matches against opponents count in totals, history and titles. Then `club-options` and the views.
 - [ ] **T48 Neutral crest.** Test first: an opponent crest has no club colors and passes contrast. Then the component.
@@ -335,7 +335,7 @@ Diego answered on 2026-10-19: D1 to D9 approved as recommended. On 2026-10-23 he
 
 **D10, changed by Diego.** The vitrina (#67) is fed by RSSSF **and by everything else we have**, not by a separate cups evaluation that it waits for. Consequences for this plan: the vitrina reads `titles.json` as soon as Phase A writes the first-division titles (D5); cup titles join it from whichever permitted source lands first (RSSSF after a written reply, or the openfootball CC0 files and Wikipedia titles evaluated in their own issue); every shelf shows what is loaded and its coverage, never an invented total. The evaluation issue of the alternative sources stays, but as an input to the vitrina, not as a condition for it.
 
-**Phase B scope, approved by Diego on 2026-10-23** (the five recommendations of `docs/spike/rsssf-cups-inventory.md`): (1) the cups load from the editions that end on or after 2018-07-01; (2) foreign and lower-division clubs are opponents, loaded only when an app club plays them, and the list of new names is given to him for approval; (3) only matches where one of the 34 clubs plays; (4) the three official cups plus the league cups the AFA recognizes count as titles, the rest go under "Títulos discutidos" or stay out, as in ADR 0021; (5) the 2023 to 2025 sections go first. D-B1 to D-B5 below the Phase B section are still to be answered.
+**Phase B scope, approved by Diego on 2026-10-23** (the five recommendations of `docs/spike/rsssf-cups-inventory.md`): (1) the cups load from the editions that end on or after 2018-07-01; (2) foreign and lower-division clubs are opponents, loaded only when an app club plays them, and the list of new names is given to him for approval; (3) only matches where one of the 34 clubs plays; (4) the three official cups plus the league cups the AFA recognizes count as titles, the rest go under "Títulos discutidos" or stay out, as in ADR 0021; (5) the 2023 to 2025 sections go first. Diego also approved D-B1 to D-B5 as recommended on 2026-10-23, and ADR 0022 is Accepted.
 
 ## Verification log: unknown-name inventory (T24, 2026-10-23, page `arg2025`)
 

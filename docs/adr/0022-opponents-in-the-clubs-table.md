@@ -1,6 +1,6 @@
 # 0022 — Opponents in the clubs table
 
-Status: **Proposed** (2026-10-23). Written with the re-plan of Phase B of plan 0017 (issue #70). It becomes Accepted when Diego answers D-B1 and D-B2.
+Status: **Accepted** (2026-10-23). Written with the re-plan of Phase B of plan 0017 (issue #70). Diego approved D-B1 and D-B2 on 2026-10-23.
 
 ## Context
 
@@ -8,7 +8,7 @@ The cups bring matches against clubs that are not in the onboarding: Copa Libert
 
 Diego approved on 2026-10-23: foreign and lower-division clubs are loaded only when one of the 34 clubs plays them, and only those matches are kept.
 
-## Decision (proposed)
+## Decision
 
 1. **Same table, not selectable.** `clubs` gains `selectable` (boolean, default `true`) and `country` (ISO 3166 alpha-2, required when `selectable` is `false`). A club that is not selectable is an **opponent**. Matches keep referencing `clubs` through `home_id` and `away_id`, so the engine, the validator's referential rules and the Supabase foreign keys do not change.
 2. **Opponents have no sourced colors.** `colors`, `jersey_pattern` and `founded` are optional for opponents; `source` stays required (the RSSSF page where the name appears). A record with colors keeps ADR 0012's contrast rules.
