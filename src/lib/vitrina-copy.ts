@@ -133,8 +133,12 @@ export function titleCoverageCopy(
     if (!row.windowInPeriod) {
       return [`${name}: no tenemos campeones cargados en tu período.`];
     }
+    const loaded =
+      row.firstSeasonName === row.lastSeasonName
+        ? `${name}: tenemos el campeón de ${row.firstSeasonName}.`
+        : `${name}: tenemos los campeones de ${row.firstSeasonName} a ${row.lastSeasonName}.`;
     return [
-      `${name}: tenemos los campeones de ${row.firstSeasonName} a ${row.lastSeasonName}.`,
+      loaded,
       ...row.missingSeasonNames.map((season) => `${name}: nos falta el campeón de ${season}.`),
     ];
   });

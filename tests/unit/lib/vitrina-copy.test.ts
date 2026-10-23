@@ -119,6 +119,13 @@ describe("titleCoverageCopy", () => {
     expect(JSON.stringify(copy)).not.toMatch(/(?<!in)complet[ao]|toda la historia/i);
   });
 
+  it("says the champion, not a range, when only one season is loaded", () => {
+    const single = row({ firstSeasonName: "Liga 2021", lastSeasonName: "Liga 2021" });
+    expect(titleCoverageCopy([single], false).lines).toEqual([
+      "Primera División: tenemos el campeón de Liga 2021.",
+    ]);
+  });
+
   it("names a season inside the window without champion", () => {
     const copy = titleCoverageCopy(
       [row({ missingSeasonNames: ["Liga 2021", "Liga 2022"] })],
