@@ -68,32 +68,42 @@ async function readCapped(name: string, response: Response, maxBytes: number): P
   return bytes;
 }
 
-export async function fetchPinned(file: SourceFile, options: FetchOptions = {}): Promise<string> {
+/** The raw bytes of one URL, under the host allowlist, https only, no redirects and a size cap. */
+export async function fetchBytes(
+  name: string,
+  rawUrl: string,
+  options: FetchOptions & { userAgent?: string } = {},
+): Promise<Uint8Array> {
   const {
     fetchImpl = fetch,
     timeoutMs = 15_000,
     maxBytes = 1_000_000,
     allowedHosts = DEFAULT_HOSTS,
+    userAgent,
   } = options;
-  const url = new URL(file.url);
-  if (url.protocol !== "https:") throw new Error(`${file.name}: only https URLs are allowed`);
+  const url = new URL(rawUrl);
+  if (url.protocol !== "https:") throw new Error(`${name}: only https URLs are allowed`);
   if (!allowedHosts.includes(url.hostname)) {
     throw new Error(
-      `${file.name}: host "${url.hostname}" is not allowed (only ${allowedHosts.join(", ")})`,
+      `${name}: host "${url.hostname}" is not allowed (only ${allowedHosts.join(", ")})`,
     );
   }
   // redirect: "error" keeps the host allowlist meaningful: a 3xx is never followed to another host.
-  const response = await fetchImpl(file.url, {
+  const response = await fetchImpl(rawUrl, {
     signal: AbortSignal.timeout(timeoutMs),
     redirect: "error",
+    ...(userAgent === undefined ? {} : { headers: { "user-agent": userAgent } }),
   });
   if (response.status !== 200) {
-    throw new Error(`${file.name}: unexpected HTTP status ${response.status}`);
+    throw new Error(`${name}: unexpected HTTP status ${response.status}`);
   }
   const declared = Number(response.headers.get("content-length") ?? 0);
   if (declared > maxBytes) {
-    throw new Error(`${file.name}: body too large (${declared} bytes, cap ${maxBytes})`);
+    throw new Error(`${name}: body too large (${declared} bytes, cap ${maxBytes})`);
   }
-  const bytes = await readCapped(file.name, response, maxBytes);
-  return decodeSource(file, bytes);
+  return readCapped(name, response, maxBytes);
+}
+
+export async function fetchPinned(file: SourceFile, options: FetchOptions = {}): Promise<string> {
+  return decodeSource(file, await fetchBytes(file.name, file.url, options));
 }
