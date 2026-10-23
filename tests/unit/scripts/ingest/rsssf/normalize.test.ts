@@ -389,6 +389,14 @@ describe("normalizeRsssf: cups, only the matches of the app clubs (T51, ADR 0022
     expect(out.report.files[0].parsed).toBe(0);
   });
 
+  it("shows an app club with a missing alias against a known opponent, in the dropped names", () => {
+    // "CA Aaa" is a spelling of an app club that is not in its aliases yet: the match is dropped
+    // and the name is listed, which is the only way a reviewer sees the loss.
+    const out = runCup([m("2025-02-01", "CA Aaa", "Opp FC", 1, 0)]);
+    expect(out.matches).toEqual([]);
+    expect(out.report.files[0].droppedUnknown).toEqual(["CA Aaa"]);
+  });
+
   it("dates the season from every match of the page, not only the kept ones", () => {
     const out = runCup([
       m("2025-02-01", "Some Unknown FC", "Another Unknown FC", 3, 1),

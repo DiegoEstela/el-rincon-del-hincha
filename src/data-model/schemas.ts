@@ -29,7 +29,11 @@ const clubFields = {
   source,
 };
 
-/** A selectable club needs its kit data; an opponent needs a country and nothing else. */
+/**
+ * A selectable club needs its kit data; an opponent needs a country and nothing else. The same
+ * rules are check constraints in supabase/migrations/20261023120000_clubs_opponents.sql: change
+ * both together.
+ */
 export const clubSchema = z.strictObject(clubFields).superRefine((club, ctx) => {
   if (club.selectable === false) {
     if (club.country === undefined) {
