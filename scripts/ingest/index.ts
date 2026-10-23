@@ -1,18 +1,21 @@
 // CLI for the ingestion adapters (ADR 0015).
-// Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>]
-//   --out   data directory to read and write (default: data)
-//   --from  read the pinned input files from this directory instead of the network
+// Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>] [--network] [--cross-check]
+//   --out         data directory to read and write (default: data)
+//   --from        read the pinned input files from this directory instead of the network
+//   --network     read the live pages (the pinned hashes of the adapter still apply)
+//   --cross-check print the read-only comparison of the adapter with data/ and write nothing
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
-import { directoryLoader, networkLoader, runAdapter, type Adapter } from "./core/adapter";
+import { runAdapter, type Adapter } from "./core/adapter";
 import { IngestError } from "./core/commit";
+import { chooseLoader } from "./loader-choice";
 import { openfootballAdapter } from "./openfootball";
 
 // The registry is heterogeneous: each adapter has its own raw type.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ADAPTERS: Record<string, Adapter<any>> = { openfootball: openfootballAdapter };
 
-const USAGE = `Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>]
+const USAGE = `Usage: pnpm data:ingest <adapter> [--dry-run] [--out <dir>] [--from <dir>] [--network] [--cross-check]
 Adapters: ${Object.keys(ADAPTERS).join(", ")}`;
 
 async function main(): Promise<number> {
@@ -22,6 +25,8 @@ async function main(): Promise<number> {
       "dry-run": { type: "boolean", default: false },
       out: { type: "string", default: "data" },
       from: { type: "string" },
+      network: { type: "boolean", default: false },
+      "cross-check": { type: "boolean", default: false },
     },
   });
 
@@ -38,12 +43,21 @@ async function main(): Promise<number> {
 
   const dryRun = values["dry-run"] === true;
   try {
-    const { report, summary } = await runAdapter(adapter, {
+    const { report, summary, crossCheck } = await runAdapter(adapter, {
       dir: resolve(values.out),
-      loader: values.from ? directoryLoader(resolve(values.from)) : networkLoader,
+      loader: chooseLoader(adapter, {
+        from: values.from === undefined ? undefined : resolve(values.from),
+        network: values.network === true,
+      }),
       now: new Date(),
       dryRun,
+      crossCheck: values["cross-check"] === true,
     });
+    if (crossCheck !== undefined) {
+      for (const line of crossCheck) console.log(line);
+      console.log(`data:ingest cross-check: ${crossCheck.length} line(s) (nothing written)`);
+      return 0;
+    }
     for (const f of report.files) {
       const note = f.partial
         ? ` PARTIAL (source ends ${f.lastSourceDate}, season ends ${f.seasonEnd})`
