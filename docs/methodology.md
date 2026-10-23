@@ -53,13 +53,13 @@ These rules are the source of truth for every statistic in the app. Each rule ha
 
 #### Known coverage gaps
 
-| Competition                   | From       | To         | Why                                                                                                                    | Source                           |
-| ----------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| `copa-de-la-liga-profesional` | 2021-02-12 | 2021-06-04 | Edition 2021 is not loaded.                                                                                            | es.wikipedia, revision 175528472 |
-| `copa-de-la-liga-profesional` | 2022-02-10 | 2022-05-22 | Edition 2022 is not loaded.                                                                                            | es.wikipedia, revision 175528478 |
-| `copa-de-la-liga-profesional` | 2023-08-17 | 2023-12-16 | Edition 2023 is not loaded.                                                                                            | es.wikipedia, revision 175528489 |
-| `copa-de-la-liga-profesional` | 2024-01-25 | 2024-05-05 | Edition 2024, the last one, is not loaded.                                                                             | es.wikipedia, revision 175528520 |
-| `primera-division`            | 2025-05-05 | open       | The 2025 Apertura knockout stage (final on 2025-06-01), the 2025 Clausura and later seasons are not loaded (ADR 0003). | es.wikipedia, revision 175770270 |
+| Competition                   | From       | To         | Why                                                                                                                                    | Source                              |
+| ----------------------------- | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `copa-de-la-liga-profesional` | 2021-02-12 | 2021-06-04 | Edition 2021 is not loaded.                                                                                                            | es.wikipedia, revision 175528472    |
+| `copa-de-la-liga-profesional` | 2022-02-10 | 2022-05-22 | Edition 2022 is not loaded.                                                                                                            | es.wikipedia, revision 175528478    |
+| `copa-de-la-liga-profesional` | 2023-08-17 | 2023-12-16 | Edition 2023 is not loaded.                                                                                                            | es.wikipedia, revision 175528489    |
+| `copa-de-la-liga-profesional` | 2024-01-25 | 2024-05-05 | Edition 2024, the last one, is not loaded.                                                                                             | es.wikipedia, revision 175528520    |
+| `primera-division`            | 2025-12-15 | open       | The 2026 Apertura and later tournaments are not loaded: the RSSSF page of 2025 ends with the Clausura final on 2025-12-14 (plan 0017). | rsssf.org, `arg2025.html#1clausura` |
 
 The Copa Diego Armando Maradona 2020 (2020-10-30 to 2021-03-31) is the only edition of that cup we have. Its complete stretch ends on 2021-02-11, the day before the 2021 edition starts, so its last matches (the Fase Complementación and the Copa Sudamericana qualifier of 2021-03-31) lie inside a gap and are not claimed.
 

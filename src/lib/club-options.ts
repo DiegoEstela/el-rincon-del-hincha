@@ -48,9 +48,15 @@ export function initialsInk(primary: string): string {
     : INK_LIGHT;
 }
 
+// Some aliases exist only to read a source: the legal form in front ("CA Boca Juniors", "Club
+// Atlético Tucumán") or the headquarters after ("Club Estudiantes de La Plata (La Plata, B)").
+// Nobody types those, and they would make "ca" match every club, so they are not search keys.
+const SOURCE_ONLY_ALIAS = /^(?:CA|CD|CS|CSD|CSyD|AA|Cd|Club) |\s\([^()]*,\s*[A-Z]\)$/;
+
 export function toClubOption(club: Club): ClubOption {
   const seen = new Set<string>();
-  const searchKeys = [club.name, club.short_name, ...club.aliases].filter((key) => {
+  const aliases = club.aliases.filter((alias) => !SOURCE_ONLY_ALIAS.test(alias));
+  const searchKeys = [club.name, club.short_name, ...aliases].filter((key) => {
     const folded = searchFold(key);
     if (seen.has(folded)) return false;
     seen.add(folded);

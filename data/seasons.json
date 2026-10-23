@@ -62,5 +62,13 @@
     "start": "2025-01-23",
     "end": "2025-06-01",
     "source": "https://es.wikipedia.org/w/index.php?title=Campeonato_de_Primera_Divisi%C3%B3n_2025_(Argentina)&oldid=175770270"
+  },
+  {
+    "id": "primera-division-2025-clausura",
+    "competition_id": "primera-division",
+    "name": "Torneo Clausura 2025",
+    "start": "2025-07-11",
+    "end": "2025-12-14",
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
   }
 ]

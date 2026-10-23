@@ -1,0 +1,272 @@
+[
+  {
+    "club_id": "aldosivi",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 5,
+    "drawn": 3,
+    "lost": 8,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "argentinos-juniors",
+    "season_id": "primera-division-2025-clausura",
+    "played": 18,
+    "won": 8,
+    "drawn": 3,
+    "lost": 7,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "atletico-tucuman",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 5,
+    "drawn": 3,
+    "lost": 8,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "banfield",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 6,
+    "drawn": 3,
+    "lost": 7,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "barracas-central",
+    "season_id": "primera-division-2025-clausura",
+    "played": 18,
+    "won": 6,
+    "drawn": 8,
+    "lost": 4,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "belgrano",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 4,
+    "drawn": 8,
+    "lost": 4,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "boca-juniors",
+    "season_id": "primera-division-2025-clausura",
+    "played": 19,
+    "won": 10,
+    "drawn": 5,
+    "lost": 4,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "central-cordoba-sde",
+    "season_id": "primera-division-2025-clausura",
+    "played": 18,
+    "won": 6,
+    "drawn": 9,
+    "lost": 3,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "defensa-y-justicia",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 5,
+    "drawn": 4,
+    "lost": 7,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "deportivo-riestra",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 8,
+    "drawn": 4,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "estudiantes-la-plata",
+    "season_id": "primera-division-2025-clausura",
+    "played": 20,
+    "won": 9,
+    "drawn": 4,
+    "lost": 7,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "gimnasia-la-plata",
+    "season_id": "primera-division-2025-clausura",
+    "played": 19,
+    "won": 9,
+    "drawn": 1,
+    "lost": 9,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "godoy-cruz",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 1,
+    "drawn": 9,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "huracan",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 5,
+    "drawn": 5,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "independiente-rivadavia",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 3,
+    "drawn": 7,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "independiente",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 4,
+    "drawn": 6,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "instituto",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 3,
+    "drawn": 7,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "lanus",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 9,
+    "drawn": 3,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "newells-old-boys",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 3,
+    "drawn": 5,
+    "lost": 8,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "platense",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 2,
+    "drawn": 6,
+    "lost": 8,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "racing-club",
+    "season_id": "primera-division-2025-clausura",
+    "played": 20,
+    "won": 9,
+    "drawn": 6,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "river-plate",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 6,
+    "drawn": 4,
+    "lost": 7,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "rosario-central",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 8,
+    "drawn": 7,
+    "lost": 2,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "san-lorenzo",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 6,
+    "drawn": 6,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "san-martin-san-juan",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 4,
+    "drawn": 7,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "sarmiento-junin",
+    "season_id": "primera-division-2025-clausura",
+    "played": 16,
+    "won": 5,
+    "drawn": 5,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "talleres-cordoba",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 5,
+    "drawn": 6,
+    "lost": 6,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "tigre",
+    "season_id": "primera-division-2025-clausura",
+    "played": 18,
+    "won": 6,
+    "drawn": 8,
+    "lost": 4,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "union",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 6,
+    "drawn": 7,
+    "lost": 4,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  },
+  {
+    "club_id": "velez-sarsfield",
+    "season_id": "primera-division-2025-clausura",
+    "played": 17,
+    "won": 7,
+    "drawn": 5,
+    "lost": 5,
+    "source": "https://www.rsssf.org/tablesa/arg2025.html#1clausura"
+  }
+]

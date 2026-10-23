@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { clubSchema } from "@/data-model/schemas";
+import { toClubOption } from "@/lib/club-options";
 import { searchClubs, searchFold, type SearchableClub } from "@/lib/club-search";
 
 const fixture: SearchableClub[] = [
@@ -58,10 +59,8 @@ const clubs = clubSchema
   .parse(
     JSON.parse(readFileSync(join(process.cwd(), "data", "clubs.json"), "utf8").replace(/^﻿/, "")),
   )
-  .map((c) => ({
-    id: c.id,
-    searchKeys: [c.name, c.short_name, ...c.aliases],
-  }));
+  // The keys the picker really uses: source-only aliases ("CA Boca Juniors") are left out.
+  .map((c) => toClubOption(c));
 
 describe("searchClubs on the real dataset", () => {
   it("finds Vélez however it is typed", () => {
