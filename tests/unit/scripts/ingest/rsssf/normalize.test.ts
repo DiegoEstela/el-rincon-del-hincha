@@ -176,6 +176,28 @@ describe("normalizeRsssf (plan 0017, T18)", () => {
     });
   });
 
+  it("reads an abandoned match given as one line with the final score and the day it ended", () => {
+    const one = m("2025-08-30", "CA A", "CA B", 0, 1, {
+      abandoned: "0-0 in 45m HT",
+      resumed: "time on 24 Oct",
+    });
+    const out = run(base([one], []), { ...OWN, tableCoversSeason: false });
+    expect(out.matches[0]).toMatchObject({
+      id: "2025-10-24-a-b",
+      date: "2025-10-24",
+      status: "played",
+      home_goals: 0,
+      away_goals: 1,
+    });
+  });
+
+  it("reports an abandoned line whose completion day cannot be read", () => {
+    const odd = m("2025-08-30", "CA A", "CA B", 0, 1, { abandoned: "x", resumed: "soon" });
+    expect(problemsOf(() => run(base([odd], []), { ...OWN, tableCoversSeason: false }))[0]).toMatch(
+      /cannot read when/,
+    );
+  });
+
   it("keeps a match that was never completed as suspended, with no score", () => {
     const abandoned = m("2025-07-20", "CA A", "CA B", null, null, { abandoned: "0-0 in 45m HT" });
     const out = run(base([abandoned], []), { ...OWN, tableCoversSeason: false });

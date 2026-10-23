@@ -7,6 +7,7 @@ import { createClubResolver } from "../core/club-resolver";
 import { IngestError } from "../core/errors";
 import type { Club, Competition, Match, Season, Standing } from "../../../src/data-model/types";
 import { RSSSF_COMPETITIONS, RSSSF_SOURCE_PREFIX, type TournamentConfig } from "./config";
+import { resolveDate, type DateWindow } from "./dates";
 import type { ManifestPage } from "./manifest";
 import type { ParsedMatch, ParsedTableRow, ParsedTournament } from "./types";
 
@@ -68,6 +69,7 @@ function sourceOf(t: TournamentConfig): string {
 /** Joins an abandoned line with the line that completes it; one record per fixture (D6). */
 function mergeAbandoned(
   parsed: ParsedTournament,
+  window: DateWindow,
   problems: string[],
 ): { match: ParsedMatch; suspended: boolean }[] {
   const out: { match: ParsedMatch; suspended: boolean }[] = [];
@@ -75,7 +77,16 @@ function mergeAbandoned(
   for (const m of parsed.matches) {
     const key = `${m.home}\u0000${m.away}`;
     const where = `${parsed.excerpt}:${m.line}`;
-    if (m.abandoned !== null) {
+    if (m.abandoned !== null && m.resumed !== null) {
+      // One line with the final score and the day it was completed: "remaining time on 24 Oct".
+      const on = /\bon ([A-Z][a-z]{2}) (\d{1,2})$/.exec(m.resumed);
+      if (on === null || m.homeGoals === null) {
+        problems.push(`${where}: cannot read when the abandoned match was completed`);
+        continue;
+      }
+      const date = resolveDate(on[1], Number(on[2]), undefined, window, where);
+      out.push({ match: { ...m, date }, suspended: false });
+    } else if (m.abandoned !== null) {
       if (m.homeGoals !== null) {
         problems.push(`${where}: an abandoned match with a score is not supported`);
         continue;
@@ -118,7 +129,7 @@ export function normalizeRsssf(
     const records: Match[] = [];
     const tallies = new Map<string, Tally>();
 
-    for (const { match: m, suspended } of mergeAbandoned(parsed, problems)) {
+    for (const { match: m, suspended } of mergeAbandoned(parsed, t.window, problems)) {
       const at = { file: excerpt, line: m.line, season: t.id, context: "matches" };
       const homeId = resolver.resolve(m.home, at);
       const awayId = resolver.resolve(m.away, at);
