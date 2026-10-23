@@ -178,6 +178,16 @@ describe("cup-full-names: variants of the cup sections of 2023 to 2025", () => {
     expect(parse(text).matches[0].away).toBe("Club pso Norte");
   });
 
+  it("cuts a glued shoot-out note at the last separator, keeping a pso inside the name", () => {
+    const text = inline(
+      "Final:\n[Apr 18, Fri]\nCD A    [4] 1- 1  [5] Club pso Norte pso, Somewhere, X\n",
+    );
+    expect(parse(text).matches[0]).toMatchObject({
+      away: "Club pso Norte",
+      penalties: { home: 4, away: 5 },
+    });
+  });
+
   it("reads a header that writes the weekday first and the year last", () => {
     const text = inline(
       "[Wed, 5 Mar 2025]\nCA A   [2] 0- 0 [3]  CA B     aet, pso, Somewhere, PAR\n",

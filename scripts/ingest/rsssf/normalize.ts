@@ -409,6 +409,7 @@ function titleFromFinal(
     );
     return null;
   }
+  // One final was found above: it is only missing from the records when neither side is an app club.
   const final = records.find((r) => r.is_final);
   if (final === undefined) return null;
   const home =

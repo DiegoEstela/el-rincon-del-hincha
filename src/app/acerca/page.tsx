@@ -26,8 +26,9 @@ export default function AcercaPage() {
       </p>
       <h3 className="font-display pt-2 text-2xl">RSSSF</h3>
       <p className="text-muted">
-        {rsssf.sentence} Usamos solo los resultados y las tablas de la primera división argentina,
-        con el permiso de la RSSSF. Podés ver el sitio en{" "}
+        {rsssf.sentence} Usamos los resultados y las tablas de la primera división argentina y los
+        resultados de la Copa Argentina, las supercopas y el Trofeo de Campeones, con el permiso de
+        la RSSSF. Podés ver el sitio en{" "}
         <a className="text-accent underline" href={RSSSF_HOME}>
           rsssf.org
         </a>

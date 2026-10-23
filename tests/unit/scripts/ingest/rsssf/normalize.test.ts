@@ -446,6 +446,40 @@ describe("normalizeRsssf: the title of a cup is decided in its final (Phase B)",
   const final = (home: string, away: string, hg: number, ag: number, extra = {}) =>
     m("2025-11-05", home, away, hg, ag, { stage: "Final", ...extra });
 
+  it("writes only the competitions of the tournaments of the run", () => {
+    const out = normalizeRsssf(
+      [
+        {
+          tournament: CUP,
+          page: page(),
+          parsed: { excerpt: "x", matches: [final("CA A", "Opp FC", 2, 1)], tables: [] },
+        },
+      ],
+      world,
+      [
+        {
+          id: "copa-x",
+          name: "X",
+          type: "national_cup",
+          scope: "domestic",
+          organizer: "AFA",
+          afa_recognized: true,
+          source: "s",
+        },
+        {
+          id: "copa-unused",
+          name: "Y",
+          type: "national_cup",
+          scope: "domestic",
+          organizer: "AFA",
+          afa_recognized: true,
+          source: "s",
+        },
+      ],
+    );
+    expect(out.competitions.map((c) => c.id)).toEqual(["copa-x"]);
+  });
+
   it("names the winner on goals", () => {
     const out = run2([final("CA A", "Opp FC", 2, 1)]);
     expect(out.titles).toEqual([
