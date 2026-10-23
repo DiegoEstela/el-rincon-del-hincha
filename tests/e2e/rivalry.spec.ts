@@ -309,8 +309,10 @@ test.describe("privacy, metadata and accessibility", () => {
     await expect(h1(page, "River vs. Boca")).toBeVisible();
     const backLink = page.getByRole("link", { name: "Volver a Rivales" });
     await expect(backLink).toBeVisible();
-    const back = await backLink.evaluate((el) => (el as HTMLElement).offsetHeight);
-    expect(back).toBeGreaterThanOrEqual(43.5);
+    // Polled: the header is drawn again when the data arrives, and a single read can catch it mid-render.
+    await expect
+      .poll(() => backLink.evaluate((el) => (el as HTMLElement).offsetHeight))
+      .toBeGreaterThanOrEqual(43.5);
   });
 
   test("turns the bar animation off with reduced motion and keeps the footer", async ({ page }) => {
