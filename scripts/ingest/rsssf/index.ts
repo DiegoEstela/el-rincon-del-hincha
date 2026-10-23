@@ -3,15 +3,22 @@
 // ever requests rsssf.org.
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { Adapter } from "../core/adapter";
+import type { Adapter, SourceLoader } from "../core/adapter";
 import { IngestError } from "../core/errors";
-import { RSSSF_SOURCE_PREFIX, RSSSF_TOURNAMENTS, type TournamentConfig } from "./config";
+import {
+  RSSSF_CHAMPIONS,
+  RSSSF_SOURCE_PREFIX,
+  RSSSF_TITLE_SEASONS,
+  RSSSF_TOURNAMENTS,
+  type TournamentConfig,
+} from "./config";
+import { parseChampionsList, type ParsedChampions } from "./layouts/champions-list";
 import { parseFullNames2017 } from "./layouts/full-names-2017";
 import { excerptFileName, manifestSchema, type Manifest, type ManifestPage } from "./manifest";
 import { normalizeRsssf, type RawTournament } from "./normalize";
 import { prepareText } from "./text";
-import type { LayoutContext, ParsedTournament } from "./types";
 import type { PreparedText } from "./text";
+import type { LayoutContext, ParsedTournament, TitleSeason } from "./types";
 
 export const RSSSF_INPUT_DIR = "sources/rsssf";
 
@@ -22,8 +29,13 @@ const PARSERS: Partial<Record<ManifestPage["layout"], LayoutParser>> = {
   "full-names-2017": parseFullNames2017,
 };
 
+/** What `load` reads: the tournaments, and the list of champions when the manifest has it. */
+export type RsssfRaw = { tournaments: RawTournament[]; champions: ParsedChampions | null };
+
 export type RsssfConfig = {
   tournaments: readonly TournamentConfig[];
+  /** The seasons whose champion is written as a title (needs the list of champions). */
+  titleSeasons: readonly TitleSeason[];
   /** The reviewed manifest, read when the adapter loads (default: `sources/rsssf/manifest.json`). */
   manifest: () => Manifest;
 };
@@ -33,10 +45,39 @@ const readManifest = (): Manifest =>
     JSON.parse(readFileSync(join(resolve(RSSSF_INPUT_DIR), "manifest.json"), "utf8")),
   );
 
-const DEFAULT_CONFIG: RsssfConfig = { tournaments: RSSSF_TOURNAMENTS, manifest: readManifest };
+const DEFAULT_CONFIG: RsssfConfig = {
+  tournaments: RSSSF_TOURNAMENTS,
+  titleSeasons: RSSSF_TITLE_SEASONS,
+  manifest: readManifest,
+};
+
+function findExcerpt(manifest: Manifest, pageName: string, excerptName: string) {
+  const page = manifest.pages.find((p) => p.url.endsWith(`/${pageName}.html`));
+  const excerpt = page?.excerpts.find((e) => e.name === excerptName);
+  return page === undefined || excerpt === undefined ? null : { page, excerpt };
+}
+
+async function readExcerpt(
+  loader: SourceLoader,
+  found: NonNullable<ReturnType<typeof findExcerpt>>,
+  label: string,
+): Promise<PreparedText> {
+  const { page, excerpt } = found;
+  const text = await loader({
+    name: excerptFileName(page.url, excerpt.name),
+    url: page.url,
+    sha256: excerpt.sha256,
+    encoding: page.encoding,
+  });
+  return prepareText(text, label);
+}
 
 /** `config` is injectable so tests can use fixtures and small tournament lists. */
-export function createRsssfAdapter(config: RsssfConfig = DEFAULT_CONFIG): Adapter<RawTournament[]> {
+export function createRsssfAdapter(
+  config: Pick<RsssfConfig, "tournaments" | "manifest"> &
+    Partial<Pick<RsssfConfig, "titleSeasons">> = DEFAULT_CONFIG,
+): Adapter<RsssfRaw> {
+  const titleSeasons = config.titleSeasons ?? [];
   return {
     id: "rsssf",
     sourcePrefix: RSSSF_SOURCE_PREFIX,
@@ -44,36 +85,45 @@ export function createRsssfAdapter(config: RsssfConfig = DEFAULT_CONFIG): Adapte
     extends: config.tournaments.filter((t) => t.mode.kind === "extends").map((t) => t.id),
     async load(loader) {
       const manifest = config.manifest();
-      const raws: RawTournament[] = [];
+      const tournaments: RawTournament[] = [];
       for (const tournament of config.tournaments) {
-        const page = manifest.pages.find((p) => p.url.endsWith(`/${tournament.page}.html`));
-        const excerpt = page?.excerpts.find((e) => e.name === tournament.excerpt);
-        if (page === undefined || excerpt === undefined) {
+        const label = `${tournament.page}.${tournament.excerpt}`;
+        const found = findExcerpt(manifest, tournament.page, tournament.excerpt);
+        if (found === null) {
+          throw new IngestError([`${label}: not in the manifest of sources/rsssf`]);
+        }
+        const parser = PARSERS[found.page.layout];
+        if (parser === undefined) {
           throw new IngestError([
-            `${tournament.page}.${tournament.excerpt}: not in the manifest of sources/rsssf`,
+            `${found.page.url}: the layout "${found.page.layout}" has no parser yet`,
           ]);
         }
-        const parser = PARSERS[page.layout];
-        if (parser === undefined) {
-          throw new IngestError([`${page.url}: the layout "${page.layout}" has no parser yet`]);
-        }
-        const file = excerptFileName(page.url, excerpt.name);
-        const text = await loader({
-          name: file,
-          url: page.url,
-          sha256: excerpt.sha256,
-          encoding: page.encoding,
-        });
-        const parsed = parser(prepareText(text, `${tournament.page}.${tournament.excerpt}`), {
+        const parsed = parser(await readExcerpt(loader, found, label), {
           window: tournament.window,
-          ignore: page.ignore,
+          ignore: found.page.ignore,
         });
-        raws.push({ tournament, page, parsed });
+        tournaments.push({ tournament, page: found.page, parsed });
       }
-      return raws;
+
+      const list = findExcerpt(manifest, RSSSF_CHAMPIONS.page, RSSSF_CHAMPIONS.excerpt);
+      if (list === null) {
+        if (titleSeasons.length > 0) {
+          throw new IngestError([
+            `${RSSSF_CHAMPIONS.page}.${RSSSF_CHAMPIONS.excerpt}: the list of champions is not in the manifest`,
+          ]);
+        }
+        return { tournaments, champions: null };
+      }
+      const label = `${RSSSF_CHAMPIONS.page}.${RSSSF_CHAMPIONS.excerpt}`;
+      return { tournaments, champions: parseChampionsList(await readExcerpt(loader, list, label)) };
     },
-    normalize(raws, { clubs }) {
-      return normalizeRsssf(raws, clubs);
+    normalize(raw, { clubs, existing }) {
+      return normalizeRsssf(
+        raw.tournaments,
+        clubs,
+        undefined,
+        raw.champions === null ? undefined : { champions: raw.champions, titleSeasons, existing },
+      );
     },
   };
 }

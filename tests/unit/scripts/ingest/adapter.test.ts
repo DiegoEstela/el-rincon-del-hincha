@@ -152,7 +152,10 @@ describe("runAdapter", () => {
   it("writes nothing when a record is malformed, and the validator says why", async () => {
     // deriveCoverage returns null for records that do not parse, so no coverage is derived and
     // the validator in the commit step is the one that rejects the run.
-    const bad = { ...toy().normalize("", { clubs: [] }).matches[0], home_goals: "two" };
+    const bad = {
+      ...toy().normalize("", { clubs: [], existing: {} }).matches[0],
+      home_goals: "two",
+    };
     await expect(
       runAdapter(toy({ matches: [bad as never] }), {
         dir,

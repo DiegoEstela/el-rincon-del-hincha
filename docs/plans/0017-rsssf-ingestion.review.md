@@ -25,3 +25,14 @@ Date: 2026-10-23. Branch `feat/70-rsssf-ingestion`.
 - The run report marks the extending tournament as complete; cosmetic.
 - Long official club names are no longer search keys in the picker; natural names are.
 - Data auditor note for later: the old openfootball record `2025-03-22-godoy-cruz-talleres-cordoba` (abandoned and resumed per RSSSF) may need its date checked against a second source.
+
+## Second slice: titles (2026-10-23)
+
+| Auditor                | Verdict                                                            |
+| ---------------------- | ------------------------------------------------------------------ |
+| data-integrity-auditor | APPROVED (nine titles, dates and table marks recomputed by script) |
+| code-reviewer          | CHANGES REQUIRED, then fixed                                       |
+
+Applied: the title date falls back to the last match of the season in the data as it will be after the run (not to the season `end`), a season with no match reports a problem, the matches of the adapter that the run replaces never date a title, and tests cover two finals in one season, a season with no match, the order of the two adapters and a second run.
+
+Accepted, not changed: a title removed from a config is not cleaned up until the dataset is edited in a data PR; the table check covers the 2025 tournaments only (the other seasons have no final table in the excerpts); the layout parsers throw plain errors like the rest of the parsing layer.

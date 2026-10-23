@@ -1,0 +1,92 @@
+[
+  {
+    "id": "copa-de-la-liga-profesional-2020-boca-juniors",
+    "club_id": "boca-juniors",
+    "competition_id": "copa-de-la-liga-profesional",
+    "season_id": "copa-de-la-liga-profesional-2020",
+    "awarded_on": "2021-01-17",
+    "shared": false,
+    "source": "https://github.com/openfootball/south-america/blob/18fcfc41566d30928f6a683b9cdf3973e22c7974/argentina/2020_ar1.txt#L220",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2018-19-racing-club",
+    "club_id": "racing-club",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2018-19",
+    "awarded_on": "2019-04-07",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2019-20-boca-juniors",
+    "club_id": "boca-juniors",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2019-20",
+    "awarded_on": "2020-03-09",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2021-river-plate",
+    "club_id": "river-plate",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2021",
+    "awarded_on": "2021-12-13",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2022-boca-juniors",
+    "club_id": "boca-juniors",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2022",
+    "awarded_on": "2022-10-25",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2023-river-plate",
+    "club_id": "river-plate",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2023",
+    "awarded_on": "2023-07-30",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2024-velez-sarsfield",
+    "club_id": "velez-sarsfield",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2024",
+    "awarded_on": "2024-12-16",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2025-apertura-platense",
+    "club_id": "platense",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2025-apertura",
+    "awarded_on": "2025-06-01",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  },
+  {
+    "id": "primera-division-2025-clausura-estudiantes-la-plata",
+    "club_id": "estudiantes-la-plata",
+    "competition_id": "primera-division",
+    "season_id": "primera-division-2025-clausura",
+    "awarded_on": "2025-12-14",
+    "shared": false,
+    "source": "https://www.rsssf.org/tablesa/argchamp.html#champions",
+    "verified": false
+  }
+]

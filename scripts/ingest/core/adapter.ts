@@ -52,7 +52,10 @@ export type Adapter<Raw> = {
   sourcePrefix: string;
   load(loader: SourceLoader): Promise<Raw>;
   /** Pure: no I/O, no clock. Throws IngestError for problems the data owner must fix. */
-  normalize(raw: Raw, ctx: { clubs: readonly Club[] }): AdapterOutput;
+  normalize(
+    raw: Raw,
+    ctx: { clubs: readonly Club[]; existing: Readonly<Record<string, unknown[]>> },
+  ): AdapterOutput;
   /** Directory of the pinned input files read when neither `--from` nor `--network` is given. */
   defaultInputDir?: string;
   /** Network loader with the hosts and the size cap of this adapter (default: the generic one). */
@@ -145,7 +148,7 @@ export async function runAdapter<Raw>(
     const lines = adapter.crossCheck(raw, { clubs, dataset: existing });
     return { report: { files: [] }, summary: {}, crossCheck: lines };
   }
-  const output = adapter.normalize(raw, { clubs });
+  const output = adapter.normalize(raw, { clubs, existing });
 
   const merged = mergeDataset(
     existing,

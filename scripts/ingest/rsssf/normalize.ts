@@ -5,11 +5,20 @@
 import type { AdapterOutput, FileReport } from "../core/adapter";
 import { createClubResolver } from "../core/club-resolver";
 import { IngestError } from "../core/errors";
-import type { Club, Competition, Match, Season, Standing } from "../../../src/data-model/types";
+import type {
+  Club,
+  Competition,
+  Match,
+  Season,
+  Standing,
+  Title,
+} from "../../../src/data-model/types";
 import { RSSSF_COMPETITIONS, RSSSF_SOURCE_PREFIX, type TournamentConfig } from "./config";
 import { resolveDate, type DateWindow } from "./dates";
+import type { ParsedChampions } from "./layouts/champions-list";
 import type { ManifestPage } from "./manifest";
-import type { ParsedMatch, ParsedTableRow, ParsedTournament } from "./types";
+import { buildTitles } from "./titles";
+import type { ParsedMatch, ParsedTableRow, ParsedTournament, TitleSeason } from "./types";
 
 export type RawTournament = {
   tournament: TournamentConfig;
@@ -120,10 +129,18 @@ function mergeAbandoned(
   return out;
 }
 
+/** What the titles need besides the tournaments: the list of champions and the data already held. */
+export type TitlesSource = {
+  champions: ParsedChampions;
+  titleSeasons: readonly TitleSeason[];
+  existing: Readonly<Record<string, unknown[]>>;
+};
+
 export function normalizeRsssf(
   raws: readonly RawTournament[],
   clubs: readonly Club[],
   competitions: readonly Competition[] = RSSSF_COMPETITIONS,
+  titlesSource?: TitlesSource,
 ): AdapterOutput {
   const problems: string[] = [];
   const resolver = createClubResolver(clubs, {
@@ -267,6 +284,56 @@ export function normalizeRsssf(
     });
   }
 
+  let titles: Title[] | undefined;
+  if (titlesSource !== undefined) {
+    // The data as it will be after this run: the seasons held and added, and the matches of the
+    // other sources plus the ones this run writes. The matches of this adapter that are in
+    // data/ now are replaced by this run, so they must not date a title.
+    const facts = new Map<string, { last: string | null; finals: string[] }>();
+    for (const s of [...((titlesSource.existing["seasons.json"] ?? []) as Season[]), ...seasons]) {
+      facts.set(s.id, { last: null, finals: [] });
+    }
+    const held = ((titlesSource.existing["matches.json"] ?? []) as Match[]).filter(
+      (m) => !m.source.startsWith(RSSSF_SOURCE_PREFIX),
+    );
+    for (const m of [...held, ...matches]) {
+      const season = facts.get(m.season_id);
+      if (season === undefined) continue;
+      if (season.last === null || m.date > season.last) season.last = m.date;
+      if (m.is_final) season.finals.push(m.date);
+    }
+    // The champion marked in the final table of a tournament we read, to check the list against.
+    const tableChampions = new Map<string, string>();
+    for (const { tournament: t, parsed } of raws) {
+      const row = parsed.tables
+        .find((x) => x.kind === "full")
+        ?.rows.find((r) => r.mark === "Champion");
+      if (row === undefined) continue;
+      const name = row.suffix === null ? row.name : `${row.name} ${row.suffix}`;
+      const id = resolver.resolve(name, {
+        file: `${t.page}.${t.excerpt}`,
+        line: row.line,
+        season: t.id,
+        context: "table",
+      });
+      if (id !== null) tableChampions.set(t.id, id);
+    }
+    titles = buildTitles({
+      champions: titlesSource.champions,
+      titleSeasons: titlesSource.titleSeasons,
+      resolve: (name, line) =>
+        resolver.resolve(name, {
+          file: titlesSource.champions.excerpt,
+          line,
+          season: "champions",
+          context: "champions",
+        }),
+      seasons: facts,
+      tableChampions,
+      problems,
+    });
+  }
+
   problems.push(...resolver.problems());
   if (problems.length > 0) throw new IngestError(problems);
   return {
@@ -274,6 +341,7 @@ export function normalizeRsssf(
     seasons,
     matches,
     standings,
+    ...(titles === undefined ? {} : { titles }),
     report: { files: reports },
   };
 }

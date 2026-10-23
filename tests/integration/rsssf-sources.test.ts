@@ -23,7 +23,7 @@ describe("sources/rsssf", () => {
 
   it("lists only pages of the Argentine first division, with an author each", () => {
     for (const page of manifest.pages) {
-      expect(page.url).toMatch(/^https:\/\/www\.rsssf\.org\/tablesa\/arg\d+\.html$/);
+      expect(page.url).toMatch(/^https:\/\/www\.rsssf\.org\/tablesa\/arg(?:\d+|champ)\.html$/);
       expect(page.authors.length).toBeGreaterThan(0);
     }
   });

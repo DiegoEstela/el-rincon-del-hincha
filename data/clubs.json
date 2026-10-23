@@ -123,7 +123,8 @@
     "aliases": [
       "Boca Juniors",
       "CA Boca Juniors",
-      "Club Atlético Boca Juniors Asociación Civil (La Boca, C)"
+      "Club Atlético Boca Juniors Asociación Civil (La Boca, C)",
+      "Club Atlético Boca Juniors"
     ],
     "colors": {
       "primary": "#0b1f4d",
@@ -385,7 +386,12 @@
     "id": "platense",
     "name": "Platense",
     "short_name": "Platense",
-    "aliases": ["Platense", "CA Platense", "Club Atlético Platense Asociación Civil (Florida, B)"],
+    "aliases": [
+      "Platense",
+      "CA Platense",
+      "Club Atlético Platense Asociación Civil (Florida, B)",
+      "Club Atlético Platense"
+    ],
     "colors": {
       "primary": "#ffffff",
       "secondary": "#6b4226"
@@ -416,7 +422,8 @@
     "aliases": [
       "River Plate",
       "CA River Plate",
-      "Club Atlético River Plate Asoc. Civil (Belgrano, C)"
+      "Club Atlético River Plate Asoc. Civil (Belgrano, C)",
+      "Club Atlético River Plate"
     ],
     "colors": {
       "primary": "#ffffff",
@@ -579,7 +586,8 @@
       "Vélez Sarsfield",
       "Velez",
       "CA Vélez Sarsfield",
-      "Club Atlético Vélez Sarsfield Asociación Civil (Liniers, C)"
+      "Club Atlético Vélez Sarsfield Asociación Civil (Liniers, C)",
+      "Club Atlético Vélez Sarsfield"
     ],
     "colors": {
       "primary": "#ffffff",
