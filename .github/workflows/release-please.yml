@@ -14,4 +14,4 @@ jobs:
     steps:
       # No inputs on purpose: the action then reads release-please-config.json and
       # .release-please-manifest.json (release-type would make it ignore them).
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
